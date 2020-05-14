@@ -1,0 +1,42 @@
+// Typography
+$font-family: "Poppins", sans-serif;
+
+$h1-size: 1.5rem;
+$h2-size: 1.1rem;
+$text-size: 1rem;
+$desc-size: 0.9rem;
+
+$h1-weight: 500;
+$h2-weight: 500;
+$text-weight: 400;
+$desc-weight: 400;
+
+//colors
+$gray-100: #f6f8f9;
+$gray-200: #e8ecee;
+$gray-300: #9ca6af;
+$gray-400: #6f7782;
+$gray-500: #151b26;
+
+$gradient: linear-gradient(
+                45deg,
+                #ff5263 0%,
+                #ff7381 60%,
+                #fcbd01 115%
+);
+
+$boxShadow: 0 0 0 1px rgba(111, 119, 130, 0.15),
+0 5px 20px 0 rgba(21, 27, 38, 0.08);
+
+$matchingBoxShadowColor: rgba(111, 119, 130, 0.3);
+
+// Mixins
+@mixin debug() {
+  border: 1px solid red;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
