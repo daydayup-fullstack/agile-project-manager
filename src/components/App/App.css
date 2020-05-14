@@ -4,4 +4,75 @@
   box-sizing: border-box;
 }
 
+.App {
+  width: 100%;
+  height: 100vh;
+  overflow-y: hidden;
+  display: flex;
+}
+.App .left {
+  width: 300px;
+  background-color: #151b26;
+}
+.App .left .SideMenuHeader {
+  color: white;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  font-size: 1.5rem;
+  max-width: 300px;
+}
+.App .left .SideMenuHeader span {
+  cursor: pointer;
+}
+.App .collapse {
+  margin-left: -300px;
+  transition: all 0.3s ease;
+}
+.App .expand {
+  margin-left: 0;
+  transition: all 0.3s ease;
+}
+.App .right {
+  width: 100%;
+  height: 100vh;
+  background-color: #f6f8f9;
+}
+.App .right header {
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 1.5rem;
+}
+.App .right header .title {
+  display: flex;
+}
+.App .right header .title .icon {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  margin-right: 2px;
+}
+.App .right header .title h2 {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.App .right header .more-content {
+  background: #e8ecee;
+  color: #151b26;
+}
+.App .right .content {
+  height: 100vh;
+  background: #9ca6af;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  color: #151b26;
+}
+
 /*# sourceMappingURL=App.css.map */
