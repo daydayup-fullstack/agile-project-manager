@@ -1,16 +1,14 @@
 .Drawer {
-  width: 100%;
-  height: 100vh;
-  overflow-y: hidden;
   display: flex;
 }
-.Drawer .left {
+.Drawer .SideMenu {
   width: 300px;
   background-color: #151b26;
-  position: fixed;
+  position: sticky;
+  top: 0;
   height: 100vh;
 }
-.Drawer .left .SideMenuHeader {
+.Drawer .SideMenu--header {
   color: white;
   height: 4rem;
   display: flex;
@@ -20,56 +18,57 @@
   font-size: 1.5rem;
   max-width: 300px;
 }
-.Drawer .left .SideMenuHeader span {
+.Drawer .SideMenu--header span {
   cursor: pointer;
 }
 .Drawer .close {
-  margin-left: 0;
+  margin-left: -300px;
   transition: all 0.3s ease;
 }
 .Drawer .open {
-  margin-left: 300px;
+  margin-left: 0;
   transition: all 0.3s ease;
 }
 .Drawer .right {
   width: 100%;
-  height: 100vh;
   background-color: #ffffff;
   z-index: 10;
 }
-.Drawer .right header {
+.Drawer .right .content-header {
   height: 4rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding-left: 1.5rem;
+  position: sticky;
+  top: 0;
+  background-color: #ffffff;
 }
-.Drawer .right header .title {
+.Drawer .right .content-header .title {
   display: flex;
   align-items: center;
 }
-.Drawer .right header .title .icon {
+.Drawer .right .content-header .title .icon {
   display: inline-block;
   cursor: pointer;
   height: fit-content;
   margin-right: 0.5rem;
 }
-.Drawer .right header .title h2 {
+.Drawer .right .content-header .title h2 {
   font-family: "Poppins", sans-serif;
   font-size: 1.5rem;
   font-weight: 500;
 }
-.Drawer .right header .more-content ul {
+.Drawer .right .content-header .more-content ul {
   list-style: none;
   margin-right: 1rem;
   display: flex;
   align-items: center;
 }
-.Drawer .right header .more-content ul li {
+.Drawer .right .content-header .more-content ul li {
   margin-right: 1.2rem;
 }
 .Drawer .right .content {
-  height: 100vh;
   background: #ffffff;
   display: flex;
   align-items: center;

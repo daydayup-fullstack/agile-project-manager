@@ -14,13 +14,16 @@ const Drawer = ({ children }) => {
 
   return (
     <div className="Drawer">
-      <section className={"left"}>
-        <header className={"SideMenuHeader"}>
+      <section className={"SideMenu"}>
+        <header className={"SideMenu--header"}>
           <div>Logo</div>
           <span className="material-icons" onClick={closeDrawer}>
             menu_open
           </span>
         </header>
+        <div className="SideMenu--content">
+          something
+        </div>
       </section>
 
       <section className={`right ${shouldClose ? "close" : "open"}`}>
