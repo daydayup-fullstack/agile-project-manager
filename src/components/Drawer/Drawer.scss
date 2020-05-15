@@ -1,16 +1,16 @@
 @import "../../style/variables";
 
 .Drawer {
-  width: 100%;
-  height: 100vh;
-  overflow-y: hidden;
   display: flex;
 
-  .left {
+  .SideMenu {
     width: 300px;
     background-color: $gray-500;
+    position: sticky;
+    top: 0;
+    height: 100vh;
 
-    .SideMenuHeader {
+    &--header {
       color: white;
       height: 4rem;
       display: flex;
@@ -24,38 +24,80 @@
         cursor: pointer;
       }
     }
+
+    &--content {
+      .navigation {
+        ul {
+          list-style: none;
+          display: flex;
+          flex-direction: column;
+
+          li {
+            display: flex;
+            align-items: center;
+            color: $gray-200;
+            font-family: $font-family;
+            font-weight: $desc-weight;
+            font-size: $desc-size;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+
+            &:hover {
+                background-color: darken($gray-400, 30%);
+
+            }
+
+            i {
+              margin-right: 0.5rem;
+            }
+
+            &:first-of-type {
+              background-color: $gray-400;
+
+              &:hover {
+                background-color: darken($gray-400, 20%);
+              }
+            }
+          }
+        }
+      }
+    }
   }
 
 
-  .collapse {
+  .close {
     margin-left: -300px;
     transition: all 0.3s ease;
   }
 
-  .expand {
+  .open {
     margin-left: 0;
     transition: all 0.3s ease;
   }
 
   .right {
     width: 100%;
-    height: 100vh;
-    background-color: $gray-100;
+    background-color: #ffffff;
+    z-index: 10;
 
-    header {
+    .content-header {
       height: 4rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding-left: 1.5rem;
+      position: sticky;
+      top: 0;
+      background-color: #ffffff;
 
       .title {
         display: flex;
+        align-items: center;
         .icon {
           display: inline-block;
           cursor: pointer;
-          position: relative;
-          margin-right: 2px;
+          height: fit-content;
+          margin-right: 0.5rem;
         }
 
         h2 {
@@ -66,14 +108,20 @@
       }
 
       .more-content {
-        background: $gray-200;
-        color: $gray-500;
+        ul {
+          list-style: none;
+          margin-right: 1rem;
+          display: flex;
+          align-items: center;
+          li {
+            margin-right: 1.2rem;
+          }
+        }
       }
     }
 
     .content {
-      height: 100vh;
-      background: $gray-100;
+      background: #ffffff;
       display: flex;
       align-items: center;
       flex-direction: column;

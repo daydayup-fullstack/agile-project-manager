@@ -1,0 +1,64 @@
+.Tooltip {
+  width: 9.375rem;
+  border-radius: 0.25rem;
+  box-shadow: 0 0 0 1px rgba(111, 119, 130, 0.15), 0 5px 20px 0 rgba(21, 27, 38, 0.08);
+  padding: 0.25rem 0;
+  flex-direction: column;
+  position: absolute;
+  z-index: 20;
+  right: -2px;
+  top: 2.5rem;
+  background-color: #ffffff;
+  margin: 1rem;
+}
+.Tooltip::before {
+  content: "";
+  position: absolute;
+  border-style: solid;
+  border-width: 0 10px 10px;
+  border-color: rgba(111, 119, 130, 0.3) transparent;
+  display: block;
+  width: 0;
+  z-index: 0;
+  left: 64px;
+  top: -10px;
+}
+.Tooltip::after {
+  content: "";
+  position: absolute;
+  border-style: solid;
+  border-width: 0 9px 9px;
+  border-color: white transparent;
+  display: block;
+  width: 0;
+  z-index: 100;
+  left: 65px;
+  top: -9px;
+}
+.Tooltip__content ul {
+  width: 9.375rem;
+}
+.Tooltip__content ul li {
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: #151b26;
+}
+.Tooltip__content ul li .material-icons {
+  color: #9ca6af;
+  font-size: 1.2rem;
+  position: relative;
+  margin-right: 0.5rem;
+}
+.Tooltip__content ul li:hover {
+  background: linear-gradient(45deg, #ff5263 0%, #ff7381 60%, #fcbd01 115%);
+}
+.Tooltip__content ul li:hover span {
+  color: white;
+}
+
+/*# sourceMappingURL=Tooltip.css.map */

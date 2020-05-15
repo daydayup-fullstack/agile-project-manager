@@ -1,14 +1,14 @@
 .Drawer {
-  width: 100%;
-  height: 100vh;
-  overflow-y: hidden;
   display: flex;
 }
-.Drawer .left {
+.Drawer .SideMenu {
   width: 300px;
   background-color: #151b26;
+  position: sticky;
+  top: 0;
+  height: 100vh;
 }
-.Drawer .left .SideMenuHeader {
+.Drawer .SideMenu--header {
   color: white;
   height: 4rem;
   display: flex;
@@ -18,50 +18,85 @@
   font-size: 1.5rem;
   max-width: 300px;
 }
-.Drawer .left .SideMenuHeader span {
+.Drawer .SideMenu--header span {
   cursor: pointer;
 }
-.Drawer .collapse {
+.Drawer .SideMenu--content .navigation ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+.Drawer .SideMenu--content .navigation ul li {
+  display: flex;
+  align-items: center;
+  color: #e8ecee;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.Drawer .SideMenu--content .navigation ul li:hover {
+  background-color: #292b2f;
+}
+.Drawer .SideMenu--content .navigation ul li i {
+  margin-right: 0.5rem;
+}
+.Drawer .SideMenu--content .navigation ul li:first-of-type {
+  background-color: #6f7782;
+}
+.Drawer .SideMenu--content .navigation ul li:first-of-type:hover {
+  background-color: #40454b;
+}
+.Drawer .close {
   margin-left: -300px;
   transition: all 0.3s ease;
 }
-.Drawer .expand {
+.Drawer .open {
   margin-left: 0;
   transition: all 0.3s ease;
 }
 .Drawer .right {
   width: 100%;
-  height: 100vh;
-  background-color: #f6f8f9;
+  background-color: #ffffff;
+  z-index: 10;
 }
-.Drawer .right header {
+.Drawer .right .content-header {
   height: 4rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding-left: 1.5rem;
+  position: sticky;
+  top: 0;
+  background-color: #ffffff;
 }
-.Drawer .right header .title {
+.Drawer .right .content-header .title {
   display: flex;
+  align-items: center;
 }
-.Drawer .right header .title .icon {
+.Drawer .right .content-header .title .icon {
   display: inline-block;
   cursor: pointer;
-  position: relative;
-  margin-right: 2px;
+  height: fit-content;
+  margin-right: 0.5rem;
 }
-.Drawer .right header .title h2 {
+.Drawer .right .content-header .title h2 {
   font-family: "Poppins", sans-serif;
   font-size: 1.5rem;
   font-weight: 500;
 }
-.Drawer .right header .more-content {
-  background: #e8ecee;
-  color: #151b26;
+.Drawer .right .content-header .more-content ul {
+  list-style: none;
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+}
+.Drawer .right .content-header .more-content ul li {
+  margin-right: 1.2rem;
 }
 .Drawer .right .content {
-  height: 100vh;
-  background: #f6f8f9;
+  background: #ffffff;
   display: flex;
   align-items: center;
   flex-direction: column;

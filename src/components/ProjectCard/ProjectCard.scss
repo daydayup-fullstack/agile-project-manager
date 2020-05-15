@@ -8,10 +8,10 @@
   transition: all 0.4s ease-in-out;
   padding: 1.25rem 0.4rem 5rem 0.4rem;
   border-radius: 1.875rem;
-  margin-top: 2rem;
+  margin-top: 1rem;
 
   &:hover {
-    background-color: $gray-200;
+    background-color: $gray-100;
     cursor: pointer;
     transform: translateY(-4px);
   }
