@@ -97,7 +97,7 @@ export const projects = [
             name: "project asana",
             colorIndex: 3,
             createdOn:1556516450,
-            isStarred: false
+            isStarred: true
         },
         tasks: {},
         columns: {},
