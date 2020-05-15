@@ -3,6 +3,9 @@
   display: flex;
   flex-direction: column;
 }
+.Navigation ul .active {
+  background-color: rgba(111, 119, 130, 0.5);
+}
 .Navigation ul li {
   display: flex;
   align-items: center;
@@ -14,16 +17,14 @@
   cursor: pointer;
 }
 .Navigation ul li:hover {
-  background-color: #292b2f;
+  background-color: rgba(111, 119, 130, 0.2);
 }
-.Navigation ul li i {
+.Navigation ul li .link {
+  display: flex;
+  align-items: center;
+}
+.Navigation ul li .link .icon {
   margin-right: 0.5rem;
-}
-.Navigation ul li:first-of-type {
-  background-color: #6f7782;
-}
-.Navigation ul li:first-of-type:hover {
-  background-color: #585e66;
 }
 
 /*# sourceMappingURL=Navigation.css.map */
