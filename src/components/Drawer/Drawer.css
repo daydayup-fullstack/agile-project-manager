@@ -21,33 +21,6 @@
 .Drawer .SideMenu--header span {
   cursor: pointer;
 }
-.Drawer .SideMenu--content .navigation ul {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-}
-.Drawer .SideMenu--content .navigation ul li {
-  display: flex;
-  align-items: center;
-  color: #e8ecee;
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-  font-size: 0.9rem;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-}
-.Drawer .SideMenu--content .navigation ul li:hover {
-  background-color: #292b2f;
-}
-.Drawer .SideMenu--content .navigation ul li i {
-  margin-right: 0.5rem;
-}
-.Drawer .SideMenu--content .navigation ul li:first-of-type {
-  background-color: #6f7782;
-}
-.Drawer .SideMenu--content .navigation ul li:first-of-type:hover {
-  background-color: #40454b;
-}
 .Drawer .close {
   margin-left: -300px;
   transition: all 0.3s ease;

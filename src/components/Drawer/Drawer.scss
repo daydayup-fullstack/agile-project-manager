@@ -26,41 +26,7 @@
     }
 
     &--content {
-      .navigation {
-        ul {
-          list-style: none;
-          display: flex;
-          flex-direction: column;
 
-          li {
-            display: flex;
-            align-items: center;
-            color: $gray-200;
-            font-family: $font-family;
-            font-weight: $desc-weight;
-            font-size: $desc-size;
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-
-            &:hover {
-                background-color: darken($gray-400, 30%);
-
-            }
-
-            i {
-              margin-right: 0.5rem;
-            }
-
-            &:first-of-type {
-              background-color: $gray-400;
-
-              &:hover {
-                background-color: darken($gray-400, 20%);
-              }
-            }
-          }
-        }
-      }
     }
   }
 
