@@ -5,7 +5,7 @@ import Profile from "../Profile/Profile";
 import { users } from "../../model/model";
 import Tooltip from "../Tooltip/Tooltip";
 
-const Drawer = ({ children }) => {
+const Drawer = ({ nav, content }) => {
   const [shouldClose, setShouldClose] = useState(false);
   const [shouldShowTooltip, setShouldShowTooltip] = useState(false);
 
@@ -23,13 +23,9 @@ const Drawer = ({ children }) => {
         </header>
         <div className="SideMenu--content">
 
-          <div className="navigation">
-            <ul>
-              <li><i className={"material-icons-outlined"}>home</i>Home</li>
-              <li><i className={"material-icons-outlined"}>check_circle</i>My Tasks</li>
-              <li><i className={"material-icons-outlined"}>notifications</i>Inbox</li>
-            </ul>
-          </div>
+
+
+          {nav}
         </div>
       </section>
 
@@ -58,7 +54,7 @@ const Drawer = ({ children }) => {
         </header>
 
         <Tooltip shouldShow={shouldShowTooltip} />
-        <div className="content">{children}</div>
+        <div className="content">{content}</div>
       </section>
     </div>
   );

@@ -1,0 +1,29 @@
+.Navigation ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+.Navigation ul li {
+  display: flex;
+  align-items: center;
+  color: #e8ecee;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.Navigation ul li:hover {
+  background-color: #292b2f;
+}
+.Navigation ul li i {
+  margin-right: 0.5rem;
+}
+.Navigation ul li:first-of-type {
+  background-color: #6f7782;
+}
+.Navigation ul li:first-of-type:hover {
+  background-color: #585e66;
+}
+
+/*# sourceMappingURL=Navigation.css.map */
