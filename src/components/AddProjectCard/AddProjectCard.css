@@ -9,7 +9,7 @@
   margin-top: 2rem;
 }
 .addProjectCard:hover {
-  background-color: #e8ecee;
+  background-color: #f6f8f9;
   cursor: pointer;
   transform: translateY(-4px);
 }
@@ -23,7 +23,7 @@
   width: 7.5rem;
   height: 7.5rem;
   border-radius: 1.25rem;
-  background-color: #f6f8f9;
+  background-color: #ffffff;
   border: 2px dashed #9ca6af;
   display: flex;
   justify-content: center;

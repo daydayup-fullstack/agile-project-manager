@@ -9,7 +9,7 @@
   margin-top: 2rem;
 }
 .ProjectCard:hover {
-  background-color: #e8ecee;
+  background-color: #f6f8f9;
   cursor: pointer;
   transform: translateY(-4px);
 }

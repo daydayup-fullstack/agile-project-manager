@@ -11,7 +11,7 @@
   margin-top: 2rem;
 
   &:hover {
-    background-color: $gray-200;
+    background-color: $gray-100;
     cursor: pointer;
     transform: translateY(-4px);
     .addProjectCard__content {
@@ -26,7 +26,7 @@
     width: 7.5rem;
     height: 7.5rem;
     border-radius: 1.25rem;
-    background-color: $gray-100;
+    background-color: #ffffff;
     border: 2px dashed $gray-300;
     display: flex;
     justify-content: center;
