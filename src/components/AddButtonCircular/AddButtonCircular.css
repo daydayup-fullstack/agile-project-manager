@@ -1,0 +1,22 @@
+.AddButtonCircular {
+  height: 1.5rem;
+  width: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  border: none;
+  background: linear-gradient(to top right, #ff5263 0%, #ff7381 35%, #fcbd01 100%);
+}
+.AddButtonCircular span {
+  color: #f5f5f5;
+  font-size: 1rem;
+}
+.AddButtonCircular:hover {
+  cursor: pointer;
+}
+.AddButtonCircular:hover span {
+  color: white;
+}
+
+/*# sourceMappingURL=AddButtonCircular.css.map */

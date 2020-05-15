@@ -59,9 +59,14 @@
   font-size: 1.5rem;
   font-weight: 500;
 }
-.Drawer .right header .more-content {
-  background: #e8ecee;
-  color: #151b26;
+.Drawer .right header .more-content ul {
+  list-style: none;
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+}
+.Drawer .right header .more-content ul li {
+  margin-right: 0.5rem;
 }
 .Drawer .right .content {
   height: 100vh;

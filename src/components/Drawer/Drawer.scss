@@ -70,8 +70,15 @@
       }
 
       .more-content {
-        background: $gray-200;
-        color: $gray-500;
+        ul {
+          list-style: none;
+          margin-right: 1rem;
+          display: flex;
+          align-items: center;
+          li {
+            margin-right: 0.5rem;
+          }
+        }
       }
     }
 

@@ -14,13 +14,13 @@ const Home = ({ projects }) => {
       {starredProjects && starredProjects.length > 0 && (
         <Panel panelName={"Favorites"}>
           {starredProjects.map((project) => (
-            <ProjectCard project={project} onHandleClick={() => {}} />
+            <ProjectCard project={project} key={project.id} onHandleClick={() => {}} />
           ))}
         </Panel>
       )}
       <Panel panelName={"Recent Projects"}>
         {projects.map((project) => (
-          <ProjectCard project={project} onHandleClick={() => {}} />
+          <ProjectCard project={project} key={project.id} onHandleClick={() => {}} />
         ))}
 
         <AddProjectCard />
