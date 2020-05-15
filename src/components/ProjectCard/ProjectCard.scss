@@ -8,6 +8,7 @@
   transition: all 0.4s ease-in-out;
   padding: 1.25rem 0.4rem 5rem 0.4rem;
   border-radius: 1.875rem;
+  margin-top: 2rem;
 
   &:hover {
     background-color: $gray-200;
@@ -24,8 +25,9 @@
 
   .title {
     margin-top: 0.625rem;
-    font-size: $text-size;
-    font-weight: $text-weight;
+    font-family: $font-family;
+    font-size: $desc-size;
+    font-weight: $desc-weight;
     text-align: center;
     max-height: 2rem;
     width: 100%;

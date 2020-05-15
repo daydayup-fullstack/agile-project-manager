@@ -2,7 +2,7 @@ export const project = {
     id: "project-43debfae",
     content: {
         name: "project-name",
-        colorIndex: 0,
+        colorIndex: 6,
         createdOn: 1556516450,
         isStarred: false,
     },
@@ -77,6 +77,45 @@ export const project = {
     columnOrder: ["column-5a41bf2e", "column-a39bf32f", "column-9bbf7964"],
 };
 
+export const projects = [
+    {...project},
+    {
+        id: "project-e27109e3",
+        content: {
+            name: "project 3",
+            colorIndex: 1,
+            createdOn:1556516450,
+            isStarred: true
+        },
+        tasks: {},
+        columns: {},
+        columnOrder: []
+    },
+    {
+        id: "project-e0b3bcbd",
+        content: {
+            name: "project asana",
+            colorIndex: 3,
+            createdOn:1556516450,
+            isStarred: false
+        },
+        tasks: {},
+        columns: {},
+        columnOrder: []
+    },
+    {
+        id: "project-3117a529",
+        content: {
+            name: "Weather App",
+            colorIndex: 0,
+            createdOn:1556516450,
+            isStarred: false
+        },
+        tasks: {},
+        columns: {},
+        columnOrder: []
+    }
+]
 export const users = {
     "user-c8dc5864": {
         id: "user-c8dc5864",
@@ -119,7 +158,7 @@ export const users = {
 };
 
 export const colors = [
-    "#F6F8F9",
+    "#cbd4db",
     "#E8384F",
     "#FD612C",
     "#FD9A00",

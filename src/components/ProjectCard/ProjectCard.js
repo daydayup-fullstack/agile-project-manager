@@ -8,9 +8,9 @@ const ProjectCard = ({ project, onHandleClick }) => {
         <div className={"ProjectCard"} onClick={onHandleClick}>
             <div
                 className="card"
-                style={{ background: colors[project.colorIndex] }}
+                style={{ background: colors[project.content.colorIndex] }}
             />
-            <span className={"title"}>{project.name}</span>
+            <span className={"title"}>{project.content.name}</span>
         </div>
     );
 };
