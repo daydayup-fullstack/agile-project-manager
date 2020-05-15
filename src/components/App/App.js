@@ -2,16 +2,50 @@ import React from "react";
 import "./App.css";
 import Drawer from "../Drawer/Drawer";
 import Home from "../../pages/Home/Home";
-
-import { projects } from "../../model/model";
 import Navigation from "../Navigation/Navigation";
+import { projects } from "../../model/model";
+import { Switch, Route, BrowserRouter, useParams } from "react-router-dom";
 
 const App = () => {
   return (
     <div className="App">
-      <Drawer nav={<Navigation/>} content={<Home projects={projects} />} />
+      <BrowserRouter>
+        <Drawer nav={<Navigation />}>
+          <Switch>
+            <Route path={"/home"}>
+              <Home projects={projects} />
+            </Route>
+
+            <Route path={"/tasks"}>
+              <Tasks />
+            </Route>
+
+            <Route path={"/inbox"}>
+              <Inbox />
+            </Route>
+
+            <Route path={"/project/:id"}>
+              <Project />
+            </Route>
+
+          </Switch>
+        </Drawer>
+      </BrowserRouter>
     </div>
   );
+};
+
+const Tasks = () => {
+  return <div>Tasks works!</div>;
+};
+
+const Inbox = () => {
+  return <div>Inbox works!</div>;
+};
+
+const Project = () => {
+  const { id } = useParams();
+  return <div>{id}</div>;
 };
 
 export default App;

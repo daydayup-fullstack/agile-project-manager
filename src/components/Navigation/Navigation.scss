@@ -6,6 +6,10 @@
     display: flex;
     flex-direction: column;
 
+    .active {
+      background-color: rgba($gray-400, 0.5);
+    }
+
     li {
       display: flex;
       align-items: center;
@@ -17,19 +21,15 @@
       cursor: pointer;
 
       &:hover {
-        background-color: darken($gray-400, 30%);
-
+        background-color: rgba($gray-400, 0.2);
       }
 
-      i {
-        margin-right: 0.5rem;
-      }
+      .link {
+        display: flex;
+        align-items: center;
 
-      &:first-of-type {
-        background-color: $gray-400;
-
-        &:hover {
-          background-color: darken($gray-400, 10%);
+        .icon {
+          margin-right: 0.5rem;
         }
       }
     }
