@@ -7,6 +7,8 @@
 .Drawer .left {
   width: 300px;
   background-color: #151b26;
+  position: fixed;
+  height: 100vh;
 }
 .Drawer .left .SideMenuHeader {
   color: white;
@@ -21,18 +23,19 @@
 .Drawer .left .SideMenuHeader span {
   cursor: pointer;
 }
-.Drawer .collapse {
-  margin-left: -300px;
+.Drawer .close {
+  margin-left: 0;
   transition: all 0.3s ease;
 }
-.Drawer .expand {
-  margin-left: 0;
+.Drawer .open {
+  margin-left: 300px;
   transition: all 0.3s ease;
 }
 .Drawer .right {
   width: 100%;
   height: 100vh;
   background-color: #f6f8f9;
+  z-index: 10;
 }
 .Drawer .right header {
   height: 4rem;
@@ -43,12 +46,13 @@
 }
 .Drawer .right header .title {
   display: flex;
+  align-items: center;
 }
 .Drawer .right header .title .icon {
   display: inline-block;
   cursor: pointer;
-  position: relative;
-  margin-right: 2px;
+  height: fit-content;
+  margin-right: 0.5rem;
 }
 .Drawer .right header .title h2 {
   font-family: "Poppins", sans-serif;

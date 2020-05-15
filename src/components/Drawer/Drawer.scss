@@ -9,6 +9,8 @@
   .left {
     width: 300px;
     background-color: $gray-500;
+    position: fixed;
+    height: 100vh;
 
     .SideMenuHeader {
       color: white;
@@ -27,13 +29,13 @@
   }
 
 
-  .collapse {
-    margin-left: -300px;
+  .close {
+    margin-left: 0;
     transition: all 0.3s ease;
   }
 
-  .expand {
-    margin-left: 0;
+  .open {
+    margin-left: 300px;
     transition: all 0.3s ease;
   }
 
@@ -41,6 +43,7 @@
     width: 100%;
     height: 100vh;
     background-color: $gray-100;
+    z-index: 10;
 
     header {
       height: 4rem;
@@ -51,11 +54,12 @@
 
       .title {
         display: flex;
+        align-items: center;
         .icon {
           display: inline-block;
           cursor: pointer;
-          position: relative;
-          margin-right: 2px;
+          height: fit-content;
+          margin-right: 0.5rem;
         }
 
         h2 {

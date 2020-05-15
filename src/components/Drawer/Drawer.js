@@ -2,10 +2,11 @@ import React, {useState} from "react";
 import "./Drawer.css";
 
 const Drawer = ({children}) => {
-    const [shouldCollapse, setShouldCollapse] = useState(false);
+    const [shouldClose, setShouldClose] = useState(false);
 
-    const onCollapse = () => setShouldCollapse(true);
-    const onExpand = () => setShouldCollapse(false);
+
+    let openDrawer = () => setShouldClose(false);
+    let closeDrawer = () => setShouldClose(true);
 
     return (
         <div className="Drawer">
@@ -13,16 +14,17 @@ const Drawer = ({children}) => {
                 <header className={"SideMenuHeader"}>
                     <div>Logo</div>
                     <span className="material-icons"
-                          onClick={onCollapse}>menu_open</span>
+                          onClick={closeDrawer}>menu_open</span>
+
                 </header>
             </section>
 
-            <section className={`right ${shouldCollapse ? "collapse" : "expand"}`}>
+            <section className={`right ${shouldClose ? "close" : "open"}`}>
                 <header className={"content-header"}>
                     <div className="title">
-                        {shouldCollapse && (
+                        {shouldClose && (
                             <span className={"material-icons icon"}
-                                  onClick={onExpand}>menu</span>
+                                  onClick={openDrawer}>menu</span>
                         )}
                         <h2>Home</h2>
                     </div>
