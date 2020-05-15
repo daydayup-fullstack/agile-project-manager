@@ -1,39 +1,18 @@
-import React, {useState} from "react";
+import React from "react";
 import "./App.css";
+import Drawer from "../Drawer/Drawer";
+import Home from "../../pages/Home/Home";
 
-const App = ({children}) => {
-    const [shouldCollapse, setShouldCollapse] = useState(false);
+import {projects} from "../../model/model";
 
-    const onCollapse = () => setShouldCollapse(true);
-    const onExpand = () => setShouldCollapse(false);
+const App = () => {
+
 
     return (
         <div className="App">
-            <section className={"left"}>
-                <header className={"SideMenuHeader"}>
-                    <div>Logo</div>
-                    <span className="material-icons"
-                          onClick={onCollapse}>menu_open</span>
-                </header>
-            </section>
-
-            <section className={`right ${shouldCollapse ? "collapse" : "expand"}`}>
-                <header className={"content-header"}>
-                    <div className="title">
-                        {shouldCollapse && (
-                            <span className={"material-icons icon"}
-                                  onClick={onExpand}>menu</span>
-                        )}
-                        <h2>Home</h2>
-                    </div>
-                    <div className={"more-content"}>-- Right section for more content to insert --</div>
-                </header>
-
-                <div className="content">
-                    {children}
-                </div>
-
-            </section>
+            <Drawer>
+                <Home projects={projects}/>
+            </Drawer>
         </div>
     );
 }
