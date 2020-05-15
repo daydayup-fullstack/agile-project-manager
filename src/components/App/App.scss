@@ -73,10 +73,10 @@
 
     .content {
       height: 100vh;
-      background: $gray-300;
+      background: $gray-100;
       display: flex;
-      justify-content: center;
       align-items: center;
+      flex-direction: column;
       font-size: $h1-size;
       color: $gray-500;
     }
