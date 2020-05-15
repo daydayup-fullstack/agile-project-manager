@@ -8,18 +8,29 @@
   align-items: center;
   border-radius: 1rem;
   border: none;
-  background: linear-gradient(to top right, #ff5263 0%, #ff7381 35%, #fcbd01 100%);
+  background: linear-gradient(
+    to top right,
+    #ff5263 0%,
+    #ff7381 35%,
+    #fcbd01 100%
+  );
 
   span {
     color: #f5f5f5;
-    font-size: 1rem;
+    transform: scale(0.75);
   }
 
   &:hover {
     cursor: pointer;
+    background: linear-gradient(
+      to top right,
+      #ff1f35,
+      #ff4053 35%,
+      #c99701
+    );
 
     span {
-      color:white;
+      color: white;
     }
   }
 }

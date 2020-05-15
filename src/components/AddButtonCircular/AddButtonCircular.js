@@ -2,9 +2,9 @@ import React from "react";
 
 import "./AddButtonCircular.css";
 
-const AddButtonCircular = () => {
+const AddButtonCircular = ({onHandleClick}) => {
     return (
-        <div className={"AddButtonCircular"} onClick={() => {}}>
+        <div className={"AddButtonCircular"} onClick={onHandleClick}>
             <span className={"material-icons"}>add</span>
         </div>
     );

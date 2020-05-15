@@ -1,0 +1,72 @@
+@import "../../style/variables";
+
+.Tooltip{
+  width: 9.375rem;
+  border-radius: 0.25rem;
+  box-shadow: $boxShadow;
+  padding: 0.25rem 0;
+  flex-direction: column;
+  position: absolute;
+  z-index: 20;
+  right: -2px;
+  top: 2.5rem;
+  background-color: #ffffff;
+
+  margin: 1rem;
+
+  &::before {
+    content: "";
+    position: absolute;
+    border-style: solid;
+    border-width: 0 10px 10px;
+    border-color: $matchingBoxShadowColor transparent;
+    display: block;
+    width: 0;
+    z-index: 0;
+    left: 64px;
+    top: -10px;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    border-style: solid;
+    border-width: 0 9px 9px;
+    border-color: white transparent;
+    display: block;
+    width: 0;
+    z-index: 100;
+    left: 65px;
+    top: -9px;
+  }
+
+  &__content {
+    ul {
+      width: 9.375rem;
+      li {
+        cursor: pointer;
+        .material-icons {
+          color: $gray-300;
+          font-size: 1.2rem;
+          position: relative;
+          margin-right: 0.5rem;
+        }
+        padding: 0.5rem 1rem;
+        display: flex;
+        align-items: center;
+        font-family: $font-family;
+        font-size: $desc-size * 0.8;
+        font-weight: $desc-weight;
+        color: $gray-500;
+
+
+        &:hover {
+          span {
+            color: white;
+          }
+
+          background: $gradient;
+        }
+      }
+    }
+  }
+}

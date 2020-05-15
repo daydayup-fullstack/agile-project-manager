@@ -3,9 +3,11 @@ import "./Drawer.css";
 import AddButtonCircular from "../AddButtonCircular/AddButtonCircular";
 import Profile from "../Profile/Profile";
 import { users } from "../../model/model";
+import Tooltip from "../Tooltip/Tooltip";
 
 const Drawer = ({ children }) => {
   const [shouldClose, setShouldClose] = useState(false);
+  const [shouldShowTooltip, setShouldShowTooltip] = useState(false);
 
   let openDrawer = () => setShouldClose(false);
   let closeDrawer = () => setShouldClose(true);
@@ -34,7 +36,7 @@ const Drawer = ({ children }) => {
           <div className={"more-content"}>
             <ul>
               <li>
-                <AddButtonCircular />
+                <AddButtonCircular onHandleClick={() => setShouldShowTooltip(!shouldShowTooltip)}/>
               </li>
 
               <li>
@@ -45,6 +47,7 @@ const Drawer = ({ children }) => {
           </div>
         </header>
 
+        <Tooltip shouldShow={shouldShowTooltip} />
         <div className="content">{children}</div>
       </section>
     </div>
