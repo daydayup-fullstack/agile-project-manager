@@ -1,0 +1,58 @@
+.board-column {
+  width: 19rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 200px;
+  border: 1px solid transparent;
+  border-radius: 0.4rem;
+  transition: border-color 0.25s ease;
+  background: #f6f8f9;
+  padding: 1rem;
+  cursor: pointer;
+}
+.board-column--hovered {
+  border-color: #e8ecee;
+}
+.board-column--isDragging {
+  border-color: #e8ecee;
+  background: #e8ecee;
+}
+.board-column .header {
+  width: 17.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 2rem;
+  margin: 0.25rem 0;
+  cursor: pointer;
+}
+.board-column .header .title {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+.board-column .header span {
+  display: inline-block;
+  user-select: none;
+}
+.board-column .header .button {
+  cursor: pointer;
+  color: #9ca6af;
+  transition: all 0.25s ease;
+}
+.board-column .header .button:hover {
+  color: #151b26;
+}
+.board-column .header input {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 0.4rem 0.25rem;
+  border: 1px solid #9ca6af;
+  border-radius: 0.25rem;
+  width: 17.5rem;
+  margin-bottom: 0.25rem;
+}
+
+/*# sourceMappingURL=BoardColumn.css.map */

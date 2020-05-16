@@ -1,0 +1,39 @@
+@import "../../style/variables";
+
+
+.ContentHeader {
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  background-color: #ffffff;
+
+  .title {
+    display: flex;
+    align-items: center;
+    .icon {
+      display: inline-block;
+      cursor: pointer;
+      height: fit-content;
+      margin-right: 0.5rem;
+    }
+
+    h2 {
+      font-family: $font-family;
+      font-size: $h1-size;
+      font-weight: $h1-weight;
+    }
+  }
+
+  .more-content {
+    ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      li {
+        margin-left: 1.5em;
+      }
+    }
+  }
+}

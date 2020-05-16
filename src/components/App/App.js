@@ -4,7 +4,8 @@ import Drawer from "../Drawer/Drawer";
 import Home from "../../pages/Home/Home";
 import Navigation from "../Navigation/Navigation";
 import { projects } from "../../model/model";
-import { Switch, Route, BrowserRouter, useParams } from "react-router-dom";
+import { Switch, Route, BrowserRouter } from "react-router-dom";
+import Project from "../../pages/Project/Project";
 
 const App = () => {
   return (
@@ -25,9 +26,8 @@ const App = () => {
             </Route>
 
             <Route path={"/project/:id"}>
-              <Project />
+              <Project projects={projects}/>
             </Route>
-
           </Switch>
         </Drawer>
       </BrowserRouter>
@@ -41,11 +41,6 @@ const Tasks = () => {
 
 const Inbox = () => {
   return <div>Inbox works!</div>;
-};
-
-const Project = () => {
-  const { id } = useParams();
-  return <div>{id}</div>;
 };
 
 export default App;

@@ -2,13 +2,23 @@
 
 .Drawer {
   display: flex;
+  flex-direction: row;
 
   .SideMenu {
     width: 300px;
+    min-width: 300px;
     background-color: $gray-500;
-    position: sticky;
-    top: 0;
     height: 100vh;
+
+    &--close {
+      margin-left: -300px;
+      transition: all 0.3s ease;
+    }
+
+    &--open {
+      margin-left: 0;
+      transition: all 0.3s ease;
+    }
 
     &--header {
       color: white;
@@ -19,6 +29,7 @@
       padding: 20px;
       font-size: $h1-size;
       max-width: 300px;
+      flex-shrink: 1;
 
       span {
         cursor: pointer;
@@ -26,73 +37,20 @@
     }
 
     &--content {
-
     }
   }
 
-
-  .close {
-    margin-left: -300px;
-    transition: all 0.3s ease;
-  }
-
-  .open {
-    margin-left: 0;
-    transition: all 0.3s ease;
-  }
-
-  .right {
-    width: 100%;
+  .main {
     background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
     z-index: 10;
+    width: 100%;
 
-    .content-header {
-      height: 4rem;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-left: 1.5rem;
-      position: sticky;
-      top: 0;
-      background-color: #ffffff;
-
-      .title {
-        display: flex;
-        align-items: center;
-        .icon {
-          display: inline-block;
-          cursor: pointer;
-          height: fit-content;
-          margin-right: 0.5rem;
-        }
-
-        h2 {
-          font-family: $font-family;
-          font-size: $h1-size;
-          font-weight: $h1-weight;
-        }
-      }
-
-      .more-content {
-        ul {
-          list-style: none;
-          margin-right: 1rem;
-          display: flex;
-          align-items: center;
-          li {
-            margin-right: 1.2rem;
-          }
-        }
-      }
-    }
-
-    .content {
-      background: #ffffff;
-      display: flex;
-      align-items: center;
-      flex-direction: column;
-      font-size: $h1-size;
-      color: $gray-500;
+    &--content {
+      flex-shrink: 1;
+      height: 100vh;
+      overflow-y: hidden;
     }
   }
 }

@@ -1,0 +1,33 @@
+.ContentHeader {
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  background-color: #ffffff;
+}
+.ContentHeader .title {
+  display: flex;
+  align-items: center;
+}
+.ContentHeader .title .icon {
+  display: inline-block;
+  cursor: pointer;
+  height: fit-content;
+  margin-right: 0.5rem;
+}
+.ContentHeader .title h2 {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.ContentHeader .more-content ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+.ContentHeader .more-content ul li {
+  margin-left: 1.5em;
+}
+
+/*# sourceMappingURL=ContentHeader.css.map */
