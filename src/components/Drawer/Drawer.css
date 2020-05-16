@@ -1,12 +1,20 @@
 .Drawer {
   display: flex;
+  flex-direction: row;
 }
 .Drawer .SideMenu {
   width: 300px;
+  min-width: 300px;
   background-color: #151b26;
-  position: sticky;
-  top: 0;
   height: 100vh;
+}
+.Drawer .SideMenu--close {
+  margin-left: -300px;
+  transition: all 0.3s ease;
+}
+.Drawer .SideMenu--open {
+  margin-left: 0;
+  transition: all 0.3s ease;
 }
 .Drawer .SideMenu--header {
   color: white;
@@ -17,64 +25,22 @@
   padding: 20px;
   font-size: 1.5rem;
   max-width: 300px;
+  flex-shrink: 1;
 }
 .Drawer .SideMenu--header span {
   cursor: pointer;
 }
-.Drawer .close {
-  margin-left: -300px;
-  transition: all 0.3s ease;
-}
-.Drawer .open {
-  margin-left: 0;
-  transition: all 0.3s ease;
-}
-.Drawer .right {
-  width: 100%;
+.Drawer .main {
   background-color: #ffffff;
-  z-index: 10;
-}
-.Drawer .right .content-header {
-  height: 4rem;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-left: 1.5rem;
-  position: sticky;
-  top: 0;
-  background-color: #ffffff;
-}
-.Drawer .right .content-header .title {
-  display: flex;
-  align-items: center;
-}
-.Drawer .right .content-header .title .icon {
-  display: inline-block;
-  cursor: pointer;
-  height: fit-content;
-  margin-right: 0.5rem;
-}
-.Drawer .right .content-header .title h2 {
-  font-family: "Poppins", sans-serif;
-  font-size: 1.5rem;
-  font-weight: 500;
-}
-.Drawer .right .content-header .more-content ul {
-  list-style: none;
-  margin-right: 1rem;
-  display: flex;
-  align-items: center;
-}
-.Drawer .right .content-header .more-content ul li {
-  margin-right: 1.2rem;
-}
-.Drawer .right .content {
-  background: #ffffff;
-  display: flex;
-  align-items: center;
   flex-direction: column;
-  font-size: 1.5rem;
-  color: #151b26;
+  z-index: 10;
+  width: 100%;
+}
+.Drawer .main--content {
+  flex-shrink: 1;
+  height: 100vh;
+  overflow-y: hidden;
 }
 
 /*# sourceMappingURL=Drawer.css.map */

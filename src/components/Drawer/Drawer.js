@@ -1,20 +1,16 @@
 import React, { useState } from "react";
 import "./Drawer.css";
-import AddButtonCircular from "../AddButtonCircular/AddButtonCircular";
-import Profile from "../Profile/Profile";
-import { users } from "../../model/model";
-import Tooltip from "../Tooltip/Tooltip";
+import ContentHeader from "../ContentHeader/ContentHeader";
 
 const Drawer = ({ nav, children }) => {
   const [shouldClose, setShouldClose] = useState(false);
-  const [shouldShowTooltip, setShouldShowTooltip] = useState(false);
 
   let openDrawer = () => setShouldClose(false);
   let closeDrawer = () => setShouldClose(true);
 
   return (
     <div className="Drawer">
-      <section className={"SideMenu"}>
+      <section className={`SideMenu ${shouldClose ? "SideMenu--close" : "SideMenu--open"}`}>
         <header className={"SideMenu--header"}>
           <div>Logo</div>
           <span className="material-icons" onClick={closeDrawer}>
@@ -26,32 +22,11 @@ const Drawer = ({ nav, children }) => {
         </div>
       </section>
 
-      <section className={`right ${shouldClose ? "close" : "open"}`}>
-        <header className={"content-header"}>
-          <div className="title">
-            {shouldClose && (
-              <span className={"material-icons icon"} onClick={openDrawer}>
-                menu
-              </span>
-            )}
-            <h2>Home</h2>
-          </div>
-          <div className={"more-content"}>
-            <ul>
-              <li>
-                <AddButtonCircular onHandleClick={() => setShouldShowTooltip(!shouldShowTooltip)}/>
-              </li>
-
-              <li>
-                {/*todo - hardcoded data - fix this later*/}
-                <Profile user={users["user-c8dc5864"]}/>
-              </li>
-            </ul>
-          </div>
-        </header>
-
-        <Tooltip shouldShow={shouldShowTooltip} />
-        <div className="content">{children}</div>
+      <section className={`main`}>
+        <div className="main--content">
+            <ContentHeader shouldClose={shouldClose} openDrawer={openDrawer}/>
+            {children}
+        </div>
       </section>
     </div>
   );

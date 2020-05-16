@@ -1,0 +1,10 @@
+@import "../../style/variables";
+
+.App-Home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 90vh;
+  overflow-y: scroll;
+  margin-bottom: 4rem;
+}

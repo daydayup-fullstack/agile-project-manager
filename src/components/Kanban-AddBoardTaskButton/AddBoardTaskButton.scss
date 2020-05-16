@@ -1,0 +1,26 @@
+@import "../../style/variables";
+
+.addBoardTaskButton {
+  height: 2rem;
+  width: 17.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  box-shadow: 0 1px 3px 0 rgba(21, 27, 38, 0.15);
+  border-radius: 0.25rem;
+  margin-bottom: 0.5rem;
+
+  span {
+    color: $gray-400;
+    user-select: none;
+  }
+
+  &:hover {
+    cursor: pointer;
+
+    span {
+      color: #20aaea;
+    }
+  }
+}

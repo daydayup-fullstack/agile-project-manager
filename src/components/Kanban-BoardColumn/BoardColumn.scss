@@ -1,0 +1,66 @@
+@import "../../style/variables";
+
+.board-column {
+  width: 19rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 200px;
+  border: 1px solid transparent;
+  border-radius: 0.4rem;
+  transition: border-color 0.25s ease;
+  background: $gray-100;
+  padding: 1rem;
+  cursor: pointer;
+
+  &--hovered {
+    border-color: $gray-200;
+  }
+
+  &--isDragging {
+    border-color: $gray-200;
+    background: $gray-200;
+  }
+
+  .header {
+    width: 17.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 2rem;
+    margin: 0.25rem 0;
+    cursor: pointer;
+
+    .title {
+      font-family: $font-family;
+      font-size: $h2-size;
+      font-weight: $h2-weight;
+    }
+
+    span {
+      display: inline-block;
+      user-select: none;
+    }
+
+    .button {
+      cursor: pointer;
+      color: $gray-300;
+      transition: all 0.25s ease;
+
+      &:hover {
+        color: $gray-500;
+      }
+    }
+
+    input {
+      font-family: $font-family;
+      font-size: $h2-size;
+      font-weight: $h2-weight;
+      padding: 0.4rem 0.25rem;
+      border: 1px solid $gray-300;
+      border-radius: 0.25rem;
+      width: 17.5rem;
+      margin-bottom: 0.25rem;
+    }
+  }
+}

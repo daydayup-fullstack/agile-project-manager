@@ -1,0 +1,99 @@
+.taskCard {
+  border: 1px solid red;
+  width: 17.5rem;
+  min-height: 6.25rem;
+  padding: 1.2rem 1rem;
+  border: 1px solid #e8ecee;
+  background: white;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  box-shadow: 0 1px 3px 0 rgba(21, 27, 38, 0.15);
+  position: relative;
+  margin-bottom: 0.5rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  color: #151b26;
+  display: flex;
+  flex-direction: column;
+}
+.taskCard:hover .extra,
+.taskCard:hover .content button {
+  visibility: visible;
+}
+.taskCard .content {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  user-select: none;
+}
+.taskCard .content button {
+  background: none;
+  border: none;
+  display: inline-block;
+  position: relative;
+  top: -0.8rem;
+  left: 0.7rem;
+  transform: scale(0.6);
+  visibility: hidden;
+  cursor: pointer;
+}
+.taskCard .content button span {
+  color: #9ca6af;
+}
+.taskCard .content button span:hover {
+  color: #6f7782;
+}
+.taskCard .extra {
+  visibility: hidden;
+  height: 2rem;
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0;
+  width: 100%;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+}
+.taskCard .extra .actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: fit-content;
+}
+.taskCard .extra .actions ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+.taskCard .extra .actions ul .button {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 1rem;
+  background: #e8ecee;
+  margin-right: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.taskCard .extra .info {
+  width: fit-content;
+}
+.taskCard .extra .info ul {
+  list-style: none;
+  display: flex;
+}
+.taskCard .extra .info ul li {
+  display: flex;
+  align-items: center;
+  margin-left: 0.2rem;
+}
+.taskCard .extra .info ul li span {
+  display: inline-block;
+  transform: scale(0.7);
+  color: #9ca6af;
+}
+
+/*# sourceMappingURL=TaskCard.css.map */

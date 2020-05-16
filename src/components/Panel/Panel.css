@@ -27,11 +27,11 @@
   height: 0.15rem;
   background: #e8ecee;
   transform: scaleY(1);
+  margin-bottom: 1rem;
 }
 .panel__bottom {
   display: grid;
   grid-template-columns: repeat(auto-fill, 150px);
-  grid-gap: 20px 20px;
   justify-content: space-between;
   overflow: hidden;
 }
