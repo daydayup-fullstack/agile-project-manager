@@ -1,0 +1,198 @@
+@import "../../style/variables";
+
+@mixin buttonStyle {
+  padding: 0 1.5rem;
+  height: 2.3rem;
+  border: none;
+  font-family: $font-family;
+  font-size: $desc-size;
+  font-weight: $desc-weight;
+  transition: all 0.25s ease;
+  border-radius: 0.2rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+$purple: #796eff;
+
+.LoginForm {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__error {
+    position: absolute;
+    z-index: 20;
+    top: 1rem;
+    background: orangered;
+    color: white;
+    padding: 0 0.5rem;
+    border-radius: 1rem;
+    font-size: $desc-size;
+  }
+
+  &__backdrop {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($gray-500, 0.8);
+  }
+
+  &__content {
+    font-family: $font-family;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    max-width: 50rem;
+    width: 90%;
+    padding: 3rem 5rem;
+    background-color: #f6f8f9;
+    z-index: 10;
+    border-radius: 0.2rem;
+    position: relative;
+
+    .close {
+      border: none;
+      background: transparent;
+      color: $gray-300;
+      transform: scale(1.4);
+      position: absolute;
+      right: 1.3rem;
+      top: 1.3rem;
+      transition: color 0.2s ease;
+
+      &:hover {
+        cursor: pointer;
+        color: $gray-400;
+      }
+    }
+
+    header {
+      font-size: $h1-size * 1.5;
+      font-weight: 300;
+      font-family: $font-family;
+      margin-bottom: 2.5rem;
+    }
+
+    .loginWithGoogle {
+      width: 60%;
+      min-width: 18.75rem;
+      @include buttonStyle;
+      box-shadow: 0 3px 5px 0 rgba(36, 50, 66, 0.2);
+      background-color: #ffffff;
+      color: $gray-300;
+
+      &:hover {
+        box-shadow: 0 11px 12px 0 rgba(36, 50, 66, 0.12);
+      }
+    }
+
+    .divider {
+      color: $gray-300;
+      font-family: $font-family;
+      font-size: $desc-size;
+      margin: 1.8rem 0;
+      display: flex;
+      align-items: center;
+
+      &::before,
+      &::after {
+        content: "";
+        width: 100px;
+        height: 2px;
+        background-color: $gray-200;
+        margin: 0 2rem;
+      }
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 18.75rem;
+      width: 60%;
+
+      .LoginForm__content__field {
+        margin-bottom: 1.5rem;
+        width: 100%;
+
+        label {
+          color: $gray-400;
+          display: block;
+          font-size: $desc-size * 0.9;
+          margin-bottom: 0.5rem;
+        }
+
+        input {
+          width: 100%;
+          height: 2.3rem;
+          padding: 0.5rem;
+          border-radius: 0.2rem;
+
+          &:focus {
+            border-color: rgba($purple, 0.8);
+          }
+          &::placeholder {
+            color: $gray-300;
+          }
+
+          font-family: $font-family;
+          font-size: $desc-size;
+          font-weight: $text-weight;
+          color: $gray-500;
+          border: 2px solid $gray-200;
+        }
+      }
+
+      button[type="submit"] {
+        @include buttonStyle;
+        background-color: #796eff;
+        color: white;
+        width: 100%;
+
+        &:hover {
+          background-color: #635ac7;
+        }
+      }
+    }
+
+    .LoginForm__extra {
+      margin: 2.5rem 0;
+      padding-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: $desc-size * 0.9;
+      color: $gray-300;
+
+      .forgotPassword {
+        &:hover {
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
+
+      .dontHaveAccount {
+        margin-top: 1rem;
+        font-weight: 300;
+
+        a {
+          color: #796eff;
+          text-decoration: none;
+          font-weight: 400;
+
+          &:hover {
+            text-decoration: underline;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
