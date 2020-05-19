@@ -180,18 +180,6 @@ export const projects = [
     columnOrder: [],
   },
   {
-    id: "project-3117a529",
-    content: {
-      name: "Weather App",
-      colorIndex: 0,
-      createdOn: 1556516450,
-      isStarred: false,
-    },
-    tasks: {},
-    columns: {},
-    columnOrder: [],
-  },
-  {
     id: "project-ca8fa528",
     content: {
       name: "Weather App",

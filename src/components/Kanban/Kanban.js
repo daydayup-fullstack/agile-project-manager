@@ -10,7 +10,6 @@ import AddNewColumn from "../Kanban-AddNewColumn/AddNewColumn";
 const Kanban = ({ project }) => {
   const [state, setState] = useState(project);
 
-  console.log(state);
   const onDragEnd = (result) => {
     const { destination, source, draggableId, type } = result;
 
