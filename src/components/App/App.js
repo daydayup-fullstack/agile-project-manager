@@ -4,20 +4,19 @@ import Drawer from "../Drawer/Drawer";
 import Home from "../../pages/Home/Home";
 import Navigation from "../Navigation/Navigation";
 import { projects } from "../../model/model";
-import { Switch, Route, BrowserRouter } from "react-router-dom";
+import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import Project from "../../pages/Project/Project";
 import LoginForm from "../LoginForm/LoginForm";
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   return (
     <div className="App">
-      <BrowserRouter>
+      <Router>
         {isLoggedIn ? (
           <Drawer nav={<Navigation />}>
             <Switch>
-              <Route exact from={"/"} to={"home"} />
 
               <Route path={"/home"}>
                 <Home projects={projects} />
@@ -37,11 +36,11 @@ const App = () => {
             </Switch>
           </Drawer>
         ) : (
-          <div>
+          <Route path={"/#login"}>
             <LoginForm handleLogin={setIsLoggedIn} />
-          </div>
+          </Route>
         )}
-      </BrowserRouter>
+      </Router>
     </div>
   );
 };

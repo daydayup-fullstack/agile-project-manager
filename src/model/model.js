@@ -1,5 +1,5 @@
 export const project = {
-  id: "project-43debfae",
+  id: "43debfae",
   content: {
     name: "project-name",
     colorIndex: 6,
@@ -144,7 +144,7 @@ export const project = {
 export const projects = [
   { ...project },
   {
-    id: "project-e27109e3",
+    id: "e27109e3",
     content: {
       name: "project 3",
       colorIndex: 1,
@@ -156,7 +156,7 @@ export const projects = [
     columnOrder: [],
   },
   {
-    id: "project-e0b3bcbd",
+    id: "e0b3bcbd",
     content: {
       name: "project asana",
       colorIndex: 3,
@@ -168,7 +168,7 @@ export const projects = [
     columnOrder: [],
   },
   {
-    id: "project-3117a529",
+    id: "3117a529",
     content: {
       name: "Weather App",
       colorIndex: 0,
@@ -180,7 +180,7 @@ export const projects = [
     columnOrder: [],
   },
   {
-    id: "project-ca8fa528",
+    id: "ca8fa528",
     content: {
       name: "Weather App",
       colorIndex: 0,
@@ -192,7 +192,7 @@ export const projects = [
     columnOrder: [],
   },
   {
-    id: "project-5d1fe8f5",
+    id: "5d1fe8f5",
     content: {
       name: "Weather App",
       colorIndex: 0,
@@ -204,14 +204,17 @@ export const projects = [
     columns: {},
   },
 ];
+
 export const users = {
   "user-c8dc5864": {
     id: "user-c8dc5864",
     firstName: "Scott",
     lastName: "Wang",
+    email: "scotteau@gmail.com",
     avatar:
       "https://s3.amazonaws.com/profile_photos/4720159505425.uVij5QIkQPduW5RhPC9j_27x27.png",
     colorIndex: 0,
+    projectsInOrder: ["43debfae","e27109e3","3117a529","ca8fa528","5d1fe8f5"]
   },
   "user-762825b6": {
     id: "user-762825b6",
@@ -219,6 +222,7 @@ export const users = {
     lastName: "Liu",
     avatar: "some-avatar-url",
     colorIndex: 4,
+    projectsInOrder: []
   },
   "user-b803c8e6": {
     id: "user-b803c8e6",
@@ -227,6 +231,7 @@ export const users = {
     avatar:
       "https://s3.amazonaws.com/profile_photos/1171854711778417.pLuY5oITP89IeVzx0MJP_27x27.png",
     colorIndex: 2,
+    projectsInOrder: []
   },
   "user-e1c540b7": {
     id: "user-e1c540b7",
@@ -234,6 +239,7 @@ export const users = {
     lastName: "Xiao",
     avatar: "some-avatar-url",
     colorIndex: 10,
+    projectsInOrder: []
   },
   "user-8ddb8913": {
     id: "user-8ddb8913",
@@ -242,8 +248,11 @@ export const users = {
     avatar:
       "https://s3.amazonaws.com/profile_photos/1171854712057265.7zSf934pYJpZhkV1kn6o_27x27.png",
     colorIndex: 8,
+    projectsInOrder: []
   },
 };
+
+
 
 export const colors = [
   "#cbd4db",

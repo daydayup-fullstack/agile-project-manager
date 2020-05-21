@@ -15,7 +15,10 @@ const LoginForm = ({ handleLogin }) => {
     setError("");
     setIsLoading(true);
     try {
-      await login(username, password);
+      const result = await login(username, password);
+
+      console.log(result);
+
       setIsLoading(false);
       handleLogin(true);
     } catch (e) {
