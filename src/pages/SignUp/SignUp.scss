@@ -1,5 +1,6 @@
 @import "../../style/variables";
 
+$left-gap: 8%;
 
 .App-SignUp {
   display: flex;
@@ -7,18 +8,37 @@
 
   .content {
     width: 100%;
+    font-family: $font-family;
 
     header {
-      height: 50px;
-      @include debug;
+      height: 80px;
+      width: 100%;
+      padding-left: $left-gap;
+      display: flex;
+      align-items: center;
+    }
+
+    h1 {
+      margin-top: 3rem;
+      margin-left: $left-gap;
+      font-size: $h1-size;
+      font-weight: $h1-weight;
+    }
+
+    form {
+      padding-left: $left-gap;
+      margin-top: 2rem;
+
+      .Button {
+        margin-top: 1rem;
+      }
     }
   }
 
-
   .color {
-    background-color: #796eff;
+    background: $gradient;
     width: 20%;
-    max-width: 200px;
+    max-width: 220px;
     height: 100vh;
   }
 }
