@@ -10,6 +10,7 @@ const Breadcrumb = () => {
         {levels.map((level, index) => {
           return (
             <li key={index}>
+              {/*  todo - fix the highlight issue*/}
               <span>{level}</span>
               {index + 1 !== levels.length && (
                 <i className={"material-icons"}>chevron_right</i>
