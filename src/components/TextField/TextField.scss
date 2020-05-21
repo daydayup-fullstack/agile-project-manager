@@ -1,0 +1,62 @@
+@import "../../style/variables";
+
+$error-color: rgba(#e8384f, 0.8);
+
+.TextField {
+  //@include debug;
+  display: flex;
+  flex-direction: column;
+  font-family: $font-family;
+
+  label {
+    color: $gray-500;
+    padding: 0.5rem 0;
+    font-size: $h2-size;
+  }
+
+  &__content {
+    position: relative;
+    width: 20rem;
+
+    &__input {
+      padding: 0.5rem 0.25rem;
+      border: none;
+      border-bottom: 1px solid $gray-400;
+      font-size: $text-size;
+      font-weight: $text-weight;
+      width: 100%;
+
+      &:focus {
+        background-color: $gray-100;
+        caret-color: $gray-400;
+      }
+
+      &--error {
+        border-color: $error-color;
+      }
+
+      &--name {
+        text-transform: capitalize;
+      }
+    }
+  }
+
+  .visibility-toggle {
+    position: absolute;
+    padding: 0.2rem 0.5rem;
+    font-size: 1.3rem;
+    right: 0;
+    top: 0.4rem;
+    color: $gray-300;
+    user-select: none;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  &__error {
+    color: $error-color;
+    margin-top: 0.5rem;
+    font-size: $desc-size * 0.9;
+    font-weight: $desc-weight;
+  }
+}

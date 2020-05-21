@@ -7,6 +7,7 @@ import { projects } from "../../model/model";
 import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
 import Project from "../../pages/Project/Project";
 import LoginForm from "../LoginForm/LoginForm";
+import SignUp from "../../pages/SignUp/Signup";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -15,9 +16,12 @@ const App = () => {
     <div className="App">
       <Router>
         {isLoggedIn ? (
-          <Drawer nav={<Navigation />}>
-            <Switch>
+          <Switch>
+            <Route path={"/"}>
+              <SignUp />
+            </Route>
 
+            <Drawer nav={<Navigation />}>
               <Route path={"/home"}>
                 <Home projects={projects} />
               </Route>
@@ -33,8 +37,8 @@ const App = () => {
               <Route path={"/project/:id"}>
                 <Project projects={projects} />
               </Route>
-            </Switch>
-          </Drawer>
+            </Drawer>
+          </Switch>
         ) : (
           <Route path={"/#login"}>
             <LoginForm handleLogin={setIsLoggedIn} />
