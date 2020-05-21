@@ -1,1 +1,24 @@
 @import "../../style/variables";
+
+
+.App-SignUp {
+  display: flex;
+  justify-content: flex-start;
+
+  .content {
+    width: 100%;
+
+    header {
+      height: 50px;
+      @include debug;
+    }
+  }
+
+
+  .color {
+    background-color: #796eff;
+    width: 20%;
+    max-width: 200px;
+    height: 100vh;
+  }
+}

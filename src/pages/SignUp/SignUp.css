@@ -1,3 +1,19 @@
-
+.App-SignUp {
+  display: flex;
+  justify-content: flex-start;
+}
+.App-SignUp .content {
+  width: 100%;
+}
+.App-SignUp .content header {
+  height: 50px;
+  border: 1px solid red;
+}
+.App-SignUp .color {
+  background-color: #796eff;
+  width: 20%;
+  max-width: 200px;
+  height: 100vh;
+}
 
 /*# sourceMappingURL=SignUp.css.map */

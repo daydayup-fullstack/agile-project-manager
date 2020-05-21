@@ -3,7 +3,15 @@ import "./SignUp.css";
 
 const SignUp = () => {
     return  <div className="App-SignUp">
-        Signup works
+        <section className="content">
+        <header>bread crumbs</header>
+        <h1>Welcome to Asana!</h1>
+
+        <form>
+
+        </form>
+        </section>
+        <section className="color" />
     </div>
 }
 

@@ -1,0 +1,21 @@
+.Breadcrumb ul {
+  list-style: none;
+  display: flex;
+}
+.Breadcrumb ul li {
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #9ca6af;
+  padding: 0.25rem 0;
+}
+.Breadcrumb ul li i {
+  margin: 0 0.5rem;
+  position: relative;
+  top: -1px;
+}
+
+/*# sourceMappingURL=Breadcrumb.css.map */

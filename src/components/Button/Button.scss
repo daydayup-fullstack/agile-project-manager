@@ -1,0 +1,21 @@
+@import "../../style/variables";
+
+$indigo: #7A6FF0;
+
+.Button {
+  font-family: $font-family;
+  font-size: $desc-size;
+  font-weight: 300;
+  border: none;
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.25rem;
+  color: white;
+  background-color: $indigo;
+  transition: background-color 0.25s ease;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #635ac7;
+  }
+
+}

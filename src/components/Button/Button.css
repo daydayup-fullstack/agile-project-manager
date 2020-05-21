@@ -1,0 +1,17 @@
+.Button {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  border: none;
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.25rem;
+  color: white;
+  background-color: #7A6FF0;
+  transition: background-color 0.25s ease;
+}
+.Button:hover {
+  cursor: pointer;
+  background-color: #635ac7;
+}
+
+/*# sourceMappingURL=Button.css.map */
