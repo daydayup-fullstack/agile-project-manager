@@ -1,0 +1,18 @@
+.circularButton {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px dashed #6f7782;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #6f7782;
+  overflow: hidden;
+  box-sizing: content-box;
+  cursor: pointer;
+}
+.circularButton:hover {
+  border: 1px solid #6f7782;
+}
+
+/*# sourceMappingURL=CircularButton.css.map */

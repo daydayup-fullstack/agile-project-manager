@@ -1,0 +1,76 @@
+@import "../../style/variables";
+
+.TaskListItem {
+  user-select: none;
+  width: inherit;
+  font-family: $font-family;
+  justify-content: space-between;
+  display: flex;
+  min-width: 30rem;
+  padding: 0.25rem 0.5rem;
+  color: $gray-500;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $gray-200;
+    .TaskListItem__info {
+      .handle {
+        visibility: visible;
+      }
+    }
+
+    .arrow, .dueDateAndPerson {
+      visibility: visible;
+    }
+  }
+
+  &__info {
+    display: flex;
+    align-items: center;
+
+    .doneIcon {
+      margin-right: 0.5rem;
+      transition: color 0.25s ease;
+      color: $gray-300;
+      transform: scale(0.9);
+
+      &:hover {
+        color: #00e8bd;
+      }
+    }
+
+    .handle {
+      margin-right: 0.5rem;
+      visibility: hidden;
+      cursor: grab;
+      color: $gray-300;
+    }
+
+    .name {
+      font-size: $desc-size*0.9;
+      font-weight: $desc-weight;
+      position: relative;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+
+    .circularButton {
+      &:first-of-type {
+        margin-right: 0.5rem;
+      }
+    }
+
+    .dueDateAndPerson {
+      display: flex;
+      transform: scale(0.7);
+      visibility: hidden;
+    }
+    .arrow {
+      color: $gray-300;
+      visibility: hidden;
+    }
+  }
+}

@@ -1,0 +1,55 @@
+@import "../../style/variables";
+
+.App-MyTasks {
+  display: flex;
+  justify-content: center;
+  background: $gray-100;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  width: 90%;
+  min-width: 50rem;
+  box-shadow: 0 1px 3px 0 rgba(21,27,38,.15);
+
+  &__header {
+    padding: 1rem;
+  }
+
+  &__content {
+    display: flex;
+    background: #ffffff;
+    height: 100vh;
+    border: 1px solid $gray-200;
+    width: 100%;
+
+    &__gutter {
+      width: 1.5rem;
+      background: $gray-100;
+      border-right: 1px solid $gray-200;
+
+      ul {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+        list-style: none;
+        justify-content: space-evenly;
+
+        li {
+          font-family: $font-family;
+          font-size: $desc-size * 0.8;
+          font-weight: $desc-weight;
+          color: $gray-300;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          height: 42px;
+          span {
+          }
+        }
+      }
+    }
+  }
+}
