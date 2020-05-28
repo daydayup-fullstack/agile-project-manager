@@ -1,14 +1,25 @@
 .Navigation ul {
   list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
+
 .Navigation ul .active {
   background-color: rgba(111, 119, 130, 0.5);
 }
+
 .Navigation ul li {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   color: #e8ecee;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
@@ -16,15 +27,21 @@
   padding: 0.5rem 1rem;
   cursor: pointer;
 }
+
 .Navigation ul li:hover {
   background-color: rgba(111, 119, 130, 0.2);
 }
+
 .Navigation ul li .link {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 .Navigation ul li .link .icon {
   margin-right: 0.5rem;
 }
-
 /*# sourceMappingURL=Navigation.css.map */

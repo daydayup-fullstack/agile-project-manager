@@ -1,33 +1,53 @@
 .ContentHeader {
   height: 4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   padding: 0 1.5rem;
   background-color: #ffffff;
 }
+
 .ContentHeader .title {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 .ContentHeader .title .icon {
   display: inline-block;
   cursor: pointer;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
   height: fit-content;
   margin-right: 0.5rem;
 }
+
 .ContentHeader .title h2 {
   font-family: "Poppins", sans-serif;
   font-size: 1.5rem;
   font-weight: 500;
 }
+
 .ContentHeader .more-content ul {
   list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 .ContentHeader .more-content ul li {
   margin-left: 1.5em;
 }
-
 /*# sourceMappingURL=ContentHeader.css.map */

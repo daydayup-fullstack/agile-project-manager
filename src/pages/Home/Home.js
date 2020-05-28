@@ -32,8 +32,9 @@ const Home = ({ projects }) => {
             <ProjectCard project={project} onHandleClick={() => {}} />
           </Link>
         ))}
-
-        <AddProjectCard />
+        <Link to={"/create-project"}>
+          <AddProjectCard />
+        </Link>
       </Panel>
     </div>
   );

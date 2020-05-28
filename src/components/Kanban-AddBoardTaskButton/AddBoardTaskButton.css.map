@@ -1,1 +1,10 @@
-{"version":3,"sourceRoot":"","sources":["AddBoardTaskButton.scss","../../style/_variables.scss"],"names":[],"mappings":"AAEA;EACE;EACA;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;AAEA;EACE,OCGO;EDFP;;AAGF;EACE;;AAEA;EACE","file":"AddBoardTaskButton.css"}
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,mBAAmB,CAAC;EAClB,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,OAAO;EACd,OAAO,EAAE,IAAI;EACb,eAAe,EAAE,MAAM;EACvB,WAAW,EAAE,MAAM;EACnB,UAAU,EAAE,IAAI;EAChB,UAAU,EAAE,CAAC,CAAC,GAAG,CAAC,GAAG,CAAC,CAAC,CAAC,sBAAsB;EAC9C,aAAa,EAAE,OAAO;EACtB,aAAa,EAAE,MAAM;CActB;;AAvBD,AAWE,mBAXiB,CAWjB,IAAI,CAAC;EACH,KAAK,ECGE,OAAO;EDFd,WAAW,EAAE,IAAI;CAClB;;AAdH,AAgBE,mBAhBiB,AAgBhB,MAAM,CAAC;EACN,MAAM,EAAE,OAAO;CAKhB;;AAtBH,AAmBI,mBAnBe,AAgBhB,MAAM,CAGL,IAAI,CAAC;EACH,KAAK,EAAE,OAAO;CACf",
+    "sources": [
+        "AddBoardTaskButton.scss",
+        "../../style/_variables.scss"
+    ],
+    "names": [],
+    "file": "AddBoardTaskButton.css"
+}

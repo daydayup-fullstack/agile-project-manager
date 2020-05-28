@@ -1,24 +1,40 @@
 .ProjectCard {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 150px;
+  -webkit-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
   padding: 1.25rem 0.4rem 3.75rem 0.4rem;
   border-radius: 1.875rem;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
+
 .ProjectCard:hover {
   background-color: #f6f8f9;
   cursor: pointer;
-  transform: translateY(-4px);
+  -webkit-transform: translateY(-4px);
+          transform: translateY(-4px);
 }
+
 .ProjectCard .card {
   width: 7.5rem;
   height: 7.5rem;
   border-radius: 1.25rem;
-  box-shadow: inset 0 -2px rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow: inset 0 -2px rgba(0, 0, 0, 0.05);
+          box-shadow: inset 0 -2px rgba(0, 0, 0, 0.05);
 }
+
 .ProjectCard .title {
   margin-top: 0.625rem;
   font-family: "Poppins", sans-serif;
@@ -28,5 +44,4 @@
   max-height: 2rem;
   width: 100%;
 }
-
 /*# sourceMappingURL=ProjectCard.css.map */

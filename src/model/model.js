@@ -252,8 +252,6 @@ export const users = {
   },
 };
 
-
-
 export const colors = [
   "#cbd4db",
   "#E8384F",

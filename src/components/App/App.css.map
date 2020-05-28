@@ -1,1 +1,10 @@
-{"version":3,"sourceRoot":"","sources":["App.scss"],"names":[],"mappings":"AAEA;EACE;EAEA","file":"App.css"}
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,IAAI,CAAC;EACH,KAAK,EAAE,IAAI;EAEX,UAAU,EAAE,MAAM;CACnB",
+    "sources": [
+        "App.scss",
+        "../../style/_variables.scss"
+    ],
+    "names": [],
+    "file": "App.css"
+}

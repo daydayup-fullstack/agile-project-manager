@@ -3,16 +3,23 @@
   height: 32px;
   border-radius: 50%;
   border: 1px dashed #6f7782;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   color: #6f7782;
   overflow: hidden;
-  box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+          box-sizing: content-box;
   cursor: pointer;
 }
+
 .circularButton:hover {
   border: 1px solid #6f7782;
 }
-
 /*# sourceMappingURL=CircularButton.css.map */
