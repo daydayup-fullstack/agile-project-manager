@@ -1,8 +1,6 @@
 import React, {useState} from "react";
 import Tooltip from "../Tooltip/Tooltip";
 import AddButtonCircular from "../AddButtonCircular/AddButtonCircular";
-import Profile from "../Profile/Profile";
-import {users} from "../../model/model";
 import "./ContentHeader.css";
 
 
@@ -26,7 +24,7 @@ const ContentHeader = ({shouldClose, openDrawer}) => {
 
                     <li>
                         {/*todo - hardcoded data - fix this later*/}
-                        <Profile user={users["user-c8dc5864"]}/>
+                        {/*<Profile user={users["user-c8dc5864"]}/>*/}
                     </li>
                 </ul>
             </div>

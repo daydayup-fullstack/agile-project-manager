@@ -4,12 +4,9 @@ import Panel from "../../components/Panel/Panel";
 import ProjectCard from "../../components/ProjectCard/ProjectCard";
 import AddProjectCard from "../../components/AddProjectCard/AddProjectCard";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-const Home = ({ projects }) => {
-  const starredProjects = projects
-    .filter((project) => project.content.isStarred)
-    .map((project) => project);
-
+const Home = ({ starredProjects, projectsInOrder, projects }) => {
   const style = {
     textDecoration: "none",
     color: "#151b26",
@@ -19,17 +16,17 @@ const Home = ({ projects }) => {
     <div className={"App-Home"}>
       {starredProjects && starredProjects.length > 0 && (
         <Panel panelName={"Favorites"}>
-          {starredProjects.map((project) => (
-            <Link to={`/project/${project.id}`} key={project.id} style={style}>
-              <ProjectCard project={project} onHandleClick={() => {}} />
+          {starredProjects.map((id) => (
+            <Link to={`/project/${id}`} key={id} style={style}>
+              <ProjectCard project={projects[id]} />
             </Link>
           ))}
         </Panel>
       )}
       <Panel panelName={"Recent Projects"}>
-        {projects.map((project) => (
-          <Link to={`/project/${project.id}`} key={project.id} style={style}>
-            <ProjectCard project={project} onHandleClick={() => {}} />
+        {projectsInOrder.map((id) => (
+          <Link to={`/project/${id}`} key={id} style={style}>
+            <ProjectCard project={projects[id]} />
           </Link>
         ))}
 
@@ -39,4 +36,13 @@ const Home = ({ projects }) => {
   );
 };
 
-export default Home;
+const mapStateToProps = (state) => {
+  console.log(state.app);
+  return {
+    starredProjects: state.app.starredProjects,
+    projectsInOrder: state.app.currentWorkspace.projectsInOrder,
+    projects: state.app.currentWorkspace.projects,
+  };
+};
+
+export default connect(mapStateToProps, {})(Home);

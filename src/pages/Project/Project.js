@@ -1,23 +1,28 @@
-import React  from "react";
+import React from "react";
 import "./Project.css";
-import {useParams} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Kanban from "../../components/Kanban/Kanban";
+import { connect } from "react-redux";
 
 const Project = ({ projects }) => {
   const { id } = useParams();
 
-  const currentProject = () => {
-    const result = projects.filter((p) => p.id === id);
-    return result[0];
-  }
+  const project = projects[id];
 
-  const project = currentProject();
 
   return (
     <div className={"App-Project"}>
-        <Kanban project={project}/>
+      <Kanban project={project} />
     </div>
   );
 };
 
-export default Project;
+const mapStateToProps = (state) => {
+  console.log(state);
+
+  return {
+    projects: state.app.currentWorkspace.projects,
+  };
+};
+
+export default connect(mapStateToProps, {})(Project);

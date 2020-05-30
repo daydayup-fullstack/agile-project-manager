@@ -5,11 +5,11 @@ export const db_users = {
     lastName: "Wang",
     email: "scotteau@gmail.com",
     avatar:
-        "https://s3.amazonaws.com/profile_photos/4720159505425.uVij5QIkQPduW5RhPC9j_27x27.png",
+      "https://s3.amazonaws.com/profile_photos/4720159505425.uVij5QIkQPduW5RhPC9j_27x27.png",
     colorIndex: 0,
-    starredProject: ["project-00"],
+    starredProjects: ["project-00"],
     privateProjects: {},
-    workspaces: ["workspace-daydayup-team", "workspace-scott-personal"],
+    workspaces: ["workspace-scott-personal", "workspace-daydayup-team"],
   },
   "user-lawrence": {
     id: "user-lawrence",
@@ -24,7 +24,7 @@ export const db_users = {
     firstName: "Ollie",
     lastName: "Lee",
     avatar:
-        "https://s3.amazonaws.com/profile_photos/1171854711778417.pLuY5oITP89IeVzx0MJP_27x27.png",
+      "https://s3.amazonaws.com/profile_photos/1171854711778417.pLuY5oITP89IeVzx0MJP_27x27.png",
     colorIndex: 2,
     workspaces: ["workspace-daydayup-team", "workspace-ollie-personal"],
   },
@@ -41,7 +41,7 @@ export const db_users = {
     firstName: "Silvia",
     lastName: "Silvia",
     avatar:
-        "https://s3.amazonaws.com/profile_photos/1171854712057265.7zSf934pYJpZhkV1kn6o_27x27.png",
+      "https://s3.amazonaws.com/profile_photos/1171854712057265.7zSf934pYJpZhkV1kn6o_27x27.png",
     colorIndex: 8,
     workspaces: ["workspace-daydayup-team", "workspace-silvia-personal"],
   },
@@ -247,51 +247,42 @@ export const db_stories = {
   },
 };
 
-export const loadInitialDataAsync = async (devId, time = 500) => {
-  return new Promise((resolve, reject) => {
-    if (!db_users[devId]) reject();
-    setTimeout(() => {
-      const {
-        id,
-        firstName,
-        lastName,
-        email,
-        colorIndex,
-        avatar,
-        privateProjects,
-        starredProjects,
-        workspaces,
-      } = db_users[devId];
+export const loadInitialData = (devId) => {
+  const {
+    id,
+    firstName,
+    lastName,
+    email,
+    colorIndex,
+    avatar,
+    privateProjects,
+    starredProjects,
+    workspaces,
+  } = db_users[devId];
 
-      const defaultWorkspace = db_workspaces[workspaces[0]];
-      const { type, projectOrder } = defaultWorkspace;
+  const defaultWorkspace = db_workspaces[workspaces[0]];
+  const { type, projectsInOrder } = defaultWorkspace;
 
-      const result = {
-        id,
-        firstName,
-        lastName,
-        email,
-        privateProjects,
-        avatar,
-        colorIndex,
-        starredProjects,
-        workspaces,
-        currentWorkspace: {
-          id: defaultWorkspace.id,
-          type,
-          projectOrder,
-          projects: db_projects,
-        },
-      };
+  const result = {
+    id,
+    firstName,
+    lastName,
+    email,
+    privateProjects,
+    avatar,
+    colorIndex,
+    starredProjects,
+    workspaces,
+    currentWorkspace: {
+      id: workspaces[0],
+      type,
+      projectsInOrder,
+      projects: db_projects,
+    },
+  };
 
-      resolve(JSON.stringify(result));
-    }, time);
-  });
+  return result;
 };
-
-loadInitialDataAsync("user-scott").then((data) => {
-  const id = JSON.parse(data).currentWorkspace.projects;
-});
 
 export const loadProjectBoardAsync = async (projectId, time = 500) => {
   return new Promise((resolve, reject) => {
@@ -311,10 +302,6 @@ export const loadProjectBoardAsync = async (projectId, time = 500) => {
     }, time);
   });
 };
-
-loadProjectBoardAsync("project-04").then((data) => {
-  const res = JSON.parse(data).columns["column-01"];
-});
 
 export const loadTaskDetailAsync = async (taskId, time = 500) => {
   return new Promise((resolve, reject) => {

@@ -9,13 +9,11 @@ import {
   BrowserRouter as Router,
   Redirect,
 } from "react-router-dom";
-import Project from "../../pages/Project/Project";
 import LoginForm from "../LoginForm/LoginForm";
-import MyTasks from "../../pages/MyTasks/MyTasks";
-
+import Project from "../../pages/Project/Project";
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   return (
     <div className="App">
@@ -28,19 +26,17 @@ const App = () => {
               </Route>
 
               <Route path={"/home"}>
-                <Home projects={projects} />
+                <Home />
               </Route>
 
-              <Route path={"/tasks"}>
-                <MyTasks tasks={tasks} />
-              </Route>
+              <Route path={"/tasks"}>{/*<MyTasks tasks={tasks} />*/}</Route>
 
               <Route path={"/inbox"}>
                 <Inbox />
               </Route>
 
               <Route path={"/project/:id"}>
-                <Project projects={projects} />
+                <Project />
               </Route>
             </Drawer>
           </Switch>
@@ -49,7 +45,6 @@ const App = () => {
             <Route exact path={"/"}>
               <LoginForm handleLogin={setIsLoggedIn} />
             </Route>
-
           </>
         )}
       </Router>
