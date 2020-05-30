@@ -1,30 +1,45 @@
 import shortid from "shortid";
-import {projects} from "./model";
 
 export const generateId = () => shortid.generate();
 
 export const login = async (username, password) => {
-  // user information & user's projects
-  const result = {
-    user: {
-      id: "user-c8dc5864",
-      firstName: "Scott",
-      lastName: "Wang",
-      avatar:
-          "https://s3.amazonaws.com/profile_photos/4720159505425.uVij5QIkQPduW5RhPC9j_27x27.png",
-      colorIndex: 0,
-    },
-    projects: [
-        ...projects
-    ]
-  };
-
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      if (username === "daydayup@gmail.com" && password === "password") {
-        resolve(JSON.stringify(result));
-      } else {
-        reject();
+      if (password === "password") {
+        switch (username) {
+          case "scotteau@gmail.com":
+            resolve(JSON.stringify({
+              userId: "6HGGrj2tJGV3LRLdM0rpO6cfNUD3"
+            }));
+            break;
+
+          case "hxiaoyin@gmail.com":
+            resolve(JSON.stringify({
+              userId: "7VPoXiRNG0dyOH3VmHFlz16RYc03"
+            }));
+            break;
+
+          case "lawrence415610@gmail.com":
+            resolve(JSON.stringify({
+              userId: "LKm70EJfBTNSEhuibceokHSVjGC3"
+            }));
+            break;
+
+          case "myself.ollie.lee@gmail.com":
+            resolve(JSON.stringify({
+              userId: "P4jKP5wmKZZiSFZu5hmVMZaQnI12"
+            }));
+            break;
+
+          case "sarah19930930@gmail.com":
+            resolve(JSON.stringify({
+              userId: "pc02KNUAxyScdxJyGzviphE2s8a2"
+            }));
+            break;
+
+          default:
+            reject();
+        }
       }
     }, 1500);
   });
