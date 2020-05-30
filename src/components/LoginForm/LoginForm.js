@@ -2,6 +2,7 @@ import React from "react";
 import "./LoginForm.css";
 import { login } from "../../model/utility";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
+import { Link } from "react-router-dom";
 
 const LoginForm = ({ handleLogin }) => {
   const [username, setUsername] = React.useState("");
