@@ -13,7 +13,7 @@ const TaskCard = ({ task, index }) => {
                     ref={provided.innerRef}
                 >
                     <div className="content">
-                        <div className={"name"}>{task.content.name}</div>
+                        <div className={"name"}>{task.name}</div>
                         <button>
                             <span className={"material-icons more"}>more_horiz</span>
                         </button>

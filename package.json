@@ -6,6 +6,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
+    "axios": "^0.19.2",
     "normalize.css": "^8.0.1",
     "react": "^16.13.1",
     "react-beautiful-dnd": "^13.0.0",
@@ -14,6 +15,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
     "shortid": "^2.2.15"
   },
   "scripts": {
