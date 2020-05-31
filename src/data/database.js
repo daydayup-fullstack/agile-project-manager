@@ -195,7 +195,7 @@ export const db_tasks = {
   "task-01": {
     id: "task-01",
     isCompleted: false,
-    name: "Projet card - pm011",
+    name: "Project card - pm011",
     createdOn: 1556516450,
     description: "description",
     authorId: "user-scott",
@@ -263,60 +263,23 @@ export const loadInitialData = (devId) => {
   const defaultWorkspace = db_workspaces[workspaces[0]];
   const { type, projectsInOrder } = defaultWorkspace;
 
-  const result = {
-    id,
-    firstName,
-    lastName,
-    email,
-    privateProjects,
-    avatar,
-    colorIndex,
-    starredProjects,
-    workspaces,
+  return {
+    user: {
+      id,
+      firstName,
+      lastName,
+      email,
+      privateProjects,
+      avatar,
+      colorIndex,
+      starredProjects,
+      workspaces,
+    },
     currentWorkspace: {
       id: workspaces[0],
       type,
       projectsInOrder,
-      projects: db_projects,
+      projects: { ...db_projects },
     },
   };
-
-  return result;
 };
-
-export const loadProjectBoardAsync = async (projectId, time = 500) => {
-  return new Promise((resolve, reject) => {
-    if (!db_projects[projectId]) reject();
-    setTimeout(() => {
-      const projectData = db_projects[projectId];
-
-      console.log(projectData);
-
-      let result = {
-        ...projectData,
-        columns: db_columns,
-        tasks: db_tasks,
-      };
-
-      resolve(JSON.stringify(result));
-    }, time);
-  });
-};
-
-export const loadTaskDetailAsync = async (taskId, time = 500) => {
-  return new Promise((resolve, reject) => {
-    if (!db_tasks[taskId]) reject();
-
-    setTimeout(() => {
-      const taskData = db_tasks[taskId];
-      let result = {
-        ...taskData,
-        stories: db_stories,
-      };
-
-      resolve(JSON.stringify(result));
-    }, time);
-  });
-};
-
-loadTaskDetailAsync("task-02");

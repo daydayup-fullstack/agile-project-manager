@@ -37,11 +37,10 @@ const Home = ({ starredProjects, projectsInOrder, projects }) => {
 };
 
 const mapStateToProps = (state) => {
-  console.log(state.app);
   return {
-    starredProjects: state.app.starredProjects,
-    projectsInOrder: state.app.currentWorkspace.projectsInOrder,
-    projects: state.app.currentWorkspace.projects,
+    starredProjects: state.user.starredProjects,
+    projectsInOrder: state.workspace.projectsInOrder,
+    projects: state.workspace.projects,
   };
 };
 

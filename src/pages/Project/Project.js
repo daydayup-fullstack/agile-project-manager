@@ -3,26 +3,26 @@ import "./Project.css";
 import { useParams } from "react-router-dom";
 import Kanban from "../../components/Kanban/Kanban";
 import { connect } from "react-redux";
+import { project_selected } from "../../actions";
 
-const Project = ({ projects }) => {
+const Project = ({ projects, project_selected }) => {
   const { id } = useParams();
 
-  const project = projects[id];
-
+  React.useEffect(() => {
+    project_selected(projects[id]);
+  }, [project_selected, id, projects]);
 
   return (
     <div className={"App-Project"}>
-      <Kanban project={project} />
+      <Kanban />
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
-
   return {
-    projects: state.app.currentWorkspace.projects,
+    projects: state.workspace.projects,
   };
 };
 
-export default connect(mapStateToProps, {})(Project);
+export default connect(mapStateToProps, { project_selected })(Project);
