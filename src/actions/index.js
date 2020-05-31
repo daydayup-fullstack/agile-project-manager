@@ -1,7 +1,6 @@
 import { db_columns, db_tasks } from "../data/database";
 
 export const PROJECT_SELECTED = "PROJECT_SELECTED";
-
 export const project_selected = (project) => {
   return {
     type: PROJECT_SELECTED,
@@ -15,7 +14,6 @@ export const project_selected = (project) => {
 };
 
 export const PROJECT_CHANGED = "PROJECT_CHANGED";
-
 export const project_changed = (project) => {
   return {
     type: PROJECT_CHANGED,
