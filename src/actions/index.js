@@ -20,3 +20,20 @@ export const project_changed = (project) => {
     project,
   };
 };
+
+export const SHOW_PROJECT_CARD_POPUP = "SHOW_PROJECT_CARD_POPUP";
+export const show_projectCard_popup = ({ anchor }) => {
+  return {
+    type: SHOW_PROJECT_CARD_POPUP,
+    shouldShow: true,
+    anchor,
+  };
+};
+
+export const HIDE_PROJECT_CARD_POPUP = "HIDE_PROJECT_CARD_POPUP";
+export const hide_projectCard_popup = () => {
+  return {
+    type: HIDE_PROJECT_CARD_POPUP,
+    shouldShow: false,
+  };
+};

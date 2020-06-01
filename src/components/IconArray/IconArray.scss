@@ -1,0 +1,43 @@
+@import "../../style/variables";
+
+.IconArray {
+  width: 250px;
+  .content {
+    border-top: 2px solid $gray-200;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem 1.5rem 0;
+    max-height: 210px;
+    overflow-y: scroll;
+    margin-bottom: 1rem;
+
+    .item {
+      width: 25%;
+      margin-bottom: 0.5rem;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        cursor: pointer;
+        background-color: $gray-200;
+
+        span {
+          filter: invert(9%) sepia(42%) saturate(445%) hue-rotate(179deg)
+            brightness(95%) contrast(98%);
+        }
+      }
+
+      span {
+        font-size: 2rem;
+        filter: invert(76%) sepia(22%) saturate(139%) hue-rotate(167deg)
+          brightness(83%) contrast(87%);
+        display: inline-block;
+        text-align: center;
+      }
+    }
+  }
+}

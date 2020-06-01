@@ -1,5 +1,33 @@
 @import "../../style/variables";
 
+@mixin hover() {
+  background-color: $gray-100;
+  cursor: pointer;
+  transform: translateY(-4px);
+
+  .card {
+    .material-icons {
+      opacity: 0.9;
+      transition: opacity 0.4s ease;
+    }
+
+    .themeIcon {
+      transform: translateY(-4px);
+      transition: all 0.4s ease;
+    }
+
+    .profile-container {
+      opacity: 1;
+      transition: all 0.4s ease;
+      transform: translateY(-4px);
+    }
+  }
+}
+
+.ProjectCard--holdHover {
+  @include hover;
+}
+
 .ProjectCard {
   display: flex;
   flex-direction: column;
@@ -11,16 +39,69 @@
   user-select: none;
 
   &:hover {
-    background-color: $gray-100;
-    cursor: pointer;
-    transform: translateY(-4px);
+    @include hover;
   }
+
+
 
   .card {
     width: 7.5rem;
     height: 7.5rem;
     border-radius: 1.25rem;
     box-shadow: inset 0 -2px rgba(0, 0, 0, 0.05);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .themeIcon {
+      font-size: 3.5rem;
+      filter: invert(97%) sepia(1%) saturate(489%) hue-rotate(140deg)
+        brightness(103%) contrast(95%);
+      display: inline-block;
+      opacity: 0.8;
+      transition: all 0.4s ease;
+    }
+
+    span:first-of-type {
+      color: $gray-200;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      transform: scale(0.8);
+      left: 0.5rem;
+      top: 0.3rem;
+      position: absolute;
+    }
+
+    span:last-of-type {
+      color: $gray-200;
+      position: absolute;
+      top: 0.3rem;
+      right: 0.5rem;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      transform: scale(0.9);
+
+      &:hover {
+        color: #fff;
+      }
+    }
+
+    .profile-container {
+      position: absolute;
+      bottom: 0.3rem;
+      opacity: 0;
+      transition: all 0.4s ease;
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: center;
+      list-style: none;
+      li {
+        position: relative;
+        margin: 0 -0.15rem;
+        opacity: 0.9;
+      }
+    }
   }
 
   .title {

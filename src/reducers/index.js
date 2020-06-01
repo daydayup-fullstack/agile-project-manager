@@ -1,6 +1,42 @@
 import { loadInitialData } from "../data/database";
-import { PROJECT_CHANGED, PROJECT_SELECTED } from "../actions";
+import {
+  HIDE_PROJECT_CARD_POPUP,
+  PROJECT_CHANGED,
+  PROJECT_SELECTED,
+  SHOW_PROJECT_CARD_POPUP,
+} from "../actions";
 const devId = "user-scott";
+
+const initialAppState = {
+  ui_projectCard_popup: {
+    shouldShow: false,
+    anchor: { x: 0, y: 0, width: 0, height: 0 },
+  },
+};
+
+export const app = (state = initialAppState, action) => {
+  switch (action.type) {
+    case SHOW_PROJECT_CARD_POPUP:
+      return {
+        ...state,
+        ui_projectCard_popup: {
+          shouldShow: action.shouldShow,
+          anchor: action.anchor,
+        },
+      };
+    case HIDE_PROJECT_CARD_POPUP:
+      return {
+        ...state,
+        ui_projectCard_popup: {
+          shouldShow: action.shouldShow,
+        },
+      };
+    default:
+      return {
+        ...state,
+      };
+  }
+};
 
 const initialUserState = { ...loadInitialData(devId).user };
 
