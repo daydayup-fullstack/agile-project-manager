@@ -17,7 +17,6 @@ const initialAppState = {
   ui_projectCard_popup: {
     shouldShow: false,
     anchor: { x: 0, y: 0, width: 0, height: 0 },
-    clearHold: false,
   },
 };
 
@@ -27,7 +26,7 @@ export const app = (state = initialAppState, action) => {
       return {
         ...state,
         ui_projectCard_popup: {
-          shouldShow: action.shouldShow,
+          shouldShow: true,
           anchor: action.anchor,
         },
       };
@@ -35,16 +34,14 @@ export const app = (state = initialAppState, action) => {
       return {
         ...state,
         ui_projectCard_popup: {
-          shouldShow: action.shouldShow,
+          shouldShow: false,
         },
       };
 
     case CLEAR_PROJECT_CARD_HOLD:
       return {
         ...state,
-        ui_projectCard_popup: {
-          clearHold: action.payload,
-        },
+        ui_projectCard_popup: {},
       };
     default:
       return {

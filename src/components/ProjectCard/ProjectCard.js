@@ -16,13 +16,12 @@ const ProjectCard = ({
   project,
   starred,
   show_projectCard_popup,
-  shouldHold,
   remove_project_star,
   add_project_star,
   project_selected,
 }) => {
-  const [hover, setHover] = React.useState(false);
-  const [holdHover, setHoldHover] = React.useState(false);
+  const [starHover, setStarHover] = React.useState(false);
+  const [moreButtonHover, setMoreButtonHover] = React.useState(false);
 
   function showPopup(e) {
     project_selected(project);
@@ -34,7 +33,6 @@ const ProjectCard = ({
         width: e.target.clientWidth,
       },
     });
-    setHoldHover(true);
   }
 
   function toggleStar() {
@@ -45,61 +43,72 @@ const ProjectCard = ({
     }
   }
 
+  const determineLink = () => {
+    // focusing on icons, then stay in current path
+    if (starHover || moreButtonHover) {
+      return `/home`;
+    }
+    // otherwise, go to next level route
+    return `/project/${project.id}`;
+  };
+
   return (
-    // <Link to={`/project/${project.id}`}>
-    <div
-      className={`ProjectCard ${
-        holdHover && shouldHold && "ProjectCard--holdHover"
-      }`}
+    <Link
+      to={determineLink()}
+      style={{ textDecoration: "none", color: "#151b26" }}
     >
-      <div className="card" style={{ background: colors[project.colorIndex] }}>
-        <span
-          className={"material-icons"}
-          onMouseOver={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
-          onClick={toggleStar}
-          style={holdHover && shouldHold ? { opacity: 1 } : {}}
+      <div className={`ProjectCard`}>
+        <div
+          className="card"
+          style={{ background: colors[project.colorIndex] }}
         >
-          {hover || starred ? "star" : "star_border"}
-        </span>
-        <div className={"material-icons-two-tone themeIcon"}>
-          {iconNames[project.iconIndex]}
+          <span
+            className={"material-icons"}
+            onMouseOver={() => setStarHover(true)}
+            onMouseLeave={() => setStarHover(false)}
+            onClick={toggleStar}
+            // style={holdHover ? { opacity: 1 } : {}}
+          >
+            {starHover || starred ? "star" : "star_border"}
+          </span>
+          <div className={"material-icons-two-tone themeIcon"}>
+            {iconNames[project.iconIndex]}
+          </div>
+          <span
+            className={"material-icons"}
+            onClick={showPopup}
+            onMouseOver={() => setMoreButtonHover(true)}
+            onMouseLeave={() => setMoreButtonHover(false)}
+            // style={holdHover ? { opacity: 1, color: "#fff" } : {}}
+          >
+            more_horiz
+          </span>
+
+          <ul
+            className={"profile-container"}
+            // style={holdHover ? { opacity: 1 } : {}}
+          >
+            <li>
+              <Profile user={db_users["user-scott"]} />
+            </li>
+
+            <li>
+              <Profile user={db_users["user-scott"]} />
+            </li>
+
+            <li>
+              <Profile user={db_users["user-scott"]} />
+            </li>
+          </ul>
         </div>
-        <span
-          className={"material-icons"}
-          onClick={showPopup}
-          style={holdHover && shouldHold ? { opacity: 1, color: "#fff" } : {}}
-        >
-          more_horiz
-        </span>
-
-        <ul
-          className={"profile-container"}
-          style={holdHover && shouldHold ? { opacity: 1 } : {}}
-        >
-          <li>
-            <Profile user={db_users["user-scott"]} />
-          </li>
-
-          <li>
-            <Profile user={db_users["user-scott"]} />
-          </li>
-
-          <li>
-            <Profile user={db_users["user-scott"]} />
-          </li>
-        </ul>
+        <span className={"title"}>{project.name}</span>
       </div>
-      <span className={"title"}>{project.name}</span>
-    </div>
-    // </Link>
+    </Link>
   );
 };
 
 const mapStateToProps = (state) => {
-  return {
-    shouldHold: state.app.ui_projectCard_popup.shouldShow,
-  };
+  return {};
 };
 
 export default connect(mapStateToProps, {

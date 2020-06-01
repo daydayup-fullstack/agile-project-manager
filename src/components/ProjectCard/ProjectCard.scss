@@ -7,7 +7,7 @@
 
   .card {
     .material-icons {
-      opacity: 0.9;
+      opacity: 1;
       transition: opacity 0.4s ease;
     }
 
@@ -107,8 +107,8 @@
   .title {
     margin-top: 0.625rem;
     font-family: $font-family;
-    font-size: $desc-size;
-    font-weight: $desc-weight;
+    font-size: $text-size*0.8;
+    font-weight: $text-weight;
     text-align: center;
     max-height: 2rem;
     width: 100%;

@@ -28,14 +28,13 @@ const PopupMenu = ({
     }
   }, [anchor.x, anchor.y, anchor.width]);
 
+  const dismiss = () => {
+    hide_projectCard_popup();
+    clear_projectCard_hold();
+  };
+
   return (
-    <div
-      className="PopupMenu"
-      onClick={() => {
-        hide_projectCard_popup();
-        clear_projectCard_hold();
-      }}
-    >
+    <div className="PopupMenu" onClick={dismiss}>
       <div
         className="menu"
         style={{ top: `${origin.y + OFFSET_Y}px`, left: `${origin.x}px` }}

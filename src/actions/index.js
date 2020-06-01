@@ -69,7 +69,6 @@ export const SHOW_PROJECT_CARD_POPUP = "SHOW_PROJECT_CARD_POPUP";
 export const show_projectCard_popup = ({ anchor }) => {
   return {
     type: SHOW_PROJECT_CARD_POPUP,
-    shouldShow: true,
     anchor,
   };
 };
@@ -78,7 +77,6 @@ export const HIDE_PROJECT_CARD_POPUP = "HIDE_PROJECT_CARD_POPUP";
 export const hide_projectCard_popup = () => {
   return {
     type: HIDE_PROJECT_CARD_POPUP,
-    shouldShow: false,
   };
 };
 
@@ -87,6 +85,5 @@ export const CLEAR_PROJECT_CARD_HOLD = "CLEAR_PROJECT_CARD_HOLD";
 export const clear_projectCard_hold = () => {
   return {
     type: CLEAR_PROJECT_CARD_HOLD,
-    payload: true,
   };
 };

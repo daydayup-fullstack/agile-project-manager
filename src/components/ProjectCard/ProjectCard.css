@@ -4,7 +4,7 @@
   transform: translateY(-4px);
 }
 .ProjectCard--holdHover .card .material-icons {
-  opacity: 0.9;
+  opacity: 1;
   transition: opacity 0.4s ease;
 }
 .ProjectCard--holdHover .card .themeIcon {
@@ -33,7 +33,7 @@
   transform: translateY(-4px);
 }
 .ProjectCard:hover .card .material-icons {
-  opacity: 0.9;
+  opacity: 1;
   transition: opacity 0.4s ease;
 }
 .ProjectCard:hover .card .themeIcon {
@@ -101,7 +101,7 @@
 .ProjectCard .title {
   margin-top: 0.625rem;
   font-family: "Poppins", sans-serif;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 400;
   text-align: center;
   max-height: 2rem;
