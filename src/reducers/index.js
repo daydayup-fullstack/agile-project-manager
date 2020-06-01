@@ -1,5 +1,6 @@
 import { loadInitialData } from "../data/database";
 import {
+  CLEAR_PROJECT_CARD_HOLD,
   HIDE_PROJECT_CARD_POPUP,
   PROJECT_CHANGED,
   PROJECT_SELECTED,
@@ -11,6 +12,7 @@ const initialAppState = {
   ui_projectCard_popup: {
     shouldShow: false,
     anchor: { x: 0, y: 0, width: 0, height: 0 },
+    clearHold: false
   },
 };
 
@@ -29,6 +31,14 @@ export const app = (state = initialAppState, action) => {
         ...state,
         ui_projectCard_popup: {
           shouldShow: action.shouldShow,
+        },
+      };
+
+    case CLEAR_PROJECT_CARD_HOLD:
+      return {
+        ...state,
+        ui_projectCard_popup: {
+          clearHold: action.payload,
         },
       };
     default:

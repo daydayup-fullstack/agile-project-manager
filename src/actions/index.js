@@ -37,3 +37,12 @@ export const hide_projectCard_popup = () => {
     shouldShow: false,
   };
 };
+
+export const CLEAR_PROJECT_CARD_HOLD = "CLEAR_PROJECT_CARD_HOLD";
+
+export const clear_projectCard_hold = () => {
+  return {
+    type: CLEAR_PROJECT_CARD_HOLD,
+    payload: true
+  };
+};

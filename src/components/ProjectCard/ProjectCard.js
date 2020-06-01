@@ -7,7 +7,12 @@ import { Link } from "react-router-dom";
 import { show_projectCard_popup } from "../../actions";
 import { connect } from "react-redux";
 
-const ProjectCard = ({ project, starred, show_projectCard_popup }) => {
+const ProjectCard = ({
+  project,
+  starred,
+  show_projectCard_popup,
+  shouldHold,
+}) => {
   const [hover, setHover] = React.useState(false);
   const [holdHover, setHoldHover] = React.useState(false);
 
@@ -29,14 +34,18 @@ const ProjectCard = ({ project, starred, show_projectCard_popup }) => {
 
   return (
     // <Link to={`/project/${project.id}`}>
-    <div className={`ProjectCard ${holdHover && "ProjectCard--holdHover"}`}>
+    <div
+      className={`ProjectCard ${
+        holdHover && shouldHold && "ProjectCard--holdHover"
+      }`}
+    >
       <div className="card" style={{ background: colors[project.colorIndex] }}>
         <span
           className={"material-icons"}
           onMouseOver={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
           onClick={toggleStar}
-          style={holdHover ? { opacity: 1 } : {}}
+          style={holdHover && shouldHold ? { opacity: 1 } : {}}
         >
           {hover || starred ? "star" : "star_border"}
         </span>
@@ -44,14 +53,14 @@ const ProjectCard = ({ project, starred, show_projectCard_popup }) => {
         <span
           className={"material-icons"}
           onClick={showPopup}
-          style={holdHover ? { opacity: 1, color: "#fff" } : {}}
+          style={holdHover && shouldHold ? { opacity: 1, color: "#fff" } : {}}
         >
           more_horiz
         </span>
 
         <ul
           className={"profile-container"}
-          style={holdHover ? { opacity: 1 } : {}}
+          style={holdHover && shouldHold ? { opacity: 1 } : {}}
         >
           <li>
             <Profile user={db_users["user-scott"]} />
@@ -73,7 +82,9 @@ const ProjectCard = ({ project, starred, show_projectCard_popup }) => {
 };
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    shouldHold: state.app.ui_projectCard_popup.shouldShow,
+  };
 };
 
 export default connect(mapStateToProps, { show_projectCard_popup })(

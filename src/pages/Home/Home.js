@@ -13,7 +13,6 @@ const Home = ({
   projects,
   projectCard_popup,
 }) => {
-  console.log(projectCard_popup);
   return (
     <div className={"App-Home"}>
       {projectCard_popup.shouldShow && (
