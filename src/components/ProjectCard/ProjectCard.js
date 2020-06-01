@@ -1,11 +1,12 @@
 import React from "react";
 import "./ProjectCard.css";
-import { colors } from "../../model/model";
+import { colors, iconNames } from "../../model/model";
 import Profile from "../Profile/Profile";
 import { db_users } from "../../data/database";
 import { Link } from "react-router-dom";
 import {
   add_project_star,
+  project_selected,
   remove_project_star,
   show_projectCard_popup,
 } from "../../actions";
@@ -18,11 +19,13 @@ const ProjectCard = ({
   shouldHold,
   remove_project_star,
   add_project_star,
+  project_selected,
 }) => {
   const [hover, setHover] = React.useState(false);
   const [holdHover, setHoldHover] = React.useState(false);
 
   function showPopup(e) {
+    project_selected(project);
     show_projectCard_popup({
       shouldShow: true,
       anchor: {
@@ -59,7 +62,9 @@ const ProjectCard = ({
         >
           {hover || starred ? "star" : "star_border"}
         </span>
-        <div className={"material-icons-two-tone themeIcon"}>fireplace</div>
+        <div className={"material-icons-two-tone themeIcon"}>
+          {iconNames[project.iconIndex]}
+        </div>
         <span
           className={"material-icons"}
           onClick={showPopup}
@@ -101,4 +106,5 @@ export default connect(mapStateToProps, {
   show_projectCard_popup,
   add_project_star,
   remove_project_star,
+  project_selected,
 })(ProjectCard);

@@ -39,6 +39,22 @@ export const remove_project_star = (project) => {
   };
 };
 
+export const PROJECT_ICON_SELECTED = "PROJECT_ICON_SELECTED ";
+export const select_project_icon = (project) => {
+  return {
+    type: PROJECT_ICON_SELECTED,
+    project,
+  };
+};
+
+export const PROJECT_COLOR_SELECTED = "PROJECT_COLOR_SELECTED ";
+export const select_project_color = (project) => {
+  return {
+    type: PROJECT_COLOR_SELECTED,
+    project,
+  };
+};
+
 // ================ ui state ======================
 
 export const SHOW_PROJECT_CARD_POPUP = "SHOW_PROJECT_CARD_POPUP";

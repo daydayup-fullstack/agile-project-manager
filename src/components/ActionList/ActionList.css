@@ -16,7 +16,7 @@
   align-items: center;
   justify-content: space-between;
 }
-.ActionList ul li span {
+.ActionList ul li .material-icons-outlined {
   font-size: 1rem;
   position: relative;
   top: -1px;
@@ -30,6 +30,13 @@
   border: 1px solid #9ca6af;
   min-width: 150px;
   border-radius: 0.2rem;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.ActionList ul .nextLevel:hover {
+  background-color: #fff;
 }
 
 /*# sourceMappingURL=ActionList.css.map */

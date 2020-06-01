@@ -1,44 +1,39 @@
 import React from "react";
 import "./IconArray.css";
+import { colors, iconNames } from "../../model/model";
+import { connect } from "react-redux";
+import { select_project_icon } from "../../actions";
 
-export const iconNames = [
-  "radio_button_checked",
-  "whatshot",
-  "poll",
-  "emoji_objects",
-  "fireplace",
-  "storefront",
-  "spa",
-  "event_note",
-  "money",
-  "terrain",
-  "tag_faces",
-  "flash_on",
-  "security",
-  "folder",
-  "format_quote",
-  "weekend",
-  "send",
-  "archive",
-  "next_week",
-  "chat",
-  "track_changes",
-  "pets",
-  "store",
-  "extension",
-  "done_outline",
-  "fitness_center",
-  "beenhere",
-  "assessment",
-];
+const IconArray = ({
+  iconIndex,
+  colorIndex,
+  currentProject,
+  select_project_icon,
+}) => {
+  const showCorrectStyle = (index) => {
+    if (iconIndex === index) {
+      return {
+        backgroundColor: colors[colorIndex],
+      };
+    }
+  };
 
-const IconArray = () => {
   return (
     <div className="IconArray">
       <div className="content">
         {iconNames.map((iconName, index) => {
           return (
-            <div className={"item"} key={index}>
+            <div
+              className={`item ${iconIndex === index && "item--selected"}`}
+              key={index}
+              style={showCorrectStyle(index)}
+              onClick={() => {
+                select_project_icon({
+                  ...currentProject,
+                  iconIndex: index,
+                });
+              }}
+            >
               <span className={"material-icons-two-tone"}>{iconName}</span>
             </div>
           );
@@ -47,5 +42,10 @@ const IconArray = () => {
     </div>
   );
 };
+const mapStateToProps = (state) => {
+  return {
+    currentProject: state.project,
+  };
+};
 
-export default IconArray;
+export default connect(mapStateToProps, { select_project_icon })(IconArray);

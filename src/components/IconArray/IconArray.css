@@ -21,8 +21,8 @@
   justify-content: center;
 }
 .IconArray .content .item:hover {
-  cursor: pointer;
   background-color: #e8ecee;
+  cursor: pointer;
 }
 .IconArray .content .item:hover span {
   filter: invert(9%) sepia(42%) saturate(445%) hue-rotate(179deg) brightness(95%) contrast(98%);
@@ -32,6 +32,13 @@
   filter: invert(76%) sepia(22%) saturate(139%) hue-rotate(167deg) brightness(83%) contrast(87%);
   display: inline-block;
   text-align: center;
+}
+.IconArray .content .item--selected {
+  background-color: crimson;
+  cursor: pointer;
+}
+.IconArray .content .item--selected span {
+  filter: invert(9%) sepia(42%) saturate(445%) hue-rotate(179deg) brightness(95%) contrast(98%);
 }
 
 /*# sourceMappingURL=IconArray.css.map */

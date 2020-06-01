@@ -1,0 +1,117 @@
+.ColorPicker {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  width: 240px;
+}
+
+.ColorPicker-cellsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+
+  .material-icons {
+    color: white;
+    transform: scale(0.6);
+  }
+}
+
+.ColorPickerCell {
+  height: 20px;
+  margin: 2px;
+  width: 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #000;
+  fill: currentColor;
+
+  &:after {
+    content: "";
+    color: white;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 20px;
+  }
+
+  &-radio {
+    display: none;
+
+    &:checked + label:after {
+      content: "√";
+    }
+  }
+
+  &--none {
+    border: 1px solid #e8ecee;
+    background-color: #cbd4db;
+
+    &:after {
+      color: black;
+    }
+  }
+
+  &--red {
+    background-color: #e8384f;
+  }
+
+  &--orange {
+    background-color: #fd612c;
+  }
+
+  &--yellowOrange {
+    background-color: #fd9a00;
+  }
+
+  &--yellow {
+    background-color: #eec300;
+  }
+
+  &--yellowGreen {
+    background-color: #a4cf30;
+  }
+
+  &--green {
+    background-color: #62d26f;
+  }
+
+  &--blueGreen {
+    background-color: #37c5ab;
+  }
+
+  &--aqua {
+    background-color: #20aaea;
+  }
+
+  &--blue {
+    background-color: #4186e0;
+  }
+
+  &--indigo {
+    background-color: #7a6ff0;
+  }
+
+  &--purple {
+    background-color: #aa62e3;
+  }
+
+  &--magenta {
+    background-color: #e362e3;
+  }
+
+  &--hotPink {
+    background-color: #ea4e9d;
+  }
+
+  &--pink {
+    background-color: #fc91ad;
+  }
+
+  &--coolGray {
+    background-color: #8da3a6;
+  }
+}

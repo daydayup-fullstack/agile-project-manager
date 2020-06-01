@@ -1,5 +1,14 @@
 @import "../../style/variables";
 
+@mixin highlighed() {
+  cursor: pointer;
+
+  span {
+    filter: invert(9%) sepia(42%) saturate(445%) hue-rotate(179deg)
+      brightness(95%) contrast(98%);
+  }
+}
+
 .IconArray {
   width: 250px;
   .content {
@@ -22,13 +31,8 @@
       justify-content: center;
 
       &:hover {
-        cursor: pointer;
         background-color: $gray-200;
-
-        span {
-          filter: invert(9%) sepia(42%) saturate(445%) hue-rotate(179deg)
-            brightness(95%) contrast(98%);
-        }
+        @include highlighed;
       }
 
       span {
@@ -37,6 +41,11 @@
           brightness(83%) contrast(87%);
         display: inline-block;
         text-align: center;
+      }
+
+      &--selected {
+        background-color: crimson;
+        @include highlighed;
       }
     }
   }

@@ -3,6 +3,8 @@ import {
   CLEAR_PROJECT_CARD_HOLD,
   HIDE_PROJECT_CARD_POPUP,
   PROJECT_CHANGED,
+  PROJECT_COLOR_SELECTED,
+  PROJECT_ICON_SELECTED,
   PROJECT_SELECTED,
   PROJECT_STAR_ADDED,
   PROJECT_STAR_REMOVED,
@@ -71,11 +73,12 @@ export const user = (state = initialUserState, action) => {
         ),
       };
     }
-  }
 
-  return {
-    ...state,
-  };
+    default:
+      return {
+        ...state,
+      };
+  }
 };
 // ============= WORKSPACE reducers ==================
 
@@ -83,6 +86,23 @@ const initialWorkspace = { ...loadInitialData(devId).currentWorkspace };
 
 export const workspace = (state = initialWorkspace, action) => {
   switch (action.type) {
+    case PROJECT_ICON_SELECTED:
+      return {
+        ...state,
+        projects: {
+          ...state.projects,
+          [action.project.id]: action.project,
+        },
+      };
+
+    case PROJECT_COLOR_SELECTED:
+      return {
+        ...state,
+        projects: {
+          ...state.projects,
+          [action.project.id]: action.project,
+        },
+      };
     default:
       return {
         ...state,
@@ -108,6 +128,18 @@ export const project = (state = {}, action) => {
         ...action.project,
       };
     }
+
+    case PROJECT_ICON_SELECTED:
+      return {
+        ...state,
+        iconIndex: action.payload,
+      };
+
+    case PROJECT_COLOR_SELECTED:
+      return {
+        ...state,
+        colorIndex: action.payload,
+      };
 
     default:
       return {
