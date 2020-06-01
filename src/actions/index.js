@@ -23,6 +23,14 @@ export const project_changed = (project) => {
   };
 };
 
+export const PROJECT_DELETED = "PROJECT_DELETED";
+export const delete_project = (project) => {
+  return {
+    type: PROJECT_DELETED,
+    project,
+  };
+};
+
 export const PROJECT_STAR_ADDED = " PROJECT_STAR_ADDED";
 export const add_project_star = (project) => {
   return {

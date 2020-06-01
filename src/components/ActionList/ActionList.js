@@ -3,8 +3,14 @@ import "./ActionList.css";
 import ColorArray from "../ColorArray/ColorArray";
 import IconArray from "../IconArray/IconArray";
 import { connect } from "react-redux";
+import { add_project_star, remove_project_star } from "../../actions";
 
-const ActionList = ({ project }) => {
+const ActionList = ({
+  project,
+  starredProjects,
+  remove_project_star,
+  add_project_star,
+}) => {
   const expandableAction = React.useRef(null);
   const nextAction = React.useRef(null);
   const [showNextLevel, setShowNextLevel] = React.useState(false);
@@ -66,14 +72,30 @@ const ActionList = ({ project }) => {
         <li onMouseOver={handleMouseOver} ref={expandableAction}>
           Set Color & Icon <Arrow />
         </li>
-        <li onMouseOver={dismissNextLevel}>Remove from Favorites</li>
+        <li
+          onMouseOver={dismissNextLevel}
+          onClick={() => {
+            if (starredProjects.indexOf(project.id) >= 0) {
+              remove_project_star(project);
+            } else {
+              add_project_star(project);
+            }
+          }}
+        >
+          {starredProjects.indexOf(project.id) < 0
+            ? "Add to Favorites"
+            : "Remove from Favorites"}
+        </li>
         <li onMouseOver={dismissNextLevel}>Edit Name & Description...</li>
         <li onMouseOver={dismissNextLevel}>Copy Project Link</li>
         <li onMouseOver={dismissNextLevel}>Share</li>
         {showNextLevel && (
           <li className={"nextLevel"} style={calcPosition()} ref={nextAction}>
             <ColorArray colorIndex={project.colorIndex} />
-            <IconArray iconIndex={project.iconIndex} colorIndex={project.colorIndex}/>
+            <IconArray
+              iconIndex={project.iconIndex}
+              colorIndex={project.colorIndex}
+            />
           </li>
         )}
       </ul>
@@ -88,10 +110,14 @@ const ActionList = ({ project }) => {
 };
 
 const mapStateToProps = (state) => {
-    console.log(state);
+  console.log(state);
   return {
+    starredProjects: state.user.starredProjects,
     project: state.project,
   };
 };
 
-export default connect(mapStateToProps, {})(ActionList);
+export default connect(mapStateToProps, {
+  remove_project_star,
+  add_project_star,
+})(ActionList);
