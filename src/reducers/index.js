@@ -4,15 +4,18 @@ import {
   HIDE_PROJECT_CARD_POPUP,
   PROJECT_CHANGED,
   PROJECT_SELECTED,
+  PROJECT_STAR_ADDED,
+  PROJECT_STAR_REMOVED,
   SHOW_PROJECT_CARD_POPUP,
 } from "../actions";
 const devId = "user-scott";
 
+// ============= APP reducers ==================
 const initialAppState = {
   ui_projectCard_popup: {
     shouldShow: false,
     anchor: { x: 0, y: 0, width: 0, height: 0 },
-    clearHold: false
+    clearHold: false,
   },
 };
 
@@ -47,14 +50,34 @@ export const app = (state = initialAppState, action) => {
       };
   }
 };
+// ============= USER reducers ==================
 
 const initialUserState = { ...loadInitialData(devId).user };
 
 export const user = (state = initialUserState, action) => {
+  switch (action.type) {
+    case PROJECT_STAR_ADDED: {
+      return {
+        ...state,
+        starredProjects: [...state.starredProjects, action.project.id],
+      };
+    }
+
+    case PROJECT_STAR_REMOVED: {
+      return {
+        ...state,
+        starredProjects: state.starredProjects.filter(
+          (id) => id !== action.project.id
+        ),
+      };
+    }
+  }
+
   return {
     ...state,
   };
 };
+// ============= WORKSPACE reducers ==================
 
 const initialWorkspace = { ...loadInitialData(devId).currentWorkspace };
 
@@ -66,6 +89,8 @@ export const workspace = (state = initialWorkspace, action) => {
       };
   }
 };
+
+// ============= PROJECT reducers ==================
 
 export const project = (state = {}, action) => {
   switch (action.type) {
@@ -83,6 +108,7 @@ export const project = (state = {}, action) => {
         ...action.project,
       };
     }
+
     default:
       return {
         ...state,

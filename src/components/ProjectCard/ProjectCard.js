@@ -4,7 +4,11 @@ import { colors } from "../../model/model";
 import Profile from "../Profile/Profile";
 import { db_users } from "../../data/database";
 import { Link } from "react-router-dom";
-import { show_projectCard_popup } from "../../actions";
+import {
+  add_project_star,
+  remove_project_star,
+  show_projectCard_popup,
+} from "../../actions";
 import { connect } from "react-redux";
 
 const ProjectCard = ({
@@ -12,6 +16,8 @@ const ProjectCard = ({
   starred,
   show_projectCard_popup,
   shouldHold,
+  remove_project_star,
+  add_project_star,
 }) => {
   const [hover, setHover] = React.useState(false);
   const [holdHover, setHoldHover] = React.useState(false);
@@ -29,7 +35,11 @@ const ProjectCard = ({
   }
 
   function toggleStar() {
-    //  redux action
+    if (starred) {
+      remove_project_star(project);
+    } else {
+      add_project_star(project);
+    }
   }
 
   return (
@@ -87,6 +97,8 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { show_projectCard_popup })(
-  ProjectCard
-);
+export default connect(mapStateToProps, {
+  show_projectCard_popup,
+  add_project_star,
+  remove_project_star,
+})(ProjectCard);

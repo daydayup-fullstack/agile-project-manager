@@ -1,5 +1,7 @@
 import { db_columns, db_tasks } from "../data/database";
 
+// ============== Project ========================
+
 export const PROJECT_SELECTED = "PROJECT_SELECTED";
 export const project_selected = (project) => {
   return {
@@ -20,6 +22,24 @@ export const project_changed = (project) => {
     project,
   };
 };
+
+export const PROJECT_STAR_ADDED = " PROJECT_STAR_ADDED";
+export const add_project_star = (project) => {
+  return {
+    type: PROJECT_STAR_ADDED,
+    project,
+  };
+};
+
+export const PROJECT_STAR_REMOVED = " PROJECT_STAR_REMOVED";
+export const remove_project_star = (project) => {
+  return {
+    type: PROJECT_STAR_REMOVED,
+    project,
+  };
+};
+
+// ================ ui state ======================
 
 export const SHOW_PROJECT_CARD_POPUP = "SHOW_PROJECT_CARD_POPUP";
 export const show_projectCard_popup = ({ anchor }) => {
@@ -43,6 +63,6 @@ export const CLEAR_PROJECT_CARD_HOLD = "CLEAR_PROJECT_CARD_HOLD";
 export const clear_projectCard_hold = () => {
   return {
     type: CLEAR_PROJECT_CARD_HOLD,
-    payload: true
+    payload: true,
   };
 };
