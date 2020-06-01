@@ -11,6 +11,8 @@ import {
 } from "react-router-dom";
 import LoginForm from "../LoginForm/LoginForm";
 import Project from "../../pages/Project/Project";
+import Team from "../../pages/Team/Team";
+import MyTasks from "../../pages/MyTasks/MyTasks";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -31,12 +33,12 @@ const App = () => {
 
               <Route path={"/tasks"}>{/*<MyTasks tasks={tasks} />*/}</Route>
 
-              <Route path={"/inbox"}>
-                <Inbox />
-              </Route>
-
               <Route path={"/project/:id"}>
                 <Project />
+              </Route>
+
+              <Route path={"/team"}>
+                <Team />
               </Route>
             </Drawer>
           </Switch>
@@ -50,10 +52,6 @@ const App = () => {
       </Router>
     </div>
   );
-};
-
-const Inbox = () => {
-  return <div>Inbox works!</div>;
 };
 
 export default App;

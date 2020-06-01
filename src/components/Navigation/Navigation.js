@@ -22,11 +22,11 @@ const Navigation = () => {
             </span>
           </li>
         </NavLink>
-        <NavLink to={"/inbox"} activeClassName={"active"} style={style}>
+        <NavLink to={"/team"} activeClassName={"active"} style={style}>
           <li>
             <span className="link">
               <i className={"material-icons-outlined icon"}>notifications</i>
-              Inbox
+              Team
             </span>
           </li>
         </NavLink>
