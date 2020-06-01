@@ -1,0 +1,99 @@
+@charset "UTF-8";
+.ColorPicker {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  width: 240px;
+}
+
+.ColorPicker-cellsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+.ColorPicker-cellsContainer .material-icons {
+  color: white;
+  transform: scale(0.6);
+}
+
+.ColorPickerCell {
+  height: 20px;
+  margin: 2px;
+  width: 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #000;
+  fill: currentColor;
+}
+.ColorPickerCell:after {
+  content: "";
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 20px;
+}
+.ColorPickerCell-radio {
+  display: none;
+}
+.ColorPickerCell-radio:checked + label:after {
+  content: "√";
+}
+.ColorPickerCell--none {
+  border: 1px solid #e8ecee;
+  background-color: #cbd4db;
+}
+.ColorPickerCell--none:after {
+  color: black;
+}
+.ColorPickerCell--red {
+  background-color: #e8384f;
+}
+.ColorPickerCell--orange {
+  background-color: #fd612c;
+}
+.ColorPickerCell--yellowOrange {
+  background-color: #fd9a00;
+}
+.ColorPickerCell--yellow {
+  background-color: #eec300;
+}
+.ColorPickerCell--yellowGreen {
+  background-color: #a4cf30;
+}
+.ColorPickerCell--green {
+  background-color: #62d26f;
+}
+.ColorPickerCell--blueGreen {
+  background-color: #37c5ab;
+}
+.ColorPickerCell--aqua {
+  background-color: #20aaea;
+}
+.ColorPickerCell--blue {
+  background-color: #4186e0;
+}
+.ColorPickerCell--indigo {
+  background-color: #7a6ff0;
+}
+.ColorPickerCell--purple {
+  background-color: #aa62e3;
+}
+.ColorPickerCell--magenta {
+  background-color: #e362e3;
+}
+.ColorPickerCell--hotPink {
+  background-color: #ea4e9d;
+}
+.ColorPickerCell--pink {
+  background-color: #fc91ad;
+}
+.ColorPickerCell--coolGray {
+  background-color: #8da3a6;
+}
+
+/*# sourceMappingURL=ColorArray.css.map */
