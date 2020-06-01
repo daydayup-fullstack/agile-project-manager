@@ -20,3 +20,10 @@ export const project_changed = (project) => {
     project,
   };
 };
+
+export const changeNewTaskDisplay = (newTaskDisplay) => {
+  return {
+    type: "CHANGE_NEW_TASK_DISPLAY",
+    newTaskDisplay,
+  }
+}

@@ -1,0 +1,40 @@
+@import "../../style/variables";
+
+.ActionList {
+  margin: 0.25rem 0;
+  background-color: #ffffff;
+  ul {
+    list-style: none;
+    color: $gray-500;
+    font-family: $font-family;
+    font-size: $desc-size*0.9;
+    font-weight: $desc-weight;
+    width: 180px;
+
+    li {
+      padding: 0.6rem 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      span {
+        font-size: 1rem;
+        position: relative;
+        top: -1px;
+        right: -6px;
+      }
+
+      &:hover {
+        background-color: $gray-200;
+      }
+    }
+
+    .nextLevel {
+      position: absolute;
+      border: 1px solid $gray-300;
+      min-width: 150px;
+      border-radius: 0.2rem;
+
+    }
+  }
+}

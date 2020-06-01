@@ -1,0 +1,27 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.Filterbar {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0.25rem 0.25rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.81rem;
+  font-weight: 400;
+  border-top: 1px solid #e8ecee;
+  box-shadow: 0 1px 3px 0 rgba(21, 27, 38, 0.15);
+}
+.Filterbar button {
+  display: flex;
+  align-items: center;
+}
+.Filterbar button span {
+  margin-right: 0.2rem;
+}
+
+/*# sourceMappingURL=Filterbar.css.map */

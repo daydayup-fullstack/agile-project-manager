@@ -1,0 +1,25 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.PopupMenu {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+.PopupMenu .menu {
+  max-width: fit-content;
+  background: #fff;
+  border: 1px solid #9ca6af;
+  border-radius: 0.2rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/*# sourceMappingURL=PopupMenu.css.map */
