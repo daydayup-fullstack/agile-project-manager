@@ -1,35 +1,41 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Drawer.css";
-import ContentHeader from "../ContentHeader/ContentHeader";
+import { close_app_drawer } from "../../actions";
+import { connect } from "react-redux";
 
-const Drawer = ({ nav, children }) => {
-  const [shouldClose, setShouldClose] = useState(false);
-
-  let openDrawer = () => setShouldClose(false);
-  let closeDrawer = () => setShouldClose(true);
-
+const Drawer = ({ nav, children, shouldOpen, close_app_drawer }) => {
   return (
     <div className="Drawer">
-      <section className={`SideMenu ${shouldClose ? "SideMenu--close" : "SideMenu--open"}`}>
+      <section
+        className={`SideMenu ${
+          shouldOpen ? "SideMenu--open" : "SideMenu--close"
+        }`}
+      >
         <header className={"SideMenu--header"}>
           <div>Logo</div>
-          <span className="material-icons" onClick={closeDrawer}>
+          <span
+            className="material-icons"
+            onClick={() => {
+              close_app_drawer();
+            }}
+          >
             menu_open
           </span>
         </header>
-        <div className="SideMenu--content">
-          {nav}
-        </div>
+        <div className="SideMenu--content">{nav}</div>
       </section>
 
       <section className={`main`}>
-        <div className="main--content">
-            <ContentHeader shouldClose={shouldClose} openDrawer={openDrawer}/>
-            {children}
-        </div>
+        <div className="main--content">{children}</div>
       </section>
     </div>
   );
 };
 
-export default Drawer;
+const mapStateToProps = (state) => {
+  return {
+    shouldOpen: state.app.ui_drawer.shouldOpen,
+  };
+};
+
+export default connect(mapStateToProps, { close_app_drawer })(Drawer);
