@@ -151,7 +151,7 @@ const ActionList = ({
 
   const ProjectIconPopup = () => {
     return (
-      <ul>
+      <ul className={"ProjectIconPopup"}>
         <li className={"nextLevel"}>
           <ColorArray colorIndex={project.colorIndex} />
           <IconArray
@@ -183,7 +183,7 @@ const ActionList = ({
           })}
         </ul>
 
-        <div className="divider"/>
+        <div className="divider" />
 
         <ul>
           <li onMouseOver={dismissNextLevel}>Settings</li>
@@ -198,14 +198,12 @@ const ActionList = ({
       {projectCard_popup.shouldShow && <ProjectCardPopup />}
       {header_project_info_popup.shouldShow && <ProjectCardPopup />}
       {header_profile_popup.shouldShow && <ProfilePopup />}
-
       {header_project_icon_popup.shouldShow && <ProjectIconPopup />}
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     starredProjects: state.user.starredProjects,
     project: state.project,

@@ -18,6 +18,7 @@ const PopupMenu = ({
   hide_header_profile_popup,
   hide_header_projectInfo_popup,
   hide_header_filter_popup_tasks,
+  header_projectIcon_popup,
 }) => {
   const [origin, setOrigin] = React.useState({ x: 0, y: 0, width: 0 });
   const popup = useRef(null);
@@ -46,11 +47,18 @@ const PopupMenu = ({
     hide_header_filter_popup_tasks();
   };
 
+  const styleFix = header_projectIcon_popup.shouldShow
+    ? {
+        border: "none",
+        background: "unset",
+      }
+    : {};
+
   return (
     <div className="PopupMenu" onClick={dismiss}>
       <div
         className="menu"
-        style={{ top: `${origin.y + OFFSET_Y}px`, left: `${origin.x}px` }}
+        style={{ top: `${origin.y + OFFSET_Y}px`, left: `${origin.x}px`, ...styleFix}}
         ref={popup}
       >
         {children}
@@ -60,7 +68,11 @@ const PopupMenu = ({
 };
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    header_projectIcon_popup: {
+      shouldShow: state.app.ui_header_project_icon_popup.shouldShow,
+    },
+  };
 };
 
 export default connect(mapStateToProps, {

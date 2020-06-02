@@ -7,7 +7,7 @@
   z-index: 100;
 }
 .PopupMenu .menu {
-  max-width: fit-content;
+  width: fit-content;
   background: #fff;
   border: 1px solid #e8ecee;
   border-radius: 0.2rem;

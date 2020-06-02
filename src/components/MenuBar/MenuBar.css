@@ -32,6 +32,7 @@
   display: inline-block;
   opacity: 0.8;
   transition: all 0.4s ease;
+  user-select: none;
 }
 .MenuBar__title h2 {
   margin-left: 1rem;
