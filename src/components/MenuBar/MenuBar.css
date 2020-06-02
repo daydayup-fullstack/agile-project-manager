@@ -1,239 +1,72 @@
-* {
-  padding: 0;
-  margin: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
-
-.container {
-  width: 100%;
-  height: 100vh;
-  overflow-y: hidden;
-  display: -webkit-box;
-  display: -ms-flexbox;
+.MenuBar {
   display: flex;
-}
-
-.container .left {
-  width: 300px;
-  background-color: #151b26;
-}
-
-.container .collapse {
-  margin-left: -300px;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-
-.container .expand {
-  margin-left: 0;
-  -webkit-transition: all 0.3s ease;
-  transition: all 0.3s ease;
-}
-
-.container .right {
-  width: 100%;
-  height: 100vh;
-  background-color: #f6f8f9;
-}
-
-.container .right header {
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5rem;
   height: 4rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  padding-left: 1.5rem;
 }
-
-.container .right header .title {
-  display: -webkit-box;
-  display: -ms-flexbox;
+.MenuBar__title {
   display: flex;
+  align-items: center;
 }
-
-.container .right header .title .icon {
-  display: inline-block;
+.MenuBar__title .icon {
+  margin-right: 1rem;
+}
+.MenuBar__title__project-icon {
+  width: 3rem;
+  height: 3rem;
   cursor: pointer;
-  position: relative;
-  margin-right: 2px;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
 }
-
-.container .right header .title h2 {
+.MenuBar__title__project-icon .card {
+  border-radius: 0.75rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.MenuBar__title__project-icon .card .themeIcon {
+  font-size: 1.8rem;
+  filter: invert(97%) sepia(1%) saturate(489%) hue-rotate(140deg) brightness(103%) contrast(95%);
+  display: inline-block;
+  opacity: 0.8;
+  transition: all 0.4s ease;
+}
+.MenuBar__title h2 {
+  margin-left: 1rem;
   font-family: "Poppins", sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   font-weight: 500;
 }
-
-.container .right header .more-content {
-  background: #e8ecee;
-  color: #151b26;
-}
-
-.container .right .content {
-  height: 100vh;
-  background: #9ca6af;
-  display: -webkit-box;
-  display: -ms-flexbox;
+.MenuBar__title .iconGroup {
+  margin-left: 0.25rem;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  font-size: 1.5rem;
-  color: #151b26;
 }
-
-.sprintContainer {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  position: relative;
-  left: .2rem;
-  -ms-flex-wrap: nowrap;
-      flex-wrap: nowrap;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-}
-
-.sprintContainer > h3 {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 500;
-  margin-left: .5rem;
-  font-size: 1rem;
-  line-height: 1rem;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
-}
-
-.sprintContainer > span:nth-of-type(1),
-.sprintContainer > span:nth-of-type(2),
-.sprintContainer > span:nth-of-type(3) {
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
-  color: #6f7782;
+.MenuBar__title .iconGroup span {
+  transform: scale(0.8);
+  margin: 0 0.5rem;
+  color: #9ca6af;
   cursor: pointer;
-  display: inline-block;
-  margin-left: .5rem;
 }
-
-.sprintContainer > span:nth-of-type(4) {
-  display: inline-block;
-  margin-left: 1rem;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
-}
-
-.sprintContainer > span:nth-of-type(5) {
-  display: inline-block;
-  margin-left: 1rem;
-  -ms-flex-item-align: center;
-      align-self: center;
-  border: 1px solid #cbd4db;
-  width: 140px;
-  border-radius: 16px;
+.MenuBar__title .iconGroup span:hover {
   color: #151b26;
-  display: -webkit-box;
-  display: -ms-flexbox;
+}
+.MenuBar__title .iconGroup .star {
+  color: #9ca6af;
+}
+.MenuBar__more-content {
+  display: flex;
+  align-items: center;
+}
+.MenuBar__more-content .MultipleUserProfile {
+  margin-right: 2rem;
+}
+.MenuBar__more-content .userSection {
+  list-style: none;
   display: flex;
 }
-
-.sprintContainer > span:nth-of-type(5) > span:nth-of-type(1) {
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
-  margin-left: .2rem;
+.MenuBar__more-content .userSection li {
+  margin: 0 0.5rem;
 }
 
-.sprintContainer > span:nth-of-type(5) > input {
-  padding: 1px 16px 0 0px;
-  color: #151b26;
-  -webkit-transition: all .15s;
-  transition: all .15s;
-  height: 32px;
-  background-color: transparent;
-  border: none;
-  outline: none;
-  margin-left: .2rem;
-  overflow: auto;
-}
-
-.sprintContainer > span:nth-of-type(5) > input:focus {
-  width: 500px;
-}
-
-.sprintContainer > span:nth-of-type(6) {
-  display: inline-block;
-  -webkit-transform: scale(0.5);
-          transform: scale(0.5);
-}
-
-.sprintContainer > button {
-  background-color: #fcbd01;
-  color: #fff;
-  height: 32px;
-  line-height: 32px;
-  padding: 0 15px;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
-  border: 1px solid #fcbd01;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 13px;
-  min-width: 48px;
-  text-align: center;
-  -webkit-transition: all .2s;
-  transition: all .2s;
-  outline: none;
-}
-
-.sprintContainer > button:hover {
-  background-color: #f2a100;
-  border-color: #f2a100;
-}
-
-.sprintContainer > button:active {
-  background-color: #bf7f00;
-  border-color: #bf7f00;
-}
-
-.sprintContainer > span:last-of-type {
-  display: inline-block;
-  margin-left: .5rem;
-  -ms-flex-item-align: center;
-      -ms-grid-row-align: center;
-      align-self: center;
-}
-
-.sprint {
-  background: url(./sprint.svg) 48px 48px;
-  background-size: cover;
-  display: inline-block;
-  width: 48px;
-  height: 48px;
-  -ms-flex-item-align: start;
-      align-self: flex-start;
-}
-
-.question{
-  margin-top: 0.55rem;
-  margin-right: 0.6rem;
-  font-size: 1.9rem;
-  color: #a2a4a5;
-}
 /*# sourceMappingURL=MenuBar.css.map */
