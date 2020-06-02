@@ -1,6 +1,8 @@
 import { loadInitialData } from "../data/database";
 import {
   CLEAR_PROJECT_CARD_HOLD,
+  DRAWER_CLOSED,
+  DRAWER_OPENED,
   HIDE_PROJECT_CARD_POPUP,
   PROJECT_CHANGED,
   PROJECT_COLOR_SELECTED,
@@ -17,6 +19,9 @@ const initialAppState = {
   ui_projectCard_popup: {
     shouldShow: false,
     anchor: { x: 0, y: 0, width: 0, height: 0 },
+  },
+  ui_drawer: {
+    shouldOpen: true,
   },
 };
 
@@ -38,10 +43,19 @@ export const app = (state = initialAppState, action) => {
         },
       };
 
-    case CLEAR_PROJECT_CARD_HOLD:
+    case DRAWER_OPENED:
       return {
         ...state,
-        ui_projectCard_popup: {},
+        ui_drawer: {
+          shouldOpen: true,
+        },
+      };
+    case DRAWER_CLOSED:
+      return {
+        ...state,
+        ui_drawer: {
+          shouldOpen: false,
+        },
       };
     default:
       return {
