@@ -14,7 +14,8 @@ import Project from "../../pages/Project/Project";
 import Team from "../../pages/Team/Team";
 import MyTasks from "../../pages/MyTasks/MyTasks";
 import ContentHeader from "../ContentHeader/ContentHeader";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
+import MenuBar from "../MenuBar/MenuBar";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -30,13 +31,14 @@ const App = () => {
               </Route>
 
               <Route path={"/home"}>
-                  <ContentHeader/>
-                  <Home />
+                <ContentHeader />
+                <Home />
               </Route>
 
               <Route path={"/tasks"}>{/*<MyTasks tasks={tasks} />*/}</Route>
 
               <Route path={"/project/:id"}>
+                <MenuBar />
                 <Project />
               </Route>
 
@@ -57,6 +59,6 @@ const App = () => {
   );
 };
 const mapStateToProps = (state) => {
-    return {}
-}
-export default connect(mapStateToProps, {})( App );
+  return {};
+};
+export default connect(mapStateToProps, {})(App);

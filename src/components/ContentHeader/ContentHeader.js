@@ -6,8 +6,6 @@ import "./ContentHeader.css";
 import MultipleUserProfile from "../MultipleUserProfile/MultipleUserProfile";
 import Profile from "../Profile/Profile";
 import { db_users } from "../../data/database";
-import Starred from "../Starred/Starred";
-import Filterbar from "../Filterbar/Filterbar";
 import AddTaskPopup from "../AddTaskPopup/AddTaskPopup";
 import { changeNewTaskDisplay } from "../../actions/index";
 import { open_app_drawer } from "../../actions";
@@ -48,7 +46,13 @@ const ContentHeader = ({ shouldOpen, newTaskDisplay, open_app_drawer }) => {
         <div className={"more-content"}>
           <div className="more-content__MultipleUserProfile">
             <MultipleUserProfile
-              multipleUsers={users}
+                multipleUsers={[
+                  db_users["user-lawrence"],
+                  db_users["user-ollie"],
+                  db_users["user-scott"],
+                  db_users["user-sarah"],
+                  db_users["user-silvia"],
+                ]}
               projectName={"DayDayUp"}
             />
           </div>
