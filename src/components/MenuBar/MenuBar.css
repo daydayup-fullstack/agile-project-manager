@@ -11,6 +11,7 @@
 }
 .MenuBar__title .icon {
   margin-right: 1rem;
+  cursor: pointer;
 }
 .MenuBar__title__project-icon {
   width: 3rem;

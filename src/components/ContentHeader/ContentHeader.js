@@ -8,7 +8,7 @@ import Profile from "../Profile/Profile";
 import { db_users } from "../../data/database";
 import AddTaskPopup from "../AddTaskPopup/AddTaskPopup";
 import { changeNewTaskDisplay } from "../../actions/index";
-import { open_app_drawer } from "../../actions";
+import { open_app_drawer, show_header_profile_popup } from "../../actions";
 
 const users = [
   db_users["user-scott"],
@@ -16,7 +16,24 @@ const users = [
   db_users["user-silvia"],
 ];
 
-const ContentHeader = ({ shouldOpen, newTaskDisplay, open_app_drawer }) => {
+const calcAnchor = (e) => {
+  return {
+    anchor: {
+      x: e.clientX,
+      y: e.clientY,
+      width: e.target.clientWidth,
+      height: e.target.clientHeight,
+    },
+  };
+};
+
+const ContentHeader = ({
+  shouldOpen,
+  newTaskDisplay,
+  open_app_drawer,
+  show_header_profile_popup,
+  currentUser,
+}) => {
   const [shouldShowTooltip, setShouldShowTooltip] = useState(false);
   return (
     <>
@@ -46,13 +63,13 @@ const ContentHeader = ({ shouldOpen, newTaskDisplay, open_app_drawer }) => {
         <div className={"more-content"}>
           <div className="more-content__MultipleUserProfile">
             <MultipleUserProfile
-                multipleUsers={[
-                  db_users["user-lawrence"],
-                  db_users["user-ollie"],
-                  db_users["user-scott"],
-                  db_users["user-sarah"],
-                  db_users["user-silvia"],
-                ]}
+              multipleUsers={[
+                db_users["user-lawrence"],
+                db_users["user-ollie"],
+                db_users["user-scott"],
+                db_users["user-sarah"],
+                db_users["user-silvia"],
+              ]}
               projectName={"DayDayUp"}
             />
           </div>
@@ -70,9 +87,9 @@ const ContentHeader = ({ shouldOpen, newTaskDisplay, open_app_drawer }) => {
             {/*        Upgrade*/}
             {/*    </button>*/}
             {/*</li>*/}
-            <li>
+            <li onClick={(e) => show_header_profile_popup(calcAnchor(e))}>
               {/*todo - hardcoded data - fix this later*/}
-              <Profile user={db_users["user-scott"]} />
+              <Profile user={currentUser} />
             </li>
           </ul>
         </div>
@@ -92,10 +109,12 @@ function mapStateToProps(state) {
   return {
     newTaskDisplay: state.taskDisplay.newTaskDisplay,
     shouldOpen: state.app.ui_drawer.shouldOpen,
+    currentUser: state.user,
   };
 }
 
 export default connect(mapStateToProps, {
   changeNewTaskDisplay,
   open_app_drawer,
+  show_header_profile_popup,
 })(ContentHeader);

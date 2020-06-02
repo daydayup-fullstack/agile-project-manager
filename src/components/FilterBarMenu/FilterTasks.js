@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import './FilterSort/FilterSort.css';
 
 
@@ -37,7 +37,7 @@ const FilterTasks=()=>{
     return (
       <div className={"ActionList"}>
         <ul>
-          
+
         <li onMouseOver={dismissNextLevel}>
           <span className="material-icons task_done" >done</span>
           <span className='task_tick'><h4>Incomplete tasks</h4></span></li>

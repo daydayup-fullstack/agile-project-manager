@@ -12,7 +12,6 @@ import {
 import LoginForm from "../LoginForm/LoginForm";
 import Project from "../../pages/Project/Project";
 import Team from "../../pages/Team/Team";
-import MyTasks from "../../pages/MyTasks/MyTasks";
 import ContentHeader from "../ContentHeader/ContentHeader";
 import { connect } from "react-redux";
 import MenuBar from "../MenuBar/MenuBar";
@@ -92,7 +91,6 @@ const App = ({
   );
 };
 const mapStateToProps = (state) => {
-  console.log(state.app.ui_header_project_icon_popup);
   return {
     projectCard_popup: {
       shouldShow: state.app.ui_projectCard_popup.shouldShow,
@@ -108,7 +106,7 @@ const mapStateToProps = (state) => {
     },
     header_profile_popup: {
       shouldShow: state.app.ui_header_profile_popup.shouldShow,
-      anchor: state.app.ui_header_profile_popup.shouldShow,
+      anchor: state.app.ui_header_profile_popup.anchor,
     },
   };
 };

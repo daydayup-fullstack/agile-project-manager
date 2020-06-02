@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import './FilterSort.css';
 
 export const FilterSort=()=>{
@@ -24,4 +24,3 @@ export default FilterSort;
 
 
 
-   

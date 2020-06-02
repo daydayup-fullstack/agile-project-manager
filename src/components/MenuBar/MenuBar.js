@@ -1,16 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./MenuBar.css";
 import Profile from "../Profile/Profile";
 
 import AddButtonCircular from "../AddButtonCircular/AddButtonCircular";
 import { db_users } from "../../data/database";
-import Tooltip from "../Tooltip/Tooltip";
 import { connect } from "react-redux";
 import {
   add_project_star,
   changeNewTaskDisplay,
   open_app_drawer,
   remove_project_star,
+  show_header_filter_popup_tasks,
+  show_header_profile_popup,
+  show_header_projectIcon_popup,
+  show_header_projectInfo_popup,
 } from "../../actions";
 import Filterbar from "../Filterbar/Filterbar";
 import { colors, iconNames } from "../../model/model";
@@ -25,6 +28,10 @@ const MenuBar = ({
   add_project_star,
   remove_project_star,
   members,
+  show_header_projectIcon_popup,
+  show_header_profile_popup,
+  show_header_projectInfo_popup,
+  show_header_filter_popup_tasks,
 }) => {
   const [shouldShowTooltip, setShouldShowTooltip] = useState(false);
   const [starHover, setStarHover] = React.useState(false);
@@ -49,6 +56,17 @@ const MenuBar = ({
     }
   }
 
+  const calcAnchor = (e) => {
+    return {
+      anchor: {
+        x: e.clientX,
+        y: e.clientY,
+        width: e.target.clientWidth,
+        height: e.target.clientHeight,
+      },
+    };
+  };
+
   return (
     <>
       <div className={"MenuBar"}>
@@ -59,7 +77,10 @@ const MenuBar = ({
             </span>
           )}
 
-          <div className="MenuBar__title__project-icon">
+          <div
+            className="MenuBar__title__project-icon"
+            onClick={(e) => show_header_projectIcon_popup(calcAnchor(e))}
+          >
             <div
               className="card"
               style={{ background: colors[currentProject.colorIndex] }}
@@ -73,7 +94,12 @@ const MenuBar = ({
           <h2>{currentProject.name}</h2>
 
           <div className="iconGroup">
-            <span className="material-icons icon">keyboard_arrow_down</span>
+            <span
+              className="material-icons icon"
+              onClick={(e) => show_header_projectInfo_popup(calcAnchor(e))}
+            >
+              keyboard_arrow_down
+            </span>
             <span className="material-icons-outlined icon">info</span>
             <span
               className={"material-icons star"}
@@ -106,7 +132,7 @@ const MenuBar = ({
               />
             </li>
 
-            <li>
+            <li onClick={(e) => show_header_profile_popup(calcAnchor(e))}>
               {/*todo - hardcoded data - fix this later*/}
               <Profile user={db_users["user-scott"]} />
             </li>
@@ -119,7 +145,6 @@ const MenuBar = ({
 };
 
 function mapStateToProps(state) {
-  console.log(state);
   return {
     newTaskDisplay: state.taskDisplay.newTaskDisplay,
     shouldOpen: state.app.ui_drawer.shouldOpen,
@@ -134,4 +159,8 @@ export default connect(mapStateToProps, {
   open_app_drawer,
   add_project_star,
   remove_project_star,
+  show_header_projectIcon_popup,
+  show_header_profile_popup,
+  show_header_projectInfo_popup,
+  show_header_filter_popup_tasks,
 })(MenuBar);
