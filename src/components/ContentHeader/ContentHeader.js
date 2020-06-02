@@ -82,7 +82,6 @@ const ContentHeader = ({ shouldOpen, newTaskDisplay, open_app_drawer }) => {
           setShouldShow={setShouldShowTooltip}
         />
       </header>
-      {/*<Filterbar />*/}
 
       {newTaskDisplay ? <AddTaskPopup user={users[0]} /> : <></>}
     </>

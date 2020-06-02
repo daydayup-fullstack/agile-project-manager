@@ -1,9 +1,7 @@
 .AddTaskPopup {
-    max-width: 50vw;
+    min-width: 600px;
     max-height: 70vh;
-    top: 0;
     right: 0;
-    left: 0;
     bottom: 0;
     margin: auto;
     position: absolute;
@@ -11,14 +9,15 @@
     background-color: #fff;
     border-radius: 4px;
     box-shadow: 0 0 0 1px rgba(111, 119, 130, .15), 0 5px 20px 0 rgba(21, 27, 38, .08);
-    padding: 0 24px;
+    padding: 0 2rem;
     font-size: 13px;
+    z-index: 20;
 
     &_TopIcon {
         display: flex;
         align-items: center;
         height: 56px;
-        padding: 0 24;
+        padding: 0 24px;
         font-size: 13px;
         justify-content: flex-end;
 

@@ -109,3 +109,17 @@ export const close_app_drawer = () => {
     type: DRAWER_CLOSED,
   };
 };
+// export const SHOW_PROJECT_CARD_POPUP = "SHOW_PROJECT_CARD_POPUP";
+// export const show_projectCard_popup = ({ anchor }) => {
+//   return {
+//     type: SHOW_PROJECT_CARD_POPUP,
+//     anchor,
+//   };
+// };
+//
+// export const HIDE_PROJECT_CARD_POPUP = "HIDE_PROJECT_CARD_POPUP";
+// export const hide_projectCard_popup = () => {
+//   return {
+//     type: HIDE_PROJECT_CARD_POPUP,
+//   };
+// };
