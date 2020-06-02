@@ -1,8 +1,7 @@
 @import "../../style/variables";
 
-
 .ContentHeader {
-  height: 3rem;
+  height: 4rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -27,19 +26,13 @@
       font-weight: $h1-weight;
     }
 
-    .star{
+    .star {
       display: inline-block;
       align-self: center;
       height: 25px;
       line-height: 25px;
       margin-left: 1rem;
       cursor: pointer;
-    }
-
-    .multiUserProfile {
-      display: inline-block;
-      margin-left: 2rem;
-      align-self: center;
     }
 
     .searchContainer {
@@ -52,20 +45,20 @@
       color: #151b26;
       display: flex;
 
-      &>span:nth-of-type(1) {
+      & > span:nth-of-type(1) {
         align-self: center;
-        margin-left: .2rem;
+        margin-left: 0.2rem;
       }
 
-      &>input {
+      & > input {
         padding: 1px 16px 0 0px;
         color: #151b26;
-        transition: all .15s;
+        transition: all 0.15s;
         height: 32px;
         background-color: transparent;
         border: none;
         outline: none;
-        margin-left: .2rem;
+        margin-left: 0.2rem;
         overflow: auto;
 
         &:focus {
@@ -76,23 +69,37 @@
   }
 
   .more-content {
-    ul {
+    display: flex;
+    align-items: center;
+
+    &__MultipleUserProfile {
+      margin-right: 2rem;
+    }
+
+
+    &__userSection {
       list-style: none;
       display: flex;
       align-items: center;
+      margin-left: 0.5rem;
 
-      li {
-        margin-left: 1.5em;
+      .more-content__MultipleUserProfile {
+        display: inline-block;
+        align-self: center;
+        margin-right: 1rem;
+        @include debug;
       }
 
-      & li:nth-of-type(2){
+      & li:nth-of-type(2) {
         align-self: center;
         height: 24px;
         border-radius: 50%;
-        transition:200ms box-shadow,200ms color,200ms background,200ms fill,200ms border-color;
+        transition: 200ms box-shadow, 200ms color, 200ms background, 200ms fill,
+          200ms border-color;
         color: #6f7782;
         cursor: pointer;
-        &:hover{
+        margin: 0 1rem;
+        &:hover {
           background-color: #f6f8f9;
           color: #273240;
           fill: #273240;
@@ -112,7 +119,7 @@
         font-size: 13px;
         min-width: 48px;
         text-align: center;
-        transition: all .2s;
+        transition: all 0.2s;
         outline: none;
 
         &:hover {
