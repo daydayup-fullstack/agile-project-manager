@@ -1,0 +1,43 @@
+.ActionList {
+  margin: 0.25rem 0;
+  background-color: #ffffff;
+}
+.ActionList ul {
+  list-style: none;
+  color: #151b26;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.81rem;
+  font-weight: 400;
+  width: 180px;
+}
+.ActionList ul li {
+  padding: 0.6rem 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+}
+.ActionList ul li .material-icons-outlined {
+  font-size: 1rem;
+  position: relative;
+  top: -1px;
+  right: -6px;
+}
+.ActionList ul li:hover {
+  background-color: #e8ecee;
+}
+.ActionList ul .nextLevel {
+  position: absolute;
+  border: 1px solid #e8ecee;
+  min-width: 150px;
+  border-radius: 0.2rem;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.ActionList ul .nextLevel:hover {
+  background-color: #fff;
+}
+
+/*# sourceMappingURL=ActionList.css.map */

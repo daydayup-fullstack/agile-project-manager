@@ -17,12 +17,14 @@ export const db_users = {
     lastName: "Liu",
     avatar: "some-avatar-url",
     colorIndex: 4,
+    starredProjects: [],
     workspaces: ["workspace-daydayup-team", "workspace-lawrence-personal"],
   },
   "user-ollie": {
     id: "user-ollie",
     firstName: "Ollie",
     lastName: "Lee",
+    starredProjects: [],
     avatar:
       "https://s3.amazonaws.com/profile_photos/1171854711778417.pLuY5oITP89IeVzx0MJP_27x27.png",
     colorIndex: 2,
@@ -34,6 +36,7 @@ export const db_users = {
     lastName: "Xiao",
     avatar: "some-avatar-url",
     colorIndex: 10,
+    starredProjects: [],
     workspaces: ["workspace-daydayup-team", "workspace-sarah-personal"],
   },
   "user-silvia": {
@@ -43,6 +46,7 @@ export const db_users = {
     avatar:
       "https://s3.amazonaws.com/profile_photos/1171854712057265.7zSf934pYJpZhkV1kn6o_27x27.png",
     colorIndex: 8,
+    starredProjects: [],
     workspaces: ["workspace-daydayup-team", "workspace-silvia-personal"],
   },
 };

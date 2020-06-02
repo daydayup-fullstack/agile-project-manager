@@ -6,11 +6,12 @@
   height: 100vh;
   top: 0;
   left: 0;
+  z-index: 100;
 
   .menu {
     max-width: fit-content;
     background: #fff;
-    border: 1px solid $gray-300;
+    border: 1px solid $gray-200;
     border-radius: 0.2rem;
     position: relative;
     display: flex;

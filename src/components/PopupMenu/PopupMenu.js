@@ -1,10 +1,13 @@
 import React, { useRef } from "react";
 import "./PopupMenu.css";
+import { connect } from "react-redux";
+import { clear_projectCard_hold, hide_projectCard_popup } from "../../actions";
 
 const PopupMenu = ({
   children,
   anchor = { x: 0, y: 0, width: 0 },
-  dismiss,
+  hide_projectCard_popup,
+  clear_projectCard_hold,
 }) => {
   const [origin, setOrigin] = React.useState({ x: 0, y: 0, width: 0 });
   const popup = useRef(null);
@@ -25,6 +28,11 @@ const PopupMenu = ({
     }
   }, [anchor.x, anchor.y, anchor.width]);
 
+  const dismiss = () => {
+    hide_projectCard_popup();
+    clear_projectCard_hold();
+  };
+
   return (
     <div className="PopupMenu" onClick={dismiss}>
       <div
@@ -38,4 +46,11 @@ const PopupMenu = ({
   );
 };
 
-export default PopupMenu;
+const mapStateToProps = (state) => {
+  return {};
+};
+
+export default connect(mapStateToProps, {
+  hide_projectCard_popup,
+  clear_projectCard_hold,
+})(PopupMenu);

@@ -1,3 +1,22 @@
+.ProjectCard--holdHover {
+  background-color: #f6f8f9;
+  cursor: pointer;
+  transform: translateY(-4px);
+}
+.ProjectCard--holdHover .card .material-icons {
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+.ProjectCard--holdHover .card .themeIcon {
+  transform: translateY(-4px);
+  transition: all 0.4s ease;
+}
+.ProjectCard--holdHover .card .profile-container {
+  opacity: 1;
+  transition: all 0.4s ease;
+  transform: translateY(-4px);
+}
+
 .ProjectCard {
   display: flex;
   flex-direction: column;
@@ -13,16 +32,76 @@
   cursor: pointer;
   transform: translateY(-4px);
 }
+.ProjectCard:hover .card .material-icons {
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+.ProjectCard:hover .card .themeIcon {
+  transform: translateY(-4px);
+  transition: all 0.4s ease;
+}
+.ProjectCard:hover .card .profile-container {
+  opacity: 1;
+  transition: all 0.4s ease;
+  transform: translateY(-4px);
+}
 .ProjectCard .card {
   width: 7.5rem;
   height: 7.5rem;
   border-radius: 1.25rem;
   box-shadow: inset 0 -2px rgba(0, 0, 0, 0.05);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.ProjectCard .card .themeIcon {
+  font-size: 3.5rem;
+  filter: invert(97%) sepia(1%) saturate(489%) hue-rotate(140deg) brightness(103%) contrast(95%);
+  display: inline-block;
+  opacity: 0.8;
+  transition: all 0.4s ease;
+}
+.ProjectCard .card span:first-of-type {
+  color: #e8ecee;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  transform: scale(0.8);
+  left: 0.5rem;
+  top: 0.3rem;
+  position: absolute;
+}
+.ProjectCard .card span:last-of-type {
+  color: #e8ecee;
+  position: absolute;
+  top: 0.3rem;
+  right: 0.5rem;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  transform: scale(0.9);
+}
+.ProjectCard .card span:last-of-type:hover {
+  color: #fff;
+}
+.ProjectCard .card .profile-container {
+  position: absolute;
+  bottom: 0.3rem;
+  opacity: 0;
+  transition: all 0.4s ease;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  list-style: none;
+}
+.ProjectCard .card .profile-container li {
+  position: relative;
+  margin: 0 -0.15rem;
+  opacity: 0.9;
 }
 .ProjectCard .title {
   margin-top: 0.625rem;
   font-family: "Poppins", sans-serif;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 400;
   text-align: center;
   max-height: 2rem;
