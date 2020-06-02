@@ -10,6 +10,7 @@ import Starred from "../Starred/Starred";
 import Filterbar from "../Filterbar/Filterbar";
 import AddTaskPopup from "../AddTaskPopup/AddTaskPopup";
 import { changeNewTaskDisplay } from "../../actions/index";
+import { open_app_drawer } from "../../actions";
 
 const users = [
   db_users["user-scott"],
@@ -17,14 +18,14 @@ const users = [
   db_users["user-silvia"],
 ];
 
-const ContentHeader = ({ shouldClose, openDrawer, newTaskDisplay }) => {
+const ContentHeader = ({ shouldOpen, newTaskDisplay, open_app_drawer }) => {
   const [shouldShowTooltip, setShouldShowTooltip] = useState(false);
   return (
     <>
       <header className={"ContentHeader"}>
         <div className="title">
-          {shouldClose && (
-            <span className={"material-icons icon"} onClick={openDrawer}>
+          {!shouldOpen && (
+            <span className={"material-icons icon"} onClick={open_app_drawer}>
               menu
             </span>
           )}
@@ -87,9 +88,11 @@ const ContentHeader = ({ shouldClose, openDrawer, newTaskDisplay }) => {
 function mapStateToProps(state) {
   return {
     newTaskDisplay: state.taskDisplay.newTaskDisplay,
+    shouldOpen: state.app.ui_drawer.shouldOpen,
   };
 }
 
-export default connect(mapStateToProps, { changeNewTaskDisplay })(
-  ContentHeader
-);
+export default connect(mapStateToProps, {
+  changeNewTaskDisplay,
+  open_app_drawer,
+})(ContentHeader);

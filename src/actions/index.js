@@ -27,8 +27,8 @@ export const changeNewTaskDisplay = (newTaskDisplay) => {
   return {
     type: "CHANGE_NEW_TASK_DISPLAY",
     newTaskDisplay,
-  }
-}
+  };
+};
 
 export const PROJECT_DELETED = "PROJECT_DELETED";
 export const delete_project = (project) => {
@@ -92,5 +92,20 @@ export const CLEAR_PROJECT_CARD_HOLD = "CLEAR_PROJECT_CARD_HOLD";
 export const clear_projectCard_hold = () => {
   return {
     type: CLEAR_PROJECT_CARD_HOLD,
+  };
+};
+
+export const DRAWER_OPENED = "DRAWER_OPENED";
+export const DRAWER_CLOSED = "DRAWER_CLOSED";
+
+export const open_app_drawer = () => {
+  return {
+    type: DRAWER_OPENED,
+  };
+};
+
+export const close_app_drawer = () => {
+  return {
+    type: DRAWER_CLOSED,
   };
 };

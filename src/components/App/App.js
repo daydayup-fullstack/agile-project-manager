@@ -13,6 +13,8 @@ import LoginForm from "../LoginForm/LoginForm";
 import Project from "../../pages/Project/Project";
 import Team from "../../pages/Team/Team";
 import MyTasks from "../../pages/MyTasks/MyTasks";
+import ContentHeader from "../ContentHeader/ContentHeader";
+import {connect} from "react-redux";
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -28,7 +30,8 @@ const App = () => {
               </Route>
 
               <Route path={"/home"}>
-                <Home />
+                  <ContentHeader/>
+                  <Home />
               </Route>
 
               <Route path={"/tasks"}>{/*<MyTasks tasks={tasks} />*/}</Route>
@@ -53,5 +56,7 @@ const App = () => {
     </div>
   );
 };
-
-export default App;
+const mapStateToProps = (state) => {
+    return {}
+}
+export default connect(mapStateToProps, {})( App );
