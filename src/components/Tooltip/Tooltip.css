@@ -4,12 +4,8 @@
   box-shadow: 0 0 0 1px rgba(111, 119, 130, 0.15), 0 5px 20px 0 rgba(21, 27, 38, 0.08);
   padding: 0.25rem 0;
   flex-direction: column;
-  position: absolute;
   z-index: 20;
-  right: -2px;
-  top: 2.5rem;
   background-color: #ffffff;
-  margin: 1rem;
 }
 .Tooltip::before {
   content: "";

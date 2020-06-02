@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
-import Tooltip from "../Tooltip/Tooltip";
 import AddButtonCircular from "../AddButtonCircular/AddButtonCircular";
 import "./ContentHeader.css";
 import MultipleUserProfile from "../MultipleUserProfile/MultipleUserProfile";
@@ -8,7 +7,8 @@ import Profile from "../Profile/Profile";
 import { db_users } from "../../data/database";
 import AddTaskPopup from "../AddTaskPopup/AddTaskPopup";
 import { changeNewTaskDisplay } from "../../actions/index";
-import { open_app_drawer } from "../../actions";
+import { open_app_drawer, show_header_profile_popup } from "../../actions";
+import { calcAnchor } from "../../model/utility";
 
 const users = [
   db_users["user-scott"],
@@ -16,8 +16,13 @@ const users = [
   db_users["user-silvia"],
 ];
 
-const ContentHeader = ({ shouldOpen, newTaskDisplay, open_app_drawer }) => {
-  const [shouldShowTooltip, setShouldShowTooltip] = useState(false);
+const ContentHeader = ({
+  shouldOpen,
+  newTaskDisplay,
+  open_app_drawer,
+  show_header_profile_popup,
+  currentUser,
+}) => {
   return (
     <>
       <header className={"ContentHeader"}>
@@ -46,21 +51,19 @@ const ContentHeader = ({ shouldOpen, newTaskDisplay, open_app_drawer }) => {
         <div className={"more-content"}>
           <div className="more-content__MultipleUserProfile">
             <MultipleUserProfile
-                multipleUsers={[
-                  db_users["user-lawrence"],
-                  db_users["user-ollie"],
-                  db_users["user-scott"],
-                  db_users["user-sarah"],
-                  db_users["user-silvia"],
-                ]}
+              multipleUsers={[
+                db_users["user-lawrence"],
+                db_users["user-ollie"],
+                db_users["user-scott"],
+                db_users["user-sarah"],
+                db_users["user-silvia"],
+              ]}
               projectName={"DayDayUp"}
             />
           </div>
           <ul className={"more-content__userSection"}>
             <li>
-              <AddButtonCircular
-                onHandleClick={() => setShouldShowTooltip(!shouldShowTooltip)}
-              />
+              <AddButtonCircular />
             </li>
             {/*<li>*/}
             {/*    <span className="material-icons icon">help_outline</span>*/}
@@ -70,17 +73,11 @@ const ContentHeader = ({ shouldOpen, newTaskDisplay, open_app_drawer }) => {
             {/*        Upgrade*/}
             {/*    </button>*/}
             {/*</li>*/}
-            <li>
-              {/*todo - hardcoded data - fix this later*/}
-              <Profile user={db_users["user-scott"]} />
+            <li onClick={(e) => show_header_profile_popup(calcAnchor(e))}>
+              <Profile user={currentUser} />
             </li>
           </ul>
         </div>
-
-        <Tooltip
-          shouldShow={shouldShowTooltip}
-          setShouldShow={setShouldShowTooltip}
-        />
       </header>
 
       {newTaskDisplay ? <AddTaskPopup user={users[0]} /> : <></>}
@@ -92,10 +89,12 @@ function mapStateToProps(state) {
   return {
     newTaskDisplay: state.taskDisplay.newTaskDisplay,
     shouldOpen: state.app.ui_drawer.shouldOpen,
+    currentUser: state.user,
   };
 }
 
 export default connect(mapStateToProps, {
   changeNewTaskDisplay,
   open_app_drawer,
+  show_header_profile_popup,
 })(ContentHeader);

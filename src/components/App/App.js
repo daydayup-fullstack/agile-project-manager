@@ -12,18 +12,20 @@ import {
 import LoginForm from "../LoginForm/LoginForm";
 import Project from "../../pages/Project/Project";
 import Team from "../../pages/Team/Team";
-import MyTasks from "../../pages/MyTasks/MyTasks";
 import ContentHeader from "../ContentHeader/ContentHeader";
 import { connect } from "react-redux";
 import MenuBar from "../MenuBar/MenuBar";
 import PopupMenu from "../PopupMenu/PopupMenu";
 import ActionList from "../ActionList/ActionList";
+import Tooltip from "../Tooltip/Tooltip";
 
 const App = ({
   projectCard_popup,
   header_projectIcon_popup,
   header_projectInfo_popup,
   header_profile_popup,
+  header_addButton_popup,
+  header_filter_popup,
 }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
@@ -50,6 +52,18 @@ const App = ({
 
         {header_profile_popup.shouldShow && (
           <PopupMenu anchor={header_profile_popup.anchor}>
+            <ActionList />
+          </PopupMenu>
+        )}
+
+        {header_addButton_popup.shouldShow && (
+          <PopupMenu anchor={header_addButton_popup.anchor}>
+            <Tooltip />
+          </PopupMenu>
+        )}
+
+        {header_filter_popup.shouldShow && (
+          <PopupMenu anchor={header_filter_popup.anchor}>
             <ActionList />
           </PopupMenu>
         )}
@@ -95,7 +109,6 @@ const App = ({
   );
 };
 const mapStateToProps = (state) => {
-  console.log(state.app.ui_header_project_icon_popup);
   return {
     projectCard_popup: {
       shouldShow: state.app.ui_projectCard_popup.shouldShow,
@@ -111,7 +124,16 @@ const mapStateToProps = (state) => {
     },
     header_profile_popup: {
       shouldShow: state.app.ui_header_profile_popup.shouldShow,
-      anchor: state.app.ui_header_profile_popup.shouldShow,
+      anchor: state.app.ui_header_profile_popup.anchor,
+    },
+    header_addButton_popup: {
+      shouldShow: state.app.ui_header_addButton_popup.shouldShow,
+      anchor: state.app.ui_header_addButton_popup.anchor,
+    },
+    header_filter_popup: {
+      shouldShow: state.app.ui_header_filter_popup.shouldShow,
+      anchor: state.app.ui_header_filter_popup.anchor,
+      content: state.app.ui_header_filter_popup.content,
     },
   };
 };

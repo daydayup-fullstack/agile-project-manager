@@ -5,13 +5,13 @@
   flex-direction: row;
 
   .SideMenu {
-    width: 300px;
-    min-width: 300px;
+    width: 240px;
+    min-width: 240px;
     background-color: $gray-500;
     height: 100vh;
 
     &--close {
-      margin-left: -300px;
+      margin-left: -240px;
       transition: all 0.3s ease;
     }
 
@@ -28,7 +28,7 @@
       justify-content: space-between;
       padding: 20px;
       font-size: $h1-size;
-      max-width: 300px;
+      max-width: 240px;
       flex-shrink: 1;
 
       span {

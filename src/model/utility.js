@@ -59,3 +59,25 @@ export const login = async (username, password) => {
     }, 1500);
   });
 };
+
+export const calcAnchor = (e) => {
+  return {
+    anchor: {
+      x: e.clientX,
+      y: e.clientY,
+      width: e.target.clientWidth,
+      height: e.target.clientHeight,
+    },
+  };
+};
+
+export const calcAddButtonAnchor = (e) => {
+  return {
+    anchor: {
+      x: e.target.offsetLeft + e.target.clientWidth + 42,
+      y: e.target.offsetTop + e.target.clientHeight - 5,
+      width: e.target.clientWidth,
+      height: e.target.clientHeight,
+    },
+  };
+};

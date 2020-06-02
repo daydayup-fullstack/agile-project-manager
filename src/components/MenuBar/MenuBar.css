@@ -11,6 +11,7 @@
 }
 .MenuBar__title .icon {
   margin-right: 1rem;
+  cursor: pointer;
 }
 .MenuBar__title__project-icon {
   width: 3rem;
@@ -31,6 +32,7 @@
   display: inline-block;
   opacity: 0.8;
   transition: all 0.4s ease;
+  user-select: none;
 }
 .MenuBar__title h2 {
   margin-left: 1rem;
@@ -57,6 +59,7 @@
 .MenuBar__more-content {
   display: flex;
   align-items: center;
+  margin-right: 1rem;
 }
 .MenuBar__more-content .MultipleUserProfile {
   margin-right: 2rem;

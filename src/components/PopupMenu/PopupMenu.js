@@ -1,18 +1,31 @@
 import React, { useRef } from "react";
 import "./PopupMenu.css";
 import { connect } from "react-redux";
-import { clear_projectCard_hold, hide_projectCard_popup } from "../../actions";
+import {
+  clear_projectCard_hold,
+  hide_header_addButton_popup,
+  hide_header_filter_popup,
+  hide_header_profile_popup,
+  hide_header_projectIcon_popup,
+  hide_header_projectInfo_popup,
+  hide_projectCard_popup,
+} from "../../actions";
 
 const PopupMenu = ({
   children,
   anchor = { x: 0, y: 0, width: 0 },
   hide_projectCard_popup,
-  clear_projectCard_hold,
+  hide_header_projectIcon_popup,
+  hide_header_profile_popup,
+  hide_header_projectInfo_popup,
+  header_projectIcon_popup,
+  hide_header_addButton_popup,
+  hide_header_filter_popup,
 }) => {
   const [origin, setOrigin] = React.useState({ x: 0, y: 0, width: 0 });
   const popup = useRef(null);
 
-  const OFFSET_Y = 24;
+  const OFFSET_Y = 20;
   const OFFSET_X = 4;
 
   React.useEffect(() => {
@@ -30,14 +43,29 @@ const PopupMenu = ({
 
   const dismiss = () => {
     hide_projectCard_popup();
-    clear_projectCard_hold();
+    hide_header_projectIcon_popup();
+    hide_header_profile_popup();
+    hide_header_projectInfo_popup();
+    hide_header_addButton_popup();
+    hide_header_filter_popup();
   };
+
+  const styleFix = header_projectIcon_popup.shouldShow
+    ? {
+        border: "none",
+        background: "unset",
+      }
+    : {};
 
   return (
     <div className="PopupMenu" onClick={dismiss}>
       <div
         className="menu"
-        style={{ top: `${origin.y + OFFSET_Y}px`, left: `${origin.x}px` }}
+        style={{
+          top: `${origin.y + OFFSET_Y}px`,
+          left: `${origin.x}px`,
+          ...styleFix,
+        }}
         ref={popup}
       >
         {children}
@@ -47,10 +75,19 @@ const PopupMenu = ({
 };
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    header_projectIcon_popup: {
+      shouldShow: state.app.ui_header_project_icon_popup.shouldShow,
+    },
+  };
 };
 
 export default connect(mapStateToProps, {
   hide_projectCard_popup,
   clear_projectCard_hold,
+  hide_header_projectIcon_popup,
+  hide_header_profile_popup,
+  hide_header_projectInfo_popup,
+  hide_header_addButton_popup,
+  hide_header_filter_popup,
 })(PopupMenu);

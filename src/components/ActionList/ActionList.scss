@@ -2,7 +2,6 @@
 
 .ActionList {
   margin: 0.25rem 0;
-  background-color: #ffffff;
   ul {
     list-style: none;
     color: $gray-500;
@@ -17,7 +16,6 @@
       align-items: center;
       justify-content: space-between;
       user-select: none;
-
 
       .material-icons-outlined {
         font-size: 1rem;
@@ -44,6 +42,29 @@
       &:hover {
         background-color: #fff;
       }
+    }
+  }
+
+  .ProfilePopup {
+    .divider {
+      content: "";
+      width: 100%;
+      height: 1px;
+      background: $gray-200;
+      transform: scaleY(1);
+    }
+
+    li {
+      display: flex;
+      justify-content: flex-start;
+      padding-left: 2rem;
+      position: relative;
+    }
+    &__current {
+      width: 1rem;
+      transform: scale(0.5);
+      position: absolute;
+      left: 0.5rem;
     }
   }
 }

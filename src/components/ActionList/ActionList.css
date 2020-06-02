@@ -1,6 +1,5 @@
 .ActionList {
   margin: 0.25rem 0;
-  background-color: #ffffff;
 }
 .ActionList ul {
   list-style: none;
@@ -38,6 +37,25 @@
 }
 .ActionList ul .nextLevel:hover {
   background-color: #fff;
+}
+.ActionList .ProfilePopup .divider {
+  content: "";
+  width: 100%;
+  height: 1px;
+  background: #e8ecee;
+  transform: scaleY(1);
+}
+.ActionList .ProfilePopup li {
+  display: flex;
+  justify-content: flex-start;
+  padding-left: 2rem;
+  position: relative;
+}
+.ActionList .ProfilePopup__current {
+  width: 1rem;
+  transform: scale(0.5);
+  position: absolute;
+  left: 0.5rem;
 }
 
 /*# sourceMappingURL=ActionList.css.map */

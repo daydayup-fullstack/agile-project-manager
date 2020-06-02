@@ -13,6 +13,7 @@
     padding: 0 2rem;
     font-size: 13px;
     z-index: 20;
+    user-select: none;
 
     &_TopIcon {
         display: flex;
@@ -62,7 +63,6 @@
         &_projectLabel {
             margin-left: 8px;
         }
-
 
 
         &_remove {

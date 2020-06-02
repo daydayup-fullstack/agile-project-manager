@@ -60,6 +60,7 @@
 .ContentHeader .more-content {
   display: flex;
   align-items: center;
+  margin-right: 1rem;
 }
 .ContentHeader .more-content__MultipleUserProfile {
   margin-right: 2rem;
