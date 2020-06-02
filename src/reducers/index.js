@@ -1,8 +1,10 @@
 import { loadInitialData } from "../data/database";
 import {
-  CLEAR_PROJECT_CARD_HOLD,
   DRAWER_CLOSED,
   DRAWER_OPENED,
+  HIDE_HEADER_PROFILE_POPUP,
+  HIDE_HEADER_PROJECT_ICON_POPUP,
+  HIDE_HEADER_PROJECT_INFO_POPUP,
   HIDE_PROJECT_CARD_POPUP,
   PROJECT_CHANGED,
   PROJECT_COLOR_SELECTED,
@@ -10,6 +12,9 @@ import {
   PROJECT_SELECTED,
   PROJECT_STAR_ADDED,
   PROJECT_STAR_REMOVED,
+  SHOW_HEADER_PROFILE_POPUP,
+  SHOW_HEADER_PROJECT_ICON_POPUP,
+  SHOW_HEADER_PROJECT_INFO_POPUP,
   SHOW_PROJECT_CARD_POPUP,
 } from "../actions";
 const devId = "user-scott";
@@ -22,6 +27,18 @@ const initialAppState = {
   },
   ui_drawer: {
     shouldOpen: true,
+  },
+  ui_header_project_icon_popup: {
+    shouldShow: false,
+    anchor: { x: 0, y: 0, width: 0, height: 0 },
+  },
+  ui_header_project_info_popup: {
+    shouldShow: false,
+    anchor: { x: 0, y: 0, width: 0, height: 0 },
+  },
+  ui_header_profile_popup: {
+    shouldShow: false,
+    anchor: { x: 0, y: 0, width: 0, height: 0 },
   },
 };
 
@@ -57,6 +74,59 @@ export const app = (state = initialAppState, action) => {
           shouldOpen: false,
         },
       };
+
+    case SHOW_HEADER_PROJECT_ICON_POPUP:
+      return {
+        ...state,
+        ui_header_project_icon_popup: {
+          shouldShow: true,
+          anchor: action.anchor,
+        },
+      };
+    case HIDE_HEADER_PROJECT_ICON_POPUP:
+      return {
+        ...state,
+        ui_header_project_icon_popup: {
+          shouldShow: false,
+        },
+      };
+
+    case SHOW_HEADER_PROJECT_INFO_POPUP:
+      return {
+        ...state,
+        ui_header_project_info_popup: {
+          shouldShow: true,
+          anchor: action.anchor,
+        },
+      };
+
+    case HIDE_HEADER_PROJECT_INFO_POPUP: {
+      return {
+        ...state,
+        ui_header_project_info_popup: {
+          shouldShow: false,
+        },
+      };
+    }
+
+    case SHOW_HEADER_PROFILE_POPUP:
+      return {
+        ...state,
+        ui_header_profile_popup: {
+          shouldShow: true,
+          anchor: action.anchor,
+        },
+      };
+
+    case HIDE_HEADER_PROFILE_POPUP: {
+      return {
+        ...state,
+        ui_header_profile_popup: {
+          shouldShow: false,
+        },
+      };
+    }
+
     default:
       return {
         ...state,

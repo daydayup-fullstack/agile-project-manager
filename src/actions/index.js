@@ -109,17 +109,63 @@ export const close_app_drawer = () => {
     type: DRAWER_CLOSED,
   };
 };
-// export const SHOW_PROJECT_CARD_POPUP = "SHOW_PROJECT_CARD_POPUP";
-// export const show_projectCard_popup = ({ anchor }) => {
-//   return {
-//     type: SHOW_PROJECT_CARD_POPUP,
-//     anchor,
-//   };
-// };
-//
-// export const HIDE_PROJECT_CARD_POPUP = "HIDE_PROJECT_CARD_POPUP";
-// export const hide_projectCard_popup = () => {
-//   return {
-//     type: HIDE_PROJECT_CARD_POPUP,
-//   };
-// };
+
+// header - project - icon
+export const SHOW_HEADER_PROJECT_ICON_POPUP = "SHOW_HEADER_PROJECT_ICON_POPUP";
+export const show_header_projectIcon_popup = ({ anchor }) => {
+  return {
+    type: SHOW_HEADER_PROJECT_ICON_POPUP,
+    anchor,
+  };
+};
+
+export const HIDE_HEADER_PROJECT_ICON_POPUP = "HIDE_HEADER_PROJECT_ICON_POPUP";
+export const hide_header_projectIcon_popup = () => {
+  return {
+    type: HIDE_HEADER_PROJECT_ICON_POPUP,
+  };
+};
+//header - project - profile
+export const SHOW_HEADER_PROFILE_POPUP = "SHOW_HEADER_PROFILE_POPUP";
+export const show_header_profile_popup = ({ anchor }) => {
+  return {
+    type: SHOW_HEADER_PROFILE_POPUP,
+    anchor,
+  };
+};
+export const HIDE_HEADER_PROFILE_POPUP = "HIDE_HEADER_PROFILE_POPUP";
+export const hide_header_profile_popup = () => {
+  return {
+    type: HIDE_HEADER_PROFILE_POPUP,
+  };
+};
+
+//header - project - information
+export const SHOW_HEADER_PROJECT_INFO_POPUP = "SHOW_HEADER_PROJECT_INFO_POPUP";
+export const show_header_projectInfo_popup = ({ anchor }) => {
+  return {
+    type: SHOW_HEADER_PROJECT_INFO_POPUP,
+    anchor,
+  };
+};
+export const HIDE_HEADER_PROJECT_INFO_POPUP = "HIDE_HEADER_PROJECT_INFO_POPUP";
+export const hide_header_projectInfo_popup = () => {
+  return {
+    type: HIDE_HEADER_PROJECT_INFO_POPUP,
+  };
+};
+
+//header - project - information
+export const SHOW_HEADER_TASKS_FILTER_POPUP = "SHOW_HEADER_TASKS_FILTER_POPUP";
+export const show_header_filter_popup_tasks = ({ anchor }) => {
+  return {
+    type: SHOW_HEADER_TASKS_FILTER_POPUP,
+    anchor,
+  };
+};
+export const HIDE_HEADER_TASKS_FILTER_POPUP = "HIDE_HEADER_TASKS_FILTER_POPUP";
+export const hide_header_filter_popup_tasks = () => {
+  return {
+    type: HIDE_HEADER_TASKS_FILTER_POPUP,
+  };
+};
