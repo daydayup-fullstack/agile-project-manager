@@ -2,6 +2,7 @@ import { loadInitialData } from "../data/database";
 import {
   DRAWER_CLOSED,
   DRAWER_OPENED,
+  HIDE_HEADER_ADD_BUTTON_POPUP,
   HIDE_HEADER_PROFILE_POPUP,
   HIDE_HEADER_PROJECT_ICON_POPUP,
   HIDE_HEADER_PROJECT_INFO_POPUP,
@@ -12,6 +13,7 @@ import {
   PROJECT_SELECTED,
   PROJECT_STAR_ADDED,
   PROJECT_STAR_REMOVED,
+  SHOW_HEADER_ADD_BUTTON_POPUP,
   SHOW_HEADER_PROFILE_POPUP,
   SHOW_HEADER_PROJECT_ICON_POPUP,
   SHOW_HEADER_PROJECT_INFO_POPUP,
@@ -37,6 +39,10 @@ const initialAppState = {
     anchor: { x: 0, y: 0, width: 0, height: 0 },
   },
   ui_header_profile_popup: {
+    shouldShow: false,
+    anchor: { x: 0, y: 0, width: 0, height: 0 },
+  },
+  ui_header_addButton_popup: {
     shouldShow: false,
     anchor: { x: 0, y: 0, width: 0, height: 0 },
   },
@@ -126,6 +132,23 @@ export const app = (state = initialAppState, action) => {
         },
       };
     }
+
+    case SHOW_HEADER_ADD_BUTTON_POPUP:
+      return {
+        ...state,
+        ui_header_addButton_popup: {
+          shouldShow: true,
+          anchor: action.anchor,
+        },
+      };
+
+    case HIDE_HEADER_ADD_BUTTON_POPUP:
+      return {
+        ...state,
+        ui_header_addButton_popup: {
+          shouldShow: false,
+        },
+      };
 
     default:
       return {

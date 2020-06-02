@@ -6,13 +6,9 @@
   box-shadow: $boxShadow;
   padding: 0.25rem 0;
   flex-direction: column;
-  position: absolute;
   z-index: 20;
-  right: -2px;
-  top: 2.5rem;
   background-color: #ffffff;
 
-  margin: 1rem;
 
   &::before {
     content: "";

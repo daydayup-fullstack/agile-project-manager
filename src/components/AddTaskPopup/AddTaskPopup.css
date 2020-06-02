@@ -12,6 +12,7 @@
   padding: 0 2rem;
   font-size: 13px;
   z-index: 20;
+  user-select: none;
 }
 .AddTaskPopup_TopIcon {
   display: flex;

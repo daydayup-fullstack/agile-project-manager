@@ -18,6 +18,7 @@ import {
 import Filterbar from "../Filterbar/Filterbar";
 import { colors, iconNames } from "../../model/model";
 import MultipleUserProfile from "../MultipleUserProfile/MultipleUserProfile";
+import {calcAnchor} from "../../model/utility";
 
 const MenuBar = ({
   shouldOpen,
@@ -56,16 +57,7 @@ const MenuBar = ({
     }
   }
 
-  const calcAnchor = (e) => {
-    return {
-      anchor: {
-        x: e.clientX,
-        y: e.clientY,
-        width: e.target.clientWidth,
-        height: e.target.clientHeight,
-      },
-    };
-  };
+
 
   return (
     <>

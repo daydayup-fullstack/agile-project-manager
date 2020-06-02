@@ -169,3 +169,18 @@ export const hide_header_filter_popup_tasks = () => {
     type: HIDE_HEADER_TASKS_FILTER_POPUP,
   };
 };
+
+//header - addButton
+export const SHOW_HEADER_ADD_BUTTON_POPUP = "SHOW_HEADER_ADD_BUTTON_POPUP";
+export const show_header_addButton_popup = ({ anchor }) => {
+  return {
+    type: SHOW_HEADER_ADD_BUTTON_POPUP,
+    anchor,
+  };
+};
+export const HIDE_HEADER_ADD_BUTTON_POPUP = "HIDE_HEADER_ADD_BUTTON_POPUP";
+export const hide_header_addButton_popup = () => {
+  return {
+    type: HIDE_HEADER_ADD_BUTTON_POPUP,
+  };
+};
