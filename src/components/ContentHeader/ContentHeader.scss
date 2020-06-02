@@ -2,7 +2,7 @@
 
 
 .ContentHeader {
-  height: 4rem;
+  height: 3rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -12,17 +12,66 @@
   .title {
     display: flex;
     align-items: center;
+
     .icon {
       display: inline-block;
       cursor: pointer;
       height: fit-content;
-      margin-right: 0.5rem;
+      margin: 0.5rem;
+      color: #6f7782;
     }
 
     h2 {
       font-family: $font-family;
       font-size: $h1-size;
       font-weight: $h1-weight;
+    }
+
+    .star{
+      display: inline-block;
+      align-self: center;
+      height: 25px;
+      line-height: 25px;
+      margin-left: 1rem;
+      cursor: pointer;
+    }
+
+    .multiUserProfile {
+      display: inline-block;
+      margin-left: 2rem;
+      align-self: center;
+    }
+
+    .searchContainer {
+      display: inline-block;
+      margin-left: 1rem;
+      align-self: center;
+      border: 1px solid #cbd4db;
+      width: 140px;
+      border-radius: 16px;
+      color: #151b26;
+      display: flex;
+
+      &>span:nth-of-type(1) {
+        align-self: center;
+        margin-left: .2rem;
+      }
+
+      &>input {
+        padding: 1px 16px 0 0px;
+        color: #151b26;
+        transition: all .15s;
+        height: 32px;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        margin-left: .2rem;
+        overflow: auto;
+
+        &:focus {
+          width: 500px;
+        }
+      }
     }
   }
 
@@ -31,8 +80,50 @@
       list-style: none;
       display: flex;
       align-items: center;
+
       li {
         margin-left: 1.5em;
+      }
+
+      & li:nth-of-type(2){
+        align-self: center;
+        height: 24px;
+        border-radius: 50%;
+        transition:200ms box-shadow,200ms color,200ms background,200ms fill,200ms border-color;
+        color: #6f7782;
+        cursor: pointer;
+        &:hover{
+          background-color: #f6f8f9;
+          color: #273240;
+          fill: #273240;
+        }
+      }
+
+      & li:nth-of-type(3) button {
+        background-color: #fcbd01;
+        color: #fff;
+        height: 32px;
+        line-height: 32px;
+        padding: 0 15px;
+        align-self: center;
+        border: 1px solid #fcbd01;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 13px;
+        min-width: 48px;
+        text-align: center;
+        transition: all .2s;
+        outline: none;
+
+        &:hover {
+          background-color: #f2a100;
+          border-color: #f2a100;
+        }
+
+        &:active {
+          background-color: #bf7f00;
+          border-color: #bf7f00;
+        }
       }
     }
   }

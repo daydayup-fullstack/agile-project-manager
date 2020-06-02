@@ -1,0 +1,35 @@
+.Filter_button {
+    background-color: transparent;
+    color:rgb(92, 88, 88);
+    height: 28px;
+    line-height: 28px;
+    padding: 0 0.6rem;
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 13px;
+    min-width: 48px;
+    text-align: center;
+    -webkit-transition: all .2s;
+    transition: all .2s;
+    outline: none;
+    margin: 0 0.15rem;
+    align-items: center;
+  }
+  
+  .Filter_button:hover {
+    background-color: #e4ebf0;
+   
+  }
+  
+  .Filter_button:focus{
+    color:rgb(102, 212, 255);
+    background-color: #e4ebf0;
+}
+
+.mention{
+    font-size:0.8rem;
+}

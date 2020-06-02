@@ -144,3 +144,22 @@ export const project = (state = {}, action) => {
       };
   }
 };
+
+const initialNewTaskDisplay = {
+  newTaskDisplay: false,
+};
+
+export const taskDisplay = (state = initialNewTaskDisplay, action) => {
+  switch (action.type) {
+    case "CHANGE_NEW_TASK_DISPLAY": {
+      return {
+        ...state,
+        newTaskDisplay: action.newTaskDisplay,
+      };
+    }
+    default:
+      return {
+        ...state,
+      };
+  }
+};

@@ -4,7 +4,9 @@ import "./style/index.css";
 import App from "./components/App/App";
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import { Provider } from "react-redux";
-import { app, project, user, workspace } from "./reducers";
+
+import { project, user, workspace,taskDisplay ,app} from "./reducers";
+
 import thunk from "redux-thunk";
 
 const middleware = [thunk];
@@ -12,6 +14,7 @@ const reducers = combineReducers({
   user,
   workspace,
   project,
+  taskDisplay,
   app,
 });
 const store = createStore(reducers, {}, applyMiddleware(...middleware));

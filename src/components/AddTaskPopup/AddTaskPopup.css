@@ -1,0 +1,336 @@
+.AddTaskPopup {
+  max-width: 50vw;
+  max-height: 70vh;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+  position: absolute;
+  overflow: scroll;
+  background-color: #fff;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 0 0 1px rgba(111, 119, 130, 0.15), 0 5px 20px 0 rgba(21, 27, 38, 0.08);
+          box-shadow: 0 0 0 1px rgba(111, 119, 130, 0.15), 0 5px 20px 0 rgba(21, 27, 38, 0.08);
+  padding: 0 24px;
+  font-size: 13px;
+}
+
+.AddTaskPopup_TopIcon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 56px;
+  padding: 0 24;
+  font-size: 13px;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.AddTaskPopup_TopIcon_icon {
+  color: #6f7782;
+  cursor: pointer;
+  margin-left: 3px;
+}
+
+.AddTaskPopup_TopIcon_icon:hover {
+  color: black;
+}
+
+.AddTaskPopup_TaskName {
+  border: 0;
+  outline: none;
+  font-size: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  margin-bottom: 8px;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+}
+
+.AddTaskPopup_TaskName::-webkit-input-placeholder {
+  color: #9da7b0;
+}
+
+.AddTaskPopup_TaskName:-ms-input-placeholder {
+  color: #9da7b0;
+}
+
+.AddTaskPopup_TaskName::-ms-input-placeholder {
+  color: #9da7b0;
+}
+
+.AddTaskPopup_TaskName::placeholder {
+  color: #9da7b0;
+}
+
+.AddTaskPopup_AssigneeProjectField {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 4px 0;
+  position: relative;
+}
+
+.AddTaskPopup_AssigneeProjectField_assigneeLabel {
+  color: #9ca6af;
+  margin-right: 8px;
+}
+
+.AddTaskPopup_AssigneeProjectField_projectLabel {
+  margin-left: 8px;
+}
+
+.AddTaskPopup_AssigneeProjectField_remove {
+  position: absolute;
+  font-size: 14px;
+  left: 85px;
+}
+
+.AddTaskPopup_AssigneeProjectField_token {
+  cursor: pointer;
+  font-size: 13px;
+  height: 24px;
+  max-width: 180px;
+  -webkit-transition-duration: 100ms;
+          transition-duration: 100ms;
+  -webkit-transition-property: background, border, color, fill;
+  transition-property: background, border, color, fill;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #e8ecee;
+  border-radius: 12px;
+  position: relative;
+  z-index: 0;
+}
+
+.AddTaskPopup_AssigneeProjectField_token_username {
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #151b26;
+  font-size: 13px;
+  cursor: pointer;
+  height: 24px;
+  line-height: 24px;
+  padding-left: 7px;
+}
+
+.AddTaskPopup_AssigneeProjectField_token_avatar {
+  position: absolute;
+  z-index: 2;
+}
+
+.AddTaskPopup_AssigneeProjectField_token_assigneePlaceholder {
+  border: 1px dashed #cbd4db;
+  border-radius: 12px;
+  color: #6f7782;
+  cursor: pointer;
+  padding: 0 24px;
+  height: 24px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  line-height: 24px;
+  -webkit-transition: 200ms color, 200ms background, 200ms fill, 200ms border-color, 200ms -webkit-box-shadow;
+  transition: 200ms color, 200ms background, 200ms fill, 200ms border-color, 200ms -webkit-box-shadow;
+  transition: 200ms box-shadow, 200ms color, 200ms background, 200ms fill, 200ms border-color;
+  transition: 200ms box-shadow, 200ms color, 200ms background, 200ms fill, 200ms border-color, 200ms -webkit-box-shadow;
+}
+
+.AddTaskPopup_AssigneeProjectField_token_assigneePlaceholder:hover {
+  background-color: #f6f8f9;
+  border-color: #6f7782;
+  border-style: solid;
+  color: #273240;
+  fill: #273240;
+  outline: none;
+}
+
+.AddTaskPopup_AssigneeProjectField_token_remove {
+  font-size: 14px;
+  height: 14px;
+  line-height: 14px;
+  margin-right: 5px;
+  -webkit-transition: all .1s;
+  transition: all .1s;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.AddTaskPopup_AssigneeProjectField_token:hover .AddTaskPopup_AssigneeProjectField_token_remove {
+  background-color: #151b26;
+  height: 14px;
+  line-height: 14px;
+  color: #e8ecee;
+  border-radius: 50%;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.AddTaskPopup_AssigneeProjectField_placeholder {
+  border: 1px dashed #cbd4db;
+  border-radius: 12px;
+  color: #6f7782;
+  cursor: pointer;
+  padding: 0 24px;
+  height: 24px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  line-height: 24px;
+  -webkit-transition: 200ms color, 200ms background, 200ms fill, 200ms border-color, 200ms -webkit-box-shadow;
+  transition: 200ms color, 200ms background, 200ms fill, 200ms border-color, 200ms -webkit-box-shadow;
+  transition: 200ms box-shadow, 200ms color, 200ms background, 200ms fill, 200ms border-color;
+  transition: 200ms box-shadow, 200ms color, 200ms background, 200ms fill, 200ms border-color, 200ms -webkit-box-shadow;
+}
+
+.AddTaskPopup_AssigneeProjectField_placeholder:hover {
+  background-color: #f6f8f9;
+  border-color: #6f7782;
+  border-style: solid;
+  color: #273240;
+  fill: #273240;
+  outline: none;
+}
+
+.AddTaskPopup_AssigneeProjectField_projectInput {
+  border: 0;
+  outline: none;
+  font-size: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 13px;
+}
+
+.AddTaskPopup_AssigneeProjectField_projectInput::-webkit-input-placeholder {
+  color: #9da7b0;
+}
+
+.AddTaskPopup_AssigneeProjectField_projectInput:-ms-input-placeholder {
+  color: #9da7b0;
+}
+
+.AddTaskPopup_AssigneeProjectField_projectInput::-ms-input-placeholder {
+  color: #9da7b0;
+}
+
+.AddTaskPopup_AssigneeProjectField_projectInput::placeholder {
+  color: #9da7b0;
+}
+
+.AddTaskPopup_description {
+  min-height: 100px;
+  height: 250px;
+  border: 0;
+  outline: none;
+  resize: none;
+  display: block;
+  width: 100% !important;
+  padding: 8px 0;
+}
+
+.AddTaskPopup_description::-webkit-input-placeholder {
+  color: #9da7b0;
+}
+
+.AddTaskPopup_description:-ms-input-placeholder {
+  color: #9da7b0;
+}
+
+.AddTaskPopup_description::-ms-input-placeholder {
+  color: #9da7b0;
+}
+
+.AddTaskPopup_description::placeholder {
+  color: #9da7b0;
+}
+
+.AddTaskPopup_BottomIcon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 28px 0;
+}
+
+.AddTaskPopup_BottomIcon_icon {
+  margin-right: 12px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #6f7782;
+  -webkit-transition: 200ms color, 200ms fill, 200ms -webkit-box-shadow;
+  transition: 200ms color, 200ms fill, 200ms -webkit-box-shadow;
+  transition: 200ms box-shadow, 200ms color, 200ms fill;
+  transition: 200ms box-shadow, 200ms color, 200ms fill, 200ms -webkit-box-shadow;
+}
+
+.AddTaskPopup_BottomIcon_icon:hover {
+  color: #273240;
+}
+
+.AddTaskPopup_BottomIcon_text {
+  font-size: 25px;
+}
+
+.AddTaskPopup_BottomIcon_group {
+  margin-left: auto;
+  font-size: 25px;
+}
+
+.AddTaskPopup_BottomIcon_button {
+  border-radius: 4px;
+  font-size: 13px;
+  min-width: 48px;
+  text-align: center;
+  -webkit-transition-duration: .2s;
+          transition-duration: .2s;
+  -webkit-transition-property: all;
+  transition-property: all;
+  outline: none;
+  padding: 0 15px;
+  height: 32px;
+  line-height: 32px;
+}
+
+.AddTaskPopup_BottomIcon_disabled {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  color: #9ca6af;
+  cursor: default;
+  background-color: #f6f8f9;
+  border: 1px solid #e8ecee;
+}
+
+.AddTaskPopup_BottomIcon_activated {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  color: #fff;
+  background-color: #14aaf5;
+  border: 1px solid #14aaf5;
+  cursor: pointer;
+}
+
+.AddTaskPopup_BottomIcon_activated:hover {
+  background-color: #008ce3;
+  border-color: #008ce3;
+}
+
+.AddTaskPopup_BottomIcon_activated:active {
+  background-color: #006db0;
+  border-color: #006db0;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+/*# sourceMappingURL=AddTaskPopup.css.map */

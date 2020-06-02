@@ -1,0 +1,270 @@
+.AddTaskPopup {
+    max-width: 50vw;
+    max-height: 70vh;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    position: absolute;
+    overflow: scroll;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 0 1px rgba(111, 119, 130, .15), 0 5px 20px 0 rgba(21, 27, 38, .08);
+    padding: 0 24px;
+    font-size: 13px;
+
+    &_TopIcon {
+        display: flex;
+        align-items: center;
+        height: 56px;
+        padding: 0 24;
+        font-size: 13px;
+        justify-content: flex-end;
+
+
+        &_icon {
+            color: #6f7782;
+            cursor: pointer;
+            margin-left: 3px;
+        }
+
+        &_icon:hover {
+            color: black;
+        }
+    }
+
+    &_TaskName {
+        border: 0;
+        outline: none;
+        font-size: 20px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: 500;
+        margin-bottom: 8px;
+        flex-shrink: 0;
+
+        &::placeholder {
+            color: #9da7b0;
+        }
+    }
+
+    &_AssigneeProjectField {
+        display: flex;
+        align-items: center;
+        padding: 4px 0;
+        position: relative;
+
+        &_assigneeLabel {
+            color: #9ca6af;
+            margin-right: 8px;
+        }
+
+        &_projectLabel {
+            margin-left: 8px;
+        }
+
+
+
+        &_remove {
+            position: absolute;
+            font-size: 14px;
+            left: 85px;
+
+        }
+
+        &_token {
+            cursor: pointer;
+            font-size: 13px;
+            height: 24px;
+            max-width: 180px;
+            transition-duration: 100ms;
+            transition-property: background, border, color, fill;
+            display: flex;
+            background-color: #e8ecee;
+            border-radius: 12px;
+            position: relative;
+            z-index: 0;
+
+            &_username {
+                max-width: 180px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                color: #151b26;
+                font-size: 13px;
+                cursor: pointer;
+                height: 24px;
+                line-height: 24px;
+                padding-left: 7px;
+
+            }
+
+            &_avatar {
+                position: absolute;
+                z-index: 2;
+            }
+
+            &_assigneePlaceholder {
+                border: 1px dashed #cbd4db;
+                border-radius: 12px;
+                color: #6f7782;
+                cursor: pointer;
+                padding: 0 24px;
+                height: 24px;
+                align-self: center;
+                line-height: 24px;
+                transition: 200ms box-shadow, 200ms color, 200ms background, 200ms fill, 200ms border-color;
+
+                &:hover {
+                    background-color: #f6f8f9;
+                    border-color: #6f7782;
+                    border-style: solid;
+                    color: #273240;
+                    fill: #273240;
+                    outline: none;
+                }
+            }
+
+            &_remove {
+                font-size: 14px;
+                height: 14px;
+                line-height: 14px;
+                margin-right: 5px;
+                transition: all .1s;
+                align-self: center;
+
+            }
+
+            &:hover &_remove {
+                background-color: #151b26;
+                height: 14px;
+                line-height: 14px;
+                color: #e8ecee;
+                border-radius: 50%;
+                align-self: center;
+
+            }
+        }
+
+        &_placeholder {
+            border: 1px dashed #cbd4db;
+            border-radius: 12px;
+            color: #6f7782;
+            cursor: pointer;
+            padding: 0 24px;
+            height: 24px;
+            align-self: center;
+            line-height: 24px;
+            transition: 200ms box-shadow, 200ms color, 200ms background, 200ms fill, 200ms border-color;
+
+            &:hover {
+                background-color: #f6f8f9;
+                border-color: #6f7782;
+                border-style: solid;
+                color: #273240;
+                fill: #273240;
+                outline: none;
+            }
+        }
+
+        &_projectInput {
+            border: 0;
+            outline: none;
+            font-size: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 13px;
+
+            &::placeholder {
+                color: #9da7b0;
+            }
+        }
+    }
+
+
+    &_description {
+        min-height: 100px;
+        height: 250px;
+        border: 0;
+        outline: none;
+        resize: none;
+        display: block;
+        width: 100% !important;
+        padding: 8px 0;
+
+        &::placeholder {
+            color: #9da7b0;
+        }
+    }
+
+    &_BottomIcon {
+        display: flex;
+        align-items: center;
+        padding: 28px 0;
+
+        &_icon {
+            margin-right: 12px;
+            font-size: 20px;
+            cursor: pointer;
+            color: #6f7782;
+            transition: 200ms box-shadow, 200ms color, 200ms fill;
+
+
+            &:hover {
+                color: #273240;
+            }
+        }
+
+        &_calender {
+            // flex: 1;
+        }
+
+        &_text {
+            font-size: 25px;
+        }
+
+        &_group {
+            margin-left: auto;
+            font-size: 25px;
+        }
+
+        &_button {
+            border-radius: 4px;
+            font-size: 13px;
+            min-width: 48px;
+            text-align: center;
+            transition-duration: .2s;
+            transition-property: all;
+            outline: none;
+            padding: 0 15px;
+            height: 32px;
+            line-height: 32px;
+        }
+
+        &_disabled {
+            box-shadow: none;
+            color: #9ca6af;
+            cursor: default;
+            background-color: #f6f8f9;
+            border: 1px solid #e8ecee;
+
+        }
+
+        &_activated {
+            box-shadow: none;
+            color: #fff;
+            background-color: #14aaf5;
+            border: 1px solid #14aaf5;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #008ce3;
+                border-color: #008ce3;
+            }
+
+            &:active {
+                background-color: #006db0;
+                border-color: #006db0;
+                box-shadow: none;
+            }
+        }
+    }
+}

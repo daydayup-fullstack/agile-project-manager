@@ -23,6 +23,13 @@ export const project_changed = (project) => {
   };
 };
 
+export const changeNewTaskDisplay = (newTaskDisplay) => {
+  return {
+    type: "CHANGE_NEW_TASK_DISPLAY",
+    newTaskDisplay,
+  }
+}
+
 export const PROJECT_DELETED = "PROJECT_DELETED";
 export const delete_project = (project) => {
   return {
