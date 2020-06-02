@@ -155,20 +155,7 @@ export const hide_header_projectInfo_popup = () => {
   };
 };
 
-//header - project - information
-export const SHOW_HEADER_TASKS_FILTER_POPUP = "SHOW_HEADER_TASKS_FILTER_POPUP";
-export const show_header_filter_popup_tasks = ({ anchor }) => {
-  return {
-    type: SHOW_HEADER_TASKS_FILTER_POPUP,
-    anchor,
-  };
-};
-export const HIDE_HEADER_TASKS_FILTER_POPUP = "HIDE_HEADER_TASKS_FILTER_POPUP";
-export const hide_header_filter_popup_tasks = () => {
-  return {
-    type: HIDE_HEADER_TASKS_FILTER_POPUP,
-  };
-};
+
 
 //header - addButton
 export const SHOW_HEADER_ADD_BUTTON_POPUP = "SHOW_HEADER_ADD_BUTTON_POPUP";
@@ -182,5 +169,22 @@ export const HIDE_HEADER_ADD_BUTTON_POPUP = "HIDE_HEADER_ADD_BUTTON_POPUP";
 export const hide_header_addButton_popup = () => {
   return {
     type: HIDE_HEADER_ADD_BUTTON_POPUP,
+  };
+};
+
+// filterbar - popup
+export const SHOW_HEADER_FILTER_POPUP = "SHOW_HEADER_FILTER_POPUP";
+export const show_header_filter_popup = ({ anchor, content }) => {
+  return {
+    type: SHOW_HEADER_FILTER_POPUP,
+    anchor,
+    content,
+  };
+};
+
+export const HIDE_HEADER_FILTER_POPUP = "HIDE_HEADER_FILTER_POPUP";
+export const hide_header_filter_popup = () => {
+  return {
+    type: HIDE_HEADER_FILTER_POPUP,
   };
 };

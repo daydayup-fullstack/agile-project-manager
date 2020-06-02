@@ -25,6 +25,7 @@ const App = ({
   header_projectInfo_popup,
   header_profile_popup,
   header_addButton_popup,
+  header_filter_popup,
 }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
@@ -58,6 +59,12 @@ const App = ({
         {header_addButton_popup.shouldShow && (
           <PopupMenu anchor={header_addButton_popup.anchor}>
             <Tooltip />
+          </PopupMenu>
+        )}
+
+        {header_filter_popup.shouldShow && (
+          <PopupMenu anchor={header_filter_popup.anchor}>
+            <ActionList />
           </PopupMenu>
         )}
       </div>
@@ -119,6 +126,11 @@ const mapStateToProps = (state) => {
     header_addButton_popup: {
       shouldShow: state.app.ui_header_addButton_popup.shouldShow,
       anchor: state.app.ui_header_addButton_popup.anchor,
+    },
+    header_filter_popup: {
+      shouldShow: state.app.ui_header_filter_popup.shouldShow,
+      anchor: state.app.ui_header_filter_popup.anchor,
+      content: state.app.ui_header_filter_popup.content,
     },
   };
 };

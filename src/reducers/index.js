@@ -3,6 +3,7 @@ import {
   DRAWER_CLOSED,
   DRAWER_OPENED,
   HIDE_HEADER_ADD_BUTTON_POPUP,
+  HIDE_HEADER_FILTER_POPUP,
   HIDE_HEADER_PROFILE_POPUP,
   HIDE_HEADER_PROJECT_ICON_POPUP,
   HIDE_HEADER_PROJECT_INFO_POPUP,
@@ -14,6 +15,7 @@ import {
   PROJECT_STAR_ADDED,
   PROJECT_STAR_REMOVED,
   SHOW_HEADER_ADD_BUTTON_POPUP,
+  SHOW_HEADER_FILTER_POPUP,
   SHOW_HEADER_PROFILE_POPUP,
   SHOW_HEADER_PROJECT_ICON_POPUP,
   SHOW_HEADER_PROJECT_INFO_POPUP,
@@ -44,6 +46,11 @@ const initialAppState = {
   },
   ui_header_addButton_popup: {
     shouldShow: false,
+    anchor: { x: 0, y: 0, width: 0, height: 0 },
+  },
+  ui_header_filter_popup: {
+    shouldShow: false,
+    content: null,
     anchor: { x: 0, y: 0, width: 0, height: 0 },
   },
 };
@@ -146,6 +153,24 @@ export const app = (state = initialAppState, action) => {
       return {
         ...state,
         ui_header_addButton_popup: {
+          shouldShow: false,
+        },
+      };
+
+    case SHOW_HEADER_FILTER_POPUP:
+      return {
+        ...state,
+        ui_header_filter_popup: {
+          shouldShow: true,
+          anchor: action.anchor,
+          content: action.content,
+        },
+      };
+
+    case HIDE_HEADER_FILTER_POPUP:
+      return {
+        ...state,
+        ui_header_filter_popup: {
           shouldShow: false,
         },
       };

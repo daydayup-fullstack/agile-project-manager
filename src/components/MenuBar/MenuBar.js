@@ -32,7 +32,6 @@ const MenuBar = ({
   show_header_projectIcon_popup,
   show_header_profile_popup,
   show_header_projectInfo_popup,
-  show_header_filter_popup_tasks,
 }) => {
   const [shouldShowTooltip, setShouldShowTooltip] = useState(false);
   const [starHover, setStarHover] = React.useState(false);
@@ -154,5 +153,4 @@ export default connect(mapStateToProps, {
   show_header_projectIcon_popup,
   show_header_profile_popup,
   show_header_projectInfo_popup,
-  show_header_filter_popup_tasks,
 })(MenuBar);

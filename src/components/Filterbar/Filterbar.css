@@ -1,27 +1,52 @@
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
 .Filterbar {
   display: flex;
   width: 100%;
-  justify-content: flex-end;
   align-items: center;
-  padding: 0.25rem 0.25rem;
+  justify-content: space-between;
+  padding: 0.25rem 1.5rem;
   font-family: "Poppins", sans-serif;
   font-size: 0.81rem;
   font-weight: 400;
   border-top: 1px solid #e8ecee;
   box-shadow: 0 1px 3px 0 rgba(21, 27, 38, 0.15);
+  color: #6f7782;
 }
-.Filterbar button {
+.Filterbar__controls {
   display: flex;
   align-items: center;
 }
-.Filterbar button span {
-  margin-right: 0.2rem;
+.Filterbar__controls button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+  color: #6f7782;
+  margin-right: 0.5rem;
+  padding: 0.2rem 0.6rem 0.2rem 0.25rem;
+  border-radius: 0.25rem;
+}
+.Filterbar__controls button:hover {
+  background: #e8ecee;
+}
+.Filterbar__controls button:focus {
+  outline: none;
+}
+.Filterbar__controls button span {
+  transform: scale(0.6);
+  color: #6f7782;
+}
+.Filterbar__controls .divider {
+  height: 1rem;
+  width: 2px;
+  background: #9ca6af;
+  margin: 0 1.75rem 0 1rem;
+  opacity: 0.6;
+}
+.Filterbar__controls .more {
+  margin-right: 1.5rem;
+  cursor: pointer;
+  transform: scale(0.8);
 }
 
 /*# sourceMappingURL=Filterbar.css.map */
