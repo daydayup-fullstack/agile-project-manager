@@ -59,3 +59,49 @@ export const login = async (username, password) => {
     }, 1500);
   });
 };
+
+export const users = {
+  c8dc5864: {
+    id: "c8dc5864",
+    firstName: "Scott",
+    lastName: "Wang",
+    avatar:
+      "https://s3.amazonaws.com/profile_photos/4720159505425.uVij5QIkQPduW5RhPC9j_27x27.png",
+    colorIndex: 0,
+    email: "scotteau@gmail.com",
+  },
+  "762825b6": {
+    id: "762825b6",
+    firstName: "Lawrence",
+    lastName: "Liu",
+    avatar: "",
+    colorIndex: 4,
+    email: "lawrence415610@gmail.com",
+  },
+  b803c8e6: {
+    id: "b803c8e6",
+    firstName: "Ollie",
+    lastName: "Lee",
+    avatar:
+      "https://s3.amazonaws.com/profile_photos/1171854711778417.pLuY5oITP89IeVzx0MJP_27x27.png",
+    colorIndex: 2,
+    email: "sarah19930930@gmail.com",
+  },
+  e1c540b7: {
+    id: "e1c540b7",
+    firstName: "Sarah",
+    lastName: "Xiao",
+    avatar: "",
+    colorIndex: 10,
+    email: "myself.ollie.lee@gmail.com",
+  },
+  "8ddb8913": {
+    id: "8ddb8913",
+    firstName: "Silvia",
+    lastName: "Silvia",
+    avatar:
+      "https://s3.amazonaws.com/profile_photos/1171854712057265.7zSf934pYJpZhkV1kn6o_27x27.png",
+    colorIndex: 8,
+    email: "hxiaoyin@gmail.com",
+  },
+};

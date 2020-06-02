@@ -66,12 +66,7 @@ const FilterBar = ({user}) => {
                                 <Profile user={user}/>
                             </span>
                         </div>
-                         {/* <div className={"more-content"}></div> */}
-                        {/* <div>
-                            <button >
-                                <FilterSort/>
-                            </button>
-                        </div> */}
+                    
                     </div>
 
                     

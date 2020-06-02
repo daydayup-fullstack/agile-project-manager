@@ -1,5 +1,5 @@
 .ContentHeader {
-  height: 3rem;
+  height: 4rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -30,6 +30,7 @@
   height: fit-content;
   margin: 0.5rem;
   color: #6f7782;
+  
 }
 
 .ContentHeader .title h2 {
@@ -45,21 +46,22 @@
       align-self: center;
   height: 25px;
   line-height: 25px;
-  margin-left: 1rem;
+  margin-left: 15rem;
   cursor: pointer;
 }
 
 .ContentHeader .title .multiUserProfile {
-  display: inline-block;
-  margin-left: 2rem;
+  /* display: inline-block; */
+  display: flex;
+  margin-left:1.5rem;
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
 }
 
 .ContentHeader .title .searchContainer {
-  display: inline-block;
-  margin-left: 1rem;
+  /* display: inline-block; */
+  margin-left: 2.3rem;
   -ms-flex-item-align: center;
       align-self: center;
   border: 1px solid #cbd4db;
@@ -69,6 +71,7 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+
 }
 
 .ContentHeader .title .searchContainer > span:nth-of-type(1) {
@@ -157,5 +160,12 @@
 .ContentHeader .more-content ul li:nth-of-type(3) button:active {
   background-color: #bf7f00;
   border-color: #bf7f00;
+}
+
+.ContentHeader .more-content .help_icon{
+  font-size: 1.6rem;
+  font-weight: 300;
+ 
+ 
 }
 /*# sourceMappingURL=ContentHeader.css.map */

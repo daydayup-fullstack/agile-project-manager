@@ -37,21 +37,20 @@ const FilterTasks=()=>{
     return (
       <div className={"ActionList"}>
         <ul>
-          
         <li onMouseOver={dismissNextLevel}>
           <span className="material-icons task_done" >done</span>
-          <span className='task_tick'><h4>Incomplete tasks</h4></span></li>
+          <span ><h4 className='task_tick'>Incomplete tasks</h4></span></li>
         <li onMouseOver={handleMouseOver} ref={expandableAction}>
-          <span ><h4 className='complete_task'>Compelte tasks</h4></span>{" "}
+          <span ><h4 className='complete_tick'>Compelte tasks</h4></span>{" "}
           <span className={"material-icons-outlined"}>
             keyboard_arrow_right
           </span>
         </li>
         <li onMouseOver={dismissNextLevel}>
-          <span ><h4 className='complete_task'>All tasks</h4></span></li>
+          <span ><h4 className='all_tick'>All tasks</h4></span></li>
         {showNextLevel && (
           <div className='nextLevel' style={calcStyle()} ref={nextAction}>
-          <ul>
+          <ul className='nextLevel_text'>
               <li onMouseOver={handleMouseOver}>All compelted tasks</li>
               <li onMouseOver={handleMouseOver}>Marked Compelte since:</li>
               <li onMouseOver={handleMouseOver}>Today</li>

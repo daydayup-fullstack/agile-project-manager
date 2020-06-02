@@ -1,3 +1,19 @@
+.App-Team {
+    height: 90vh;
+    overflow-y: scroll;
+    margin-bottom: 4rem;
+  }
+
+.panels{
+  display: flex;
+ 
+}
+.panel_left{
+  margin-right: 0;
+}
+.projects{
+  display: flex;
+}
 
 
 /*# sourceMappingURL=team.css.map */

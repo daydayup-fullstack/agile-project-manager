@@ -54,7 +54,7 @@ const ContentHeader = ({ shouldClose, openDrawer,newTaskDisplay}) => {
                         <AddButtonCircular onHandleClick={() => setShouldShowTooltip(!shouldShowTooltip)} />
                     </li>
                     <li>
-                        <span className="material-icons icon">help_outline</span>
+                        <span className="material-icons help_icon">help_outline</span>
                     </li>
                     <li>
                         <button>

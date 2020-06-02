@@ -73,18 +73,38 @@
 .ActionList_Filter ul li:hover {
   background-color: #e8ecee;
 }
-
+.task_done{
+  font-size: 1.2rem;
+  color:#666b74;
+}
 .task_tick{
   font-family: "Poppins", sans-serif;
-  font-weight: 300;
-  padding-right: 1.4rem;
-  color: #464b52;
+  font-weight: 400;
+  padding-right: 2rem;
+  color: #666b74;
+  font-size: 0.75rem;
 }
-h4{
+.complete_tick{
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  padding-left: 1.8rem;
+  padding-right:0;
+  color: #666b74;
+  font-size: 0.75rem;
+}
+.all_tick{
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  padding-left: 1.8rem;
+  color: #666b74;
+  font-size: 0.75rem;
+}
+
+/* h4{
   font-size: 0.8rem;
   font-weight: 400;
   padding-right: 2.15rem;
-}
+} */
 .complete_task{
   padding-left:1.25rem ;
 }
@@ -113,38 +133,58 @@ h4{
 
 .sort_tick{
   font-family: "Poppins", sans-serif;
-  font-weight: 300;
-  padding-right: 3rem;
-  color: #464b52;
+  font-weight: 400;
+  padding-right: 5.2rem;
+  color:#666b74;
+  font-size: 0.75rem;
 }
 .Sort_list{
   padding-left:1.5rem ;
+  color:#666b74;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 0.75rem;
 }
 .sort_done{
   font-size:1.2rem;
+  color:#666b74;
 }
 .filter_first{
-  /* font-family: "Poppins", sans-serif; */
+  color:#b2b9bd;
+  font-size: 0.85rem;
   font-weight: 500;
   padding-left: 0.5rem;
-  color: #6b7888;
-  
 }
+
 .filter_tick{
-  padding-right: 2.3rem;
+  padding-right: 4.4rem;
+  color:#666b74;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 0.75rem;
 }
-.filter_tickweek{
-  padding-right: 2.15rem;
+.filter1week_tick{
+  padding-right: 4.25rem;
+  color:#666b74;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 0.75rem;
 }
-.filter_ticknext{
-  padding-right: 1.9rem;
+.filter2week_tick{
+  padding-right: 3.96rem;
+  color:#666b74;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 0.75rem;
 }
+
 .filter_edge{
   border-bottom: 1px solid #d2dce4;
 }
 .filter_end{ 
-  padding-right: 2.7rem;
-  padding-top: 0.3rem;
+  padding-right: 4.1rem;
+  color:#666b74;
+  font-size: 0.8rem;
 }
 .filter_margin{
   margin-top: 0.25rem;
@@ -155,18 +195,21 @@ h4{
 .filter_person{
   font-size: 1.3rem;
   padding-left:0.1rem ;
+  color:#666b74;
 }
 .filter_today{
   font-size: 1.1rem;
   padding-left:0.2rem;
+  color:#666b74;
 }
 .filter_next{
   font-size: 1.1rem;
   padding-left: 0.2rem;
+  color:#666b74;
 }
 .filter_add{
   font-size: 1.5rem;
-  color:#151b26;
+  color:#666b74;
 }
 
 .Filter_button {
@@ -256,13 +299,16 @@ h4{
   margin: 0.3rem 0.5rem 0 0.5rem;
   color:#bbc1c6;
 }
-.filter_first{
-  color:#4b5154;
-  font-size: 1rem;
-  font-weight: 500;
+
+
+.nextLevel_text li{
+  font-family: "Poppins", sans-serif;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  margin-left:0.5rem;
+  color: #666b74;
+  font-size: 0.75rem;
 }
-
-
 
 
 /*# sourceMappingURL=ActionList.css.map */
