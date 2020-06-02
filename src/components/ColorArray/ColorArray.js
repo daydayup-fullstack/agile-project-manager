@@ -3,7 +3,7 @@ import "./ColorArray.css";
 import { connect } from "react-redux";
 import { select_project_color } from "../../actions";
 
-const colors = {
+export const colors = {
   none: "#cbd4db",
   red: "#E8384F",
   orange: "#FD612C",
@@ -22,7 +22,7 @@ const colors = {
   coolGray: "#8DA3A6",
 };
 
-const colorInOrder = [
+export const colorInOrder = [
   "#cbd4db",
   "#E8384F",
   "#FD612C",

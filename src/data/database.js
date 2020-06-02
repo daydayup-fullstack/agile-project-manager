@@ -287,3 +287,9 @@ export const loadInitialData = (devId) => {
     },
   };
 };
+
+export const team = {
+  id: "3d452d24",
+  name: "daydayup",
+  members: Object.values(db_users),
+};
