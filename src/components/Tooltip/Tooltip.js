@@ -3,12 +3,15 @@ import "./Tooltip.css";
 import { connect } from "react-redux";
 import { changeNewTaskDisplay } from "../../actions/index";
 
-const Tooltip = () => {
+
+
+const Tooltip = ({ changeNewTaskDisplay }) => {
+
   return (
     <div className={"Tooltip"}>
       <div className="Tooltip__content">
         <ul>
-          <li>
+          <li onClick={()=>{changeNewTaskDisplay(true)}}>
             <span className={"material-icons"}>check_circle_outline</span>
             <span>Task</span>
           </li>
