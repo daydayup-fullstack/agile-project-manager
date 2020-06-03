@@ -1,11 +1,5 @@
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
 .SideMenuSection {
-  width: 300px;
+  width: 240px;
   background: #151b26;
   color: #ffffff;
   font-family: "Poppins", sans-serif;

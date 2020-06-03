@@ -1,8 +1,7 @@
 import React from "react";
 import "./SideMenuSection.css";
-import { colors, colorInOrder } from "../ColorArray/ColorArray";
+import { colorInOrder } from "../ColorArray/ColorArray";
 import Profile from "../Profile/Profile";
-import { db_users, team, db_projects } from "../../data/database";
 
 export const Favorites = ({ projects }) => {
   const [shouldExpand, setShouldExpand] = React.useState(true);
@@ -79,8 +78,7 @@ export const Team = ({ projects, team }) => {
 const SideMenuSection = ({ children }) => {
   return (
     <div className={"SideMenuSection"}>
-      <div className="SideMenuSection__content">{children}
-      </div>
+      <div className="SideMenuSection__content">{children}</div>
     </div>
   );
 };
