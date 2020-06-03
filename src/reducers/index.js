@@ -20,6 +20,7 @@ import {
   SHOW_HEADER_PROJECT_ICON_POPUP,
   SHOW_HEADER_PROJECT_INFO_POPUP,
   SHOW_PROJECT_CARD_POPUP,
+  CHANGE_NEW_TASK_DISPLAY,
 } from "../actions";
 const devId = "user-scott";
 
@@ -283,7 +284,7 @@ const initialNewTaskDisplay = {
 
 export const taskDisplay = (state = initialNewTaskDisplay, action) => {
   switch (action.type) {
-    case "CHANGE_NEW_TASK_DISPLAY": {
+    case CHANGE_NEW_TASK_DISPLAY: {
       return {
         ...state,
         newTaskDisplay: action.newTaskDisplay,

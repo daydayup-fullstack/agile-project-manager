@@ -23,9 +23,10 @@ export const project_changed = (project) => {
   };
 };
 
+export const CHANGE_NEW_TASK_DISPLAY = "CHANGE_NEW_TASK_DISPLAY";
 export const changeNewTaskDisplay = (newTaskDisplay) => {
   return {
-    type: "CHANGE_NEW_TASK_DISPLAY",
+    type: CHANGE_NEW_TASK_DISPLAY,
     newTaskDisplay,
   };
 };
