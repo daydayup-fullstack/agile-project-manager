@@ -6,12 +6,13 @@ import { show_header_filter_popup } from "../../actions";
 
 const Filterbar = ({ show_header_filter_popup }) => {
   const getAnchor = (e) => {
-    return {
+    const anchor = {
       x: e.target.offsetLeft,
-      y: e.target.offsetTop + 10,
+      y: e.target.offsetTop + e.target.clientHeight / 2,
       width: e.target.clientWidth,
       height: e.target.clientHeight,
     };
+    return anchor;
   };
 
   function filterByCompletion(e) {
