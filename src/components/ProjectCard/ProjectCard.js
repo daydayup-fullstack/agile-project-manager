@@ -49,7 +49,7 @@ const ProjectCard = ({
       return `/home`;
     }
     // otherwise, go to next level route
-    return `/project/${project.id}`;
+    return `/projects/${project.id}`;
   };
 
   return (
