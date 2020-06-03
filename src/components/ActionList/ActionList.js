@@ -41,8 +41,14 @@ const ActionList = ({
     x = popupItself.current.offsetLeft;
     y = popupItself.current.offsetTop;
 
-    const childWidth = 268;
-    const childHeight = 343;
+    //todo - problem is here
+
+    let childWidth;
+    let childHeight;
+    if (header_project_icon_popup.shouldShow) {
+      childWidth = 268;
+      childHeight = 345;
+    }
 
     const rightEdge = window.innerWidth;
     const bottomEdge = window.innerHeight;
@@ -78,7 +84,7 @@ const ActionList = ({
     }
 
     setNextAnchor(anchor);
-  }, [parentAnchor]);
+  }, [header_project_icon_popup.shouldShow, parentAnchor]);
 
   const calcPosition = () => {
     return { top: `${nextAnchor.y}px`, left: `${nextAnchor.x}px` };
@@ -196,108 +202,85 @@ const ActionList = ({
 
   const FilterTasks = () => {
     return (
-      <ul>
-        <li onMouseOver={dismissNextLevel}>
+      <ul className={"FilterTasks"}>
+        <li>
           <span className="material-icons task_done">done</span>
           <span className="task_tick">
-            <h4>Incomplete tasks</h4>
+            <span>Incomplete tasks</span>
           </span>
         </li>
-        <li onMouseOver={handleMouseOver} ref={expandableAction}>
-          <span>
-            <h4 className="complete_task">Compelte tasks</h4>
-          </span>{" "}
-          <span className={"material-icons-outlined"}>
-            keyboard_arrow_right
-          </span>
+        <li ref={expandableAction} className={"expandableItem"}>
+          <span className="complete_task">Compelte tasks</span>
         </li>
-        <li onMouseOver={dismissNextLevel}>
-          <span>
-            <h4 className="complete_task">All tasks</h4>
-          </span>
+        <li>
+          <span className="complete_task">All tasks</span>
         </li>
-        {showNextLevel && (
-          <div className="nextLevel" style={calcPosition()} ref={nextAction}>
-            <ul>
-              <li onMouseOver={handleMouseOver}>All compelted tasks</li>
-              <li onMouseOver={handleMouseOver}>Marked Compelte since:</li>
-              <li onMouseOver={handleMouseOver}>Today</li>
-              <li onMouseOver={handleMouseOver}>Yesterday</li>
-              <li onMouseOver={handleMouseOver}>1 week</li>
-              <li onMouseOver={handleMouseOver}>2 weeks</li>
-              <li onMouseOver={handleMouseOver}>3 weeks</li>
-            </ul>
-          </div>
-        )}
       </ul>
     );
   };
 
   const FilterFilter = () => {
     return (
-      <ul>
-        <li>
-          <span className="filter_first">
-            <h4>Quick filters</h4>
-          </span>
-        </li>
+      <div className="FilterFilter">
+        <div className={"FilterFilter__title"}>Quick filters</div>
+        <ul>
+          <li>
+            <span className="material-icons filter_person">person_outline</span>
+            <span className="filter_tick">
+              <span>Just my tasks</span>
+            </span>
+          </li>
+          <li>
+            <span className="material-icons filter_today">calendar_today</span>
+            <span className="filter_tickweek">
+              <span>Due this week</span>
+            </span>
+          </li>
+          <li className="filter_edge">
+            <span className="material-icons filter_next">redo</span>
+            <span className="filter_ticknext">
+              <span>Due next week</span>
+            </span>
+          </li>
 
-        <li>
-          <span className="material-icons filter_person">person_outline</span>
-          <span className="filter_tick">
-            <h4>Just my tasks</h4>
-          </span>
-        </li>
-        <li>
-          <span className="material-icons filter_today">calendar_today</span>
-          <span className="filter_tickweek">
-            <h4>Due this week</h4>
-          </span>
-        </li>
-        <li className="filter_edge">
-          <span className="material-icons filter_next">redo</span>
-          <span className="filter_ticknext">
-            <h4>Due next week</h4>
-          </span>
-        </li>
-
-        <li className="filter_margin">
-          <span className={"material-icons filter_add"}>add</span>
-          <span className="filter_end">
-            <h4>Custom filter</h4>
-          </span>
-        </li>
-      </ul>
+          <li className="filter_margin">
+            <span className={"material-icons filter_add"}>add</span>
+            <span className="filter_end">
+              <span>Custom filter</span>
+            </span>
+          </li>
+        </ul>
+      </div>
     );
   };
 
   const FilterSort = () => {
     return (
-      <ul>
+      <ul className="FilterSort">
         <li>
           <span className="material-icons sort_done">done</span>
           <span className="sort_tick">
-            <h4>None</h4>
+            <span>None</span>
           </span>
         </li>
         <li>
           <span>
-            <h4 className="Sort_list">Due Date</h4>
+            <span className="Sort_list">Due Date</span>
           </span>
         </li>
         <li>
           <span>
-            <h4 className="Sort_list">Assignee</h4>
+            <span className="Sort_list">Assignee</span>
           </span>
         </li>
         <li>
           <span>
-            <h4 className="Sort_list">Likes</h4>
+            <span className="Sort_list">Likes</span>
           </span>
         </li>
         <li>
           <span>
-            <h4 className="Sort_list">Alphabetical</h4>
+            <span className="Sort_list">Alphabetical</span>
           </span>
         </li>
       </ul>

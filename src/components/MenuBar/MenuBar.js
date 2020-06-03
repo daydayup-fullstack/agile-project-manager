@@ -10,7 +10,6 @@ import {
   changeNewTaskDisplay,
   open_app_drawer,
   remove_project_star,
-  show_header_filter_popup_tasks,
   show_header_profile_popup,
   show_header_projectIcon_popup,
   show_header_projectInfo_popup,
@@ -18,17 +17,14 @@ import {
 import Filterbar from "../Filterbar/Filterbar";
 import { colors, iconNames } from "../../model/model";
 import MultipleUserProfile from "../MultipleUserProfile/MultipleUserProfile";
-import {calcAnchor} from "../../model/utility";
 
 const MenuBar = ({
   shouldOpen,
   open_app_drawer,
-  type = "project",
   currentProject,
   currentUser,
   add_project_star,
   remove_project_star,
-  members,
   show_header_projectIcon_popup,
   show_header_profile_popup,
   show_header_projectInfo_popup,
@@ -56,7 +52,27 @@ const MenuBar = ({
     }
   }
 
+  const getAnchor = (e) => {
+    return {
+      anchor: {
+        x: e.target.offsetLeft - 4,
+        y: e.target.offsetTop + e.target.clientHeight / 2 + 6,
+        width: e.target.clientWidth,
+        height: e.target.clientHeight,
+      },
+    };
+  };
 
+  const getAnchorForProfile = (e) => {
+    return {
+      anchor: {
+        x: e.target.offsetLeft + 2,
+        y: e.target.offsetTop + e.target.clientHeight / 2,
+        width: e.target.clientWidth,
+        height: e.target.clientHeight,
+      },
+    };
+  };
 
   return (
     <>
@@ -70,15 +86,15 @@ const MenuBar = ({
 
           <div
             className="MenuBar__title__project-icon"
-            onClick={(e) => show_header_projectIcon_popup(calcAnchor(e))}
+            onClick={(e) => show_header_projectIcon_popup(getAnchor(e))}
           >
             <div
               className="card"
               style={{ background: colors[currentProject.colorIndex] }}
             >
-              <div className={"material-icons-two-tone themeIcon"}>
+              <span className={"material-icons-two-tone themeIcon"}>
                 {iconNames[currentProject.iconIndex]}
-              </div>
+              </span>
             </div>
           </div>
 
@@ -87,7 +103,7 @@ const MenuBar = ({
           <div className="iconGroup">
             <span
               className="material-icons icon"
-              onClick={(e) => show_header_projectInfo_popup(calcAnchor(e))}
+              onClick={(e) => show_header_projectInfo_popup(getAnchor(e))}
             >
               keyboard_arrow_down
             </span>
@@ -123,7 +139,9 @@ const MenuBar = ({
               />
             </li>
 
-            <li onClick={(e) => show_header_profile_popup(calcAnchor(e))}>
+            <li
+              onClick={(e) => show_header_profile_popup(getAnchorForProfile(e))}
+            >
               {/*todo - hardcoded data - fix this later*/}
               <Profile user={db_users["user-scott"]} />
             </li>

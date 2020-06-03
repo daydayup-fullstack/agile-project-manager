@@ -2,8 +2,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1.5rem;
-  height: 4rem;
+  padding: 0.5rem 1.5rem;
+  height: 4.5rem;
 }
 .MenuBar__title {
   display: flex;
@@ -33,6 +33,7 @@
   opacity: 0.8;
   transition: all 0.4s ease;
   user-select: none;
+  pointer-events: none;
 }
 .MenuBar__title h2 {
   margin-left: 1rem;

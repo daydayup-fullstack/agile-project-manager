@@ -28,9 +28,7 @@
 
 .Drawer .SideMenu--header {
   color: white;
-  height: 4rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  height: 4.5rem;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
