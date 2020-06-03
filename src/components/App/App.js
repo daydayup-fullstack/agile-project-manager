@@ -86,7 +86,7 @@ const App = ({
                 <ContentHeader />
               </Route>
 
-              <Route path={"/project/:id"}>
+              <Route path={"/projects/:id"}>
                 <MenuBar />
                 <Project />
               </Route>

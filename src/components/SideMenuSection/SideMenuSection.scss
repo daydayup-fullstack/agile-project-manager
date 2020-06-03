@@ -6,8 +6,9 @@
   color: #ffffff;
   font-family: $font-family;
   padding: 1rem 0;
-  border-top: 1px solid $gray-400;
-  border-bottom: 1px solid $gray-400;
+  border-bottom: 1px solid rgba($gray-400, 0.5);
+  overflow-x: hidden;
+  max-width: 240px;
 
   &__content {
     header {
@@ -29,7 +30,7 @@
 
     .teamHeader {
       &:hover {
-        background: $gray-400;
+        background: rgba($gray-400, 0.5);
       }
     }
 
@@ -49,6 +50,13 @@
       list-style: none;
       display: none;
 
+
+
+
+      .active {
+        background-color: rgba($gray-400, 0.5);
+      }
+
       &--open {
         display: block;
       }
@@ -56,8 +64,9 @@
       .project {
         display: flex;
         align-items: center;
-        padding: 0.5rem 0 0.5rem 1.5rem;
+        padding: 0.3rem 0 0.3rem 1.5rem;
         position: relative;
+        color: $gray-200;
 
         &:hover {
           background: $gray-400;
@@ -73,6 +82,7 @@
         }
 
         &__name {
+          font-size: $desc-size * 0.9;
         }
 
         i {
