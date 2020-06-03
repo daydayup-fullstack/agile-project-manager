@@ -56,7 +56,7 @@ export const Team = ({ projects, team, workspace }) => {
 
   return (
     <>
-      {workspace.type !== "team" && (
+      {workspace.type === "team" && (
         <>
           <header className={"teamHeader"}>Daydayup</header>
 
