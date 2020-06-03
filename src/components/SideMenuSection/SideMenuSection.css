@@ -1,0 +1,78 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.SideMenuSection {
+  width: 300px;
+  background: #151b26;
+  color: #ffffff;
+  font-family: "Poppins", sans-serif;
+  padding: 1rem 0;
+  border-top: 1px solid #6f7782;
+  border-bottom: 1px solid #6f7782;
+}
+.SideMenuSection__content header {
+  padding: 0.5rem 1.5rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.SideMenuSection__content header:hover {
+  cursor: pointer;
+}
+.SideMenuSection__content header span {
+  position: absolute;
+  right: 1.5rem;
+  transform: scale(0.8);
+}
+.SideMenuSection__content .teamHeader:hover {
+  background: #6f7782;
+}
+.SideMenuSection__content .memberList {
+  display: flex;
+  list-style: none;
+  padding-left: 1.5rem;
+  padding-top: 1rem;
+}
+.SideMenuSection__content .memberList .member {
+  margin-right: 0.25rem;
+}
+.SideMenuSection__content .projectList {
+  margin-top: 1rem;
+  list-style: none;
+  display: none;
+}
+.SideMenuSection__content .projectList--open {
+  display: block;
+}
+.SideMenuSection__content .projectList .project {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem 0 0.5rem 1.5rem;
+  position: relative;
+}
+.SideMenuSection__content .projectList .project:hover {
+  background: #6f7782;
+}
+.SideMenuSection__content .projectList .project:hover i {
+  visibility: visible;
+}
+.SideMenuSection__content .projectList .project__color {
+  height: 0.5rem;
+  width: 0.5rem;
+  margin-right: 1rem;
+  border-radius: 2px;
+}
+.SideMenuSection__content .projectList .project i {
+  position: absolute;
+  right: 1.5rem;
+  transform: scale(0.8);
+  visibility: hidden;
+}
+.SideMenuSection__content .projectList .project i:hover {
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=SideMenuSection.css.map */

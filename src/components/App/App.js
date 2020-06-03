@@ -82,7 +82,9 @@ const App = ({
                 <Home />
               </Route>
 
-              <Route path={"/tasks"}>{/*<MyTasks tasks={tasks} />*/}</Route>
+              <Route path={"/tasks"}>{/*<MyTasks tasks={tasks} />*/}
+                <ContentHeader />
+              </Route>
 
               <Route path={"/project/:id"}>
                 <MenuBar />
@@ -90,17 +92,18 @@ const App = ({
               </Route>
 
               <Route path={"/team"}>
+                <ContentHeader />
                 <Team />
               </Route>
             </Drawer>
           </Switch>
         ) : (
-          <>
-            <Route exact path={"/"}>
-              <LoginForm handleLogin={setIsLoggedIn} />
-            </Route>
-          </>
-        )}
+            <>
+              <Route exact path={"/"}>
+                <LoginForm handleLogin={setIsLoggedIn} />
+              </Route>
+            </>
+          )}
       </Router>
     </div>
   );

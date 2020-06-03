@@ -2,6 +2,8 @@ import React from "react";
 import "./Drawer.css";
 import { close_app_drawer } from "../../actions";
 import { connect } from "react-redux";
+import SideMenuSection, { Favorites, Team, } from "../SideMenuSection/SideMenuSection"
+import { db_projects, team } from '../../data/database';
 
 const Drawer = ({ nav, children, shouldOpen, close_app_drawer }) => {
   return (
@@ -22,7 +24,15 @@ const Drawer = ({ nav, children, shouldOpen, close_app_drawer }) => {
             menu_open
           </span>
         </header>
-        <div className="SideMenu--content">{nav}</div>
+        <div className="SideMenu--content">{nav}
+        <div className="below">
+            <SideMenuSection>
+              <Favorites projects={db_projects} />
+            </SideMenuSection>
+            <SideMenuSection>
+              <Team projects={db_projects} team={team} />
+            </SideMenuSection>
+          </div></div>
       </section>
 
       <section className={`main`}>
