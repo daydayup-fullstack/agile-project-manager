@@ -5,20 +5,14 @@ import "./ContentHeader.css";
 import MultipleUserProfile from "../MultipleUserProfile/MultipleUserProfile";
 import Profile from "../Profile/Profile";
 import { db_users } from "../../data/database";
-import AddTaskPopup from "../AddTaskPopup/AddTaskPopup";
 import { changeNewTaskDisplay } from "../../actions/index";
 import { open_app_drawer, show_header_profile_popup } from "../../actions";
 import { calcAnchor } from "../../model/utility";
 
-const users = [
-  db_users["user-scott"],
-  db_users["user-ollie"],
-  db_users["user-silvia"],
-];
+
 
 const ContentHeader = ({
   shouldOpen,
-  newTaskDisplay,
   open_app_drawer,
   show_header_profile_popup,
   currentUser,
@@ -80,7 +74,6 @@ const ContentHeader = ({
         </div>
       </header>
 
-      {newTaskDisplay ? <AddTaskPopup user={users[0]} /> : <></>}
     </>
   );
 };

@@ -18,6 +18,8 @@ import MenuBar from "../MenuBar/MenuBar";
 import PopupMenu from "../PopupMenu/PopupMenu";
 import ActionList from "../ActionList/ActionList";
 import Tooltip from "../Tooltip/Tooltip";
+import AddTaskPopup from "../AddTaskPopup/AddTaskPopup"
+import { db_users } from "../../data/database"
 
 const App = ({
   projectCard_popup,
@@ -26,11 +28,13 @@ const App = ({
   header_profile_popup,
   header_addButton_popup,
   header_filter_popup,
+  newTaskDisplay,
 }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   return (
     <div className="App">
+      {newTaskDisplay ? <AddTaskPopup user={db_users["user-scott"]} /> : <></>}
       <div className="App-Popup">
         {projectCard_popup.shouldShow && (
           <PopupMenu anchor={projectCard_popup.anchor}>
@@ -135,6 +139,7 @@ const mapStateToProps = (state) => {
       anchor: state.app.ui_header_filter_popup.anchor,
       content: state.app.ui_header_filter_popup.content,
     },
+    newTaskDisplay: state.taskDisplay.newTaskDisplay,
   };
 };
 export default connect(mapStateToProps, {})(App);
