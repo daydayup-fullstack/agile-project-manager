@@ -1,7 +1,11 @@
+.Navigation {
+  border-bottom: 1px solid rgba(111, 119, 130, 0.5);
+}
 .Navigation ul {
   list-style: none;
   display: flex;
   flex-direction: column;
+  padding-bottom: 1.2rem;
 }
 .Navigation ul .active {
   background-color: rgba(111, 119, 130, 0.5);
@@ -15,6 +19,8 @@
   font-size: 0.9rem;
   padding: 0.5rem 1rem;
   cursor: pointer;
+  position: relative;
+  line-height: 1.5;
 }
 .Navigation ul li:hover {
   background-color: rgba(111, 119, 130, 0.2);
@@ -25,6 +31,9 @@
 }
 .Navigation ul li .link .icon {
   margin-right: 0.5rem;
+  transform: scale(0.8);
+  position: relative;
+  top: -1px;
 }
 
 /*# sourceMappingURL=Navigation.css.map */

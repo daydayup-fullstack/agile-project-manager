@@ -4,8 +4,9 @@
   color: #ffffff;
   font-family: "Poppins", sans-serif;
   padding: 1rem 0;
-  border-top: 1px solid #6f7782;
-  border-bottom: 1px solid #6f7782;
+  border-bottom: 1px solid rgba(111, 119, 130, 0.5);
+  overflow-x: hidden;
+  max-width: 240px;
 }
 .SideMenuSection__content header {
   padding: 0.5rem 1.5rem;
@@ -22,7 +23,7 @@
   transform: scale(0.8);
 }
 .SideMenuSection__content .teamHeader:hover {
-  background: #6f7782;
+  background: rgba(111, 119, 130, 0.5);
 }
 .SideMenuSection__content .memberList {
   display: flex;
@@ -38,14 +39,18 @@
   list-style: none;
   display: none;
 }
+.SideMenuSection__content .projectList .active {
+  background-color: rgba(111, 119, 130, 0.5);
+}
 .SideMenuSection__content .projectList--open {
   display: block;
 }
 .SideMenuSection__content .projectList .project {
   display: flex;
   align-items: center;
-  padding: 0.5rem 0 0.5rem 1.5rem;
+  padding: 0.3rem 0 0.3rem 1.5rem;
   position: relative;
+  color: #e8ecee;
 }
 .SideMenuSection__content .projectList .project:hover {
   background: #6f7782;
@@ -58,6 +63,9 @@
   width: 0.5rem;
   margin-right: 1rem;
   border-radius: 2px;
+}
+.SideMenuSection__content .projectList .project__name {
+  font-size: 0.81rem;
 }
 .SideMenuSection__content .projectList .project i {
   position: absolute;
