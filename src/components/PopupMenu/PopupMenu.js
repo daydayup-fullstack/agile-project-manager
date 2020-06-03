@@ -13,7 +13,7 @@ import {
 
 const PopupMenu = ({
   children,
-  anchor = { x: 0, y: 0, width: 0 },
+  anchor = { x: 0, y: 0, width: 0, height: 0 },
   hide_projectCard_popup,
   hide_header_projectIcon_popup,
   hide_header_profile_popup,
@@ -22,7 +22,12 @@ const PopupMenu = ({
   hide_header_addButton_popup,
   hide_header_filter_popup,
 }) => {
-  const [origin, setOrigin] = React.useState({ x: 0, y: 0, width: 0 });
+  const [origin, setOrigin] = React.useState({
+    x: 0,
+    y: 0,
+    width: 0,
+    height: 0,
+  });
   const popup = useRef(null);
 
   const OFFSET_Y = 20;

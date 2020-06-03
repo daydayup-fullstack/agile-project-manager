@@ -3,26 +3,34 @@ import "./Filterbar.css";
 
 import { connect } from "react-redux";
 import { show_header_filter_popup } from "../../actions";
-import { calcAnchor } from "../../model/utility";
 
 const Filterbar = ({ show_header_filter_popup }) => {
+  const getAnchor = (e) => {
+    return {
+      x: e.target.offsetLeft,
+      y: e.target.offsetTop + 10,
+      width: e.target.clientWidth,
+      height: e.target.clientHeight,
+    };
+  };
+
   function filterByCompletion(e) {
     show_header_filter_popup({
-      anchor: calcAnchor(e),
+      anchor: getAnchor(e),
       content: "FilterTasks",
     });
   }
 
   function filterByDeadline(e) {
     show_header_filter_popup({
-      anchor: calcAnchor(e),
+      anchor: getAnchor(e),
       content: "FilterFilter",
     });
   }
 
   function sortByCriteria(e) {
     show_header_filter_popup({
-      anchor: calcAnchor(e),
+      anchor: getAnchor(e),
       content: "FilterSort",
     });
   }
