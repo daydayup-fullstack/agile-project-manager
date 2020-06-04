@@ -98,7 +98,6 @@ export const add_task_to_project = ({ task, column, project }) => {
   };
 };
 
-
 //endregion
 
 // ================ ui state ======================
@@ -141,8 +140,9 @@ export const close_app_drawer = () => {
   };
 };
 
-// header - project - icon
 export const SHOW_HEADER_PROJECT_ICON_POPUP = "SHOW_HEADER_PROJECT_ICON_POPUP";
+
+// - header - project - icon
 export const show_header_projectIcon_popup = ({ anchor }) => {
   return {
     type: SHOW_HEADER_PROJECT_ICON_POPUP,
@@ -156,6 +156,9 @@ export const hide_header_projectIcon_popup = () => {
     type: HIDE_HEADER_PROJECT_ICON_POPUP,
   };
 };
+
+
+
 //header - project - profile
 export const SHOW_HEADER_PROFILE_POPUP = "SHOW_HEADER_PROFILE_POPUP";
 export const show_header_profile_popup = ({ anchor }) => {
@@ -217,4 +220,40 @@ export const hide_header_filter_popup = () => {
     type: HIDE_HEADER_FILTER_POPUP,
   };
 };
+
+// taskcard - context popup
+export const SHOW_TASKCARD_CONTEXT_MENU_POPUP =
+  "SHOW_TASKCARD_CONTEXT_MENU_POPUP";
+export const show_taskcard_context_menu = ({ anchor }) => {
+  return {
+    type: SHOW_TASKCARD_CONTEXT_MENU_POPUP,
+    anchor,
+  };
+};
+export const HIDE_TASKCARD_CONTEXT_MENU_POPUP =
+  "HIDE_TASKCARD_CONTEXT_MENU_POPUP";
+export const hide_taskcard_context_menu = () => {
+  return {
+    type: HIDE_TASKCARD_CONTEXT_MENU_POPUP,
+  };
+};
+
+export const SHOW_COLUMN_POPUP = "SHOW_COLUMN_POPUP";
+export const show_column_popup = ({ anchor, column }) => {
+  return {
+    type: SHOW_COLUMN_POPUP,
+    anchor,
+    column,
+  };
+};
+
+export const HIDE_COLUMN_POPUP = "HIDE_COLUMN_POPUP";
+export const hide_column_popup = () => {
+  return {
+    type: HIDE_COLUMN_POPUP,
+  };
+};
 //endregion
+
+
+

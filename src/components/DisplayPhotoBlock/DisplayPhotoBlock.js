@@ -8,18 +8,20 @@ export const useCalculated = (type, imageRef) => {
     imageRef.current.addEventListener("load", () => {
       let calculated;
 
-      if (type === "width") {
-        calculated = Math.floor(
-          (imageRef.current.clientHeight / imageRef.current.naturalHeight) *
-            imageRef.current.naturalWidth
-        );
-      } else {
-        calculated = Math.floor(
-          (imageRef.current.clientWidth / imageRef.current.naturalWidth) *
-            imageRef.current.naturalHeight
-        );
+      if (imageRef.current) {
+        if (type === "width") {
+          calculated = Math.floor(
+            (imageRef.current.clientHeight / imageRef.current.naturalHeight) *
+              imageRef.current.naturalWidth
+          );
+        } else {
+          calculated = Math.floor(
+            (imageRef.current.clientWidth / imageRef.current.naturalWidth) *
+              imageRef.current.naturalHeight
+          );
+        }
+        setState(calculated);
       }
-      setState(calculated);
     });
   }, [imageRef, type]);
 

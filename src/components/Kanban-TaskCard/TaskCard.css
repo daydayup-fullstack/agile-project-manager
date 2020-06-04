@@ -1,7 +1,7 @@
 .taskCard {
   border: 1px solid red;
   width: 17.5rem;
-  min-height: 6.25rem;
+  min-height: 5.25rem;
   padding: 1rem;
   padding-bottom: 0;
   border: 1px solid #e8ecee;
@@ -17,9 +17,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  outline: none;
+}
+.taskCard--highlighted {
+  border: 1px solid #20aaea;
+  background: rgba(32, 170, 234, 0.1);
 }
 .taskCard .coverImage {
   margin-bottom: 0.8rem;
+}
+.taskCard:hover {
+  cursor: pointer;
 }
 .taskCard:hover .extra,
 .taskCard:hover .content button {

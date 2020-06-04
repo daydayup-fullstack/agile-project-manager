@@ -1,51 +1,76 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import "./AddNewColumn.css";
+import { generateId } from "../../model/utility";
+import { connect } from "react-redux";
+import { project_changed } from "../../actions";
 
-const AddNewColumn = () => {
-    const [state, setState] = useState({ adding: false, currentValue: "" });
-    const inputElement = useRef(null);
+const AddNewColumn = ({ project_changed, project }) => {
+  const [value, setValue] = useState("");
+  const [isEditing, setIsEditing] = useState(false);
+  const inputElement = useRef(null);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log(e);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newColumn = {
+      id: generateId(),
+      title: e.currentTarget["column-title"].value,
+      projectId: project.id,
+      taskIds: [],
     };
 
-    const handleChange = (event) => {
-        setState({ ...state, currentValue: event.target.value });
+    const updatedProject = {
+      ...project,
+      columnOrder: [...project.columnOrder, newColumn.id],
+      columns: {
+        ...project.columns,
+        [newColumn.id]: newColumn,
+      },
     };
 
-    const handleClick = () => {
-        state.adding && setState({ ...state, adding: false });
-    };
+    project_changed(updatedProject);
 
-    useEffect(() => {
-        if (inputElement.current) {
-            inputElement.current.focus();
-        }
-    }, [state.adding]);
+    setIsEditing(false);
+    setValue("");
+  };
 
-    return (
-        <div className={"addNewColumn"} onClick={handleClick}>
-            <div className={"header"}>
-                {!state.adding ? (
-                    <h2 onClick={() => setState({ adding: true })}>
-                        <span className={"material-icons"}>add</span>Add column
-                    </h2>
-                ) : (
-                    <form onSubmit={handleSubmit}>
-                        <input
-                            type="text"
-                            value={state.currentValue}
-                            onChange={handleChange}
-                            placeholder={"New Column"}
-                            ref={inputElement}
-                        />
-                    </form>
-                )}
-                <div className={`list ${state.adding && "list--show"}`} />
-            </div>
-        </div>
-    );
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
+
+  return (
+    <div className={"addNewColumn"}>
+      <div className={"header"}>
+        {!isEditing ? (
+          <h2 onClick={() => setIsEditing(true)}>
+            <span className={"material-icons"}>add</span>Add column
+          </h2>
+        ) : (
+          <form onSubmit={handleSubmit}>
+            <input
+              id={"column-title"}
+              type="text"
+              value={value}
+              onChange={handleChange}
+              placeholder={"New Column"}
+              ref={inputElement}
+              autoFocus={isEditing}
+              onBlur={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setIsEditing(false);
+              }}
+            />
+          </form>
+        )}
+        <div className={`list ${isEditing && "list--show"}`} />
+      </div>
+    </div>
+  );
 };
 
-export default AddNewColumn;
+const mapStateToProps = (state) => {
+  return {
+    project: state.project,
+  };
+};
+export default connect(mapStateToProps, { project_changed })(AddNewColumn);
