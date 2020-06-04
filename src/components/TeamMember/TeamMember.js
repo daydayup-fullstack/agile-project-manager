@@ -1,9 +1,27 @@
 import React from 'react';
 import './TeamMember.css';
 import '../TeamDescriptionPanel/Panel.css';
-// import Profile from '../Profile/Profile';
+import TeamMemberPopup from '../TeamMemberPopup/TeamMemberPopup';
+import AddTeamMember from '../AddTeamMember/AddTeamMember';
+
 
 const Members=()=>{
+    const [shouldShow, setShouldShow] = React.useState(false);
+    const [content, setContent] = React.useState(<></>);
+
+    const handleClick = (e) => {
+        setShouldShow(true);
+    }
+
+    function show(e) {
+        handleClick(e);
+        setContent(<AddTeamMember/>);
+    }
+
+    const dismiss = () => {
+    setShouldShow(false);
+    };
+
     return(
         <div className='members'>
             <div className='panel__top'>
@@ -14,8 +32,8 @@ const Members=()=>{
             <div className="divider"/>
             <div className='member_list'>
                 
-                <div className='Add_member'>
-                    <div className='circle'>
+                <div className='Add_member' onClick={show}>
+                    <div className='circle' >
                     <span class="material-icons add_icon">add</span></div>
                     <span><h3 className='Add_text'>Add member</h3> </span>
                 </div>
@@ -46,6 +64,11 @@ const Members=()=>{
                     <span class="material-icons more_icon">more_horiz</span></div>
                     <span ><h3 className='Add_text'>See all members</h3></span>
                 </div>
+                {shouldShow && (
+                    <TeamMemberPopup dismiss={dismiss} >
+                        {content}
+                    </TeamMemberPopup>
+                )}
             </div> 
         </div>
     )

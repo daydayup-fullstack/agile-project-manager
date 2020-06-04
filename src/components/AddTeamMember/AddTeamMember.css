@@ -1,0 +1,117 @@
+.AddMember{
+    margin: 0;
+    padding:0;
+    width:560px;
+    height: 420px;
+    border-radius: 8px;
+    position: relative;
+}
+.AddMember .close{
+    position: absolute;
+    top:0.3rem;
+    right:0.7rem;
+    transform:rotate(45deg);
+    font-size: 1.7rem;
+    color: #828485;
+    cursor: pointer;
+}
+.AddMember .divider{
+    margin-top: 8px;
+    width: 560px;
+    content: "";
+    height: 0.1rem;
+    background: #e8ecee;
+    /* transform: scaleY(1); */
+  
+}
+.AddMember h2{
+    font-family: "Poppins", sans-serif;
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin: 0.5rem 0 0 2rem;
+}
+
+.AddMember .content{
+    margin: 1.4rem 2rem;
+}
+
+.AddMember .content .content-title{
+    font-family: "Poppins", sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    color:#47494a;
+}
+.content-email{
+    margin-top: 4rem;
+    font-family: "Poppins", sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    color:#6b6f71;
+}
+.content-contact{
+    display: flex;
+    justify-content: flex-end;
+    font-family: "Poppins", sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    color:#6b6f71;
+    margin-right:0.5rem;
+}
+
+.text-email{
+    margin-top:0.5rem;
+    resize: none;
+    height: 110px;
+    width: 490px;
+    color: #2d3032;
+    outline: none;
+    padding: 0.5rem;
+    border-color: #a2aaae;
+    border-radius: 4px;
+    font-family: "Poppins", sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+}
+.text-email:focus{
+    box-shadow: 2px 2px -1px gray;
+    
+}
+
+.input-field{
+    margin-top:2rem;
+    font-family: "Poppins", sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    color:#47494a;
+    
+}
+.inputtext{
+    width:490px;
+    padding: 0.4rem 0.3rem;
+    outline: none;
+    border-color: #a2aaae;
+    border-radius: 4px;
+    height: 32px;
+    resize: none;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+
+}
+
+.send{
+    margin: 30px 70px 50px 430px;
+    display: flex;
+    justify-content: flex-end;
+    height: 30px;
+    width: 60px;
+    padding-right:13px;
+    color:#a2aaae;
+    align-items: center;
+    border:none;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    
+}

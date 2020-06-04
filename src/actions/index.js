@@ -87,6 +87,12 @@ export const hide_projectCard_popup = () => {
   };
 };
 
+export const HIDE_ADD_MEMBER_POPUP = "HIDE_ADD_MEMBER_POPUP";
+export const hide_addmember_popup = () => {
+  return {
+    type: HIDE_ADD_MEMBER_POPUP,
+  };
+};
 export const CLEAR_PROJECT_CARD_HOLD = "CLEAR_PROJECT_CARD_HOLD";
 
 export const clear_projectCard_hold = () => {

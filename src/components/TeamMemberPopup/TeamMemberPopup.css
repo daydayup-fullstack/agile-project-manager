@@ -1,0 +1,22 @@
+.TeamPopup {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+    position: absolute;
+    top:0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+  }
+  .TeamPopup .addmember {
+    max-width: fit-content;
+    background: #fff;
+    border: 1px solid #e8ecee;
+    border-radius: 0.2rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }

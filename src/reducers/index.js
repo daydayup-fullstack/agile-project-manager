@@ -4,6 +4,7 @@ import {
   DRAWER_CLOSED,
   DRAWER_OPENED,
   HIDE_PROJECT_CARD_POPUP,
+  HIDE_ADD_MEMBER_POPUP,
   PROJECT_CHANGED,
   PROJECT_COLOR_SELECTED,
   PROJECT_ICON_SELECTED,
@@ -39,6 +40,13 @@ export const app = (state = initialAppState, action) => {
       return {
         ...state,
         ui_projectCard_popup: {
+          shouldShow: false,
+        },
+      };
+    case HIDE_ADD_MEMBER_POPUP:
+      return {
+        ...state,
+        ui_addmember_popup: {
           shouldShow: false,
         },
       };

@@ -7,6 +7,7 @@ import AddProjectCard from "../../components/AddProjectCard/AddProjectCard";
 import Members from '../../components/TeamMember/TeamMember';
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import TeamHeader from "../../components/TeamHeader/TeamHeader";
 
 
 const Team = ({ projectsInOrder, projects }) => {
@@ -17,6 +18,7 @@ const Team = ({ projectsInOrder, projects }) => {
 
     return (
          <div className="App-Team">
+             <TeamHeader/>
             <div className='panels'>
                 <span className='panel_left'>
                     <div>

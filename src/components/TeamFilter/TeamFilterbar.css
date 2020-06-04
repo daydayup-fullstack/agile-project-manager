@@ -1,0 +1,31 @@
+.TeamFilterbar{
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 0.25rem 0 0.25rem;
+    font-family: "Poppins", sans-serif;
+    font-size: 0.81rem;
+    font-weight: 400;
+    border-bottom:  1px solid gainsboro;
+    box-shadow: 1px 1px 1.5px rgb(213, 206, 206);
+    color:rgb(140, 130, 130);
+
+}
+
+.TeamFilterbar button{
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border:none;
+    margin: 0 0.5rem;
+    box-shadow: none;
+    outline:none;
+    padding: 0.3rem;
+
+}
+.TeamFilterbar button:hover{
+    border-bottom: 1.5px solid rgb(8, 222, 245);
+    cursor: pointer;
+    
+}
