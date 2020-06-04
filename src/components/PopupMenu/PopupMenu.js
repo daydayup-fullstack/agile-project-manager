@@ -3,6 +3,7 @@ import "./PopupMenu.css";
 import { connect } from "react-redux";
 import {
   clear_projectCard_hold,
+  hide_column_popup,
   hide_header_addButton_popup,
   hide_header_filter_popup,
   hide_header_profile_popup,
@@ -24,7 +25,8 @@ const PopupMenu = ({
   hide_header_addButton_popup,
   hide_header_filter_popup,
   hide_taskcard_context_menu,
-  show_taskcard_context_menu,
+  hide_column_popup,
+  onDismiss,
 }) => {
   const [origin, setOrigin] = React.useState({
     x: 0,
@@ -51,6 +53,7 @@ const PopupMenu = ({
   }, [anchor.x, anchor.y, anchor.width]);
 
   const dismiss = () => {
+    if (onDismiss) onDismiss();
     hide_projectCard_popup();
     hide_header_projectIcon_popup();
     hide_header_profile_popup();
@@ -58,6 +61,7 @@ const PopupMenu = ({
     hide_header_addButton_popup();
     hide_header_filter_popup();
     hide_taskcard_context_menu();
+    hide_column_popup();
   };
 
   const styleFix = header_projectIcon_popup.shouldShow
@@ -109,4 +113,5 @@ export default connect(mapStateToProps, {
   hide_header_filter_popup,
   hide_taskcard_context_menu,
   show_taskcard_context_menu,
+  hide_column_popup,
 })(PopupMenu);

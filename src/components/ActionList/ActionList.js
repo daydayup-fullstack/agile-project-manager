@@ -19,6 +19,7 @@ const ActionList = ({
   currentWorkspace,
   workspaces,
   header_filter_popup,
+  column_popup,
 }) => {
   const expandableAction = React.useRef(null);
   const popupItself = React.useRef(null);
@@ -345,8 +346,17 @@ const ActionList = ({
     );
   };
 
+  const ColumnPopup = () => {
+    return (
+      <ul>
+        <li>Delete column</li>
+      </ul>
+    );
+  };
+
   return (
     <div className={"ActionList"} ref={popupItself}>
+      {column_popup.shouldShow && <ColumnPopup />}
       {projectCard_popup.shouldShow && <ProjectCardPopup />}
       {header_project_info_popup.shouldShow && <ProjectCardPopup />}
       {header_profile_popup.shouldShow && <ProfilePopup />}
@@ -379,6 +389,9 @@ const mapStateToProps = (state) => {
     },
     taskcard_context_menu: {
       shouldShow: state.app.ui_taskcard_context_menu.shouldShow,
+    },
+    column_popup: {
+      shouldShow: state.app.ui_column_popup.shouldShow,
     },
     currentWorkspace: state.workspace,
     workspaces: state.user.workspaces,

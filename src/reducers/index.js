@@ -23,6 +23,8 @@ import {
   CHANGE_NEW_TASK_DISPLAY,
   SHOW_TASKCARD_CONTEXT_MENU_POPUP,
   HIDE_TASKCARD_CONTEXT_MENU_POPUP,
+  SHOW_COLUMN_POPUP,
+  HIDE_COLUMN_POPUP,
 } from "../actions";
 const devId = "user-scott";
 
@@ -57,6 +59,10 @@ const initialAppState = {
     anchor: { x: 0, y: 0, width: 0, height: 0 },
   },
   ui_taskcard_context_menu: {
+    shouldShow: false,
+    anchor: { x: 0, y: 0, width: 0, height: 0 },
+  },
+  ui_column_popup: {
     shouldShow: false,
     anchor: { x: 0, y: 0, width: 0, height: 0 },
   },
@@ -198,6 +204,24 @@ export const app = (state = initialAppState, action) => {
           shouldShow: false,
         },
       };
+
+    case SHOW_COLUMN_POPUP:
+      return {
+        ...state,
+        ui_column_popup: {
+          shouldShow: true,
+          anchor: action.anchor,
+        },
+      };
+
+    case HIDE_COLUMN_POPUP: {
+      return {
+        ...state,
+        ui_column_popup: {
+          shouldShow: false,
+        },
+      };
+    }
 
     default:
       return {

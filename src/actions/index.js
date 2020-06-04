@@ -224,4 +224,20 @@ export const hide_taskcard_context_menu = () => {
     type: HIDE_TASKCARD_CONTEXT_MENU_POPUP,
   };
 };
+
+export const SHOW_COLUMN_POPUP = "SHOW_COLUMN_POPUP";
+export const show_column_popup = ({ anchor, column }) => {
+  return {
+    type: SHOW_COLUMN_POPUP,
+    anchor,
+    column,
+  };
+};
+
+export const HIDE_COLUMN_POPUP = "HIDE_COLUMN_POPUP";
+export const hide_column_popup = () => {
+  return {
+    type: HIDE_COLUMN_POPUP,
+  };
+};
 //endregion
