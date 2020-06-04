@@ -9,28 +9,46 @@
   overflow: scroll;
   background-color: #fff;
   border-radius: 4px;
-  box-shadow: 0 0 0 1px rgba(111, 119, 130, 0.15), 0 5px 20px 0 rgba(21, 27, 38, 0.08);
+  -webkit-box-shadow: 0 0 0 1px rgba(111, 119, 130, 0.15), 0 5px 20px 0 rgba(21, 27, 38, 0.08);
+          box-shadow: 0 0 0 1px rgba(111, 119, 130, 0.15), 0 5px 20px 0 rgba(21, 27, 38, 0.08);
   padding: 0 2rem;
   font-size: 13px;
   z-index: 20;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
+
 .AddTaskPopup_TopIcon {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   height: 56px;
   padding: 0 24px;
   font-size: 13px;
-  justify-content: flex-end;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }
-.AddTaskPopup_TopIcon_icon {
+
+.AddTaskPopup_TopIcon > span:nth-of-type(1),
+.AddTaskPopup_TopIcon > span:nth-of-type(2) {
   color: #6f7782;
   cursor: pointer;
   margin-left: 3px;
+  -webkit-transition: all .2s;
+  transition: all .2s;
 }
-.AddTaskPopup_TopIcon_icon:hover {
+
+.AddTaskPopup_TopIcon > span:nth-of-type(1):hover,
+.AddTaskPopup_TopIcon > span:nth-of-type(2):hover {
   color: black;
 }
+
 .AddTaskPopup_TaskName {
   border: 0;
   outline: none;
@@ -38,43 +56,72 @@
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   margin-bottom: 8px;
-  flex-shrink: 0;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
 }
+
+.AddTaskPopup_TaskName::-webkit-input-placeholder {
+  color: #9da7b0;
+}
+
+.AddTaskPopup_TaskName:-ms-input-placeholder {
+  color: #9da7b0;
+}
+
+.AddTaskPopup_TaskName::-ms-input-placeholder {
+  color: #9da7b0;
+}
+
 .AddTaskPopup_TaskName::placeholder {
   color: #9da7b0;
 }
+
 .AddTaskPopup_AssigneeProjectField {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding: 4px 0;
   position: relative;
 }
-.AddTaskPopup_AssigneeProjectField_assigneeLabel {
+
+.AddTaskPopup_AssigneeProjectField > span:nth-of-type(1),
+.AddTaskPopup_AssigneeProjectField > span:nth-of-type(3) {
   color: #9ca6af;
   margin-right: 8px;
 }
-.AddTaskPopup_AssigneeProjectField_projectLabel {
+
+.AddTaskPopup_AssigneeProjectField > span:nth-of-type(3) {
   margin-left: 8px;
 }
+
 .AddTaskPopup_AssigneeProjectField_remove {
   position: absolute;
   font-size: 14px;
   left: 85px;
 }
-.AddTaskPopup_AssigneeProjectField_token {
+
+.AddTaskPopup_AssigneeProjectField > span:nth-of-type(2) {
   cursor: pointer;
   font-size: 13px;
   height: 24px;
   max-width: 180px;
-  transition-duration: 100ms;
+  -webkit-transition-duration: 100ms;
+          transition-duration: 100ms;
+  -webkit-transition-property: background, border, color, fill;
   transition-property: background, border, color, fill;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   background-color: #e8ecee;
   border-radius: 12px;
   position: relative;
   z-index: 0;
 }
-.AddTaskPopup_AssigneeProjectField_token_username {
+
+.AddTaskPopup_AssigneeProjectField > span:nth-of-type(2) .username {
   max-width: 180px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -84,23 +131,32 @@
   height: 24px;
   line-height: 24px;
   padding-left: 7px;
+  padding-right: 7px;
 }
-.AddTaskPopup_AssigneeProjectField_token_avatar {
+
+.AddTaskPopup_AssigneeProjectField > span:nth-of-type(2) .avatar {
   position: absolute;
   z-index: 2;
 }
-.AddTaskPopup_AssigneeProjectField_token_assigneePlaceholder {
+
+.AddTaskPopup_AssigneeProjectField > span:nth-of-type(2) .assigneePlaceholder {
   border: 1px dashed #cbd4db;
   border-radius: 12px;
   color: #6f7782;
   cursor: pointer;
   padding: 0 24px;
   height: 24px;
-  align-self: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
   line-height: 24px;
+  -webkit-transition: 200ms color, 200ms background, 200ms fill, 200ms border-color, 200ms -webkit-box-shadow;
+  transition: 200ms color, 200ms background, 200ms fill, 200ms border-color, 200ms -webkit-box-shadow;
   transition: 200ms box-shadow, 200ms color, 200ms background, 200ms fill, 200ms border-color;
+  transition: 200ms box-shadow, 200ms color, 200ms background, 200ms fill, 200ms border-color, 200ms -webkit-box-shadow;
 }
-.AddTaskPopup_AssigneeProjectField_token_assigneePlaceholder:hover {
+
+.AddTaskPopup_AssigneeProjectField > span:nth-of-type(2) .assigneePlaceholder:hover {
   background-color: #f6f8f9;
   border-color: #6f7782;
   border-style: solid;
@@ -108,34 +164,59 @@
   fill: #273240;
   outline: none;
 }
-.AddTaskPopup_AssigneeProjectField_token_remove {
+
+.AddTaskPopup_AssigneeProjectField > span:nth-of-type(2) .remove {
   font-size: 14px;
   height: 14px;
   line-height: 14px;
   margin-right: 5px;
-  transition: all 0.1s;
-  align-self: center;
+  -webkit-transition: all .1s;
+  transition: all .1s;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
 }
-.AddTaskPopup_AssigneeProjectField_token:hover .AddTaskPopup_AssigneeProjectField_token_remove {
+
+.AddTaskPopup_AssigneeProjectField > span:nth-of-type(2) .remove:hover {
   background-color: #151b26;
   height: 14px;
   line-height: 14px;
   color: #e8ecee;
   border-radius: 50%;
-  align-self: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
 }
-.AddTaskPopup_AssigneeProjectField_placeholder {
+
+.AddTaskPopup_AssigneeProjectField > span:nth-of-type(2):hover .AddTaskPopup_AssigneeProjectField > span:nth-of-type(2).remove {
+  background-color: #151b26;
+  height: 14px;
+  line-height: 14px;
+  color: #e8ecee;
+  border-radius: 50%;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.AddTaskPopup_AssigneeProjectField .placeholder {
   border: 1px dashed #cbd4db;
   border-radius: 12px;
   color: #6f7782;
   cursor: pointer;
   padding: 0 24px;
   height: 24px;
-  align-self: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
   line-height: 24px;
+  -webkit-transition: 200ms color, 200ms background, 200ms fill, 200ms border-color, 200ms -webkit-box-shadow;
+  transition: 200ms color, 200ms background, 200ms fill, 200ms border-color, 200ms -webkit-box-shadow;
   transition: 200ms box-shadow, 200ms color, 200ms background, 200ms fill, 200ms border-color;
+  transition: 200ms box-shadow, 200ms color, 200ms background, 200ms fill, 200ms border-color, 200ms -webkit-box-shadow;
 }
-.AddTaskPopup_AssigneeProjectField_placeholder:hover {
+
+.AddTaskPopup_AssigneeProjectField .placeholder:hover {
   background-color: #f6f8f9;
   border-color: #6f7782;
   border-style: solid;
@@ -143,16 +224,31 @@
   fill: #273240;
   outline: none;
 }
-.AddTaskPopup_AssigneeProjectField_projectInput {
+
+.AddTaskPopup_AssigneeProjectField .projectInput {
   border: 0;
   outline: none;
   font-size: 20px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 13px;
 }
-.AddTaskPopup_AssigneeProjectField_projectInput::placeholder {
+
+.AddTaskPopup_AssigneeProjectField .projectInput::-webkit-input-placeholder {
   color: #9da7b0;
 }
+
+.AddTaskPopup_AssigneeProjectField .projectInput:-ms-input-placeholder {
+  color: #9da7b0;
+}
+
+.AddTaskPopup_AssigneeProjectField .projectInput::-ms-input-placeholder {
+  color: #9da7b0;
+}
+
+.AddTaskPopup_AssigneeProjectField .projectInput::placeholder {
+  color: #9da7b0;
+}
+
 .AddTaskPopup_description {
   min-height: 100px;
   height: 250px;
@@ -163,65 +259,99 @@
   width: 100% !important;
   padding: 8px 0;
 }
+
+.AddTaskPopup_description::-webkit-input-placeholder {
+  color: #9da7b0;
+}
+
+.AddTaskPopup_description:-ms-input-placeholder {
+  color: #9da7b0;
+}
+
+.AddTaskPopup_description::-ms-input-placeholder {
+  color: #9da7b0;
+}
+
 .AddTaskPopup_description::placeholder {
   color: #9da7b0;
 }
+
 .AddTaskPopup_BottomIcon {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding: 28px 0;
 }
-.AddTaskPopup_BottomIcon_icon {
+
+.AddTaskPopup_BottomIcon > span {
   margin-right: 12px;
   font-size: 20px;
   cursor: pointer;
   color: #6f7782;
+  -webkit-transition: 200ms color, 200ms fill, 200ms -webkit-box-shadow;
+  transition: 200ms color, 200ms fill, 200ms -webkit-box-shadow;
   transition: 200ms box-shadow, 200ms color, 200ms fill;
+  transition: 200ms box-shadow, 200ms color, 200ms fill, 200ms -webkit-box-shadow;
 }
-.AddTaskPopup_BottomIcon_icon:hover {
+
+.AddTaskPopup_BottomIcon > span:hover {
   color: #273240;
 }
-.AddTaskPopup_BottomIcon_text {
+
+.AddTaskPopup_BottomIcon > span:nth-of-type(1) {
   font-size: 25px;
 }
-.AddTaskPopup_BottomIcon_group {
+
+.AddTaskPopup_BottomIcon > span:nth-of-type(6) {
   margin-left: auto;
   font-size: 25px;
 }
-.AddTaskPopup_BottomIcon_button {
+
+.AddTaskPopup_BottomIcon > button {
   border-radius: 4px;
   font-size: 13px;
   min-width: 48px;
   text-align: center;
-  transition-duration: 0.2s;
+  -webkit-transition-duration: .2s;
+          transition-duration: .2s;
+  -webkit-transition-property: all;
   transition-property: all;
   outline: none;
   padding: 0 15px;
   height: 32px;
   line-height: 32px;
 }
+
 .AddTaskPopup_BottomIcon_disabled {
-  box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
   color: #9ca6af;
   cursor: default;
   background-color: #f6f8f9;
   border: 1px solid #e8ecee;
 }
+
 .AddTaskPopup_BottomIcon_activated {
-  box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
   color: #fff;
   background-color: #14aaf5;
   border: 1px solid #14aaf5;
   cursor: pointer;
 }
+
 .AddTaskPopup_BottomIcon_activated:hover {
   background-color: #008ce3;
   border-color: #008ce3;
 }
+
 .AddTaskPopup_BottomIcon_activated:active {
   background-color: #006db0;
   border-color: #006db0;
-  box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
-
 /*# sourceMappingURL=AddTaskPopup.css.map */
