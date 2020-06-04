@@ -11,7 +11,7 @@
   position: relative;
   margin-bottom: 0.5rem;
   font-family: "Poppins", sans-serif;
-  font-size: 0.9rem;
+  font-size: 0.81rem;
   color: #151b26;
   display: flex;
   flex-direction: column;
@@ -23,9 +23,22 @@
 .taskCard .content {
   position: relative;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   flex-wrap: wrap;
   user-select: none;
+}
+.taskCard .content .new-task-input {
+  border: none;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.81rem;
+  font-weight: 400;
+  height: 100%;
+  resize: none;
+}
+.taskCard .content .new-task-input:focus {
+  outline: none;
 }
 .taskCard .content button {
   background: none;

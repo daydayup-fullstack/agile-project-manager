@@ -1,7 +1,7 @@
 import { db_columns, db_tasks } from "../data/database";
 
 // ============== Project ========================
-
+// region- Project related actions
 export const PROJECT_SELECTED = "PROJECT_SELECTED";
 export const project_selected = (project) => {
   return {
@@ -70,8 +70,36 @@ export const select_project_color = (project) => {
   };
 };
 
-// ================ ui state ======================
+export const START_CREATING_NEW_TASK = "START_CREATING_NEW_TASK";
+export const start_creating_new_task = ({ project }) => {
+  return {
+    type: START_CREATING_NEW_TASK,
+    project,
+  };
+};
 
+export const ADD_TASK_TO_PROJECT = "ADD_TASK";
+export const add_task_to_project = ({ task, column, project }) => {
+  return {
+    type: ADD_TASK_TO_PROJECT,
+    task,
+    column,
+    project,
+  };
+};
+
+export const REMOVE_TASK = "REMOVE_TASK";
+export const remove_task = (task) => {
+  return {
+    type: REMOVE_TASK,
+    task,
+  };
+};
+
+//endregion
+
+// ================ ui state ======================
+// region - ui state actions
 export const SHOW_PROJECT_CARD_POPUP = "SHOW_PROJECT_CARD_POPUP";
 export const show_projectCard_popup = ({ anchor }) => {
   return {
@@ -155,8 +183,6 @@ export const hide_header_projectInfo_popup = () => {
   };
 };
 
-
-
 //header - addButton
 export const SHOW_HEADER_ADD_BUTTON_POPUP = "SHOW_HEADER_ADD_BUTTON_POPUP";
 export const show_header_addButton_popup = ({ anchor }) => {
@@ -188,3 +214,4 @@ export const hide_header_filter_popup = () => {
     type: HIDE_HEADER_FILTER_POPUP,
   };
 };
+//endregion
