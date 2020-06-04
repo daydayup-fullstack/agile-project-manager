@@ -1,0 +1,42 @@
+.DisplayPhotoBlock {
+  height: 4rem;
+  width: 200px;
+  position: relative;
+  border: 1px solid #e8ecee;
+  border-radius: 0.5rem;
+}
+.DisplayPhotoBlock:hover .DisplayPhotoBlock__overlay {
+  opacity: 1;
+}
+.DisplayPhotoBlock__overlay {
+  border-radius: 0.5rem;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(21, 27, 38, 0.5);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.DisplayPhotoBlock__overlay span {
+  color: #ffffff;
+}
+.DisplayPhotoBlock__overlay span:hover {
+  color: #20aaea;
+}
+.DisplayPhotoBlock:hover {
+  cursor: pointer;
+}
+.DisplayPhotoBlock img {
+  border-radius: 0.5rem;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+  user-select: none;
+}
+
+/*# sourceMappingURL=DisplayPhotoBlock.css.map */

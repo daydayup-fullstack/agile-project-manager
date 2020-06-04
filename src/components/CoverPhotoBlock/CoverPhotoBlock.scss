@@ -1,0 +1,12 @@
+@import "../../style/variables";
+
+.CoverPhotoBlock {
+  width: 250px;
+  img {
+    height: 100%;
+    width: 100%;
+    pointer-events: none;
+    user-select: none;
+    border-radius: 0.25rem;
+  }
+}

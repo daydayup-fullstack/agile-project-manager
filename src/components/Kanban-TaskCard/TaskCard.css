@@ -2,7 +2,8 @@
   border: 1px solid red;
   width: 17.5rem;
   min-height: 6.25rem;
-  padding: 1.2rem 1rem;
+  padding: 1rem;
+  padding-bottom: 0;
   border: 1px solid #e8ecee;
   background: white;
   border-radius: 0.25rem;
@@ -15,17 +16,25 @@
   color: #151b26;
   display: flex;
   flex-direction: column;
+  align-items: center;
+}
+.taskCard .coverImage {
+  margin-bottom: 0.8rem;
 }
 .taskCard:hover .extra,
 .taskCard:hover .content button {
   visibility: visible;
 }
 .taskCard .content {
+  width: 100%;
   position: relative;
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   user-select: none;
+}
+.taskCard .content .name {
+  height: fit-content;
 }
 .taskCard .content .new-task-input {
   border: none;
@@ -57,15 +66,13 @@
 .taskCard .extra {
   visibility: hidden;
   height: 2rem;
-  position: absolute;
-  bottom: 0.5rem;
-  left: 0;
+  position: relative;
   width: 100%;
-  padding: 0 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   user-select: none;
+  margin-bottom: 0.5rem;
 }
 .taskCard .extra .actions {
   display: flex;

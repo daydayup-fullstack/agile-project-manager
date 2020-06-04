@@ -3,6 +3,7 @@ import "./TaskCard.css";
 import { Draggable } from "react-beautiful-dnd";
 import { connect } from "react-redux";
 import { project_changed } from "../../actions";
+import CoverPhotoBlock from "../CoverPhotoBlock/CoverPhotoBlock";
 
 const TaskCard = ({ task, index, project_changed, project, columnId }) => {
   function handleKeyDown(e) {
@@ -72,6 +73,11 @@ const TaskCard = ({ task, index, project_changed, project, columnId }) => {
           {...provided.dragHandleProps}
           ref={provided.innerRef}
         >
+          {task.attachments && task.attachments.length > 0 && (
+            <div className="coverImage">
+              <CoverPhotoBlock imageUrl={task.attachments[0]} />
+            </div>
+          )}
           <div className="content">
             {task.name ? (
               <div className={"name"}>{task.name}</div>
