@@ -3,14 +3,23 @@ import "./BoardColumn.css";
 import { Draggable } from "react-beautiful-dnd";
 import AddBoardTaskButton from "../Kanban-AddBoardTaskButton/AddBoardTaskButton";
 import { connect } from "react-redux";
-import { show_column_popup } from "../../actions";
+import { project_changed, show_column_popup } from "../../actions";
 import PopupMenu from "../PopupMenu/PopupMenu";
 import ActionList from "../ActionList/ActionList";
 
-const BoardColumn = ({ column, index, children, show_column_popup }) => {
+const BoardColumn = ({
+  column,
+  index,
+  children,
+  show_column_popup,
+  project,
+  project_changed,
+}) => {
   const [shouldHighlighted, setShouldHighlighted] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const inputElement = useRef(null);
+
+  const [value, setValue] = useState(column.title);
 
   useEffect(() => {
     if (inputElement.current) {
@@ -30,6 +39,36 @@ const BoardColumn = ({ column, index, children, show_column_popup }) => {
     show_column_popup({ anchor: anchor, column: column });
   };
 
+  function handleColumnNameChange(e) {
+    setValue(e.target.value);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const title = e.currentTarget["board-column-title"].value;
+    const updatedProject = {
+      ...project,
+      columns: {
+        ...project.columns,
+        [column.id]: {
+          ...project.columns[column.id],
+          title: title,
+        },
+      },
+    };
+
+    project_changed(updatedProject);
+
+    setIsEditing(false);
+  }
+
+  function handleKeyDown(e) {
+    if (e.key === "Escape") {
+      setIsEditing(false);
+    }
+
+  }
+
   return (
     <Draggable draggableId={column.id} index={index} type={"column"}>
       {(provided, snapshot) => (
@@ -39,7 +78,6 @@ const BoardColumn = ({ column, index, children, show_column_popup }) => {
           className={`board-column ${
             shouldHighlighted && "board-column--hovered"
           } ${snapshot.isDragging && "board-column--isDragging"}`}
-          onClick={() => isEditing && setIsEditing(false)}
         >
           <div
             className="header"
@@ -60,8 +98,16 @@ const BoardColumn = ({ column, index, children, show_column_popup }) => {
                 </span>
               </>
             ) : (
-              <form>
-                <input type="text" ref={inputElement} value={column.title} />
+              <form onSubmit={(e) => handleSubmit(e)}>
+                <input
+                  type="text"
+                  ref={inputElement}
+                  id={"board-column-title"}
+                  value={value}
+                  onBlur={() => setIsEditing(false)}
+                  onChange={handleColumnNameChange}
+                  onKeyDown={handleKeyDown}
+                />
               </form>
             )}
           </div>
@@ -79,6 +125,9 @@ const mapStateToProps = (state) => {
       shouldShow: state.app.ui_column_popup.shouldShow,
       anchor: state.app.ui_column_popup.anchor,
     },
+    project: state.project,
   };
 };
-export default connect(mapStateToProps, { show_column_popup })(BoardColumn);
+export default connect(mapStateToProps, { show_column_popup, project_changed })(
+  BoardColumn
+);

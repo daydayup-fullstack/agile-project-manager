@@ -348,7 +348,7 @@ const ActionList = ({
 
   const ColumnPopup = () => {
     return (
-      <ul>
+      <ul className={"ColumnPopup"}>
         <li>Delete column</li>
       </ul>
     );

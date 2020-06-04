@@ -126,5 +126,8 @@
 .ActionList .TaskcardContextPopup ul:last-of-type li span {
   margin-left: 0.25rem;
 }
+.ActionList .ColumnPopup li {
+  color: #e8384f;
+}
 
 /*# sourceMappingURL=ActionList.css.map */

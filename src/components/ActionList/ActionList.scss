@@ -111,7 +111,6 @@
         }
 
         padding-left: 0.5rem;
-
       }
     }
     ul:nth-of-type(2) {
@@ -119,10 +118,9 @@
       border-bottom: 1px solid $gray-200;
 
       li {
-
-      span {
-        margin-left: 0.25rem;
-      }
+        span {
+          margin-left: 0.25rem;
+        }
       }
     }
     ul:last-of-type {
@@ -133,6 +131,12 @@
           margin-left: 0.25rem;
         }
       }
+    }
+  }
+
+  .ColumnPopup {
+    li {
+      color: #e8384f;
     }
   }
 }

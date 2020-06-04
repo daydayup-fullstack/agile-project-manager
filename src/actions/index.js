@@ -131,8 +131,9 @@ export const close_app_drawer = () => {
   };
 };
 
-// header - project - icon
 export const SHOW_HEADER_PROJECT_ICON_POPUP = "SHOW_HEADER_PROJECT_ICON_POPUP";
+
+// - header - project - icon
 export const show_header_projectIcon_popup = ({ anchor }) => {
   return {
     type: SHOW_HEADER_PROJECT_ICON_POPUP,
@@ -146,6 +147,9 @@ export const hide_header_projectIcon_popup = () => {
     type: HIDE_HEADER_PROJECT_ICON_POPUP,
   };
 };
+
+
+
 //header - project - profile
 export const SHOW_HEADER_PROFILE_POPUP = "SHOW_HEADER_PROFILE_POPUP";
 export const show_header_profile_popup = ({ anchor }) => {
@@ -241,3 +245,6 @@ export const hide_column_popup = () => {
   };
 };
 //endregion
+
+
+
