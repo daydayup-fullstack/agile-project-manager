@@ -66,7 +66,6 @@ const BoardColumn = ({
     if (e.key === "Escape") {
       setIsEditing(false);
     }
-
   }
 
   return (

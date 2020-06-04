@@ -211,6 +211,7 @@ export const app = (state = initialAppState, action) => {
         ui_column_popup: {
           shouldShow: true,
           anchor: action.anchor,
+          column: action.column,
         },
       };
 

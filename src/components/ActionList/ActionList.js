@@ -3,7 +3,11 @@ import "./ActionList.css";
 import ColorArray from "../ColorArray/ColorArray";
 import IconArray from "../IconArray/IconArray";
 import { connect } from "react-redux";
-import { add_project_star, remove_project_star } from "../../actions";
+import {
+  add_project_star,
+  project_changed,
+  remove_project_star,
+} from "../../actions";
 import { db_workspaces } from "../../data/database";
 
 const ActionList = ({
@@ -20,6 +24,7 @@ const ActionList = ({
   workspaces,
   header_filter_popup,
   column_popup,
+  project_changed,
 }) => {
   const expandableAction = React.useRef(null);
   const popupItself = React.useRef(null);
@@ -347,9 +352,28 @@ const ActionList = ({
   };
 
   const ColumnPopup = () => {
+    function deleteColumn() {
+      console.log(column_popup);
+
+      const columnId = column_popup.column.id;
+
+      const updatedProject = {
+        ...project,
+        columnOrder: project.columnOrder.filter((id) => id !== columnId),
+      };
+
+      delete updatedProject.columns[columnId];
+
+      column_popup.column.taskIds.map((taskId) => {
+        delete updatedProject.tasks[taskId];
+      });
+
+      project_changed(updatedProject);
+    }
+
     return (
       <ul className={"ColumnPopup"}>
-        <li>Delete column</li>
+        <li onClick={deleteColumn}>Delete column</li>
       </ul>
     );
   };
@@ -392,6 +416,7 @@ const mapStateToProps = (state) => {
     },
     column_popup: {
       shouldShow: state.app.ui_column_popup.shouldShow,
+      column: state.app.ui_column_popup.column,
     },
     currentWorkspace: state.workspace,
     workspaces: state.user.workspaces,
@@ -399,6 +424,7 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
+  project_changed,
   remove_project_star,
   add_project_star,
 })(ActionList);
