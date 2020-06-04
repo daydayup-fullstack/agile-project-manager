@@ -38,10 +38,7 @@ const BoardColumn = ({ column, index, children }) => {
                 <span className={"title"} onClick={() => setIsEditing(true)}>
                   {column.title}
                 </span>
-                <span
-                  className={"material-icons button"}
-                  onClick={() => {}}
-                >
+                <span className={"material-icons button"} onClick={() => {}}>
                   more_horiz
                 </span>
               </>
@@ -52,7 +49,7 @@ const BoardColumn = ({ column, index, children }) => {
             )}
           </div>
 
-          <AddBoardTaskButton />
+          <AddBoardTaskButton column={column} />
           {children}
         </div>
       )}

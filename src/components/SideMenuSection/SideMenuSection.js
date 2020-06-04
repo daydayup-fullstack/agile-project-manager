@@ -34,12 +34,6 @@ export const Favorites = ({ projects }) => {
                 style={getProjectColor(project)}
               />
               <span className={"project__name"}>{project.name}</span>
-              <i
-                className={"material-icons"}
-                onClick={() => console.log("more actions")}
-              >
-                more_horiz
-              </i>
             </NavLink>
           </li>
         ))}
@@ -86,12 +80,6 @@ export const Team = ({ projects, team, workspace }) => {
                 style={getProjectColor(project)}
               />
               <span className={"project__name"}>{project.name}</span>
-              <i
-                className={"material-icons"}
-                onClick={() => console.log("more actions")}
-              >
-                more_horiz
-              </i>
             </NavLink>
           </li>
         ))}

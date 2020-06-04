@@ -14,7 +14,7 @@
   margin-bottom: 0.5rem;
 
   font-family: $font-family;
-  font-size: $desc-size;
+  font-size: $desc-size * 0.9;
   color: $gray-500;
 
   display: flex;
@@ -37,14 +37,26 @@
     .name {
     }
 
+    .new-task-input {
+      border: none;
+      font-family: $font-family;
+      font-size: $desc-size * 0.9;
+      font-weight: $desc-weight;
+      height: 100%;
+      resize: none;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
     button {
       background: none;
       border: none;
       display: inline-block;
       position: relative;
-      top: -0.8rem;
-      left: 0.7rem;
-      transform: scale(0.6);
+      top: -0.1rem;
+      transform: scale(0.8);
       visibility: hidden;
       cursor: pointer;
       span {

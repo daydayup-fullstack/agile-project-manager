@@ -53,9 +53,9 @@ const Filterbar = ({ show_header_filter_popup }) => {
           <span className="material-icons swap">swap_vert</span>Sort
         </button>
 
-        <span className={"divider"} />
+        {/*<span className={"divider"} />*/}
 
-        <span className={"material-icons more"}>more_horiz</span>
+        {/*<span className={"material-icons more"}>more_horiz</span>*/}
       </div>
     </div>
   );

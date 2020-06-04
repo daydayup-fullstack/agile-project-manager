@@ -278,6 +278,8 @@ export const project = (state = {}, action) => {
   }
 };
 
+// ============= New TaskDisplay reducers ===============
+
 const initialNewTaskDisplay = {
   newTaskDisplay: false,
 };

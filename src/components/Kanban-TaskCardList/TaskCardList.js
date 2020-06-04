@@ -13,7 +13,12 @@ const TaskCardList = ({ tasks, columnId }) => {
           ref={provided.innerRef}
         >
           {tasks.map((task, index) => (
-            <TaskCard task={task} index={index} key={task.id} />
+            <TaskCard
+              task={task}
+              index={index}
+              key={task.id}
+              columnId={columnId}
+            />
           ))}
           {provided.placeholder}
         </div>
