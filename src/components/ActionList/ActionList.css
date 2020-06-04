@@ -106,5 +106,25 @@
   top: unset;
   right: 0.25rem;
 }
+.ActionList .TaskcardContextPopup ul li {
+  padding-left: 0.5rem;
+}
+.ActionList .TaskcardContextPopup ul li .icon {
+  margin-right: 0.75rem;
+  color: #9ca6af;
+}
+.ActionList .TaskcardContextPopup ul:nth-of-type(2) {
+  border-top: 1px solid #e8ecee;
+  border-bottom: 1px solid #e8ecee;
+}
+.ActionList .TaskcardContextPopup ul:nth-of-type(2) li span {
+  margin-left: 0.25rem;
+}
+.ActionList .TaskcardContextPopup ul:last-of-type {
+  color: #e8384f;
+}
+.ActionList .TaskcardContextPopup ul:last-of-type li span {
+  margin-left: 0.25rem;
+}
 
 /*# sourceMappingURL=ActionList.css.map */

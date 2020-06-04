@@ -18,8 +18,8 @@ import MenuBar from "../MenuBar/MenuBar";
 import PopupMenu from "../PopupMenu/PopupMenu";
 import ActionList from "../ActionList/ActionList";
 import Tooltip from "../Tooltip/Tooltip";
-import AddTaskPopup from "../AddTaskPopup/AddTaskPopup"
-import { db_users } from "../../data/database"
+import AddTaskPopup from "../AddTaskPopup/AddTaskPopup";
+import { db_users } from "../../data/database";
 
 const App = ({
   projectCard_popup,
@@ -29,87 +29,95 @@ const App = ({
   header_addButton_popup,
   header_filter_popup,
   newTaskDisplay,
+  taskcard_context_menu,
 }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   return (
-    <div className="App">
-      {newTaskDisplay ? <AddTaskPopup user={db_users["user-scott"]} /> : <></>}
-      <div className="App-Popup">
-        {projectCard_popup.shouldShow && (
-          <PopupMenu anchor={projectCard_popup.anchor}>
-            <ActionList />
-          </PopupMenu>
-        )}
-
-        {header_projectIcon_popup.shouldShow && (
-          <PopupMenu anchor={header_projectIcon_popup.anchor}>
-            <ActionList />
-          </PopupMenu>
-        )}
-
-        {header_projectInfo_popup.shouldShow && (
-          <PopupMenu anchor={header_projectInfo_popup.anchor}>
-            <ActionList />
-          </PopupMenu>
-        )}
-
-        {header_profile_popup.shouldShow && (
-          <PopupMenu anchor={header_profile_popup.anchor}>
-            <ActionList />
-          </PopupMenu>
-        )}
-
-        {header_addButton_popup.shouldShow && (
-          <PopupMenu anchor={header_addButton_popup.anchor}>
-            <Tooltip />
-          </PopupMenu>
-        )}
-
-        {header_filter_popup.shouldShow && (
-          <PopupMenu anchor={header_filter_popup.anchor}>
-            <ActionList />
-          </PopupMenu>
-        )}
-      </div>
-
-      <Router>
-        {isLoggedIn ? (
-          <Switch>
-            <Drawer nav={<Navigation />}>
-              <Route exact path={"/"}>
-                <Redirect to={"/home"} />
-              </Route>
-
-              <Route path={"/home"}>
-                <ContentHeader />
-                <Home />
-              </Route>
-
-              <Route path={"/tasks"}>{/*<MyTasks tasks={tasks} />*/}
-                <ContentHeader />
-              </Route>
-
-              <Route path={"/projects/:id"}>
-                <MenuBar />
-                <Project />
-              </Route>
-
-              <Route path={"/team"}>
-                <ContentHeader />
-                <Team />
-              </Route>
-            </Drawer>
-          </Switch>
-        ) : (
-            <>
-              <Route exact path={"/"}>
-                <LoginForm handleLogin={setIsLoggedIn} />
-              </Route>
-            </>
+      <div className="App">
+        {newTaskDisplay ? <AddTaskPopup user={db_users["user-scott"]}/> : <></>}
+        <div className="App-Popup">
+          {projectCard_popup.shouldShow && (
+              <PopupMenu anchor={projectCard_popup.anchor}>
+                <ActionList/>
+              </PopupMenu>
           )}
-      </Router>
-    </div>
+
+          {header_projectIcon_popup.shouldShow && (
+              <PopupMenu anchor={header_projectIcon_popup.anchor}>
+                <ActionList/>
+              </PopupMenu>
+          )}
+
+          {header_projectInfo_popup.shouldShow && (
+              <PopupMenu anchor={header_projectInfo_popup.anchor}>
+                <ActionList/>
+              </PopupMenu>
+          )}
+
+          {header_profile_popup.shouldShow && (
+              <PopupMenu anchor={header_profile_popup.anchor}>
+                <ActionList/>
+              </PopupMenu>
+          )}
+
+          {header_addButton_popup.shouldShow && (
+              <PopupMenu anchor={header_addButton_popup.anchor}>
+                <Tooltip/>
+              </PopupMenu>
+          )}
+
+          {header_filter_popup.shouldShow && (
+              <PopupMenu anchor={header_filter_popup.anchor}>
+                <ActionList/>
+              </PopupMenu>
+          )}
+
+          {taskcard_context_menu.shouldShow && (
+              <PopupMenu anchor={taskcard_context_menu.anchor}>
+                <ActionList/>
+              </PopupMenu>
+          )}
+        </div>
+
+        <Router>
+          {isLoggedIn ? (
+              <Switch>
+                <Drawer nav={<Navigation/>}>
+                  <Route exact path={"/"}>
+                    <Redirect to={"/home"}/>
+                  </Route>
+
+                  <Route path={"/home"}>
+                    <ContentHeader/>
+                    <Home/>
+                  </Route>
+
+                  <Route path={"/tasks"}>
+                    {/*<MyTasks tasks={tasks} />*/}
+                    <ContentHeader/>
+                  </Route>
+
+                  <Route path={"/projects/:id"}>
+                    <MenuBar/>
+                    <Project/>
+                  </Route>
+
+                  <Route path={"/team"}>
+                    <ContentHeader/>
+                    <Team/>
+                  </Route>
+                </Drawer>
+              </Switch>
+          ) : (
+              <>
+                <Route exact path={"/"}>
+                  <LoginForm handleLogin={setIsLoggedIn}/>
+                </Route>
+              </>
+          )}
+        </Router>
+      </div>
   );
 };
 const mapStateToProps = (state) => {
@@ -139,6 +147,11 @@ const mapStateToProps = (state) => {
       shouldShow: state.app.ui_header_filter_popup.shouldShow,
       anchor: state.app.ui_header_filter_popup.anchor,
       content: state.app.ui_header_filter_popup.content,
+    },
+
+    taskcard_context_menu: {
+      shouldShow: state.app.ui_taskcard_context_menu.shouldShow,
+      anchor: state.app.ui_taskcard_context_menu.anchor,
     },
     newTaskDisplay: state.taskDisplay.newTaskDisplay,
   };

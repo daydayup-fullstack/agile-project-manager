@@ -15,6 +15,7 @@ const ActionList = ({
   header_project_icon_popup,
   header_project_info_popup,
   header_profile_popup,
+  taskcard_context_menu,
   currentWorkspace,
   workspaces,
   header_filter_popup,
@@ -300,6 +301,50 @@ const ActionList = ({
     }
   };
 
+  const TaskcardContextPopup = () => {
+    return (
+      <div className="TaskcardContextPopup">
+        <ul className={"TaskcardContextPopup__actions"}>
+          <li>
+            <span className={"material-icons-outlined icon"}>check_circle</span>
+            <span>Mark complete</span>
+          </li>
+          <li>
+            <span className={"material-icons-outlined icon"}>visibility</span>
+            <span>View details</span>
+          </li>
+          <li>
+            <span className={"material-icons-outlined icon"}>fullscreen</span>
+            <span>Full screen</span>
+          </li>
+          <li>
+            <span className={"material-icons-outlined icon"}>tab</span>
+            <span>Open in new tab</span>
+          </li>
+          <li>
+            <span className={"material-icons-outlined icon"}>link</span>
+            <span>Copy task link</span>
+          </li>
+          <li>
+            <span className={"material-icons-outlined icon"}>file_copy</span>
+            <span>Duplicate task</span>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <span>Copy task name</span>
+          </li>
+        </ul>
+
+        <ul>
+          <li>
+            <span>Delete task</span>
+          </li>
+        </ul>
+      </div>
+    );
+  };
+
   return (
     <div className={"ActionList"} ref={popupItself}>
       {projectCard_popup.shouldShow && <ProjectCardPopup />}
@@ -307,6 +352,7 @@ const ActionList = ({
       {header_profile_popup.shouldShow && <ProfilePopup />}
       {header_project_icon_popup.shouldShow && <ProjectIconPopup />}
       {header_filter_popup.shouldShow && determineContent()}
+      {taskcard_context_menu.shouldShow && <TaskcardContextPopup />}
     </div>
   );
 };
@@ -330,6 +376,9 @@ const mapStateToProps = (state) => {
     header_filter_popup: {
       shouldShow: state.app.ui_header_filter_popup.shouldShow,
       content: state.app.ui_header_filter_popup.content,
+    },
+    taskcard_context_menu: {
+      shouldShow: state.app.ui_taskcard_context_menu.shouldShow,
     },
     currentWorkspace: state.workspace,
     workspaces: state.user.workspaces,

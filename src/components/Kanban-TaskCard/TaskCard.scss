@@ -3,7 +3,7 @@
 .taskCard {
   @include debug;
   width: 17.5rem;
-  min-height: 6.25rem;
+  min-height: 5.25rem;
   padding: 1rem;
   padding-bottom: 0;
   border: 1px solid $gray-200;
@@ -21,12 +21,20 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  outline: none;
+
+  &--highlighted {
+    border: 1px solid #20aaea;
+    background: rgba(#20aaea,0.1);
+  }
 
   .coverImage {
     margin-bottom: 0.8rem;
   }
 
   &:hover {
+    cursor: pointer;
+
     .extra,
     .content button {
       visibility: visible;
@@ -67,6 +75,7 @@
       transform: scale(0.8);
       visibility: hidden;
       cursor: pointer;
+
       span {
         color: $gray-300;
 
@@ -98,6 +107,7 @@
         list-style: none;
         display: flex;
         align-items: center;
+
         .button {
           width: 1.5rem;
           height: 1.5rem;
@@ -110,11 +120,14 @@
         }
       }
     }
+
     .info {
       width: fit-content;
+
       ul {
         list-style: none;
         display: flex;
+
         li {
           display: flex;
           align-items: center;

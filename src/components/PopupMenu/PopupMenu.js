@@ -9,6 +9,8 @@ import {
   hide_header_projectIcon_popup,
   hide_header_projectInfo_popup,
   hide_projectCard_popup,
+  hide_taskcard_context_menu,
+  show_taskcard_context_menu,
 } from "../../actions";
 
 const PopupMenu = ({
@@ -21,6 +23,8 @@ const PopupMenu = ({
   header_projectIcon_popup,
   hide_header_addButton_popup,
   hide_header_filter_popup,
+  hide_taskcard_context_menu,
+  show_taskcard_context_menu,
 }) => {
   const [origin, setOrigin] = React.useState({
     x: 0,
@@ -53,6 +57,7 @@ const PopupMenu = ({
     hide_header_projectInfo_popup();
     hide_header_addButton_popup();
     hide_header_filter_popup();
+    hide_taskcard_context_menu();
   };
 
   const styleFix = header_projectIcon_popup.shouldShow
@@ -63,7 +68,14 @@ const PopupMenu = ({
     : {};
 
   return (
-    <div className="PopupMenu" onClick={dismiss}>
+    <div
+      className="PopupMenu"
+      onClick={dismiss}
+      onContextMenu={(e) => {
+        e.preventDefault();
+        dismiss();
+      }}
+    >
       <div
         className="menu"
         style={{
@@ -95,4 +107,6 @@ export default connect(mapStateToProps, {
   hide_header_projectInfo_popup,
   hide_header_addButton_popup,
   hide_header_filter_popup,
+  hide_taskcard_context_menu,
+  show_taskcard_context_menu,
 })(PopupMenu);

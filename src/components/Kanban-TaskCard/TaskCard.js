@@ -2,10 +2,26 @@ import React from "react";
 import "./TaskCard.css";
 import { Draggable } from "react-beautiful-dnd";
 import { connect } from "react-redux";
-import { project_changed } from "../../actions";
+import { project_changed, show_taskcard_context_menu } from "../../actions";
 import CoverPhotoBlock from "../CoverPhotoBlock/CoverPhotoBlock";
 
-const TaskCard = ({ task, index, project_changed, project, columnId }) => {
+const TaskCard = ({
+  task,
+  index,
+  project_changed,
+  project,
+  columnId,
+  show_taskcard_context_menu,
+  shouldShow,
+}) => {
+  const [showContextMenu, setShowContextMenu] = React.useState(false);
+
+  React.useEffect(() => {
+    if (shouldShow === false) {
+      setShowContextMenu(shouldShow);
+    }
+  }, [shouldShow]);
+
   function handleKeyDown(e) {
     if (e.key === "Enter") {
       updateProject(e);
@@ -64,14 +80,31 @@ const TaskCard = ({ task, index, project_changed, project, columnId }) => {
     }
   };
 
+  function handleRightClick(e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    setShowContextMenu(true);
+
+    show_taskcard_context_menu({
+      anchor: {
+        x: e.clientX,
+        y: e.clientY,
+        width: e.currentTarget.clientWidth,
+        height: e.currentTarget.clientHeight,
+      },
+    });
+  }
+
   return (
     <Draggable draggableId={task.id} type={"task"} index={index}>
       {(provided) => (
         <div
-          className={"taskCard"}
+          className={`taskCard ${showContextMenu && "taskCard--highlighted"}`}
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
+          onContextMenu={(event) => handleRightClick(event)}
         >
           {task.attachments && task.attachments.length > 0 && (
             <div className="coverImage">
@@ -140,7 +173,11 @@ const TaskCard = ({ task, index, project_changed, project, columnId }) => {
 const mapStateToProps = (state) => {
   return {
     project: state.project,
+    shouldShow: state.app.ui_taskcard_context_menu.shouldShow,
   };
 };
 
-export default connect(mapStateToProps, { project_changed })(TaskCard);
+export default connect(mapStateToProps, {
+  project_changed,
+  show_taskcard_context_menu,
+})(TaskCard);

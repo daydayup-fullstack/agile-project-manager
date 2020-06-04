@@ -89,7 +89,6 @@ export const add_task_to_project = ({ task, column, project }) => {
   };
 };
 
-
 //endregion
 
 // ================ ui state ======================
@@ -206,6 +205,23 @@ export const HIDE_HEADER_FILTER_POPUP = "HIDE_HEADER_FILTER_POPUP";
 export const hide_header_filter_popup = () => {
   return {
     type: HIDE_HEADER_FILTER_POPUP,
+  };
+};
+
+// taskcard - context popup
+export const SHOW_TASKCARD_CONTEXT_MENU_POPUP =
+  "SHOW_TASKCARD_CONTEXT_MENU_POPUP";
+export const show_taskcard_context_menu = ({ anchor }) => {
+  return {
+    type: SHOW_TASKCARD_CONTEXT_MENU_POPUP,
+    anchor,
+  };
+};
+export const HIDE_TASKCARD_CONTEXT_MENU_POPUP =
+  "HIDE_TASKCARD_CONTEXT_MENU_POPUP";
+export const hide_taskcard_context_menu = () => {
+  return {
+    type: HIDE_TASKCARD_CONTEXT_MENU_POPUP,
   };
 };
 //endregion
