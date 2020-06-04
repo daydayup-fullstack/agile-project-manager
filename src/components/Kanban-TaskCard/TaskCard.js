@@ -1,12 +1,67 @@
 import React from "react";
 import "./TaskCard.css";
 import { Draggable } from "react-beautiful-dnd";
+import { connect } from "react-redux";
+import { project_changed } from "../../actions";
 
-const TaskCard = ({ task, index }) => {
+const TaskCard = ({ task, index, project_changed, project, columnId }) => {
   function handleKeyDown(e) {
     if (e.key === "Enter") {
+      updateProject(e);
+    }
+
+    if (e.key === "Escape") {
+      e.target.value = "";
+      updateProject(e);
     }
   }
+
+  function handleBlur(e) {
+    updateProject(e);
+  }
+
+  const updateProject = (e) => {
+    if (e.target.value) {
+      // save it to project
+      const newTask = {
+        ...task,
+        name: e.target.value,
+      };
+
+      const updatedProject = {
+        ...project,
+        tasks: {
+          ...project.tasks,
+          [task.id]: newTask,
+        },
+      };
+
+      project_changed(updatedProject);
+    } else {
+      //  empty value, remove the current task
+
+      // delete project.tasks[task.id];
+
+      delete project.tasks[task.id];
+
+      const updatedProject = {
+        ...project,
+        columns: {
+          ...project.columns,
+          [columnId]: {
+            ...project.columns[columnId],
+            taskIds: [
+              ...project.columns[columnId].taskIds.filter(
+                (id) => id !== task.id
+              ),
+            ],
+          },
+        },
+      };
+
+      project_changed(updatedProject);
+    }
+  };
 
   return (
     <Draggable draggableId={task.id} type={"task"} index={index}>
@@ -22,10 +77,10 @@ const TaskCard = ({ task, index }) => {
               <div className={"name"}>{task.name}</div>
             ) : (
               <textarea
-                type={"text"}
                 className={"new-task-input"}
                 autoFocus
                 onKeyDown={(e) => handleKeyDown(e)}
+                onBlur={(event) => handleBlur(event)}
               />
             )}
 
@@ -54,7 +109,7 @@ const TaskCard = ({ task, index }) => {
                     <span>1</span>
                     <span className={"material-icons"}>perm_identity</span>
                   </li>
-                  {/*TODO - Unknown style conflict to be fixed when integrate components*/}
+                  {/*/!*TODO - Unknown style conflict to be fixed when integrate components*!/*/}
                   {/*<li>*/}
                   {/*  <span className={"material-icons"}>calender_today</span>*/}
                   {/*</li>*/}
@@ -76,4 +131,10 @@ const TaskCard = ({ task, index }) => {
   );
 };
 
-export default TaskCard;
+const mapStateToProps = (state) => {
+  return {
+    project: state.project,
+  };
+};
+
+export default connect(mapStateToProps, { project_changed })(TaskCard);

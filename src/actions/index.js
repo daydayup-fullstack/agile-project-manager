@@ -88,13 +88,6 @@ export const add_task_to_project = ({ task, column, project }) => {
   };
 };
 
-export const REMOVE_TASK = "REMOVE_TASK";
-export const remove_task = (task) => {
-  return {
-    type: REMOVE_TASK,
-    task,
-  };
-};
 
 //endregion
 

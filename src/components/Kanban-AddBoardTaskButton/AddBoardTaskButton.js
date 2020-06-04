@@ -1,11 +1,7 @@
 import React from "react";
 import "./AddBoardTaskButton.css";
 import { connect } from "react-redux";
-import {
-  project_changed,
-  start_adding_task_in_column,
-  start_creating_new_task,
-} from "../../actions";
+import { project_changed } from "../../actions";
 import { generateId } from "../../model/utility";
 
 const AddBoardTaskButton = ({
@@ -14,14 +10,11 @@ const AddBoardTaskButton = ({
   currentUser,
   project_changed,
 }) => {
-  console.log(project);
-
   const handleClick = (e) => {
     const task = {
       id: generateId(),
       name: "",
-      columnId: column.id,
-      auhorId: currentUser.id,
+      authorId: currentUser.id,
     };
 
     const updatedProject = {

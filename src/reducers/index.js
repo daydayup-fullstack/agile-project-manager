@@ -19,7 +19,7 @@ import {
   SHOW_HEADER_PROFILE_POPUP,
   SHOW_HEADER_PROJECT_ICON_POPUP,
   SHOW_HEADER_PROJECT_INFO_POPUP,
-  SHOW_PROJECT_CARD_POPUP, START_ADDING_TASK_IN_COLUMN,
+  SHOW_PROJECT_CARD_POPUP,
 } from "../actions";
 const devId = "user-scott";
 
@@ -276,7 +276,6 @@ export const project = (state = {}, action) => {
       };
   }
 };
-
 
 // ============= New TaskDisplay reducers ===============
 
