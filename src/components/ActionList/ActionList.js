@@ -3,7 +3,11 @@ import "./ActionList.css";
 import ColorArray from "../ColorArray/ColorArray";
 import IconArray from "../IconArray/IconArray";
 import { connect } from "react-redux";
-import { add_project_star, remove_project_star } from "../../actions";
+import {
+  add_project_star,
+  project_changed,
+  remove_project_star,
+} from "../../actions";
 import { db_workspaces } from "../../data/database";
 
 const ActionList = ({
@@ -15,9 +19,12 @@ const ActionList = ({
   header_project_icon_popup,
   header_project_info_popup,
   header_profile_popup,
+  taskcard_context_menu,
   currentWorkspace,
   workspaces,
   header_filter_popup,
+  column_popup,
+  project_changed,
 }) => {
   const expandableAction = React.useRef(null);
   const popupItself = React.useRef(null);
@@ -300,13 +307,86 @@ const ActionList = ({
     }
   };
 
+  const TaskcardContextPopup = () => {
+    return (
+      <div className="TaskcardContextPopup">
+        <ul className={"TaskcardContextPopup__actions"}>
+          <li>
+            <span className={"material-icons-outlined icon"}>check_circle</span>
+            <span>Mark complete</span>
+          </li>
+          <li>
+            <span className={"material-icons-outlined icon"}>visibility</span>
+            <span>View details</span>
+          </li>
+          <li>
+            <span className={"material-icons-outlined icon"}>fullscreen</span>
+            <span>Full screen</span>
+          </li>
+          <li>
+            <span className={"material-icons-outlined icon"}>tab</span>
+            <span>Open in new tab</span>
+          </li>
+          <li>
+            <span className={"material-icons-outlined icon"}>link</span>
+            <span>Copy task link</span>
+          </li>
+          <li>
+            <span className={"material-icons-outlined icon"}>file_copy</span>
+            <span>Duplicate task</span>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <span>Copy task name</span>
+          </li>
+        </ul>
+
+        <ul>
+          <li>
+            <span>Delete task</span>
+          </li>
+        </ul>
+      </div>
+    );
+  };
+
+  const ColumnPopup = () => {
+    // todo - fix the dispositioning effect bug after horizontal scroll
+    function deleteColumn() {
+      const columnId = column_popup.column.id;
+
+      const updatedProject = {
+        ...project,
+        columnOrder: project.columnOrder.filter((id) => id !== columnId),
+      };
+
+      delete updatedProject.columns[columnId];
+
+      column_popup.column.taskIds.map((taskId) => {
+        delete updatedProject.tasks[taskId];
+        return null;
+      });
+
+      project_changed(updatedProject);
+    }
+
+    return (
+      <ul className={"ColumnPopup"}>
+        <li onClick={deleteColumn}>Delete column</li>
+      </ul>
+    );
+  };
+
   return (
     <div className={"ActionList"} ref={popupItself}>
+      {column_popup.shouldShow && <ColumnPopup />}
       {projectCard_popup.shouldShow && <ProjectCardPopup />}
       {header_project_info_popup.shouldShow && <ProjectCardPopup />}
       {header_profile_popup.shouldShow && <ProfilePopup />}
       {header_project_icon_popup.shouldShow && <ProjectIconPopup />}
       {header_filter_popup.shouldShow && determineContent()}
+      {taskcard_context_menu.shouldShow && <TaskcardContextPopup />}
     </div>
   );
 };
@@ -331,12 +411,20 @@ const mapStateToProps = (state) => {
       shouldShow: state.app.ui_header_filter_popup.shouldShow,
       content: state.app.ui_header_filter_popup.content,
     },
+    taskcard_context_menu: {
+      shouldShow: state.app.ui_taskcard_context_menu.shouldShow,
+    },
+    column_popup: {
+      shouldShow: state.app.ui_column_popup.shouldShow,
+      column: state.app.ui_column_popup.column,
+    },
     currentWorkspace: state.workspace,
     workspaces: state.user.workspaces,
   };
 };
 
 export default connect(mapStateToProps, {
+  project_changed,
   remove_project_star,
   add_project_star,
 })(ActionList);
