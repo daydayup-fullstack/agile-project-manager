@@ -352,9 +352,8 @@ const ActionList = ({
   };
 
   const ColumnPopup = () => {
+    // todo - fix the dispositioning effect bug after horizontal scroll
     function deleteColumn() {
-      console.log(column_popup);
-
       const columnId = column_popup.column.id;
 
       const updatedProject = {
@@ -366,6 +365,7 @@ const ActionList = ({
 
       column_popup.column.taskIds.map((taskId) => {
         delete updatedProject.tasks[taskId];
+        return null;
       });
 
       project_changed(updatedProject);

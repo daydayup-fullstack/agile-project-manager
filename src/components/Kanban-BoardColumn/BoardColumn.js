@@ -4,8 +4,6 @@ import { Draggable } from "react-beautiful-dnd";
 import AddBoardTaskButton from "../Kanban-AddBoardTaskButton/AddBoardTaskButton";
 import { connect } from "react-redux";
 import { project_changed, show_column_popup } from "../../actions";
-import PopupMenu from "../PopupMenu/PopupMenu";
-import ActionList from "../ActionList/ActionList";
 
 const BoardColumn = ({
   column,
