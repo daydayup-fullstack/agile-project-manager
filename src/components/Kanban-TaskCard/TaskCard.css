@@ -27,7 +27,7 @@
 }
 .taskCard .taskCard__top {
   width: 100%;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
 }
 .taskCard .taskCard__top .complete-button {
   font-size: 0.63rem;
@@ -131,8 +131,9 @@
   color: #9ca6af;
   line-height: 1.5;
 }
-.taskCard .extra .info ul li .material-icons {
-  font-size: 0.8rem;
+.taskCard .extra .info ul li .material-icons,
+.taskCard .extra .info ul li .material-icons-outlined {
+  font-size: 0.9rem;
   margin-left: 0.25rem;
   color: #9ca6af;
 }

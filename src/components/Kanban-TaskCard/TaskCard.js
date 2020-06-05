@@ -217,18 +217,18 @@ const TaskCard = ({
                   <li className={"button"}>{renderDueDate()}</li>
                 </ul>
               </div>
-              <div className="info">
-                <ul>
-                  {task.likedBy && task.likedBy.length > 0 && (
-                    <li>
-                      <span className={"numberOfLikes"}>
-                        {task.likedBy.length}
-                      </span>
-                      <span className={"material-icons"}>thumb_up</span>
-                    </li>
-                  )}
-                </ul>
-              </div>
+              {/*<div className="info">*/}
+              {/*  <ul>*/}
+              {/*    {task.likedBy && task.likedBy.length > 0 && (*/}
+              {/*      <li>*/}
+              {/*        <span className={"numberOfLikes"}>*/}
+              {/*          {task.likedBy.length}*/}
+              {/*        </span>*/}
+              {/*        <span className={"material-icons"}>thumb_up</span>*/}
+              {/*      </li>*/}
+              {/*    )}*/}
+              {/*  </ul>*/}
+              {/*</div>*/}
             </div>
           )}
         </div>

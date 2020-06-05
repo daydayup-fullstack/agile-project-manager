@@ -27,14 +27,13 @@
     background: rgba(#20aaea, 0.1);
   }
 
-  &--completed{
+  &--completed {
     opacity: 0.5;
-
   }
 
   .taskCard__top {
     width: 100%;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
     .complete-button {
       font-size: $desc-size * 0.7;
 
@@ -160,8 +159,9 @@
             line-height: 1.5;
           }
 
-          .material-icons {
-            font-size: 0.8rem;
+          .material-icons,
+          .material-icons-outlined {
+            font-size: 0.9rem;
             margin-left: 0.25rem;
             color: $gray-300;
           }
