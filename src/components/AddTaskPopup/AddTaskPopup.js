@@ -4,8 +4,8 @@ import Profile from '../Profile/Profile'
 import { changeNewTaskDisplay, changeCalendarDisplay } from '../../actions/index'
 import { connect } from 'react-redux';
 import CalendarPopup from '../CalendarPopup/CalendarPopup'
-const userApi = "https://daydayup-proj3.herokuapp.com/users"
-const proxyurl = "https://cors-anywhere.herokuapp.com/";
+// const userApi = "https://daydayup-proj3.herokuapp.com/users"
+// const proxyurl = "https://cors-anywhere.herokuapp.com/";
 class AddTaskPopup extends React.Component {
     constructor(props) {
         super(props);
@@ -69,8 +69,8 @@ class AddTaskPopup extends React.Component {
 
 
     async componentDidMount() {
-        const response = await (await fetch(proxyurl + userApi));
-        const user = response.json().then((value) => this.setState({ user: value["user-scott"] }));
+        // const response = await (await fetch(proxyurl + userApi));
+        // const user = response.json().then((value) => this.setState({ user: value["user-scott"] }));
 
     }
 

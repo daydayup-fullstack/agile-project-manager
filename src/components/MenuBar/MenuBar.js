@@ -17,7 +17,6 @@ import {
 import Filterbar from "../Filterbar/Filterbar";
 import { colors, iconNames } from "../../model/model";
 import MultipleUserProfile from "../MultipleUserProfile/MultipleUserProfile";
-import { workspace } from "../../reducers";
 
 const MenuBar = ({
   shouldOpen,

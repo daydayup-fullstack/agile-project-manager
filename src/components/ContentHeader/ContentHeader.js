@@ -73,7 +73,7 @@ const ContentHeader = ({
 };
 
 function mapStateToProps(state) {
-  console.log(state.workspace);
+  // console.log(state.workspace);
   return {
     newTaskDisplay: state.taskDisplay.newTaskDisplay,
     shouldOpen: state.app.ui_drawer.shouldOpen,

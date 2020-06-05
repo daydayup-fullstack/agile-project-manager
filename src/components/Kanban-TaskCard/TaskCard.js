@@ -8,9 +8,6 @@ import CircularButton from "../CircularButton/CircularButton";
 import Profile from "../Profile/Profile";
 import { db_users } from "../../data/database";
 import DateDisplay from "../DateDisplay/DateDisplay";
-import PersonAssignment from "../PersonAssignment/PersonAssignment";
-import { workspace } from "../../reducers";
-import PopupMenu from "../PopupMenu/PopupMenu";
 
 const TaskCard = ({
   task,
@@ -105,19 +102,21 @@ const TaskCard = ({
   }
 
   const renderUserProfile = () => {
-    if (!task.assignedUserId || task.assignedUserId === "") {
-      return (
-        <CircularButton
-          iconName={"person_outline"}
-          onCircularButtonClick={() => {}}
-        />
-      );
-    } else {
+    if (task.assignedUserId && task.assignedUserId !== "") {
       return (
         <>
           <Profile user={db_users[task.assignedUserId]} />
         </>
       );
+    } else {
+      if (showExtra || task.dueDate) {
+        return (
+          <CircularButton
+            iconName={"person_outline"}
+            onCircularButtonClick={() => {}}
+          />
+        );
+      }
     }
   };
 
@@ -203,7 +202,7 @@ const TaskCard = ({
 };
 
 const mapStateToProps = (state) => {
-  console.log(state.workspace);
+  // console.log(state.workspace);
   return {
     project: state.project,
     shouldShow: state.app.ui_taskcard_context_menu.shouldShow,
