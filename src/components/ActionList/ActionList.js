@@ -9,6 +9,7 @@ import {
   remove_project_star,
 } from "../../actions";
 import { db_workspaces } from "../../data/database";
+import { generateId } from "../../model/utility";
 
 const ActionList = ({
   project,
@@ -308,42 +309,114 @@ const ActionList = ({
   };
 
   const TaskcardContextPopup = () => {
+    const task = taskcard_context_menu.task;
+    const columnId = taskcard_context_menu.columnId;
+    const project = taskcard_context_menu.project;
+    //
+    //   function markComplete() {
+    //     const updatedProject = {
+    //       ...project,
+    //       tasks: {
+    //         ...project.tasks,
+    //         [task.id]: {
+    //           ...project.tasks[task.id],
+    //           isCompleted: !task.isCompleted,
+    //         },
+    //       },
+    //     };
+    //
+    //     project_changed(updatedProject);
+    //   }
+
+    function duplicateTask() {
+      const id = generateId();
+      const index = project.columns[columnId].taskIds.indexOf(task.id);
+      const newTask = { ...task, id: id, createdOn: new Date().getTime() };
+      const newTaskIds = [...project.columns[columnId].taskIds];
+      newTaskIds.splice(index, 0, id);
+
+      const updatedProject = {
+        ...project,
+        tasks: {
+          ...project.tasks,
+          [id]: newTask,
+        },
+        columns: {
+          ...project.columns,
+          [columnId]: {
+            ...project.columns[columnId],
+            taskIds: newTaskIds,
+          },
+        },
+      };
+
+      console.log(updatedProject.columns[columnId]);
+
+      project_changed(updatedProject);
+    }
+
+    function copyTaskName() {
+      return undefined;
+    }
+
+    function deleteTask() {
+      const taskIds = project.columns[columnId].taskIds;
+      const index = taskIds.indexOf(task.id);
+      const newTaskIds = [...taskIds];
+      newTaskIds.splice(index, 1);
+
+      const updatedProject = {
+        ...project,
+        columns: {
+          ...project.columns,
+          [columnId]: {
+            ...project.columns[columnId],
+            taskIds: newTaskIds,
+          },
+        },
+      };
+
+      project_changed(updatedProject);
+    }
+
+    function renameTask(e) {}
+
     return (
       <div className="TaskcardContextPopup">
         <ul className={"TaskcardContextPopup__actions"}>
-          <li>
-            <span className={"material-icons-outlined icon"}>check_circle</span>
-            <span>Mark complete</span>
+          {/*<li onClick={() => markComplete()}>*/}
+          {/*  <span className={"material-icons-outlined icon"}>check_circle</span>*/}
+          {/*  <span>Mark complete</span>*/}
+          {/*</li>*/}
+          <li onClick={(e) => renameTask(e)}>
+            <span className={"material-icons-outlined icon"}>create</span>
+            <span>Rename task</span>
           </li>
-          <li>
-            <span className={"material-icons-outlined icon"}>visibility</span>
-            <span>View details</span>
-          </li>
-          <li>
-            <span className={"material-icons-outlined icon"}>fullscreen</span>
-            <span>Full screen</span>
-          </li>
-          <li>
-            <span className={"material-icons-outlined icon"}>tab</span>
-            <span>Open in new tab</span>
-          </li>
-          <li>
-            <span className={"material-icons-outlined icon"}>link</span>
-            <span>Copy task link</span>
-          </li>
-          <li>
+          {/*<li>*/}
+          {/*  <span className={"material-icons-outlined icon"}>fullscreen</span>*/}
+          {/*  <span>Full screen</span>*/}
+          {/*</li>*/}
+          {/*<li>*/}
+          {/*  <span className={"material-icons-outlined icon"}>tab</span>*/}
+          {/*  <span>Open in new tab</span>*/}
+          {/*</li>*/}
+          {/*<li>*/}
+          {/*  <span className={"material-icons-outlined icon"}>link</span>*/}
+          {/*  <span>Copy task link</span>*/}
+          {/*</li>*/}
+          <li onClick={() => duplicateTask()}>
             <span className={"material-icons-outlined icon"}>file_copy</span>
             <span>Duplicate task</span>
           </li>
         </ul>
         <ul>
-          <li>
+          <li onClick={() => copyTaskName()}>
             <span>Copy task name</span>
           </li>
         </ul>
 
         <ul>
-          <li>
+          <li onClick={() => deleteTask()}>
             <span>Delete task</span>
           </li>
         </ul>
@@ -413,6 +486,9 @@ const mapStateToProps = (state) => {
     },
     taskcard_context_menu: {
       shouldShow: state.app.ui_taskcard_context_menu.shouldShow,
+      task: state.app.ui_taskcard_context_menu.task,
+      columnId: state.app.ui_taskcard_context_menu.columnId,
+      project: state.app.ui_taskcard_context_menu.project,
     },
     column_popup: {
       shouldShow: state.app.ui_column_popup.shouldShow,

@@ -8,6 +8,7 @@ import CircularButton from "../CircularButton/CircularButton";
 import Profile from "../Profile/Profile";
 import { db_users } from "../../data/database";
 import DateDisplay from "../DateDisplay/DateDisplay";
+import CompleteButton from "../CompleteButton/CompleteButton";
 
 const TaskCard = ({
   task,
@@ -17,6 +18,7 @@ const TaskCard = ({
   columnId,
   show_taskcard_context_menu,
   shouldShow,
+  shouldEditTaskName,
 }) => {
   const [showContextMenu, setShowContextMenu] = React.useState(false);
   const [showExtra, setShowExtra] = React.useState(false);
@@ -98,6 +100,9 @@ const TaskCard = ({
         width: e.currentTarget.clientWidth,
         height: e.currentTarget.clientHeight,
       },
+      task: task,
+      columnId: columnId,
+      project: project,
     });
   }
 
@@ -143,6 +148,21 @@ const TaskCard = ({
     setShowExtra(false);
   }
 
+  let toggleCompleted = () => {
+    const updatedProject = {
+      ...project,
+      tasks: {
+        ...project.tasks,
+        [task.id]: {
+          ...project.tasks[task.id],
+          isCompleted: !task.isCompleted,
+        },
+      },
+    };
+
+    project_changed(updatedProject);
+  };
+
   return (
     <Draggable draggableId={task.id} type={"task"} index={index}>
       {(provided) => (
@@ -154,16 +174,33 @@ const TaskCard = ({
           onContextMenu={(event) => handleRightClick(event)}
           onMouseOver={(e) => handleMouseover(e)}
           onMouseLeave={(e) => handleMouseleave(e)}
+          // style={task.isCompleted ? { opacity: "0.5" } : {}}
         >
+          {task.name && task.name !== "" && (
+            <div className="taskCard__top">
+              <CompleteButton
+                completed={task.isCompleted}
+                onClick={toggleCompleted}
+              />
+            </div>
+          )}
+
           {task.attachments && task.attachments.length > 0 && (
-            <div className="coverImage">
+            <div
+              className={`coverImage  ${
+                task.isCompleted && "taskCard--completed"
+              }`}
+            >
               <CoverPhotoBlock imageUrl={task.attachments[0]} />
             </div>
           )}
-          <div className="content">
-            {task.name ? (
+          <div
+            className={`content ${task.isCompleted && "taskCard--completed"}`}
+          >
+            {task.name && !shouldEditTaskName && (
               <div className={"name"}>{task.name}</div>
-            ) : (
+            )}
+            {shouldEditTaskName && (
               <textarea
                 className={"new-task-input"}
                 autoFocus
@@ -174,25 +211,27 @@ const TaskCard = ({
           </div>
 
           {task.name && task.name !== "" && (
-            <div className="extra">
+            <div
+              className={`extra ${task.isCompleted && "taskCard--completed"}`}
+            >
               <div className="actions">
                 <ul>
                   <li className={"button"}>{renderUserProfile()}</li>
                   <li className={"button"}>{renderDueDate()}</li>
                 </ul>
               </div>
-              <div className="info">
-                <ul>
-                  {task.likedBy && task.likedBy.length > 0 && (
-                    <li>
-                      <span className={"numberOfLikes"}>
-                        {task.likedBy.length}
-                      </span>
-                      <span className={"material-icons"}>thumb_up</span>
-                    </li>
-                  )}
-                </ul>
-              </div>
+              {/*<div className="info">*/}
+              {/*  <ul>*/}
+              {/*    {task.likedBy && task.likedBy.length > 0 && (*/}
+              {/*      <li>*/}
+              {/*        <span className={"numberOfLikes"}>*/}
+              {/*          {task.likedBy.length}*/}
+              {/*        </span>*/}
+              {/*        <span className={"material-icons"}>thumb_up</span>*/}
+              {/*      </li>*/}
+              {/*    )}*/}
+              {/*  </ul>*/}
+              {/*</div>*/}
             </div>
           )}
         </div>
@@ -202,7 +241,6 @@ const TaskCard = ({
 };
 
 const mapStateToProps = (state) => {
-  // console.log(state.workspace);
   return {
     project: state.project,
     shouldShow: state.app.ui_taskcard_context_menu.shouldShow,

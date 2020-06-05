@@ -157,8 +157,6 @@ export const hide_header_projectIcon_popup = () => {
   };
 };
 
-
-
 //header - project - profile
 export const SHOW_HEADER_PROFILE_POPUP = "SHOW_HEADER_PROFILE_POPUP";
 export const show_header_profile_popup = ({ anchor }) => {
@@ -224,10 +222,18 @@ export const hide_header_filter_popup = () => {
 // taskcard - context popup
 export const SHOW_TASKCARD_CONTEXT_MENU_POPUP =
   "SHOW_TASKCARD_CONTEXT_MENU_POPUP";
-export const show_taskcard_context_menu = ({ anchor }) => {
+export const show_taskcard_context_menu = ({
+  anchor,
+  task,
+  columnId,
+  project,
+}) => {
   return {
     type: SHOW_TASKCARD_CONTEXT_MENU_POPUP,
     anchor,
+    task,
+    project,
+    columnId,
   };
 };
 export const HIDE_TASKCARD_CONTEXT_MENU_POPUP =
@@ -254,6 +260,3 @@ export const hide_column_popup = () => {
   };
 };
 //endregion
-
-
-
