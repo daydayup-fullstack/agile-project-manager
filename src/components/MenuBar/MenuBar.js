@@ -17,6 +17,7 @@ import {
 import Filterbar from "../Filterbar/Filterbar";
 import { colors, iconNames } from "../../model/model";
 import MultipleUserProfile from "../MultipleUserProfile/MultipleUserProfile";
+import { workspace } from "../../reducers";
 
 const MenuBar = ({
   shouldOpen,
@@ -120,18 +121,20 @@ const MenuBar = ({
           </div>
         </div>
         <div className={"MenuBar__more-content"}>
-          <div className="MultipleUserProfile">
-            <MultipleUserProfile
-              multipleUsers={[
-                db_users["user-lawrence"],
-                db_users["user-ollie"],
-                db_users["user-scott"],
-                db_users["user-sarah"],
-                db_users["user-silvia"],
-              ]}
-              projectName={"DayDayUp"}
-            />
-          </div>
+          {workspace.type === "team" && (
+            <div className="MultipleUserProfile">
+              <MultipleUserProfile
+                multipleUsers={[
+                  db_users["user-lawrence"],
+                  db_users["user-ollie"],
+                  db_users["user-scott"],
+                  db_users["user-sarah"],
+                  db_users["user-silvia"],
+                ]}
+                projectName={"DayDayUp"}
+              />
+            </div>
+          )}
           <ul className={"userSection"}>
             <li>
               <AddButtonCircular

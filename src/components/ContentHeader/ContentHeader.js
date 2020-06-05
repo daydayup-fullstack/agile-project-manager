@@ -9,13 +9,12 @@ import { changeNewTaskDisplay } from "../../actions/index";
 import { open_app_drawer, show_header_profile_popup } from "../../actions";
 import { calcAnchor } from "../../model/utility";
 
-
-
 const ContentHeader = ({
   shouldOpen,
   open_app_drawer,
   show_header_profile_popup,
   currentUser,
+  workspace,
 }) => {
   return (
     <>
@@ -43,18 +42,20 @@ const ContentHeader = ({
           {/*</span>*/}
         </div>
         <div className={"more-content"}>
-          <div className="more-content__MultipleUserProfile">
-            <MultipleUserProfile
-              multipleUsers={[
-                db_users["user-lawrence"],
-                db_users["user-ollie"],
-                db_users["user-scott"],
-                db_users["user-sarah"],
-                db_users["user-silvia"],
-              ]}
-              projectName={"DayDayUp"}
-            />
-          </div>
+          {workspace.type === "team" && (
+            <div className="more-content__MultipleUserProfile">
+              <MultipleUserProfile
+                multipleUsers={[
+                  db_users["user-lawrence"],
+                  db_users["user-ollie"],
+                  db_users["user-scott"],
+                  db_users["user-sarah"],
+                  db_users["user-silvia"],
+                ]}
+                projectName={"DayDayUp"}
+              />
+            </div>
+          )}
           <ul className={"more-content__userSection"}>
             <li>
               <AddButtonCircular />
@@ -73,7 +74,6 @@ const ContentHeader = ({
           </ul>
         </div>
       </header>
-
     </>
   );
 };
@@ -83,6 +83,7 @@ function mapStateToProps(state) {
     newTaskDisplay: state.taskDisplay.newTaskDisplay,
     shouldOpen: state.app.ui_drawer.shouldOpen,
     currentUser: state.user,
+    workspace: state.workspace,
   };
 }
 

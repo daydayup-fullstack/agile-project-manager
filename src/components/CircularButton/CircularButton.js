@@ -1,11 +1,10 @@
 import React from "react";
 import "./CircularButton.css";
 
-const CircularButton = ({iconName, onCircularButtonClick}) => {
-
+const CircularButton = ({ iconName, onCircularButtonClick }) => {
   return (
     <div className="circularButton" onClick={onCircularButtonClick}>
-      <div className="material-icons icon">{iconName}</div>
+      <span className="material-icons icon">{iconName}</span>
     </div>
   );
 };
