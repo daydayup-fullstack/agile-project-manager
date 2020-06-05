@@ -21,6 +21,7 @@ import {
   SHOW_HEADER_PROJECT_INFO_POPUP,
   SHOW_PROJECT_CARD_POPUP,
   CHANGE_NEW_TASK_DISPLAY,
+  CHANGE_CALENDAR_DISPLAY,
   SHOW_TASKCARD_CONTEXT_MENU_POPUP,
   HIDE_TASKCARD_CONTEXT_MENU_POPUP,
   SHOW_COLUMN_POPUP,
@@ -330,6 +331,7 @@ export const project = (state = {}, action) => {
 
 const initialNewTaskDisplay = {
   newTaskDisplay: false,
+  calendarDisplay:false
 };
 
 export const taskDisplay = (state = initialNewTaskDisplay, action) => {
@@ -338,6 +340,12 @@ export const taskDisplay = (state = initialNewTaskDisplay, action) => {
       return {
         ...state,
         newTaskDisplay: action.newTaskDisplay,
+      };
+    }
+    case CHANGE_CALENDAR_DISPLAY: {
+      return {
+        ...state,
+        calendarDisplay: action.calendarDisplay,
       };
     }
     default:
