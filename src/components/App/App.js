@@ -96,13 +96,13 @@ const App = ({
               </Route>
 
               <Route path={"/home"}>
-                <ContentHeader title={"Home"}/>
+                <ContentHeader title={"Home"} />
                 <Home />
               </Route>
 
               <Route path={"/tasks"}>
                 {/*<MyTasks tasks={tasks} />*/}
-                <ContentHeader title={"My Tasks"}/>
+                <ContentHeader title={"My Tasks"} />
               </Route>
 
               <Route path={"/projects/:id"}>
@@ -111,7 +111,7 @@ const App = ({
               </Route>
 
               <Route path={"/team"}>
-                <ContentHeader title={"Team"}/>
+                <ContentHeader title={"Team"} />
                 <Team />
               </Route>
             </Drawer>

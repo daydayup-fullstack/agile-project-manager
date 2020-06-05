@@ -4,7 +4,7 @@
   min-height: 5.25rem;
   padding: 1rem 1rem 0;
   border: 1px solid #e8ecee;
-  background: white;
+  background: #fff;
   border-radius: 0.3rem;
   cursor: pointer;
   box-shadow: 0 1px 3px 0 rgba(21, 27, 38, 0.15);
@@ -21,6 +21,19 @@
 .taskCard--highlighted {
   border: 1px solid #20aaea;
   background: rgba(32, 170, 234, 0.1);
+}
+.taskCard--completed {
+  opacity: 0.5;
+}
+.taskCard .taskCard__top {
+  width: 100%;
+  margin-bottom: 1rem;
+}
+.taskCard .taskCard__top .complete-button {
+  font-size: 0.63rem;
+}
+.taskCard .taskCard__top .complete-button:focus {
+  outline: none;
 }
 .taskCard .coverImage {
   margin-bottom: 0.8rem;

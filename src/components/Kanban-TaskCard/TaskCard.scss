@@ -6,7 +6,7 @@
   min-height: 5.25rem;
   padding: 1rem 1rem 0;
   border: 1px solid $gray-200;
-  background: white;
+  background: #fff;
   border-radius: 0.3rem;
   cursor: pointer;
   box-shadow: 0 1px 3px 0 rgba(21, 27, 38, 0.15);
@@ -25,6 +25,23 @@
   &--highlighted {
     border: 1px solid #20aaea;
     background: rgba(#20aaea, 0.1);
+  }
+
+  &--completed{
+    opacity: 0.5;
+
+  }
+
+  .taskCard__top {
+    width: 100%;
+    margin-bottom: 1rem;
+    .complete-button {
+      font-size: $desc-size * 0.7;
+
+      &:focus {
+        outline: none;
+      }
+    }
   }
 
   .coverImage {

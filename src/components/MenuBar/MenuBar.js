@@ -108,7 +108,7 @@ const MenuBar = ({
             >
               keyboard_arrow_down
             </span>
-            <span className="material-icons-outlined icon">info</span>
+            {/*<span className="material-icons-outlined icon">info</span>*/}
             <span
               className={"material-icons star"}
               onMouseOver={() => setStarHover(true)}

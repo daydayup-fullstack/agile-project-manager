@@ -8,6 +8,7 @@ import CircularButton from "../CircularButton/CircularButton";
 import Profile from "../Profile/Profile";
 import { db_users } from "../../data/database";
 import DateDisplay from "../DateDisplay/DateDisplay";
+import CompleteButton from "../CompleteButton/CompleteButton";
 
 const TaskCard = ({
   task,
@@ -143,6 +144,23 @@ const TaskCard = ({
     setShowExtra(false);
   }
 
+  let toggleCompleted = () => {
+    const updatedProject = {
+      ...project,
+      tasks: {
+        ...project.tasks,
+        [task.id]: {
+          ...project.tasks[task.id],
+          isCompleted: !task.isCompleted,
+        },
+      },
+    };
+
+    console.log(updatedProject);
+
+    project_changed(updatedProject);
+  };
+
   return (
     <Draggable draggableId={task.id} type={"task"} index={index}>
       {(provided) => (
@@ -154,13 +172,29 @@ const TaskCard = ({
           onContextMenu={(event) => handleRightClick(event)}
           onMouseOver={(e) => handleMouseover(e)}
           onMouseLeave={(e) => handleMouseleave(e)}
+          // style={task.isCompleted ? { opacity: "0.5" } : {}}
         >
+          {task.name && task.name !== "" && (
+            <div className="taskCard__top">
+              <CompleteButton
+                completed={task.isCompleted}
+                onClick={toggleCompleted}
+              />
+            </div>
+          )}
+
           {task.attachments && task.attachments.length > 0 && (
-            <div className="coverImage">
+            <div
+              className={`coverImage  ${
+                task.isCompleted && "taskCard--completed"
+              }`}
+            >
               <CoverPhotoBlock imageUrl={task.attachments[0]} />
             </div>
           )}
-          <div className="content">
+          <div
+            className={`content ${task.isCompleted && "taskCard--completed"}`}
+          >
             {task.name ? (
               <div className={"name"}>{task.name}</div>
             ) : (
@@ -174,7 +208,9 @@ const TaskCard = ({
           </div>
 
           {task.name && task.name !== "" && (
-            <div className="extra">
+            <div
+              className={`extra ${task.isCompleted && "taskCard--completed"}`}
+            >
               <div className="actions">
                 <ul>
                   <li className={"button"}>{renderUserProfile()}</li>
