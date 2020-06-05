@@ -1,0 +1,101 @@
+@import "../../style/variables";
+
+.SideMenuSection {
+  width: 240px;
+  background: $gray-500;
+  color: #ffffff;
+  font-family: $font-family;
+  padding: 1rem 0;
+  border-bottom: 1px solid rgba($gray-400, 0.5);
+  overflow-x: hidden;
+  max-width: 240px;
+
+  &__content {
+    header {
+      padding: 0.5rem 1.5rem;
+      display: flex;
+      align-items: center;
+      position: relative;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      span {
+        position: absolute;
+        right: 1.5rem;
+        transform: scale(0.8);
+      }
+    }
+
+    .teamHeader {
+      &:hover {
+        background: rgba($gray-400, 0.5);
+      }
+    }
+
+    .memberList {
+      display: flex;
+      list-style: none;
+      padding-left: 1.5rem;
+      padding-top: 1rem;
+
+      .member {
+        margin-right: 0.25rem;
+      }
+    }
+
+    .projectList {
+      margin-top: 1rem;
+      list-style: none;
+      display: none;
+
+
+
+
+      .active {
+        background-color: rgba($gray-400, 0.5);
+      }
+
+      &--open {
+        display: block;
+      }
+
+      .project {
+        display: flex;
+        align-items: center;
+        padding: 0.3rem 0 0.3rem 1.5rem;
+        position: relative;
+        color: $gray-200;
+
+        &:hover {
+          background: $gray-400;
+          i {
+            visibility: visible;
+          }
+        }
+        &__color {
+          height: 0.5rem;
+          width: 0.5rem;
+          margin-right: 1rem;
+          border-radius: 2px;
+        }
+
+        &__name {
+          font-size: $desc-size * 0.9;
+        }
+
+        i {
+          position: absolute;
+          right: 1.5rem;
+          transform: scale(0.8);
+          visibility: hidden;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}

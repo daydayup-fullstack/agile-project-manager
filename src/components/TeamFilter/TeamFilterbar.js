@@ -10,12 +10,6 @@ const TeamFilterbar = () => {
       <button >
         Overview
       </button>
-      <button>
-        Conversation
-      </button>
-      <button >
-        Calender
-      </button>
       
     </div>
   );

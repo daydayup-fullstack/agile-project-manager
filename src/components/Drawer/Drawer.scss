@@ -5,13 +5,13 @@
   flex-direction: row;
 
   .SideMenu {
-    width: 300px;
-    min-width: 300px;
+    width: 240px;
+    min-width: 240px;
     background-color: $gray-500;
     height: 100vh;
 
     &--close {
-      margin-left: -300px;
+      margin-left: -240px;
       transition: all 0.3s ease;
     }
 
@@ -22,13 +22,13 @@
 
     &--header {
       color: white;
-      height: 4rem;
+      height: 4.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
       padding: 20px;
       font-size: $h1-size;
-      max-width: 300px;
+      max-width: 240px;
       flex-shrink: 1;
 
       span {
@@ -37,6 +37,31 @@
     }
 
     &--content {
+      .below {
+        overflow: auto;
+        width: 100%;
+        font-size: $text-size*0.9;
+        //max-height: 430px;
+
+        &::-webkit-scrollbar {
+          width: 8px;
+          height: 8px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+          border-radius: 8px;
+          background-color: hsla(220, 4%, 58%, 0.3);
+          transition: background-color 0.3s;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+          background: #bbb;
+        }
+
+        &::-webkit-scrollbar-track {
+          background: #ededed;
+        }
+      }
     }
   }
 

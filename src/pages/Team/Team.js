@@ -7,7 +7,11 @@ import AddProjectCard from "../../components/AddProjectCard/AddProjectCard";
 import Members from '../../components/TeamMember/TeamMember';
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import TeamHeader from "../../components/TeamHeader/TeamHeader";
+import TeamFilterbar from "../../components/TeamFilter/TeamFilterbar";
+// import '../../components/TeamMember/TeamMember.css';
+// import '../../components/TeamDescriptionPanel/Panel.css';
+// import TeamMemberPopup from '../../components/TeamMemberPopup/TeamMemberPopup';
+// import AddTeamMember from '../../components/AddTeamMember/AddTeamMember';
 
 
 const Team = ({ projectsInOrder, projects }) => {
@@ -15,10 +19,11 @@ const Team = ({ projectsInOrder, projects }) => {
         textDecoration: "none",
         color: "#151b26",     
       };
+    
 
     return (
          <div className="App-Team">
-             <TeamHeader/>
+            <TeamFilterbar />
             <div className='panels'>
                 <span className='panel_left'>
                     <div>

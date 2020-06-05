@@ -128,7 +128,7 @@ class AddTaskPopup extends React.Component {
                         ? <span className='AddTaskPopup_AssigneeProjectField_placeholder' onClick={this.handleOnProjectPlaceholderClick}>Project</span>
                         : <input className='AddTaskPopup_AssigneeProjectField_projectInput' placeholder='Project' onChange={this.handleOnProjectChange} value={inputProject} autoFocus />}
                 </div>
-                <textarea className='AddTaskPopup_description' placeholder="Description" onClick={this.handleInitialInputClick} ></textarea>
+                <textarea className='AddTaskPopup_description' placeholder="Description" onClick={this.handleInitialInputClick} />
                 <div className="AddTaskPopup_BottomIcon" >
                     <span className="AddTaskPopup_BottomIcon_icon AddTaskPopup_BottomIcon_text material-icons">
                         text_format

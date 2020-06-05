@@ -77,6 +77,7 @@
 .ContentHeader .more-content {
   display: flex;
   align-items: center;
+  margin-right: 1rem;
 }
 .ContentHeader .more-content__MultipleUserProfile {
   margin-right: 2rem;
@@ -84,52 +85,9 @@
 .ContentHeader .more-content__userSection {
   list-style: none;
   display: flex;
-  align-items: center;
-  margin-left: 0.5rem;
 }
-.ContentHeader .more-content__userSection .more-content__MultipleUserProfile {
-  display: inline-block;
-  align-self: center;
-  margin-right: 1rem;
-  border: 1px solid red;
-}
-.ContentHeader .more-content__userSection li:nth-of-type(2) {
-  align-self: center;
-  height: 24px;
-  border-radius: 50%;
-  transition: 200ms box-shadow, 200ms color, 200ms background, 200ms fill, 200ms border-color;
-  color: #6f7782;
-  cursor: pointer;
-  margin: 0 1rem;
-}
-.ContentHeader .more-content__userSection li:nth-of-type(2):hover {
-  background-color: #f6f8f9;
-  color: #273240;
-  fill: #273240;
-}
-.ContentHeader .more-content__userSection li:nth-of-type(3) button {
-  background-color: #fcbd01;
-  color: #fff;
-  height: 32px;
-  line-height: 32px;
-  padding: 0 15px;
-  align-self: center;
-  border: 1px solid #fcbd01;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 13px;
-  min-width: 48px;
-  text-align: center;
-  transition: all 0.2s;
-  outline: none;
-}
-.ContentHeader .more-content__userSection li:nth-of-type(3) button:hover {
-  background-color: #f2a100;
-  border-color: #f2a100;
-}
-.ContentHeader .more-content__userSection li:nth-of-type(3) button:active {
-  background-color: #bf7f00;
-  border-color: #bf7f00;
+.ContentHeader .more-content__userSection li {
+  margin: 0 0.5rem;
 }
 
 

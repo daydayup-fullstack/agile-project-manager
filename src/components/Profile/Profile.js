@@ -6,7 +6,7 @@ import { colors} from "../../model/model";
 function Profile({ user }) {
     return (
         user
-            ? user.avatar
+            ? user.avatar || user.avatar !== ""
             ? <div
                 className="profile"
                 onClick={() => {}}>

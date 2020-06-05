@@ -2,5 +2,20 @@
   width: 100%;
   overflow-y: hidden;
 }
+.App::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.App::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: rgba(144, 146, 152, 0.3);
+  transition: background-color 0.3s;
+}
+.App::-webkit-scrollbar-thumb:hover {
+  background: #bbb;
+}
+.App::-webkit-scrollbar-track {
+  background: #ededed;
+}
 
 /*# sourceMappingURL=App.css.map */

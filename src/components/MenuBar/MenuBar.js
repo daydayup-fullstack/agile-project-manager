@@ -1,114 +1,174 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./MenuBar.css";
-import SideMenuHeader from "../SideMenuHeader/SideMenuHeader";
-import MultipleUserProfile from "../MultipleUserProfile/MultipleUserProfile";
-import { users } from "../../model/newModel"
-import AddButton from "../AddButton/AddButton"
-import Profile from "../Profile/Profile"
-import PopupTooltip from "../PopupTooltip/PopupTooltip"
-import AddTaskPopup from "../AddTaskPopup/AddTaskPopup"
-import { User } from "../../model/model";
+import Profile from "../Profile/Profile";
+
+import AddButtonCircular from "../AddButtonCircular/AddButtonCircular";
+import { db_users } from "../../data/database";
+import { connect } from "react-redux";
 import {
-    generateId,
-    randomFirstName,
-    randomLastName,
-    randomAvatar,
-    generateRandomColorIndex
-} from "../../model/utility"
-const user_1 = new User(
-    generateId(),
-    randomFirstName(),
-    randomLastName(),
-    randomAvatar(),
-    generateRandomColorIndex()
-)
+  add_project_star,
+  changeNewTaskDisplay,
+  open_app_drawer,
+  remove_project_star,
+  show_header_profile_popup,
+  show_header_projectIcon_popup,
+  show_header_projectInfo_popup,
+} from "../../actions";
+import Filterbar from "../Filterbar/Filterbar";
+import { colors, iconNames } from "../../model/model";
+import MultipleUserProfile from "../MultipleUserProfile/MultipleUserProfile";
 
-const Display = () => {
-    const [shouldShow, setShouldShow] = useState(false);
-    useEffect(() => {
-        document.onclick = () => {
-            setShouldShow(false);
-        };
-    }, [setShouldShow]);
+const MenuBar = ({
+  shouldOpen,
+  open_app_drawer,
+  currentProject,
+  currentUser,
+  add_project_star,
+  remove_project_star,
+  show_header_projectIcon_popup,
+  show_header_profile_popup,
+  show_header_projectInfo_popup,
+}) => {
+  const [shouldShowTooltip, setShouldShowTooltip] = useState(false);
+  const [starHover, setStarHover] = React.useState(false);
 
-    return (
-        <div>
-            <span onClick={(e) => {
-                e.nativeEvent.stopImmediatePropagation();
-                setShouldShow(!shouldShow);
-                console.log(shouldShow)
-            }} ><AddButton />
+  const starred = currentUser.starredProjects.indexOf(currentProject.id) >= 0;
+  const starStyle = () => {
+    const themeColor = { color: colors[currentProject.colorIndex] };
+    if (starred) {
+      return { ...themeColor };
+    } else {
+      if (starHover) {
+        return { ...themeColor };
+      }
+    }
+  };
+
+  function toggleStar() {
+    if (starred) {
+      remove_project_star(currentProject);
+    } else {
+      add_project_star(currentProject);
+    }
+  }
+
+  const getAnchor = (e) => {
+    return {
+      anchor: {
+        x: e.target.offsetLeft - 4,
+        y: e.target.offsetTop + e.target.clientHeight / 2 + 6,
+        width: e.target.clientWidth,
+        height: e.target.clientHeight,
+      },
+    };
+  };
+
+  const getAnchorForProfile = (e) => {
+    return {
+      anchor: {
+        x: e.target.offsetLeft + 2,
+        y: e.target.offsetTop + e.target.clientHeight / 2,
+        width: e.target.clientWidth,
+        height: e.target.clientHeight,
+      },
+    };
+  };
+
+  return (
+    <>
+      <div className={"MenuBar"}>
+        <div className="MenuBar__title">
+          {!shouldOpen && (
+            <span className={"material-icons icon"} onClick={open_app_drawer}>
+              menu
             </span>
+          )}
 
-            <PopupTooltip shouldShow={shouldShow} />
+          <div
+            className="MenuBar__title__project-icon"
+            onClick={(e) => show_header_projectIcon_popup(getAnchor(e))}
+          >
+            <div
+              className="card"
+              style={{ background: colors[currentProject.colorIndex] }}
+            >
+              <span className={"material-icons-two-tone themeIcon"}>
+                {iconNames[currentProject.iconIndex]}
+              </span>
+            </div>
+          </div>
+
+          <h2>{currentProject.name}</h2>
+
+          <div className="iconGroup">
+            <span
+              className="material-icons icon"
+              onClick={(e) => show_header_projectInfo_popup(getAnchor(e))}
+            >
+              keyboard_arrow_down
+            </span>
+            <span className="material-icons-outlined icon">info</span>
+            <span
+              className={"material-icons star"}
+              onMouseOver={() => setStarHover(true)}
+              onMouseLeave={() => setStarHover(false)}
+              onClick={toggleStar}
+              style={starStyle()}
+            >
+              {starred ? "star" : "star_border"}
+            </span>
+          </div>
         </div>
-    );
+        <div className={"MenuBar__more-content"}>
+          <div className="MultipleUserProfile">
+            <MultipleUserProfile
+              multipleUsers={[
+                db_users["user-lawrence"],
+                db_users["user-ollie"],
+                db_users["user-scott"],
+                db_users["user-sarah"],
+                db_users["user-silvia"],
+              ]}
+              projectName={"DayDayUp"}
+            />
+          </div>
+          <ul className={"userSection"}>
+            <li>
+              <AddButtonCircular
+                onHandleClick={() => setShouldShowTooltip(!shouldShowTooltip)}
+              />
+            </li>
+
+            <li
+              onClick={(e) => show_header_profile_popup(getAnchorForProfile(e))}
+            >
+              {/*todo - hardcoded data - fix this later*/}
+              <Profile user={db_users["user-scott"]} />
+            </li>
+          </ul>
+        </div>
+      </div>
+      <Filterbar />
+    </>
+  );
 };
 
-const MenuBar = ({ user }) => {
-    const [shouldCollapse, setShouldCollapse] = useState(false);
-    const onCollapse = () => setShouldCollapse(true);
-    const onExpand = () => setShouldCollapse(false);
-    const mock_multiple_users = [users.c8dc5864, users.b803c8e6, users["8ddb8913"]]
-    const [taskDisplay, setTaskDisplay] = useState(true);
-    return (
-        <div className="container">
-            <section className={"left"}>
-                <SideMenuHeader iconName={"menu_open"} onHandleClick={onCollapse} />
-            </section>
-            <section className={`right ${shouldCollapse ? "collapse" : "expand"}`}>
-                <header className={"content-header"}>
-                    <div className="title">
-                        {shouldCollapse && (
-                            <span className={"material-icons icon"} onClick={onExpand}>
-                                menu
-                            </span>
-                        )}
-                        <div className="sprintContainer">
-                            <div className="sprint"></div>
-                            <h3>Sprint</h3>
-                            <span className="material-icons">
-                                keyboard_arrow_down
-                            </span>
-                            <span className="material-icons">
-                                info
-                            </span>
-                            <span className="material-icons">
-                                star_border
-                            </span>
-                            <span>
-                                <MultipleUserProfile multipleUsers={mock_multiple_users} projectName={"DayDayUp"} />
-                            </span>
-                            <span>
-                                <span className="material-icons">
-                                    search
-                                </span>
-                                <input placeholder='Search' />
-                            </span>
-                            <span>
-                                <Display />
-                            </span>
-                            <span class="material-icons question">help_outline</span>
-                            <button>
-                                Upgrade
-                            </button>
-                            <span>
-                                <Profile user={user} />
-                            </span>
-                        </div>
-                    </div>
+function mapStateToProps(state) {
+  return {
+    newTaskDisplay: state.taskDisplay.newTaskDisplay,
+    shouldOpen: state.app.ui_drawer.shouldOpen,
+    currentProject: state.project,
+    currentUser: state.user,
+    workspace: state.workspace,
+  };
+}
 
-                    {/* <div className={"more-content"}></div> */}
-                </header>
-                <div className="content">
-                    {taskDisplay===true ? <AddTaskPopup user={user_1} handleTaskDisplay={setTaskDisplay} /> : <span></span>}
-                    {/* <AddTaskPopup user={user_1} handleTaskDisplay={setTaskDisplay} /> */}
-                    -- Put your content here --
-        </div>
-            </section>
-        </div>
-    );
-};
-
-export default MenuBar;
-
+export default connect(mapStateToProps, {
+  changeNewTaskDisplay,
+  open_app_drawer,
+  add_project_star,
+  remove_project_star,
+  show_header_projectIcon_popup,
+  show_header_profile_popup,
+  show_header_projectInfo_popup,
+})(MenuBar);

@@ -23,9 +23,10 @@ export const project_changed = (project) => {
   };
 };
 
+export const CHANGE_NEW_TASK_DISPLAY = "CHANGE_NEW_TASK_DISPLAY";
 export const changeNewTaskDisplay = (newTaskDisplay) => {
   return {
-    type: "CHANGE_NEW_TASK_DISPLAY",
+    type: CHANGE_NEW_TASK_DISPLAY,
     newTaskDisplay,
   };
 };
@@ -86,13 +87,20 @@ export const hide_projectCard_popup = () => {
     type: HIDE_PROJECT_CARD_POPUP,
   };
 };
-
+//=======
+export const SHOW_ADD_MEMBER_POPUP = "SHOW_ADD_MEMBER_POPUP";
+export const show_addmember_popup = () => {
+  return {
+    type: SHOW_ADD_MEMBER_POPUP,
+  };
+};
 export const HIDE_ADD_MEMBER_POPUP = "HIDE_ADD_MEMBER_POPUP";
 export const hide_addmember_popup = () => {
   return {
     type: HIDE_ADD_MEMBER_POPUP,
   };
 };
+//========
 export const CLEAR_PROJECT_CARD_HOLD = "CLEAR_PROJECT_CARD_HOLD";
 
 export const clear_projectCard_hold = () => {
@@ -113,5 +121,84 @@ export const open_app_drawer = () => {
 export const close_app_drawer = () => {
   return {
     type: DRAWER_CLOSED,
+  };
+};
+
+// header - project - icon
+export const SHOW_HEADER_PROJECT_ICON_POPUP = "SHOW_HEADER_PROJECT_ICON_POPUP";
+export const show_header_projectIcon_popup = ({ anchor }) => {
+  return {
+    type: SHOW_HEADER_PROJECT_ICON_POPUP,
+    anchor,
+  };
+};
+
+export const HIDE_HEADER_PROJECT_ICON_POPUP = "HIDE_HEADER_PROJECT_ICON_POPUP";
+export const hide_header_projectIcon_popup = () => {
+  return {
+    type: HIDE_HEADER_PROJECT_ICON_POPUP,
+  };
+};
+//header - project - profile
+export const SHOW_HEADER_PROFILE_POPUP = "SHOW_HEADER_PROFILE_POPUP";
+export const show_header_profile_popup = ({ anchor }) => {
+  return {
+    type: SHOW_HEADER_PROFILE_POPUP,
+    anchor,
+  };
+};
+export const HIDE_HEADER_PROFILE_POPUP = "HIDE_HEADER_PROFILE_POPUP";
+export const hide_header_profile_popup = () => {
+  return {
+    type: HIDE_HEADER_PROFILE_POPUP,
+  };
+};
+
+//header - project - information
+export const SHOW_HEADER_PROJECT_INFO_POPUP = "SHOW_HEADER_PROJECT_INFO_POPUP";
+export const show_header_projectInfo_popup = ({ anchor }) => {
+  return {
+    type: SHOW_HEADER_PROJECT_INFO_POPUP,
+    anchor,
+  };
+};
+export const HIDE_HEADER_PROJECT_INFO_POPUP = "HIDE_HEADER_PROJECT_INFO_POPUP";
+export const hide_header_projectInfo_popup = () => {
+  return {
+    type: HIDE_HEADER_PROJECT_INFO_POPUP,
+  };
+};
+
+
+
+//header - addButton
+export const SHOW_HEADER_ADD_BUTTON_POPUP = "SHOW_HEADER_ADD_BUTTON_POPUP";
+export const show_header_addButton_popup = ({ anchor }) => {
+  return {
+    type: SHOW_HEADER_ADD_BUTTON_POPUP,
+    anchor,
+  };
+};
+export const HIDE_HEADER_ADD_BUTTON_POPUP = "HIDE_HEADER_ADD_BUTTON_POPUP";
+export const hide_header_addButton_popup = () => {
+  return {
+    type: HIDE_HEADER_ADD_BUTTON_POPUP,
+  };
+};
+
+// filterbar - popup
+export const SHOW_HEADER_FILTER_POPUP = "SHOW_HEADER_FILTER_POPUP";
+export const show_header_filter_popup = ({ anchor, content }) => {
+  return {
+    type: SHOW_HEADER_FILTER_POPUP,
+    anchor,
+    content,
+  };
+};
+
+export const HIDE_HEADER_FILTER_POPUP = "HIDE_HEADER_FILTER_POPUP";
+export const hide_header_filter_popup = () => {
+  return {
+    type: HIDE_HEADER_FILTER_POPUP,
   };
 };

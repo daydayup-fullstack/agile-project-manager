@@ -1,6 +1,6 @@
 .description_part{
-  margin-left: 60px;
   margin-bottom: 3rem;
+  max-height: fit-content;
 }
 .panel__top {
   display: flex;

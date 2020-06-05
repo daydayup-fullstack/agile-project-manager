@@ -7,6 +7,7 @@
   border-radius: 1rem;
   border: none;
   background: linear-gradient(to top right, #ff5263 0%, #ff7381 35%, #fcbd01 100%);
+  user-select: none;
 }
 .AddButtonCircular span {
   color: #f5f5f5;

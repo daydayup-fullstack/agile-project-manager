@@ -2,26 +2,21 @@ import React from 'react';
 import './TeamMember.css';
 import '../TeamDescriptionPanel/Panel.css';
 import TeamMemberPopup from '../TeamMemberPopup/TeamMemberPopup';
-import AddTeamMember from '../AddTeamMember/AddTeamMember';
+import { show_addmember_popup } from '../../actions';
+import {connect} from 'react-redux';
+
 
 
 const Members=()=>{
-    const [shouldShow, setShouldShow] = React.useState(false);
+    const [addMemberPopup, setaddMemberPopup] = React.useState(false);
     const [content, setContent] = React.useState(<></>);
 
-    const handleClick = (e) => {
-        setShouldShow(true);
+    const show=()=> {   
+        setaddMemberPopup(true);
+        setContent(<TeamMemberPopup />);
     }
 
-    function show(e) {
-        handleClick(e);
-        setContent(<AddTeamMember/>);
-    }
-
-    const dismiss = () => {
-    setShouldShow(false);
-    };
-
+   
     return(
         <div className='members'>
             <div className='panel__top'>
@@ -37,7 +32,11 @@ const Members=()=>{
                     <span class="material-icons add_icon">add</span></div>
                     <span><h3 className='Add_text'>Add member</h3> </span>
                 </div>
-
+                {addMemberPopup && (
+                    <div>
+                        {content}
+                    </div>
+                )}
                 <div className='circle_1'><p className='init_1'>S</p>
                     <span className='info_1'><h3>Silvia</h3>
                     <h4>hxiaoyin@gmail.com</h4></span>
@@ -64,14 +63,17 @@ const Members=()=>{
                     <span class="material-icons more_icon">more_horiz</span></div>
                     <span ><h3 className='Add_text'>See all members</h3></span>
                 </div>
-                {shouldShow && (
-                    <TeamMemberPopup dismiss={dismiss} >
-                        {content}
-                    </TeamMemberPopup>
-                )}
+                
             </div> 
         </div>
     )
 };
 
+// const mapStateToProps = (state) => {
+//   return {};
+// };
+
+// export default connect(mapStateToProps, {
+//     show_addmember_popup,
+// })(Members);
 export default Members;
