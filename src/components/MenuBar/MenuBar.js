@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import "./MenuBar.css";
 import Profile from "../Profile/Profile";
 
-import AddButtonCircular from "../AddButtonCircular/AddButtonCircular";
 import { db_users } from "../../data/database";
 import { connect } from "react-redux";
 import {
@@ -16,7 +15,6 @@ import {
 } from "../../actions";
 import Filterbar from "../Filterbar/Filterbar";
 import { colors, iconNames } from "../../model/model";
-import MultipleUserProfile from "../MultipleUserProfile/MultipleUserProfile";
 
 const MenuBar = ({
   shouldOpen,
@@ -28,9 +26,7 @@ const MenuBar = ({
   show_header_projectIcon_popup,
   show_header_profile_popup,
   show_header_projectInfo_popup,
-  workspace,
 }) => {
-  const [shouldShowTooltip, setShouldShowTooltip] = useState(false);
   const [starHover, setStarHover] = React.useState(false);
 
   const starred = currentUser.starredProjects.indexOf(currentProject.id) >= 0;
@@ -121,20 +117,20 @@ const MenuBar = ({
           </div>
         </div>
         <div className={"MenuBar__more-content"}>
-          {workspace.type === "team" && (
-            <div className="MultipleUserProfile">
-              <MultipleUserProfile
-                multipleUsers={workspace.members.map((id) => db_users[id])}
-                projectName={"DayDayUp"}
-              />
-            </div>
-          )}
+          {/*{workspace.type === "team" && (*/}
+          {/*  <div className="MultipleUserProfile">*/}
+          {/*    <MultipleUserProfile*/}
+          {/*      multipleUsers={workspace.members.map((id) => db_users[id])}*/}
+          {/*      projectName={"DayDayUp"}*/}
+          {/*    />*/}
+          {/*  </div>*/}
+          {/*)}*/}
           <ul className={"userSection"}>
-            <li>
-              <AddButtonCircular
-                onHandleClick={() => setShouldShowTooltip(!shouldShowTooltip)}
-              />
-            </li>
+            {/*<li>*/}
+            {/*  <AddButtonCircular*/}
+            {/*    onHandleClick={() => setShouldShowTooltip(!shouldShowTooltip)}*/}
+            {/*  />*/}
+            {/*</li>*/}
 
             <li
               onClick={(e) => show_header_profile_popup(getAnchorForProfile(e))}

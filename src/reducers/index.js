@@ -198,6 +198,7 @@ export const app = (state = initialAppState, action) => {
           task: action.task,
           columnId: action.columnId,
           project: action.project,
+          shouldEditTaskName: false,
         },
       };
 

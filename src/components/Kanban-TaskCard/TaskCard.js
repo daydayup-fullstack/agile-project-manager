@@ -18,6 +18,7 @@ const TaskCard = ({
   columnId,
   show_taskcard_context_menu,
   shouldShow,
+  shouldEditTaskName,
 }) => {
   const [showContextMenu, setShowContextMenu] = React.useState(false);
   const [showExtra, setShowExtra] = React.useState(false);
@@ -196,9 +197,10 @@ const TaskCard = ({
           <div
             className={`content ${task.isCompleted && "taskCard--completed"}`}
           >
-            {task.name ? (
+            {task.name && !shouldEditTaskName && (
               <div className={"name"}>{task.name}</div>
-            ) : (
+            )}
+            {shouldEditTaskName && (
               <textarea
                 className={"new-task-input"}
                 autoFocus
@@ -239,7 +241,6 @@ const TaskCard = ({
 };
 
 const mapStateToProps = (state) => {
-  // console.log(state.workspace);
   return {
     project: state.project,
     shouldShow: state.app.ui_taskcard_context_menu.shouldShow,

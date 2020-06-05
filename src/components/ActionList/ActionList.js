@@ -379,6 +379,8 @@ const ActionList = ({
       project_changed(updatedProject);
     }
 
+    function renameTask(e) {}
+
     return (
       <div className="TaskcardContextPopup">
         <ul className={"TaskcardContextPopup__actions"}>
@@ -386,10 +388,10 @@ const ActionList = ({
           {/*  <span className={"material-icons-outlined icon"}>check_circle</span>*/}
           {/*  <span>Mark complete</span>*/}
           {/*</li>*/}
-          {/*<li>*/}
-          {/*  <span className={"material-icons-outlined icon"}>visibility</span>*/}
-          {/*  <span>View details</span>*/}
-          {/*</li>*/}
+          <li onClick={(e) => renameTask(e)}>
+            <span className={"material-icons-outlined icon"}>create</span>
+            <span>Rename task</span>
+          </li>
           {/*<li>*/}
           {/*  <span className={"material-icons-outlined icon"}>fullscreen</span>*/}
           {/*  <span>Full screen</span>*/}

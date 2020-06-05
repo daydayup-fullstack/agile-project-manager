@@ -1,10 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import AddButtonCircular from "../AddButtonCircular/AddButtonCircular";
 import "./ContentHeader.css";
-import MultipleUserProfile from "../MultipleUserProfile/MultipleUserProfile";
 import Profile from "../Profile/Profile";
-import { db_users } from "../../data/database";
 import { changeNewTaskDisplay } from "../../actions/index";
 import { open_app_drawer, show_header_profile_popup } from "../../actions";
 import { calcAnchor } from "../../model/utility";
@@ -43,18 +40,18 @@ const ContentHeader = ({
           {/*</span>*/}
         </div>
         <div className={"more-content"}>
-          {workspace.type === "team" && (
-            <div className="more-content__MultipleUserProfile">
-              <MultipleUserProfile
-                multipleUsers={workspace.members.map((id) => db_users[id])}
-                projectName={"DayDayUp"}
-              />
-            </div>
-          )}
+          {/*{workspace.type === "team" && (*/}
+          {/*  <div className="more-content__MultipleUserProfile">*/}
+          {/*    <MultipleUserProfile*/}
+          {/*      multipleUsers={workspace.members.map((id) => db_users[id])}*/}
+          {/*      projectName={"DayDayUp"}*/}
+          {/*    />*/}
+          {/*  </div>*/}
+          {/*)}*/}
           <ul className={"more-content__userSection"}>
-            <li>
-              <AddButtonCircular />
-            </li>
+            {/*<li>*/}
+            {/*  <AddButtonCircular />*/}
+            {/*</li>*/}
             {/*<li>*/}
             {/*    <span className="material-icons icon">help_outline</span>*/}
             {/*</li>*/}
