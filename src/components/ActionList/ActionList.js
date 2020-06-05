@@ -332,6 +332,8 @@ const ActionList = ({
       const id = generateId();
       const index = project.columns[columnId].taskIds.indexOf(task.id);
       const newTask = { ...task, id: id, createdOn: new Date().getTime() };
+      const newTaskIds = [...project.columns[columnId].taskIds];
+      newTaskIds.splice(index, 0, id);
 
       const updatedProject = {
         ...project,
@@ -343,7 +345,7 @@ const ActionList = ({
           ...project.columns,
           [columnId]: {
             ...project.columns[columnId],
-            taskIds: [...project.columns[columnId].taskIds, id],
+            taskIds: newTaskIds,
           },
         },
       };
@@ -358,7 +360,23 @@ const ActionList = ({
     }
 
     function deleteTask() {
-      return undefined;
+      const taskIds = project.columns[columnId].taskIds;
+      const index = taskIds.indexOf(task.id);
+      const newTaskIds = [...taskIds];
+      newTaskIds.splice(index, 1);
+
+      const updatedProject = {
+        ...project,
+        columns: {
+          ...project.columns,
+          [columnId]: {
+            ...project.columns[columnId],
+            taskIds: newTaskIds,
+          },
+        },
+      };
+
+      project_changed(updatedProject);
     }
 
     return (
