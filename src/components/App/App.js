@@ -96,13 +96,13 @@ const App = ({
               </Route>
 
               <Route path={"/home"}>
-                <ContentHeader />
+                <ContentHeader title={"Home"}/>
                 <Home />
               </Route>
 
               <Route path={"/tasks"}>
                 {/*<MyTasks tasks={tasks} />*/}
-                <ContentHeader />
+                <ContentHeader title={"My Tasks"}/>
               </Route>
 
               <Route path={"/projects/:id"}>
@@ -111,7 +111,7 @@ const App = ({
               </Route>
 
               <Route path={"/team"}>
-                <ContentHeader />
+                <ContentHeader title={"Team"}/>
                 <Team />
               </Route>
             </Drawer>
@@ -128,7 +128,7 @@ const App = ({
   );
 };
 const mapStateToProps = (state) => {
-  // console.log(state);
+  console.log(state);
   return {
     projectCard_popup: {
       shouldShow: state.app.ui_projectCard_popup.shouldShow,

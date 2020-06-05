@@ -1,4 +1,4 @@
-import { loadInitialData } from "../data/database";
+import {db_projects, loadInitialData} from "../data/database";
 import {
   DRAWER_CLOSED,
   DRAWER_OPENED,
@@ -354,3 +354,19 @@ export const taskDisplay = (state = initialNewTaskDisplay, action) => {
       };
   }
 };
+
+
+// ==================== allProjects ======================
+const projectsInitial = {
+  ...db_projects
+};
+
+export const allProjects = (state = projectsInitial, action) => {
+  switch (action.type) {
+
+    default:
+      return {
+        ...state
+    }
+  }
+}

@@ -15,6 +15,7 @@ const ContentHeader = ({
   show_header_profile_popup,
   currentUser,
   workspace,
+    title
 }) => {
   return (
     <>
@@ -25,7 +26,7 @@ const ContentHeader = ({
               menu
             </span>
           )}
-          <h2>Home</h2>
+          <h2>{title}</h2>
           {/*<span className="material-icons icon">keyboard_arrow_down</span>*/}
           {/*<span className="material-icons icon">info</span>*/}
           {/*<span className="star">*/}
