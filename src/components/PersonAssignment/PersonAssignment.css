@@ -1,0 +1,28 @@
+.PersonAssignment .List {
+  list-style: none;
+  max-height: 200px;
+  overflow-y: scroll;
+}
+.PersonAssignment .List li {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem 1.5rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 400;
+  width: 500px;
+}
+.PersonAssignment .List li:hover {
+  background-color: #e8ecee;
+}
+.PersonAssignment .List li .firstName {
+  color: #151b26;
+  margin-left: 1rem;
+  width: 5rem;
+}
+.PersonAssignment .List li .email {
+  color: #9ca6af;
+  margin-left: 0.5rem;
+}
+
+/*# sourceMappingURL=PersonAssignment.css.map */

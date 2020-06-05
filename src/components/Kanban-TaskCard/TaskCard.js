@@ -4,6 +4,13 @@ import { Draggable } from "react-beautiful-dnd";
 import { connect } from "react-redux";
 import { project_changed, show_taskcard_context_menu } from "../../actions";
 import CoverPhotoBlock from "../CoverPhotoBlock/CoverPhotoBlock";
+import CircularButton from "../CircularButton/CircularButton";
+import Profile from "../Profile/Profile";
+import { db_users } from "../../data/database";
+import DateDisplay from "../DateDisplay/DateDisplay";
+import PersonAssignment from "../PersonAssignment/PersonAssignment";
+import { workspace } from "../../reducers";
+import PopupMenu from "../PopupMenu/PopupMenu";
 
 const TaskCard = ({
   task,
@@ -15,6 +22,7 @@ const TaskCard = ({
   shouldShow,
 }) => {
   const [showContextMenu, setShowContextMenu] = React.useState(false);
+  const [showExtra, setShowExtra] = React.useState(false);
 
   React.useEffect(() => {
     if (shouldShow === false) {
@@ -96,6 +104,46 @@ const TaskCard = ({
     });
   }
 
+  const renderUserProfile = () => {
+    if (!task.assignedUserId || task.assignedUserId === "") {
+      return (
+        <CircularButton
+          iconName={"person_outline"}
+          onCircularButtonClick={() => {}}
+        />
+      );
+    } else {
+      return (
+        <>
+          <Profile user={db_users[task.assignedUserId]} />
+        </>
+      );
+    }
+  };
+
+  const renderDueDate = () => {
+    if (task.dueDate) {
+      return <DateDisplay date={task.dueDate} />;
+    } else {
+      if (showExtra) {
+        return (
+          <CircularButton
+            iconName={"calendar_today"}
+            onCircularButtonClick={() => {}}
+          />
+        );
+      }
+    }
+  };
+
+  function handleMouseover(e) {
+    setShowExtra(true);
+  }
+
+  function handleMouseleave(e) {
+    setShowExtra(false);
+  }
+
   return (
     <Draggable draggableId={task.id} type={"task"} index={index}>
       {(provided) => (
@@ -105,6 +153,8 @@ const TaskCard = ({
           {...provided.dragHandleProps}
           ref={provided.innerRef}
           onContextMenu={(event) => handleRightClick(event)}
+          onMouseOver={(e) => handleMouseover(e)}
+          onMouseLeave={(e) => handleMouseleave(e)}
         >
           {task.attachments && task.attachments.length > 0 && (
             <div className="coverImage">
@@ -122,44 +172,26 @@ const TaskCard = ({
                 onBlur={(event) => handleBlur(event)}
               />
             )}
-
-            {task.name && (
-              <button>
-                <span className={"material-icons more"}>more_horiz</span>
-              </button>
-            )}
           </div>
 
-          {task.name && (
+          {task.name && task.name !== "" && (
             <div className="extra">
               <div className="actions">
                 <ul>
-                  <li>
-                    <div className="button">a</div>
-                  </li>
-                  <li>
-                    <div className="button">b</div>
-                  </li>
+                  <li className={"button"}>{renderUserProfile()}</li>
+                  <li className={"button"}>{renderDueDate()}</li>
                 </ul>
               </div>
               <div className="info">
                 <ul>
-                  <li>
-                    <span>1</span>
-                    <span className={"material-icons"}>perm_identity</span>
-                  </li>
-                  {/*/!*TODO - Unknown style conflict to be fixed when integrate components*!/*/}
-                  {/*<li>*/}
-                  {/*  <span className={"material-icons"}>calender_today</span>*/}
-                  {/*</li>*/}
-                  <li>
-                    <span>2</span>
-                    <span className={"material-icons"}>call_split</span>
-                  </li>
-                  <li>
-                    <span>3</span>
-                    <span className={"material-icons"}>thumb_up_alt</span>
-                  </li>
+                  {task.likedBy && task.likedBy.length > 0 && (
+                    <li>
+                      <span className={"numberOfLikes"}>
+                        {task.likedBy.length}
+                      </span>
+                      <span className={"material-icons"}>thumb_up</span>
+                    </li>
+                  )}
                 </ul>
               </div>
             </div>
@@ -171,6 +203,7 @@ const TaskCard = ({
 };
 
 const mapStateToProps = (state) => {
+  console.log(state.workspace);
   return {
     project: state.project,
     shouldShow: state.app.ui_taskcard_context_menu.shouldShow,

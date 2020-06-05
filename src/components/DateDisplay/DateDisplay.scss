@@ -1,0 +1,15 @@
+@import "../../style/variables";
+
+.DateDisplay {
+  .isClose {
+    color: #62d26f;
+  }
+
+  .isLate {
+    color: #e8384f;
+  }
+
+  span {
+    font-size: $desc-size * 0.8;
+  }
+}

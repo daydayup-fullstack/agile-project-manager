@@ -9,7 +9,7 @@ export const db_users = {
     colorIndex: 0,
     starredProjects: ["project-00"],
     privateProjects: {},
-    workspaces: ["workspace-scott-personal", "workspace-daydayup-team"],
+    workspaces: ["workspace-daydayup-team", "workspace-scott-personal"],
   },
   "user-lawrence": {
     id: "user-lawrence",
@@ -110,7 +110,6 @@ export const db_workspaces = {
 
   "workspace-daydayup-team": {
     type: "team",
-    members: [],
     projectsInOrder: [
       "project-00",
       "project-01",
@@ -120,6 +119,13 @@ export const db_workspaces = {
     ],
     name: "daydayup",
     description: "JR Academy full-stack class study group",
+    members: [
+      "user-scott",
+      "user-lawrence",
+      "user-ollie",
+      "user-sarah",
+      "user-silvia",
+    ],
   },
 };
 
@@ -204,10 +210,11 @@ export const db_tasks = {
     description: "description",
     authorId: "user-scott",
     projectId: ["project-04"],
-    dueDate: null,
+    dueDate: 1591401600,
     attachments: [],
-    assignedUserIds: ["user-ollie"],
+    assignedUserId: "",
     stories: [],
+    likedBy: ["user-silvia"],
   },
   "task-02": {
     id: "task-02",
@@ -221,8 +228,9 @@ export const db_tasks = {
     attachments: [
       "https://media.wired.com/photos/5bd86f1cb0c71179a8e94cbd/16:9/w_1519,h_854,c_limit/macmini1.jpg",
     ],
-    assignedUserIds: ["user-lawrence"],
+    assignedUserId: "user-lawrence",
     stories: [],
+    likedBy: ["user-scott", "user-ollie"],
   },
   "task-03": {
     id: "task-03",
@@ -232,12 +240,13 @@ export const db_tasks = {
     description: "description",
     authorId: "user-scott",
     projectId: ["project-04"],
-    dueDate: null,
+    dueDate: 1556516450,
     attachments: [
       "https://media.wired.com/photos/5bd86f1cb0c71179a8e94cbd/16:9/w_1519,h_854,c_limit/macmini1.jpg",
     ],
-    assignedUserIds: ["user-scott"],
+    assignedUserId: "user-scott",
     stories: ["story-00"],
+    likedBy: [],
   },
 };
 
@@ -283,6 +292,7 @@ export const loadInitialData = (devId) => {
       type,
       projectsInOrder,
       projects: { ...db_projects },
+      members: [...db_workspaces[workspaces[0]].members],
     },
   };
 };
