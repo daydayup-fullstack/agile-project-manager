@@ -31,6 +31,12 @@
       max-width: 240px;
       flex-shrink: 1;
 
+      h1 {
+        font-family: 'Abril Fatface', cursive;
+        font-size: $h1-size;
+        color: #fff;
+      }
+
       span {
         cursor: pointer;
       }

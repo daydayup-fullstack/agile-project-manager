@@ -26,7 +26,7 @@ const Drawer = ({
         }`}
       >
         <header className={"SideMenu--header"}>
-          <div>Logo</div>
+          <h1>Agilo</h1>
           <span
             className="material-icons"
             onClick={() => {

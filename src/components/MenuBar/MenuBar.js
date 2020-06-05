@@ -95,6 +95,7 @@ const MenuBar = ({
             </div>
           </div>
 
+          {/* todo - edit a project name*/}
           <h2>{currentProject.name}</h2>
 
           <div className="iconGroup">
@@ -141,7 +142,7 @@ const MenuBar = ({
           </ul>
         </div>
       </div>
-      <Filterbar />
+      {/*<Filterbar />*/}
     </>
   );
 };

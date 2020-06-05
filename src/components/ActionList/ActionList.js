@@ -148,9 +148,9 @@ const ActionList = ({
             ? "Add to Favorites"
             : "Remove from Favorites"}
         </li>
-        <li onMouseOver={dismissNextLevel}>Edit Name & Description...</li>
-        <li onMouseOver={dismissNextLevel}>Copy Project Link</li>
-        <li onMouseOver={dismissNextLevel}>Share</li>
+        {/*<li onMouseOver={dismissNextLevel}>Edit Name & Description...</li>*/}
+        {/*<li onMouseOver={dismissNextLevel}>Copy Project Link</li>*/}
+        <li onMouseOver={dismissNextLevel} style={{color: "#E8384F"}}>Delete Project</li>
         {showNextLevel && (
           <li className={"nextLevel"} style={calcPosition()} ref={nextAction}>
             <ColorArray colorIndex={project.colorIndex} />
@@ -201,7 +201,7 @@ const ActionList = ({
         <div className="divider" />
 
         <ul>
-          <li onMouseOver={dismissNextLevel}>Settings</li>
+          {/*<li onMouseOver={dismissNextLevel}>Settings</li>*/}
           <li onMouseOver={dismissNextLevel}>Logout</li>
         </ul>
       </div>
@@ -350,7 +350,6 @@ const ActionList = ({
         },
       };
 
-      console.log(updatedProject.columns[columnId]);
 
       project_changed(updatedProject);
     }

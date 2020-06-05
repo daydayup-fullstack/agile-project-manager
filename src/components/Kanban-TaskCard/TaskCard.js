@@ -197,10 +197,9 @@ const TaskCard = ({
           <div
             className={`content ${task.isCompleted && "taskCard--completed"}`}
           >
-            {task.name && !shouldEditTaskName && (
+            {task.name ? (
               <div className={"name"}>{task.name}</div>
-            )}
-            {shouldEditTaskName && (
+            ) : (
               <textarea
                 className={"new-task-input"}
                 autoFocus

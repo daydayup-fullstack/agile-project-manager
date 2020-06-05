@@ -8,7 +8,7 @@
   transition: opacity 0.4s ease;
 }
 .ProjectCard--holdHover .card .themeIcon {
-  transform: translateY(-4px);
+  transform: translateY(-2px);
   transition: all 0.4s ease;
 }
 .ProjectCard--holdHover .card .profile-container {
@@ -37,7 +37,7 @@
   transition: opacity 0.4s ease;
 }
 .ProjectCard:hover .card .themeIcon {
-  transform: translateY(-4px);
+  transform: translateY(-2px);
   transition: all 0.4s ease;
 }
 .ProjectCard:hover .card .profile-container {

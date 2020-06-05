@@ -100,20 +100,20 @@ const App = ({
                 <Home />
               </Route>
 
-              <Route path={"/tasks"}>
-                {/*<MyTasks tasks={tasks} />*/}
-                <ContentHeader title={"My Tasks"} />
-              </Route>
+              {/*<Route path={"/tasks"}>*/}
+              {/*  /!*<MyTasks tasks={tasks} />*!/*/}
+              {/*  <ContentHeader title={"My Tasks"} />*/}
+              {/*</Route>*/}
 
               <Route path={"/projects/:id"}>
                 <MenuBar />
                 <Project />
               </Route>
 
-              <Route path={"/team"}>
-                <ContentHeader title={"Team"} />
-                <Team />
-              </Route>
+              {/*<Route path={"/team"}>*/}
+              {/*  <ContentHeader title={"Team"} />*/}
+              {/*  <Team />*/}
+              {/*</Route>*/}
             </Drawer>
           </Switch>
         ) : (

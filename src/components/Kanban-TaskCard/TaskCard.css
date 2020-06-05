@@ -51,6 +51,8 @@
 }
 .taskCard .content .name {
   height: fit-content;
+  padding: 0.25rem 0;
+  width: 100%;
 }
 .taskCard .content .new-task-input {
   border: none;

@@ -1,8 +1,6 @@
 import React from "react";
 import "./ProjectCard.css";
 import { colors, iconNames } from "../../model/model";
-import Profile from "../Profile/Profile";
-import { db_users } from "../../data/database";
 import { Link } from "react-router-dom";
 import {
   add_project_star,
@@ -84,22 +82,22 @@ const ProjectCard = ({
             more_horiz
           </span>
 
-          <ul
-            className={"profile-container"}
-            // style={holdHover ? { opacity: 1 } : {}}
-          >
-            <li>
-              <Profile user={db_users["user-scott"]} />
-            </li>
+          {/*<ul*/}
+          {/*  className={"profile-container"}*/}
+          {/*  // style={holdHover ? { opacity: 1 } : {}}*/}
+          {/*>*/}
+          {/*  <li>*/}
+          {/*    <Profile user={db_users["user-scott"]} />*/}
+          {/*  </li>*/}
 
-            <li>
-              <Profile user={db_users["user-scott"]} />
-            </li>
+          {/*  <li>*/}
+          {/*    <Profile user={db_users["user-scott"]} />*/}
+          {/*  </li>*/}
 
-            <li>
-              <Profile user={db_users["user-scott"]} />
-            </li>
-          </ul>
+          {/*  <li>*/}
+          {/*    <Profile user={db_users["user-scott"]} />*/}
+          {/*  </li>*/}
+          {/*</ul>*/}
         </div>
         <span className={"title"}>{project.name}</span>
       </div>
