@@ -1,4 +1,4 @@
-import {db_projects, loadInitialData} from "../data/database";
+import { db_projects, loadInitialData } from "../data/database";
 import {
   DRAWER_CLOSED,
   DRAWER_OPENED,
@@ -195,6 +195,9 @@ export const app = (state = initialAppState, action) => {
         ui_taskcard_context_menu: {
           shouldShow: true,
           anchor: action.anchor,
+          task: action.task,
+          columnId: action.columnId,
+          project: action.project,
         },
       };
 
@@ -331,7 +334,7 @@ export const project = (state = {}, action) => {
 
 const initialNewTaskDisplay = {
   newTaskDisplay: false,
-  calendarDisplay:false
+  calendarDisplay: false,
 };
 
 export const taskDisplay = (state = initialNewTaskDisplay, action) => {
@@ -355,18 +358,16 @@ export const taskDisplay = (state = initialNewTaskDisplay, action) => {
   }
 };
 
-
 // ==================== allProjects ======================
 const projectsInitial = {
-  ...db_projects
+  ...db_projects,
 };
 
 export const allProjects = (state = projectsInitial, action) => {
   switch (action.type) {
-
     default:
       return {
-        ...state
-    }
+        ...state,
+      };
   }
-}
+};

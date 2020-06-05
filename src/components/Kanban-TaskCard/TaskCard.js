@@ -99,6 +99,9 @@ const TaskCard = ({
         width: e.currentTarget.clientWidth,
         height: e.currentTarget.clientHeight,
       },
+      task: task,
+      columnId: columnId,
+      project: project,
     });
   }
 
@@ -155,8 +158,6 @@ const TaskCard = ({
         },
       },
     };
-
-    console.log(updatedProject);
 
     project_changed(updatedProject);
   };
