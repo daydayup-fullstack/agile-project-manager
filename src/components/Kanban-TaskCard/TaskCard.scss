@@ -7,7 +7,7 @@
   padding: 1rem 1rem 0;
   border: 1px solid $gray-200;
   background: white;
-  border-radius: 0.25rem;
+  border-radius: 0.3rem;
   cursor: pointer;
   box-shadow: 0 1px 3px 0 rgba(21, 27, 38, 0.15);
   position: relative;
@@ -107,10 +107,6 @@
         align-items: center;
 
         .button {
-          //width: 1.5rem;
-          //height: 1.5rem;
-          //border-radius: 1rem;
-          //background: $gray-200;
           margin-right: 0.5rem;
           display: flex;
           justify-content: center;

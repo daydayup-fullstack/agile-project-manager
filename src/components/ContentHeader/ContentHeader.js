@@ -45,13 +45,7 @@ const ContentHeader = ({
           {workspace.type === "team" && (
             <div className="more-content__MultipleUserProfile">
               <MultipleUserProfile
-                multipleUsers={[
-                  db_users["user-lawrence"],
-                  db_users["user-ollie"],
-                  db_users["user-scott"],
-                  db_users["user-sarah"],
-                  db_users["user-silvia"],
-                ]}
+                multipleUsers={workspace.members.map((id) => db_users[id])}
                 projectName={"DayDayUp"}
               />
             </div>
@@ -79,6 +73,7 @@ const ContentHeader = ({
 };
 
 function mapStateToProps(state) {
+  console.log(state.workspace);
   return {
     newTaskDisplay: state.taskDisplay.newTaskDisplay,
     shouldOpen: state.app.ui_drawer.shouldOpen,

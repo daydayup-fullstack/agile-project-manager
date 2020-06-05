@@ -29,6 +29,7 @@ const MenuBar = ({
   show_header_projectIcon_popup,
   show_header_profile_popup,
   show_header_projectInfo_popup,
+  workspace,
 }) => {
   const [shouldShowTooltip, setShouldShowTooltip] = useState(false);
   const [starHover, setStarHover] = React.useState(false);
@@ -124,13 +125,7 @@ const MenuBar = ({
           {workspace.type === "team" && (
             <div className="MultipleUserProfile">
               <MultipleUserProfile
-                multipleUsers={[
-                  db_users["user-lawrence"],
-                  db_users["user-ollie"],
-                  db_users["user-scott"],
-                  db_users["user-sarah"],
-                  db_users["user-silvia"],
-                ]}
+                multipleUsers={workspace.members.map((id) => db_users[id])}
                 projectName={"DayDayUp"}
               />
             </div>

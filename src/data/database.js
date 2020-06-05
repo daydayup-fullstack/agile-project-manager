@@ -9,7 +9,7 @@ export const db_users = {
     colorIndex: 0,
     starredProjects: ["project-00"],
     privateProjects: {},
-    workspaces: ["workspace-scott-personal", "workspace-daydayup-team"],
+    workspaces: ["workspace-daydayup-team", "workspace-scott-personal"],
   },
   "user-lawrence": {
     id: "user-lawrence",
@@ -110,7 +110,6 @@ export const db_workspaces = {
 
   "workspace-daydayup-team": {
     type: "team",
-    members: [],
     projectsInOrder: [
       "project-00",
       "project-01",
@@ -120,6 +119,13 @@ export const db_workspaces = {
     ],
     name: "daydayup",
     description: "JR Academy full-stack class study group",
+    members: [
+      "user-scott",
+      "user-lawrence",
+      "user-ollie",
+      "user-sarah",
+      "user-silvia",
+    ],
   },
 };
 
@@ -204,7 +210,7 @@ export const db_tasks = {
     description: "description",
     authorId: "user-scott",
     projectId: ["project-04"],
-    dueDate: 1556526450,
+    dueDate: 1591401600,
     attachments: [],
     assignedUserId: "",
     stories: [],
@@ -286,6 +292,7 @@ export const loadInitialData = (devId) => {
       type,
       projectsInOrder,
       projects: { ...db_projects },
+      members: [...db_workspaces[workspaces[0]].members],
     },
   };
 };
