@@ -202,3 +202,17 @@ export const hide_header_filter_popup = () => {
     type: HIDE_HEADER_FILTER_POPUP,
   };
 };
+
+export const SHOW_INVITE_POPUP = "SHOW_INVITE_POPUP";
+export const show_invite_popup = () => {
+  return {
+    type: SHOW_INVITE_POPUP
+  }
+};
+
+export const HIDE_INVITE_POPUP = "HIDE_INVITE_POPUP";
+export const hide_invite_popup = () => {
+  return {
+    type: HIDE_INVITE_POPUP
+  }
+};

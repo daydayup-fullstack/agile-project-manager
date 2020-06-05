@@ -23,6 +23,7 @@ import {
   SHOW_PROJECT_CARD_POPUP,
   SHOW_ADD_MEMBER_POPUP,
   CHANGE_NEW_TASK_DISPLAY,
+  SHOW_INVITE_POPUP, HIDE_INVITE_POPUP,
 } from "../actions";
 const devId = "user-scott";
 
@@ -58,6 +59,9 @@ const initialAppState = {
   },
   ui_addmember_popup:{
     ShowPopup:true
+  },
+  ui_invite_popup: {
+    shouldShow: false
   }
 };
 
@@ -195,6 +199,24 @@ export const app = (state = initialAppState, action) => {
           shouldShow: false,
         },
       };
+
+      case SHOW_INVITE_POPUP: {
+        return {
+          ...state,
+          ui_invite_popup: {
+            shouldShow: true
+          }
+        }
+      }
+
+      case HIDE_INVITE_POPUP: {
+        return {
+          ...state,
+          ui_invite_popup: {
+            shouldShow: false
+          }
+        }
+      }
 
     default:
       return {

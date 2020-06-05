@@ -39,16 +39,16 @@ const Drawer = ({
         <div className="SideMenu--content">
           {nav}
           <div className="below">
-            <SideMenuSection>
-              <Favorites projects={favorites} />
-            </SideMenuSection>
-            <SideMenuSection>
-              <Team
-                projects={db_projects}
-                team={team}
-                workspace={currentWorkspace}
-              />
-            </SideMenuSection>
+            {/*<SideMenuSection>*/}
+            {/*  <Favorites projects={favorites} />*/}
+            {/*</SideMenuSection>*/}
+            {/*<SideMenuSection>*/}
+            {/*  <Team*/}
+            {/*    projects={db_projects}*/}
+            {/*    team={team}*/}
+            {/*    workspace={currentWorkspace}*/}
+            {/*  />*/}
+            {/*</SideMenuSection>*/}
           </div>
         </div>
       </section>

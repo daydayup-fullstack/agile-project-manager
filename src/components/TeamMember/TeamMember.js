@@ -2,22 +2,25 @@ import React from 'react';
 import './TeamMember.css';
 import '../TeamDescriptionPanel/Panel.css';
 import TeamMemberPopup from '../TeamMemberPopup/TeamMemberPopup';
-import { show_addmember_popup } from '../../actions';
+import {show_addmember_popup, show_invite_popup} from '../../actions';
 import {connect} from 'react-redux';
 
 
-
-const Members=()=>{
+const Members = ({invite_popup}) => {
     const [addMemberPopup, setaddMemberPopup] = React.useState(false);
     const [content, setContent] = React.useState(<></>);
 
-    const show=()=> {   
-        setaddMemberPopup(true);
+    const show = () => {
+        console.log("==========");
+        // setaddMemberPopup(true);
+        show_invite_popup();
         setContent(<TeamMemberPopup />);
-    }
 
-   
-    return(
+    };
+
+
+
+    return (
         <div className='members'>
             <div className='panel__top'>
                 <h2 className="panel__name">
@@ -26,13 +29,13 @@ const Members=()=>{
             </div>
             <div className="divider"/>
             <div className='member_list'>
-                
+
                 <div className='Add_member' onClick={show}>
-                    <div className='circle' >
-                    <span class="material-icons add_icon">add</span></div>
+                    <div className='circle'>
+                        <span className="material-icons add_icon">add</span></div>
                     <span><h3 className='Add_text'>Add member</h3> </span>
                 </div>
-                {addMemberPopup && (
+                {invite_popup.shouldShow && (
                     <div>
                         {content}
                     </div>
@@ -57,14 +60,14 @@ const Members=()=>{
                     <span className='info_5'><h3>Yelin Liu</h3>
                     <h4>lawrence@gmail.com</h4></span>
                 </div>
-                
+
                 <div className='Add_member'>
                     <div className='circle_bottom'>
-                    <span class="material-icons more_icon">more_horiz</span></div>
-                    <span ><h3 className='Add_text'>See all members</h3></span>
+                        <span className="material-icons more_icon">more_horiz</span></div>
+                    <span><h3 className='Add_text'>See all members</h3></span>
                 </div>
-                
-            </div> 
+
+            </div>
         </div>
     )
 };
@@ -76,4 +79,13 @@ const Members=()=>{
 // export default connect(mapStateToProps, {
 //     show_addmember_popup,
 // })(Members);
-export default Members;
+
+const mapStateToProps = (state) => {
+    console.log(state);
+    return {
+        invite_popup: {
+            shouldShow: state.app.ui_invite_popup.shouldShow
+        }
+    }
+};
+export default connect(mapStateToProps, {show_invite_popup})( Members );
