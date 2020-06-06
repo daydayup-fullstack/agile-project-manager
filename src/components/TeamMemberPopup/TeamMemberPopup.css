@@ -1,11 +1,9 @@
 .TeamPopup {
-    position: absolute;
-    /* width: 100%;
-    height: 100%; */
-    
-    top:110px;
-    left: 60px;
+    position: absolute; 
+    top:100px;
+    left: 180px;
     display: flex;
+    z-index:100;
 
 
   }
