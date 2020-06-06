@@ -35,11 +35,15 @@
   user-select: none;
   pointer-events: none;
 }
-.MenuBar__title h2 {
+.MenuBar__title .title {
   margin-left: 1rem;
   font-family: "Poppins", sans-serif;
   font-size: 1.1rem;
   font-weight: 500;
+  border: none;
+}
+.MenuBar__title .title:hover {
+  cursor: pointer;
 }
 .MenuBar__title .iconGroup {
   margin-left: 0.25rem;

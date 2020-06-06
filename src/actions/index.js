@@ -17,6 +17,7 @@ export const project_selected = (project) => {
 
 export const PROJECT_CHANGED = "PROJECT_CHANGED";
 export const project_changed = (project) => {
+  console.log(project);
   return {
     type: PROJECT_CHANGED,
     project,

@@ -118,7 +118,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: $desc-size*0.9;
+    font-size: $desc-size*0.8;
+    font-family: $font-family;
     margin-top: 0.3rem;
     color: $gray-400;
 
