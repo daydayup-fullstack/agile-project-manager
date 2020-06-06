@@ -17,6 +17,7 @@ const ProjectCard = ({
   remove_project_star,
   add_project_star,
   project_selected,
+  currentUser,
 }) => {
   const [starHover, setStarHover] = React.useState(false);
   const [moreButtonHover, setMoreButtonHover] = React.useState(false);
@@ -100,13 +101,22 @@ const ProjectCard = ({
           {/*</ul>*/}
         </div>
         <span className={"title"}>{project.name}</span>
+        {currentUser.privateProjects &&
+          currentUser.privateProjects.indexOf(project.id) >= 0 && (
+            <div className={"private-project-indicator"}>
+              <span className={"material-icons"}>lock</span>
+              <span>Private</span>
+            </div>
+          )}
       </div>
     </Link>
   );
 };
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    currentUser: state.user,
+  };
 };
 
 export default connect(mapStateToProps, {

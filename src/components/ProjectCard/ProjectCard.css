@@ -107,5 +107,16 @@
   max-height: 2rem;
   width: 100%;
 }
+.ProjectCard .private-project-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.81rem;
+  margin-top: 0.3rem;
+  color: #6f7782;
+}
+.ProjectCard .private-project-indicator .material-icons {
+  font-size: 0.8rem;
+}
 
 /*# sourceMappingURL=ProjectCard.css.map */
