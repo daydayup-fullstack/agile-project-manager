@@ -12,7 +12,7 @@
     }
 
     .themeIcon {
-      transform: translateY(-4px);
+      transform: translateY(-2px);
       transition: all 0.4s ease;
     }
 
@@ -112,5 +112,18 @@
     text-align: center;
     max-height: 2rem;
     width: 100%;
+  }
+
+  .private-project-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: $desc-size*0.9;
+    margin-top: 0.3rem;
+    color: $gray-400;
+
+    .material-icons {
+      font-size: 0.8rem;
+    }
   }
 }

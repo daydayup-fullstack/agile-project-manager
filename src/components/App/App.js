@@ -11,15 +11,14 @@ import {
 } from "react-router-dom";
 import LoginForm from "../LoginForm/LoginForm";
 import Project from "../../pages/Project/Project";
-import Team from "../../pages/Team/Team";
 import ContentHeader from "../ContentHeader/ContentHeader";
 import { connect } from "react-redux";
 import MenuBar from "../MenuBar/MenuBar";
 import PopupMenu from "../PopupMenu/PopupMenu";
 import ActionList from "../ActionList/ActionList";
 import Tooltip from "../Tooltip/Tooltip";
-import AddTaskPopup from "../AddTaskPopup/AddTaskPopup"
-import { db_users } from "../../data/database"
+import AddTaskPopup from "../AddTaskPopup/AddTaskPopup";
+import { db_users } from "../../data/database";
 
 const App = ({
   projectCard_popup,
@@ -29,6 +28,8 @@ const App = ({
   header_addButton_popup,
   header_filter_popup,
   newTaskDisplay,
+  taskcard_context_menu,
+  column_popup,
 }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
@@ -71,6 +72,18 @@ const App = ({
             <ActionList />
           </PopupMenu>
         )}
+
+        {taskcard_context_menu.shouldShow && (
+          <PopupMenu anchor={taskcard_context_menu.anchor}>
+            <ActionList />
+          </PopupMenu>
+        )}
+
+        {column_popup.shouldShow && (
+          <PopupMenu anchor={column_popup.anchor}>
+            <ActionList />
+          </PopupMenu>
+        )}
       </div>
 
       <Router>
@@ -82,37 +95,39 @@ const App = ({
               </Route>
 
               <Route path={"/home"}>
-                <ContentHeader />
+                <ContentHeader title={"Home"} />
                 <Home />
               </Route>
 
-              <Route path={"/tasks"}>{/*<MyTasks tasks={tasks} />*/}
-                <ContentHeader />
-              </Route>
+              {/*<Route path={"/tasks"}>*/}
+              {/*  /!*<MyTasks tasks={tasks} />*!/*/}
+              {/*  <ContentHeader title={"My Tasks"} />*/}
+              {/*</Route>*/}
 
               <Route path={"/projects/:id"}>
                 <MenuBar />
                 <Project />
               </Route>
 
-              <Route path={"/team"}>
-                <ContentHeader />
-                <Team />
-              </Route>
+              {/*<Route path={"/team"}>*/}
+              {/*  <ContentHeader title={"Team"} />*/}
+              {/*  <Team />*/}
+              {/*</Route>*/}
             </Drawer>
           </Switch>
         ) : (
-            <>
-              <Route exact path={"/"}>
-                <LoginForm handleLogin={setIsLoggedIn} />
-              </Route>
-            </>
-          )}
+          <>
+            <Route exact path={"/"}>
+              <LoginForm handleLogin={setIsLoggedIn} />
+            </Route>
+          </>
+        )}
       </Router>
     </div>
   );
 };
 const mapStateToProps = (state) => {
+  // console.log(state);
   return {
     projectCard_popup: {
       shouldShow: state.app.ui_projectCard_popup.shouldShow,
@@ -138,6 +153,15 @@ const mapStateToProps = (state) => {
       shouldShow: state.app.ui_header_filter_popup.shouldShow,
       anchor: state.app.ui_header_filter_popup.anchor,
       content: state.app.ui_header_filter_popup.content,
+    },
+
+    taskcard_context_menu: {
+      shouldShow: state.app.ui_taskcard_context_menu.shouldShow,
+      anchor: state.app.ui_taskcard_context_menu.anchor,
+    },
+    column_popup: {
+      shouldShow: state.app.ui_column_popup.shouldShow,
+      anchor: state.app.ui_column_popup.anchor,
     },
     newTaskDisplay: state.taskDisplay.newTaskDisplay,
   };

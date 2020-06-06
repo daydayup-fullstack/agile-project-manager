@@ -2,17 +2,23 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  border: 1px dashed #6f7782;
+  border: 1px dashed #9ca6af;
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #6f7782;
+  color: #9ca6af;
   overflow: hidden;
   box-sizing: content-box;
   cursor: pointer;
 }
+.circularButton .material-icons {
+  color: #9ca6af;
+}
 .circularButton:hover {
   border: 1px solid #6f7782;
+}
+.circularButton:hover .material-icons {
+  color: #6f7782;
 }
 
 /*# sourceMappingURL=CircularButton.css.map */

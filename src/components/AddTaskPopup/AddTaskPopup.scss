@@ -23,15 +23,16 @@
         font-size: 13px;
         justify-content: flex-end;
 
-
-        &_icon {
+        &>span:nth-of-type(1),
+        &>span:nth-of-type(2) {
             color: #6f7782;
             cursor: pointer;
             margin-left: 3px;
-        }
+            transition: all .2s;
 
-        &_icon:hover {
-            color: black;
+            &:hover {
+                color: black;
+            }
         }
     }
 
@@ -55,12 +56,13 @@
         padding: 4px 0;
         position: relative;
 
-        &_assigneeLabel {
+        &>span:nth-of-type(1),
+        &>span:nth-of-type(3) {
             color: #9ca6af;
             margin-right: 8px;
         }
 
-        &_projectLabel {
+        &>span:nth-of-type(3) {
             margin-left: 8px;
         }
 
@@ -72,7 +74,7 @@
 
         }
 
-        &_token {
+        &>span:nth-of-type(2) {
             cursor: pointer;
             font-size: 13px;
             height: 24px;
@@ -85,7 +87,7 @@
             position: relative;
             z-index: 0;
 
-            &_username {
+            & .username {
                 max-width: 180px;
                 overflow: hidden;
                 text-overflow: ellipsis;
@@ -95,15 +97,15 @@
                 height: 24px;
                 line-height: 24px;
                 padding-left: 7px;
-
+                padding-right: 7px;
             }
 
-            &_avatar {
+            & .avatar {
                 position: absolute;
                 z-index: 2;
             }
 
-            &_assigneePlaceholder {
+            & .assigneePlaceholder {
                 border: 1px dashed #cbd4db;
                 border-radius: 12px;
                 color: #6f7782;
@@ -124,7 +126,7 @@
                 }
             }
 
-            &_remove {
+            & .remove {
                 font-size: 14px;
                 height: 14px;
                 line-height: 14px;
@@ -132,20 +134,30 @@
                 transition: all .1s;
                 align-self: center;
 
+                &:hover {
+                    background-color: #151b26;
+                    height: 14px;
+                    line-height: 14px;
+                    color: #e8ecee;
+                    border-radius: 50%;
+                    align-self: center;
+
+                }
             }
 
-            &:hover &_remove {
+            &:hover &.remove {
                 background-color: #151b26;
                 height: 14px;
                 line-height: 14px;
                 color: #e8ecee;
                 border-radius: 50%;
                 align-self: center;
-
             }
         }
 
-        &_placeholder {
+
+
+        & .placeholder {
             border: 1px dashed #cbd4db;
             border-radius: 12px;
             color: #6f7782;
@@ -166,7 +178,7 @@
             }
         }
 
-        &_projectInput {
+        & .projectInput {
             border: 0;
             outline: none;
             font-size: 20px;
@@ -200,7 +212,7 @@
         align-items: center;
         padding: 28px 0;
 
-        &_icon {
+        &>span {
             margin-right: 12px;
             font-size: 20px;
             cursor: pointer;
@@ -213,20 +225,16 @@
             }
         }
 
-        &_calender {
-            // flex: 1;
-        }
-
-        &_text {
+        &>span:nth-of-type(1) {
             font-size: 25px;
         }
 
-        &_group {
+        &>span:nth-of-type(6) {
             margin-left: auto;
             font-size: 25px;
         }
 
-        &_button {
+        &>button {
             border-radius: 4px;
             font-size: 13px;
             min-width: 48px;

@@ -1,22 +1,18 @@
-import React, { useState } from "react";
-import { connect } from 'react-redux';
-import Tooltip from "../Tooltip/Tooltip";
-import AddButtonCircular from "../AddButtonCircular/AddButtonCircular";
+import React from "react";
+import { connect } from "react-redux";
 import "./ContentHeader.css";
-import MultipleUserProfile from "../MultipleUserProfile/MultipleUserProfile";
 import Profile from "../Profile/Profile";
-import { db_users } from "../../data/database";
 import { changeNewTaskDisplay } from "../../actions/index";
 import { open_app_drawer, show_header_profile_popup } from "../../actions";
 import { calcAnchor } from "../../model/utility";
-
-
 
 const ContentHeader = ({
   shouldOpen,
   open_app_drawer,
   show_header_profile_popup,
   currentUser,
+  workspace,
+    title
 }) => {
   return (
     <>
@@ -27,7 +23,7 @@ const ContentHeader = ({
               menu
             </span>
           )}
-          <h2>Home</h2>
+          <h2>{title}</h2>
           {/*<span className="material-icons icon">keyboard_arrow_down</span>*/}
           {/*<span className="material-icons icon">info</span>*/}
           {/*<span className="star">*/}
@@ -44,22 +40,18 @@ const ContentHeader = ({
           {/*</span>*/}
         </div>
         <div className={"more-content"}>
-          <div className="more-content__MultipleUserProfile">
-            <MultipleUserProfile
-              multipleUsers={[
-                db_users["user-lawrence"],
-                db_users["user-ollie"],
-                db_users["user-scott"],
-                db_users["user-sarah"],
-                db_users["user-silvia"],
-              ]}
-              projectName={"DayDayUp"}
-            />
-          </div>
+          {/*{workspace.type === "team" && (*/}
+          {/*  <div className="more-content__MultipleUserProfile">*/}
+          {/*    <MultipleUserProfile*/}
+          {/*      multipleUsers={workspace.members.map((id) => db_users[id])}*/}
+          {/*      projectName={"DayDayUp"}*/}
+          {/*    />*/}
+          {/*  </div>*/}
+          {/*)}*/}
           <ul className={"more-content__userSection"}>
-            <li>
-              <AddButtonCircular />
-            </li>
+            {/*<li>*/}
+            {/*  <AddButtonCircular />*/}
+            {/*</li>*/}
             {/*<li>*/}
             {/*    <span className="material-icons icon">help_outline</span>*/}
             {/*</li>*/}
@@ -74,16 +66,17 @@ const ContentHeader = ({
           </ul>
         </div>
       </header>
-
     </>
     )
 }
 
 function mapStateToProps(state) {
+  // console.log(state.workspace);
   return {
     newTaskDisplay: state.taskDisplay.newTaskDisplay,
     shouldOpen: state.app.ui_drawer.shouldOpen,
     currentUser: state.user,
+    workspace: state.workspace,
   };
 }
 

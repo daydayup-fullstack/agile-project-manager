@@ -8,8 +8,8 @@ export const db_users = {
       "https://s3.amazonaws.com/profile_photos/4720159505425.uVij5QIkQPduW5RhPC9j_27x27.png",
     colorIndex: 0,
     starredProjects: ["project-00"],
-    privateProjects: {},
-    workspaces: ["workspace-scott-personal", "workspace-daydayup-team"],
+    privateProjects: ["project-01"],
+    workspaces: ["workspace-daydayup-team", "workspace-scott-personal"],
   },
   "user-lawrence": {
     id: "user-lawrence",
@@ -110,7 +110,6 @@ export const db_workspaces = {
 
   "workspace-daydayup-team": {
     type: "team",
-    members: [],
     projectsInOrder: [
       "project-00",
       "project-01",
@@ -120,6 +119,13 @@ export const db_workspaces = {
     ],
     name: "daydayup",
     description: "JR Academy full-stack class study group",
+    members: [
+      "user-scott",
+      "user-lawrence",
+      "user-ollie",
+      "user-sarah",
+      "user-silvia",
+    ],
   },
 };
 
@@ -204,10 +210,11 @@ export const db_tasks = {
     description: "description",
     authorId: "user-scott",
     projectId: ["project-04"],
-    dueDate: null,
+    dueDate: 1591401600,
     attachments: [],
-    assignedUserIds: ["user-ollie"],
+    assignedUserId: "",
     stories: [],
+    likedBy: ["user-silvia"],
   },
   "task-02": {
     id: "task-02",
@@ -219,11 +226,11 @@ export const db_tasks = {
     projectId: ["project-04"],
     dueDate: null,
     attachments: [
-      "https://asana-user-private-us-east-1.s3.amazonaws.com/assets/1171779031466945/1177969216027112/577220a5c637b3aa9b51a554794b5735?X-Amz-Security-Token=IQoJb3JpZ2luX2VjELP%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJIMEYCIQDQmQszM6wERIdo0ILozdZoVr10cGrijrrot0xVwlL0%2BwIhAI7yjVQjha%2BnTak8NCi3l3sHG%2FqpzaP6Ii22bkZI%2BoiLKrQDCBwQABoMNDAzNDgzNDQ2ODQwIgwJz3NGb01Y58Fs%2BpcqkQMJb6a05iER8xeZ09u59bzO9jy2UGVMNMtk538eXf4Yue9eb0CK2TLAEoR2WQHXauJUs1em3ere7zAKJV9jLQLiJyJRqXhJQ9l%2FzCwLVD%2Bj5hhVC5nGG59f2BgYtM%2FRKphhdk9naz%2FmOvu3RUVE43qCYypXehF2Cwo1g3wqc7BmBzqpZ%2FrZ1XTg5RI9ALz%2ByaoNBND2MG9AuGK6%2FztZ0dDbaIsDza64giNKQAVmHvqlBadB%2FSvhcg9xEdYY47fL13nrDYFKf8Su5ymmU5klTnVXVzgv3hwIPd2MFWWW0b%2BlRduF4lUzRWp6Zn6yktEDqHmNAtQgQsagHtKU1C8DWLW8YSomf59ofHeUHX5VXidXWQJC1QIAOQyX5UaNPRrNpfygFg7NA2AplaOm9M04bhSGsSVXq2DvnwB4FvahPc%2Bu4un%2FLny3MlYZAWZUUS%2FPOT5BCnqqI0kzaT%2FEDSCjp9UqEIUOBgTx8PU50dF3wr89rO9RbGF498rE4FDQJTKHB3oPJTqYgegWJukq3L%2BitNw3GTCFzMr2BTrqAYbMpPjeJ7CGAwmOvBxgAAqJwrPsun29aPdfMf4Se6qeWaK%2FHDW5DEtjaJLLeFjU8X%2B5OllmXMYwVyvZAysULCQ2xcdseezCGDVJdsXDKtxrSpbZ25KR79uGLzDQZ2DAOr85W8Et%2B3b9kAtBpZjTsmfGvLmxCZGPi%2BOSWHuyzTzhxYaFUq8feMR82OtKCubkJwmEBXqGBaBtYDxZwEc7GTEdGGoJZTeKamTUeSAPaTlhdCodAs7gO8mP%2Fk6Key9d4eR8W61KeOcQjeUDzIomNoTZ5sl5Tky4PENjQfRZMNPCRp3mu%2Bc0WcDsDw%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200530T184229Z&X-Amz-SignedHeaders=host&X-Amz-Expires=120&X-Amz-Credential=ASIAV34L4ZY4EICNECCE%2F20200530%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=23fff9e95220c8967781451d70949118ba747bdf573377bd53d9de257005c5e6#_=_",
-      "https://asana-user-private-us-east-1.s3.amazonaws.com/assets/1171779031466945/1177969216027113/93486ce618f840559d7fca0342c50f39?X-Amz-Security-Token=IQoJb3JpZ2luX2VjELP%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJIMEYCIQDQmQszM6wERIdo0ILozdZoVr10cGrijrrot0xVwlL0%2BwIhAI7yjVQjha%2BnTak8NCi3l3sHG%2FqpzaP6Ii22bkZI%2BoiLKrQDCBwQABoMNDAzNDgzNDQ2ODQwIgwJz3NGb01Y58Fs%2BpcqkQMJb6a05iER8xeZ09u59bzO9jy2UGVMNMtk538eXf4Yue9eb0CK2TLAEoR2WQHXauJUs1em3ere7zAKJV9jLQLiJyJRqXhJQ9l%2FzCwLVD%2Bj5hhVC5nGG59f2BgYtM%2FRKphhdk9naz%2FmOvu3RUVE43qCYypXehF2Cwo1g3wqc7BmBzqpZ%2FrZ1XTg5RI9ALz%2ByaoNBND2MG9AuGK6%2FztZ0dDbaIsDza64giNKQAVmHvqlBadB%2FSvhcg9xEdYY47fL13nrDYFKf8Su5ymmU5klTnVXVzgv3hwIPd2MFWWW0b%2BlRduF4lUzRWp6Zn6yktEDqHmNAtQgQsagHtKU1C8DWLW8YSomf59ofHeUHX5VXidXWQJC1QIAOQyX5UaNPRrNpfygFg7NA2AplaOm9M04bhSGsSVXq2DvnwB4FvahPc%2Bu4un%2FLny3MlYZAWZUUS%2FPOT5BCnqqI0kzaT%2FEDSCjp9UqEIUOBgTx8PU50dF3wr89rO9RbGF498rE4FDQJTKHB3oPJTqYgegWJukq3L%2BitNw3GTCFzMr2BTrqAYbMpPjeJ7CGAwmOvBxgAAqJwrPsun29aPdfMf4Se6qeWaK%2FHDW5DEtjaJLLeFjU8X%2B5OllmXMYwVyvZAysULCQ2xcdseezCGDVJdsXDKtxrSpbZ25KR79uGLzDQZ2DAOr85W8Et%2B3b9kAtBpZjTsmfGvLmxCZGPi%2BOSWHuyzTzhxYaFUq8feMR82OtKCubkJwmEBXqGBaBtYDxZwEc7GTEdGGoJZTeKamTUeSAPaTlhdCodAs7gO8mP%2Fk6Key9d4eR8W61KeOcQjeUDzIomNoTZ5sl5Tky4PENjQfRZMNPCRp3mu%2Bc0WcDsDw%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200530T184229Z&X-Amz-SignedHeaders=host&X-Amz-Expires=120&X-Amz-Credential=ASIAV34L4ZY4EICNECCE%2F20200530%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=31c22e3f773724683c008f811ceefa2c85fe74ede48f3a2ebf7bab41ac9c4942#_=_",
+      "https://media.wired.com/photos/5bd86f1cb0c71179a8e94cbd/16:9/w_1519,h_854,c_limit/macmini1.jpg",
     ],
-    assignedUserIds: ["user-lawrence"],
+    assignedUserId: "user-lawrence",
     stories: [],
+    likedBy: ["user-scott", "user-ollie"],
   },
   "task-03": {
     id: "task-03",
@@ -233,12 +240,13 @@ export const db_tasks = {
     description: "description",
     authorId: "user-scott",
     projectId: ["project-04"],
-    dueDate: null,
+    dueDate: 1556516450,
     attachments: [
-      "https://asana-user-private-us-east-1.s3.amazonaws.com/assets/1171779031466945/1176128238356164/1176133168294648.Nrk4T8cBxDLFh3orvfCo_height640.png?X-Amz-Security-Token=IQoJb3JpZ2luX2VjELP%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLWVhc3QtMSJIMEYCIQDQmQszM6wERIdo0ILozdZoVr10cGrijrrot0xVwlL0%2BwIhAI7yjVQjha%2BnTak8NCi3l3sHG%2FqpzaP6Ii22bkZI%2BoiLKrQDCBwQABoMNDAzNDgzNDQ2ODQwIgwJz3NGb01Y58Fs%2BpcqkQMJb6a05iER8xeZ09u59bzO9jy2UGVMNMtk538eXf4Yue9eb0CK2TLAEoR2WQHXauJUs1em3ere7zAKJV9jLQLiJyJRqXhJQ9l%2FzCwLVD%2Bj5hhVC5nGG59f2BgYtM%2FRKphhdk9naz%2FmOvu3RUVE43qCYypXehF2Cwo1g3wqc7BmBzqpZ%2FrZ1XTg5RI9ALz%2ByaoNBND2MG9AuGK6%2FztZ0dDbaIsDza64giNKQAVmHvqlBadB%2FSvhcg9xEdYY47fL13nrDYFKf8Su5ymmU5klTnVXVzgv3hwIPd2MFWWW0b%2BlRduF4lUzRWp6Zn6yktEDqHmNAtQgQsagHtKU1C8DWLW8YSomf59ofHeUHX5VXidXWQJC1QIAOQyX5UaNPRrNpfygFg7NA2AplaOm9M04bhSGsSVXq2DvnwB4FvahPc%2Bu4un%2FLny3MlYZAWZUUS%2FPOT5BCnqqI0kzaT%2FEDSCjp9UqEIUOBgTx8PU50dF3wr89rO9RbGF498rE4FDQJTKHB3oPJTqYgegWJukq3L%2BitNw3GTCFzMr2BTrqAYbMpPjeJ7CGAwmOvBxgAAqJwrPsun29aPdfMf4Se6qeWaK%2FHDW5DEtjaJLLeFjU8X%2B5OllmXMYwVyvZAysULCQ2xcdseezCGDVJdsXDKtxrSpbZ25KR79uGLzDQZ2DAOr85W8Et%2B3b9kAtBpZjTsmfGvLmxCZGPi%2BOSWHuyzTzhxYaFUq8feMR82OtKCubkJwmEBXqGBaBtYDxZwEc7GTEdGGoJZTeKamTUeSAPaTlhdCodAs7gO8mP%2Fk6Key9d4eR8W61KeOcQjeUDzIomNoTZ5sl5Tky4PENjQfRZMNPCRp3mu%2Bc0WcDsDw%3D%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20200530T184343Z&X-Amz-SignedHeaders=host&X-Amz-Expires=1800&X-Amz-Credential=ASIAV34L4ZY4EICNECCE%2F20200530%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=f944964b03dbaac55d68e5fcaa9db891320d06a7d3c8b098da00877933adaa97#_=_",
+      "https://media.wired.com/photos/5bd86f1cb0c71179a8e94cbd/16:9/w_1519,h_854,c_limit/macmini1.jpg",
     ],
-    assignedUserIds: ["user-scott"],
+    assignedUserId: "user-scott",
     stories: ["story-00"],
+    likedBy: [],
   },
 };
 
@@ -284,6 +292,7 @@ export const loadInitialData = (devId) => {
       type,
       projectsInOrder,
       projects: { ...db_projects },
+      members: [...db_workspaces[workspaces[0]].members],
     },
   };
 };

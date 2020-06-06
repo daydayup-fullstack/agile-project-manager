@@ -1,4 +1,4 @@
-import { loadInitialData } from "../data/database";
+import { db_projects, loadInitialData } from "../data/database";
 import {
   DRAWER_CLOSED,
   DRAWER_OPENED,
@@ -23,6 +23,11 @@ import {
   SHOW_PROJECT_CARD_POPUP,
   SHOW_ADD_MEMBER_POPUP,
   CHANGE_NEW_TASK_DISPLAY,
+  CHANGE_CALENDAR_DISPLAY,
+  SHOW_TASKCARD_CONTEXT_MENU_POPUP,
+  HIDE_TASKCARD_CONTEXT_MENU_POPUP,
+  SHOW_COLUMN_POPUP,
+  HIDE_COLUMN_POPUP,
 } from "../actions";
 const devId = "user-scott";
 
@@ -56,9 +61,14 @@ const initialAppState = {
     content: null,
     anchor: { x: 0, y: 0, width: 0, height: 0 },
   },
-  ui_addmember_popup:{
-    ShowPopup:true
-  }
+  ui_taskcard_context_menu: {
+    shouldShow: false,
+    anchor: { x: 0, y: 0, width: 0, height: 0 },
+  },
+  ui_column_popup: {
+    shouldShow: false,
+    anchor: { x: 0, y: 0, width: 0, height: 0 },
+  },
 };
 
 export const app = (state = initialAppState, action) => {
@@ -196,6 +206,46 @@ export const app = (state = initialAppState, action) => {
         },
       };
 
+    case SHOW_TASKCARD_CONTEXT_MENU_POPUP:
+      return {
+        ...state,
+        ui_taskcard_context_menu: {
+          shouldShow: true,
+          anchor: action.anchor,
+          task: action.task,
+          columnId: action.columnId,
+          project: action.project,
+          shouldEditTaskName: false,
+        },
+      };
+
+    case HIDE_TASKCARD_CONTEXT_MENU_POPUP:
+      return {
+        ...state,
+        ui_taskcard_context_menu: {
+          shouldShow: false,
+        },
+      };
+
+    case SHOW_COLUMN_POPUP:
+      return {
+        ...state,
+        ui_column_popup: {
+          shouldShow: true,
+          anchor: action.anchor,
+          column: action.column,
+        },
+      };
+
+    case HIDE_COLUMN_POPUP: {
+      return {
+        ...state,
+        ui_column_popup: {
+          shouldShow: false,
+        },
+      };
+    }
+
     default:
       return {
         ...state,
@@ -298,8 +348,11 @@ export const project = (state = {}, action) => {
   }
 };
 
+// ============= New TaskDisplay reducers ===============
+
 const initialNewTaskDisplay = {
   newTaskDisplay: false,
+  calendarDisplay: false,
 };
 
 export const taskDisplay = (state = initialNewTaskDisplay, action) => {
@@ -310,6 +363,26 @@ export const taskDisplay = (state = initialNewTaskDisplay, action) => {
         newTaskDisplay: action.newTaskDisplay,
       };
     }
+    case CHANGE_CALENDAR_DISPLAY: {
+      return {
+        ...state,
+        calendarDisplay: action.calendarDisplay,
+      };
+    }
+    default:
+      return {
+        ...state,
+      };
+  }
+};
+
+// ==================== allProjects ======================
+const projectsInitial = {
+  ...db_projects,
+};
+
+export const allProjects = (state = projectsInitial, action) => {
+  switch (action.type) {
     default:
       return {
         ...state,

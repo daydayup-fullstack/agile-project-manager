@@ -4,7 +4,7 @@ import "./Filterbar.css";
 import { connect } from "react-redux";
 import { show_header_filter_popup } from "../../actions";
 
-const Filterbar = ({ show_header_filter_popup }) => {
+const Filterbar = ({ show_header_filter_popup, project }) => {
   const getAnchor = (e) => {
     const anchor = {
       x: e.target.offsetLeft,
@@ -38,9 +38,7 @@ const Filterbar = ({ show_header_filter_popup }) => {
 
   return (
     <div className="Filterbar">
-      <div className="Filterbar__description">
-        Last task completed yesterday
-      </div>
+      <div className="Filterbar__description"/>
       <div className="Filterbar__controls">
         <button className="Filter_button first" onClick={filterByCompletion}>
           <span className="material-icons task">check_circle_outline</span>All
@@ -53,16 +51,18 @@ const Filterbar = ({ show_header_filter_popup }) => {
           <span className="material-icons swap">swap_vert</span>Sort
         </button>
 
-        <span className={"divider"} />
+        {/*<span className={"divider"} />*/}
 
-        <span className={"material-icons more"}>more_horiz</span>
+        {/*<span className={"material-icons more"}>more_horiz</span>*/}
       </div>
     </div>
   );
 };
 
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    project: state.project,
+  };
 };
 export default connect(mapStateToProps, { show_header_filter_popup })(
   Filterbar

@@ -1,5 +1,6 @@
 .Navigation {
   border-bottom: 1px solid rgba(111, 119, 130, 0.5);
+  min-height: 100px;
 }
 .Navigation ul {
   list-style: none;

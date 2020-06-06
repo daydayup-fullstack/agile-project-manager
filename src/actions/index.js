@@ -1,7 +1,7 @@
 import { db_columns, db_tasks } from "../data/database";
 
 // ============== Project ========================
-
+// region- Project related actions
 export const PROJECT_SELECTED = "PROJECT_SELECTED";
 export const project_selected = (project) => {
   return {
@@ -23,11 +23,20 @@ export const project_changed = (project) => {
   };
 };
 
+//-------new task display
 export const CHANGE_NEW_TASK_DISPLAY = "CHANGE_NEW_TASK_DISPLAY";
 export const changeNewTaskDisplay = (newTaskDisplay) => {
   return {
     type: CHANGE_NEW_TASK_DISPLAY,
     newTaskDisplay,
+  };
+};
+
+export const CHANGE_CALENDAR_DISPLAY = "CHANGE_CALENDAR_DISPLAY";
+export const changeCalendarDisplay = (calendarDisplay) => {
+  return {
+    type: CHANGE_CALENDAR_DISPLAY,
+    calendarDisplay,
   };
 };
 
@@ -71,8 +80,28 @@ export const select_project_color = (project) => {
   };
 };
 
-// ================ ui state ======================
+export const START_CREATING_NEW_TASK = "START_CREATING_NEW_TASK";
+export const start_creating_new_task = ({ project }) => {
+  return {
+    type: START_CREATING_NEW_TASK,
+    project,
+  };
+};
 
+export const ADD_TASK_TO_PROJECT = "ADD_TASK";
+export const add_task_to_project = ({ task, column, project }) => {
+  return {
+    type: ADD_TASK_TO_PROJECT,
+    task,
+    column,
+    project,
+  };
+};
+
+//endregion
+
+// ================ ui state ======================
+// region - ui state actions
 export const SHOW_PROJECT_CARD_POPUP = "SHOW_PROJECT_CARD_POPUP";
 export const show_projectCard_popup = ({ anchor }) => {
   return {
@@ -124,8 +153,9 @@ export const close_app_drawer = () => {
   };
 };
 
-// header - project - icon
 export const SHOW_HEADER_PROJECT_ICON_POPUP = "SHOW_HEADER_PROJECT_ICON_POPUP";
+
+// - header - project - icon
 export const show_header_projectIcon_popup = ({ anchor }) => {
   return {
     type: SHOW_HEADER_PROJECT_ICON_POPUP,
@@ -139,6 +169,7 @@ export const hide_header_projectIcon_popup = () => {
     type: HIDE_HEADER_PROJECT_ICON_POPUP,
   };
 };
+
 //header - project - profile
 export const SHOW_HEADER_PROFILE_POPUP = "SHOW_HEADER_PROFILE_POPUP";
 export const show_header_profile_popup = ({ anchor }) => {
@@ -168,8 +199,6 @@ export const hide_header_projectInfo_popup = () => {
     type: HIDE_HEADER_PROJECT_INFO_POPUP,
   };
 };
-
-
 
 //header - addButton
 export const SHOW_HEADER_ADD_BUTTON_POPUP = "SHOW_HEADER_ADD_BUTTON_POPUP";
@@ -202,3 +231,45 @@ export const hide_header_filter_popup = () => {
     type: HIDE_HEADER_FILTER_POPUP,
   };
 };
+
+// taskcard - context popup
+export const SHOW_TASKCARD_CONTEXT_MENU_POPUP =
+  "SHOW_TASKCARD_CONTEXT_MENU_POPUP";
+export const show_taskcard_context_menu = ({
+  anchor,
+  task,
+  columnId,
+  project,
+}) => {
+  return {
+    type: SHOW_TASKCARD_CONTEXT_MENU_POPUP,
+    anchor,
+    task,
+    project,
+    columnId,
+  };
+};
+export const HIDE_TASKCARD_CONTEXT_MENU_POPUP =
+  "HIDE_TASKCARD_CONTEXT_MENU_POPUP";
+export const hide_taskcard_context_menu = () => {
+  return {
+    type: HIDE_TASKCARD_CONTEXT_MENU_POPUP,
+  };
+};
+
+export const SHOW_COLUMN_POPUP = "SHOW_COLUMN_POPUP";
+export const show_column_popup = ({ anchor, column }) => {
+  return {
+    type: SHOW_COLUMN_POPUP,
+    anchor,
+    column,
+  };
+};
+
+export const HIDE_COLUMN_POPUP = "HIDE_COLUMN_POPUP";
+export const hide_column_popup = () => {
+  return {
+    type: HIDE_COLUMN_POPUP,
+  };
+};
+//endregion

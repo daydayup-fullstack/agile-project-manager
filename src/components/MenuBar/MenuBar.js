@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import "./MenuBar.css";
 import Profile from "../Profile/Profile";
 
-import AddButtonCircular from "../AddButtonCircular/AddButtonCircular";
 import { db_users } from "../../data/database";
 import { connect } from "react-redux";
 import {
@@ -14,9 +13,7 @@ import {
   show_header_projectIcon_popup,
   show_header_projectInfo_popup,
 } from "../../actions";
-import Filterbar from "../Filterbar/Filterbar";
 import { colors, iconNames } from "../../model/model";
-import MultipleUserProfile from "../MultipleUserProfile/MultipleUserProfile";
 
 const MenuBar = ({
   shouldOpen,
@@ -29,7 +26,6 @@ const MenuBar = ({
   show_header_profile_popup,
   show_header_projectInfo_popup,
 }) => {
-  const [shouldShowTooltip, setShouldShowTooltip] = useState(false);
   const [starHover, setStarHover] = React.useState(false);
 
   const starred = currentUser.starredProjects.indexOf(currentProject.id) >= 0;
@@ -98,6 +94,7 @@ const MenuBar = ({
             </div>
           </div>
 
+          {/* todo - edit a project name*/}
           <h2>{currentProject.name}</h2>
 
           <div className="iconGroup">
@@ -107,7 +104,7 @@ const MenuBar = ({
             >
               keyboard_arrow_down
             </span>
-            <span className="material-icons-outlined icon">info</span>
+            {/*<span className="material-icons-outlined icon">info</span>*/}
             <span
               className={"material-icons star"}
               onMouseOver={() => setStarHover(true)}
@@ -120,24 +117,20 @@ const MenuBar = ({
           </div>
         </div>
         <div className={"MenuBar__more-content"}>
-          <div className="MultipleUserProfile">
-            <MultipleUserProfile
-              multipleUsers={[
-                db_users["user-lawrence"],
-                db_users["user-ollie"],
-                db_users["user-scott"],
-                db_users["user-sarah"],
-                db_users["user-silvia"],
-              ]}
-              projectName={"DayDayUp"}
-            />
-          </div>
+          {/*{workspace.type === "team" && (*/}
+          {/*  <div className="MultipleUserProfile">*/}
+          {/*    <MultipleUserProfile*/}
+          {/*      multipleUsers={workspace.members.map((id) => db_users[id])}*/}
+          {/*      projectName={"DayDayUp"}*/}
+          {/*    />*/}
+          {/*  </div>*/}
+          {/*)}*/}
           <ul className={"userSection"}>
-            <li>
-              <AddButtonCircular
-                onHandleClick={() => setShouldShowTooltip(!shouldShowTooltip)}
-              />
-            </li>
+            {/*<li>*/}
+            {/*  <AddButtonCircular*/}
+            {/*    onHandleClick={() => setShouldShowTooltip(!shouldShowTooltip)}*/}
+            {/*  />*/}
+            {/*</li>*/}
 
             <li
               onClick={(e) => show_header_profile_popup(getAnchorForProfile(e))}
@@ -148,7 +141,7 @@ const MenuBar = ({
           </ul>
         </div>
       </div>
-      <Filterbar />
+      {/*<Filterbar />*/}
     </>
   );
 };

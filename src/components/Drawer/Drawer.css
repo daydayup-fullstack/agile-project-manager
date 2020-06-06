@@ -27,6 +27,11 @@
   max-width: 240px;
   flex-shrink: 1;
 }
+.Drawer .SideMenu--header h1 {
+  font-family: "Abril Fatface", cursive;
+  font-size: 1.5rem;
+  color: #fff;
+}
 .Drawer .SideMenu--header span {
   cursor: pointer;
 }

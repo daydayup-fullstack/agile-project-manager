@@ -1,0 +1,76 @@
+@import "../../style/variables";
+
+.calendarPopup {
+  background-color: $gray-100;
+  box-shadow: 6px 7px 10px -4px $gray-300;
+  width: 264px;
+  height: 319px;
+  padding: 0px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 20px;
+  position: relative;
+  &__title {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    color: $gray-400;
+  }
+  &__icons {
+    width: 50px;
+    cursor: pointer;
+  }
+  &__month {
+    flex: auto;
+    text-align: center;
+  }
+  &__grid {
+    width: 100%;
+    text-align: center;
+    &-header {
+      color: $gray-400;
+    }
+  }
+  &__cell {
+    padding: 5px 0;
+    width: 20px;
+    cursor: pointer;
+  }
+  &__btn {
+    width: 100%;
+    border-radius: 5px;
+    background-color: #14aaf5;
+    padding: 0 15px;
+    margin: 8px 0 0;
+    border-color: #14aaf5;
+    color: #fff;
+    fill: #fff;
+    height: 32px;
+    line-height: 32px;
+    border-style: solid;
+    border-width: 1px;
+    cursor: pointer;
+    &:hover {
+      background-color: #007ab8;
+    }
+  }
+  .active {
+    text-decoration: underline;
+    background-color: #14aaf5;
+  }
+  &::before {
+    box-sizing: border-box;
+    content: "";
+    display: block;
+    height: 14px;
+    transform: rotate(45deg);
+    width: 14px;
+    position: absolute;
+    background-color: $gray-100;
+    box-shadow: 6px 7px 20px -4px $gray-300;
+    top: -7px;
+    left: 10px;
+  }
+}
