@@ -1,11 +1,10 @@
 import { db_columns, db_tasks } from "../data/database";
-import {generateId} from "../model/utility"
+import { generateId } from "../model/utility";
 
 // ============== Project ========================
 // region- Project related actions
 export const PROJECT_SELECTED = "PROJECT_SELECTED";
 export const project_selected = (project) => {
-
   return {
     type: PROJECT_SELECTED,
     project,
@@ -24,21 +23,12 @@ export const project_changed = (project) => {
 };
 
 export const PROJECT_ADDED = "PROJECT_ADDED";
-export const project_added = ({projectName}) => {
+export const project_added = (project) => {
   return {
     type: PROJECT_ADDED,
-    payload: {
-      id: generateId(),
-      colorIndex: 0,
-      columnOrder: [],
-      createdOn: (Date.parse(new Date()))/1000,
-      dueDate: null,
-      iconIndex: 0,
-      name: projectName
-    }
+    payload: project,
   };
 };
-
 
 //-------new task display
 export const CHANGE_NEW_TASK_DISPLAY = "CHANGE_NEW_TASK_DISPLAY";

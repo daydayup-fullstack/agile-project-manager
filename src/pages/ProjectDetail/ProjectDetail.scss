@@ -86,7 +86,6 @@
     }
   }
   &__createProject {
-    button {
       width: 100%;
       background-color: $gray-100;
       height: 32px;
@@ -101,7 +100,7 @@
       cursor: pointer;
       font-size: smaller;
       font-weight: bold;
-    }
+
     &-disabled {
       background: $gray-100 !important;
       border: 1px solid $gray-100 !important;

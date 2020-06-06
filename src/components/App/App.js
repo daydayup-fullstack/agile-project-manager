@@ -21,7 +21,6 @@ import Tooltip from "../Tooltip/Tooltip";
 import AddTaskPopup from "../AddTaskPopup/AddTaskPopup";
 import { db_users } from "../../data/database";
 
-
 const App = ({
   projectCard_popup,
   header_projectIcon_popup,

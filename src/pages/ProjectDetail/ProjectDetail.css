@@ -81,7 +81,7 @@
   color: #6f7782;
   margin: 0 6px;
 }
-.projectDetail__createProject button {
+.projectDetail__createProject {
   width: 100%;
   background-color: #f6f8f9;
   height: 32px;

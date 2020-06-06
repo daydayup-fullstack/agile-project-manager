@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import "./ProjectDetail.css";
 import { Link, withRouter } from "react-router-dom";
-import { project_added } from "../../actions";
+import { project_added, project_selected } from "../../actions";
 import { connect } from "react-redux";
+import { generateId } from "../../model/utility";
 
 class ProjectDetail extends Component {
   constructor() {
@@ -22,8 +23,8 @@ class ProjectDetail extends Component {
 
   handleProjectNameChange(e) {
     this.setState({
-      projectName: e.target.value
-    })
+      projectName: e.target.value,
+    });
   }
 
   handleRadioChange(e) {
@@ -44,11 +45,8 @@ class ProjectDetail extends Component {
     });
   }
 
-
-
   render() {
     const { projectName, description } = this.state;
-    const { projectId, project_added } = this.props;
 
     return (
       <section className="projectDetail">
@@ -65,8 +63,27 @@ class ProjectDetail extends Component {
           className="projectDetail__form"
           onSubmit={(e) => {
             e.preventDefault();
-            this.props.history.push(`/projects/${projectId}`)
-          }}>
+
+            const projectId = generateId();
+
+            const newProject = {
+              id: projectId,
+              colorIndex: Math.floor(Math.random() * 16),
+              columnOrder: [],
+              createdOn: Date.parse(new Date()) / 1000,
+              dueDate: null,
+              iconIndex: Math.floor(Math.random()*28),
+              name: projectName,
+            };
+
+
+            this.props.project_added(newProject);
+            this.props.project_selected(newProject);
+
+            // this.props.history.push(`/projects/${projectId}`);
+            this.props.history.push(`/home`);
+          }}
+        >
           <div className="projectDetail__title">
             <h2>Add Project Details</h2>
           </div>
@@ -89,12 +106,12 @@ class ProjectDetail extends Component {
                 placeholder="please input the description"
                 onChange={this.handleChangeDescription}
                 value={description}
-              ></textarea>
+              />
             ) : (
-                <button type="button" onClick={this.handleAddDescription}>
-                  Add a description
-                </button>
-              )}
+              <button type="button" onClick={this.handleAddDescription}>
+                Add a description
+              </button>
+            )}
           </div>
           <div className="projectDetail__defaultView">
             <label htmlFor="defaultView" className="projectDetail__label">
@@ -150,22 +167,16 @@ class ProjectDetail extends Component {
               <span>private</span>
             </div>
           </div>
-          <div className="projectDetail__createProject">
-
-            <button
-              type="submit"
-              className={
-                projectName ? "" : "projectDetail__createProject-disabled"
-              }
-              onClick={() => {
-                project_added({
-                  projectName: projectName
-                })
-              }}>
-              Create project
-            </button>
-
-          </div>
+          <button
+            type="submit"
+            className={
+              projectName
+                ? "projectDetail__createProject"
+                : "projectDetail__createProject projectDetail__createProject-disabled"
+            }
+          >
+            Create project
+          </button>
         </form>
       </section>
     );
@@ -173,12 +184,14 @@ class ProjectDetail extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state)
+  console.log(state);
   const { allProjects } = state;
   const projectId = allProjects[allProjects.length - 1].id;
   return {
-    projectId: projectId
-  }
-}
+    projectId: projectId,
+  };
+};
 
-export default connect(mapStateToProps, { project_added })(withRouter(ProjectDetail));
+export default connect(mapStateToProps, { project_added, project_selected })(
+  withRouter(ProjectDetail)
+);
