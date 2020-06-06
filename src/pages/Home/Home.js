@@ -5,22 +5,26 @@ import ProjectCard from "../../components/ProjectCard/ProjectCard";
 import AddProjectCard from "../../components/AddProjectCard/AddProjectCard";
 import { connect } from "react-redux";
 
-const Home = ({ starredProjects, projectsInOrder, projects }) => {
+const Home = ({ starredProjects, projects }) => {
+  const favorites = projects.filter(
+    (project) => starredProjects.indexOf(project.id) >= 0
+  );
+
   return (
     <div className={"App-Home"}>
       {starredProjects && starredProjects.length > 0 && (
         <Panel panelName={"Favorites"}>
-          {starredProjects.map((id, index) => (
-            <ProjectCard project={projects[index]} starred={true} key={id} />
+          {favorites.map((project) => (
+            <ProjectCard project={project} starred={true} key={project.id} />
           ))}
         </Panel>
       )}
       <Panel panelName={"Recent Projects"}>
-        {projectsInOrder.map((id, index) => (
+        {projects.map((project) => (
           <ProjectCard
-            project={projects[index]}
-            starred={starredProjects.indexOf(id) >= 0}
-            key={id}
+            project={project}
+            starred={starredProjects.indexOf(project.id) >= 0}
+            key={project.id}
           />
         ))}
         <AddProjectCard />
@@ -32,7 +36,6 @@ const Home = ({ starredProjects, projectsInOrder, projects }) => {
 const mapStateToProps = (state) => {
   return {
     starredProjects: state.user.starredProjects,
-    projectsInOrder: state.workspace.projectsInOrder,
     projects: state.allProjects,
   };
 };

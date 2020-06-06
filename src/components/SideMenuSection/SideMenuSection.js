@@ -5,6 +5,7 @@ import Profile from "../Profile/Profile";
 import { NavLink } from "react-router-dom";
 
 export const Favorites = ({ projects }) => {
+
   const [shouldExpand, setShouldExpand] = React.useState(true);
   const getProjectColor = (project) => ({
     backgroundColor: colorInOrder[project.colorIndex],
