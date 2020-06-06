@@ -281,59 +281,37 @@ const initialWorkspace = {
 
 export const workspace = (state = initialWorkspace, action) => {
   switch (action.type) {
-    case PROJECT_ICON_SELECTED:
-      return {
-        ...state,
-        projects: {
-          ...state.projects,
-          [action.project.id]: action.project,
-        },
-      };
-
-    case PROJECT_COLOR_SELECTED:
-      return {
-        ...state,
-        projects: {
-          ...state.projects,
-          [action.project.id]: action.project,
-        },
-      };
-
-    case PROJECT_DELETED: {
-      const index = state.projectsInOrder.indexOf(action.project.id);
-      const newProjectInOrder = [...state.projectsInOrder];
-      newProjectInOrder.splice(index, 1);
-      const newProjects = { ...state.projects };
-      delete newProjects[project.id];
-
-      return {
-        ...state,
-        projectsInOrder: newProjectInOrder,
-        projects: newProjects,
-      };
-    }
-
-    // case PROJECT_CHANGED:
-    //   {
-    //     const project = action.project;
+    // case PROJECT_ICON_SELECTED:
+    //   return {
+    //     ...state,
+    //     projects: {
+    //       ...state.projects,
+    //       [action.project.id]: action.project,
+    //     },
+    //   };
     //
-    //     console.log(project.name);
+    // case PROJECT_COLOR_SELECTED:
+    //   return {
+    //     ...state,
+    //     projects: {
+    //       ...state.projects,
+    //       [action.project.id]: action.project,
+    //     },
+    //   };
     //
-    //     console.log(state.projects[project.id].name);
+    // case PROJECT_DELETED: {
+    //   const index = state.projectsInOrder.indexOf(action.project.id);
+    //   const newProjectInOrder = [...state.projectsInOrder];
+    //   newProjectInOrder.splice(index, 1);
+    //   const newProjects = { ...state.projects };
+    //   delete newProjects[project.id];
     //
-    //     // return {
-    //     //   ...state,
-    //     //   projects: {
-    //     //     ...state.projects,
-    //     //     [project.id]: {
-    //     //       ...state.projects[project.id],
-    //     //       ...project,
-    //     //     },
-    //     //   },
-    //     // };
-    //   }
-    //
-    //   break;
+    //   return {
+    //     ...state,
+    //     projectsInOrder: newProjectInOrder,
+    //     projects: newProjects,
+    //   };
+    // }
     default:
       return {
         ...state,
@@ -358,10 +336,6 @@ export const project = (state = {}, action) => {
           ...action.tasks,
         },
       };
-
-      console.log("=========");
-      console.log(project);
-
       return project;
 
     case PROJECT_CHANGED: {
@@ -374,13 +348,13 @@ export const project = (state = {}, action) => {
     case PROJECT_ICON_SELECTED:
       return {
         ...state,
-        iconIndex: action.payload,
+        ...action.project,
       };
 
     case PROJECT_COLOR_SELECTED:
       return {
         ...state,
-        colorIndex: action.payload,
+        ...action.project,
       };
 
     default:
@@ -441,6 +415,27 @@ export const allProjects = (state = projectsInitial, action) => {
     //     ...allProjects,
     //   };
     // }
+
+    case PROJECT_COLOR_SELECTED: {
+      const update = action.project;
+      let projectIndex;
+      state.map((p, index) => {
+        if (p.id === update.id) {
+          projectIndex = index;
+        }
+      });
+
+      const newState = [...state];
+      newState.splice(projectIndex, 1);
+      newState.splice(projectIndex, 0, update);
+
+      return [...newState];
+    }
+
+    case PROJECT_CHANGED: {
+      break;
+    }
+
     default:
       return [...state];
   }
