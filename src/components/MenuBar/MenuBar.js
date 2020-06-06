@@ -25,7 +25,6 @@ const MenuBar = ({
   remove_project_star,
   show_header_projectIcon_popup,
   show_header_profile_popup,
-  show_header_projectInfo_popup,
   project_changed,
 }) => {
   const [starHover, setStarHover] = React.useState(false);

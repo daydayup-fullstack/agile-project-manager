@@ -1,4 +1,4 @@
-import { db_projects, loadInitialData } from "../data/database";
+import { db_projects, db_workspaces, loadInitialData } from "../data/database";
 import {
   DRAWER_CLOSED,
   DRAWER_OPENED,
@@ -275,7 +275,9 @@ export const user = (state = initialUserState, action) => {
 };
 // ============= WORKSPACE reducers ==================
 
-const initialWorkspace = { ...loadInitialData(devId).currentWorkspace };
+const initialWorkspace = {
+  ...loadInitialData(devId).currentWorkspace,
+};
 
 export const workspace = (state = initialWorkspace, action) => {
   switch (action.type) {
@@ -311,19 +313,27 @@ export const workspace = (state = initialWorkspace, action) => {
       };
     }
 
-    case PROJECT_CHANGED: {
-      const project = action.project;
-      return {
-        ...state,
-        projects: {
-          ...state.projects,
-          [project.id]: {
-            ...state.projects[project.id],
-            ...project,
-          },
-        },
-      };
-    }
+    // case PROJECT_CHANGED:
+    //   {
+    //     const project = action.project;
+    //
+    //     console.log(project.name);
+    //
+    //     console.log(state.projects[project.id].name);
+    //
+    //     // return {
+    //     //   ...state,
+    //     //   projects: {
+    //     //     ...state.projects,
+    //     //     [project.id]: {
+    //     //       ...state.projects[project.id],
+    //     //       ...project,
+    //     //     },
+    //     //   },
+    //     // };
+    //   }
+    //
+    //   break;
     default:
       return {
         ...state,
@@ -332,16 +342,27 @@ export const workspace = (state = initialWorkspace, action) => {
 };
 
 // ============= PROJECT reducers ==================
+// todo - adding async fetching operation here
+// current selected project - fetching additional data
 
 export const project = (state = {}, action) => {
   switch (action.type) {
     case PROJECT_SELECTED:
-      return {
+      const project = {
         ...state,
-        ...action.payload.project,
-        columns: { ...action.payload.columns },
-        tasks: { ...action.payload.tasks },
+        ...action.project,
+        columns: {
+          ...action.columns,
+        },
+        tasks: {
+          ...action.tasks,
+        },
       };
+
+      console.log("=========");
+      console.log(project);
+
+      return project;
 
     case PROJECT_CHANGED: {
       return {
@@ -398,33 +419,29 @@ export const taskDisplay = (state = initialNewTaskDisplay, action) => {
 };
 
 // ==================== allProjects ======================
-const projectsInitial = {
-  ...db_projects,
-};
+const projectsInitial = [...loadInitialData(devId).allProjects];
 
 export const allProjects = (state = projectsInitial, action) => {
   switch (action.type) {
-    case PROJECT_CHANGED: {
-      const project = action.project;
-      return {
-        ...state,
-        [project.id]: {
-          ...state[project.id],
-          ...project,
-        },
-      };
-    }
-
-    case PROJECT_DELETED: {
-      const allProjects = { ...state };
-      delete allProjects[action.project.id];
-      return {
-        ...allProjects,
-      };
-    }
+    // case PROJECT_CHANGED: {
+    //   const project = action.project;
+    //   return {
+    //     ...state,
+    //     [project.id]: {
+    //       ...state[project.id],
+    //       ...project,
+    //     },
+    //   };
+    // }
+    //
+    // case PROJECT_DELETED: {
+    //   const allProjects = { ...state };
+    //   delete allProjects[action.project.id];
+    //   return {
+    //     ...allProjects,
+    //   };
+    // }
     default:
-      return {
-        ...state,
-      };
+      return [...state];
   }
 };

@@ -135,10 +135,9 @@ const Kanban = ({ project, project_changed }) => {
 };
 
 const mapStateToProps = (state) => {
-  let { project } = state;
-
+  console.log(state.project);
   return {
-    project,
+    project: state.project,
   };
 };
 

@@ -10,15 +10,15 @@ const Home = ({ starredProjects, projectsInOrder, projects }) => {
     <div className={"App-Home"}>
       {starredProjects && starredProjects.length > 0 && (
         <Panel panelName={"Favorites"}>
-          {starredProjects.map((id) => (
-            <ProjectCard project={projects[id]} starred={true} key={id} />
+          {starredProjects.map((id, index) => (
+            <ProjectCard project={projects[index]} starred={true} key={id} />
           ))}
         </Panel>
       )}
       <Panel panelName={"Recent Projects"}>
-        {projectsInOrder.map((id) => (
+        {projectsInOrder.map((id, index) => (
           <ProjectCard
-            project={projects[id]}
+            project={projects[index]}
             starred={starredProjects.indexOf(id) >= 0}
             key={id}
           />
@@ -33,7 +33,7 @@ const mapStateToProps = (state) => {
   return {
     starredProjects: state.user.starredProjects,
     projectsInOrder: state.workspace.projectsInOrder,
-    projects: state.workspace.projects,
+    projects: state.allProjects,
   };
 };
 

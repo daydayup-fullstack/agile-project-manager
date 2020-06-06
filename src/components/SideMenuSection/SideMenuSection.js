@@ -9,37 +9,36 @@ export const Favorites = ({ projects }) => {
   const getProjectColor = (project) => ({
     backgroundColor: colorInOrder[project.colorIndex],
   });
-  const projectArray = Object.values(projects);
-  return (
-    <>
-      <header onClick={() => setShouldExpand(!shouldExpand)}>
-        Favorites{" "}
-        <span className={"material-icons"}>
+    return (
+        <>
+            <header onClick={() => setShouldExpand(!shouldExpand)}>
+                Favorites{" "}
+                <span className={"material-icons"}>
           {shouldExpand ? "keyboard_arrow_up" : "keyboard_arrow_down"}
         </span>
-      </header>
-      <ul className={`projectList ${shouldExpand && "projectList--open"}`}>
-        {projectArray.map((project) => (
-          <li>
-            <NavLink
-              className={"project"}
-              exact
-              to={`/projects/${project.id}`}
-              key={project.id}
-              style={{ textDecoration: "none" }}
-              activeStyle={{ background: "rgba(111, 119, 130, 0.5)" }}
-            >
-              <div
-                className={"project__color"}
-                style={getProjectColor(project)}
-              />
-              <span className={"project__name"}>{project.name}</span>
-            </NavLink>
-          </li>
-        ))}
-      </ul>
-    </>
-  );
+            </header>
+            <ul className={`projectList ${shouldExpand && "projectList--open"}`}>
+                {projects.map((project) => (
+                    <li>
+                        <NavLink
+                            className={"project"}
+                            exact
+                            to={`/projects/${project.id}`}
+                            key={project.id}
+                            style={{textDecoration: "none"}}
+                            activeStyle={{background: "rgba(111, 119, 130, 0.5)"}}
+                        >
+                            <div
+                                className={"project__color"}
+                                style={getProjectColor(project)}
+                            />
+                            <span className={"project__name"}>{project.name}</span>
+                        </NavLink>
+                    </li>
+                ))}
+            </ul>
+        </>
+    );
 };
 
 export const Team = ({ projects, team, workspace }) => {
