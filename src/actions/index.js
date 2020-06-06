@@ -5,12 +5,29 @@ import { generateId } from "../model/utility";
 // region- Project related actions
 export const PROJECT_SELECTED = "PROJECT_SELECTED";
 export const project_selected = (project) => {
+  let columns = {};
+  let tasks = {};
+
+  if (!project.columns) {
+    columns = { ...db_columns };
+  }
+
+  if (!project.tasks) {
+    tasks = { ...db_tasks };
+  }
+
+  // todo - change to dynamic data source
   return {
     type: PROJECT_SELECTED,
     project,
-    // todo - change to dynamic data source
-    columns: { ...db_columns },
-    tasks: { ...db_tasks },
+    columns: {
+      ...project.columns,
+      ...columns,
+    },
+    tasks: {
+      ...project.tasks,
+      ...tasks,
+    },
   };
 };
 
