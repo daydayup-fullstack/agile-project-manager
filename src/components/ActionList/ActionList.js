@@ -5,6 +5,7 @@ import IconArray from "../IconArray/IconArray";
 import { connect } from "react-redux";
 import {
   add_project_star,
+  delete_project,
   project_changed,
   remove_project_star,
 } from "../../actions";
@@ -26,6 +27,7 @@ const ActionList = ({
   header_filter_popup,
   column_popup,
   project_changed,
+  delete_project,
 }) => {
   const expandableAction = React.useRef(null);
   const popupItself = React.useRef(null);
@@ -129,6 +131,15 @@ const ActionList = ({
 
   const ProjectCardPopup = () => {
     // const height = 343;
+
+    let deleteProject = () => {
+      let ahead = window.confirm("Do you really want to delete this project?");
+
+      if (ahead) {
+        delete_project(project);
+      }
+    };
+
     return (
       <ul>
         <li onMouseOver={handleMouseOver} ref={expandableAction}>
@@ -150,7 +161,11 @@ const ActionList = ({
         </li>
         {/*<li onMouseOver={dismissNextLevel}>Edit Name & Description...</li>*/}
         {/*<li onMouseOver={dismissNextLevel}>Copy Project Link</li>*/}
-        <li onMouseOver={dismissNextLevel} style={{ color: "#E8384F" }}>
+        <li
+          onMouseOver={dismissNextLevel}
+          style={{ color: "#E8384F" }}
+          onClick={() => deleteProject()}
+        >
           Delete Project
         </li>
         {showNextLevel && (
@@ -515,4 +530,5 @@ export default connect(mapStateToProps, {
   project_changed,
   remove_project_star,
   add_project_star,
+  delete_project,
 })(ActionList);

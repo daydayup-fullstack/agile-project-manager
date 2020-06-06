@@ -56,7 +56,7 @@ const ProjectCard = ({
       to={determineLink()}
       style={{ textDecoration: "none", color: "#151b26" }}
     >
-      <div className={`ProjectCard`}>
+      <div className={`ProjectCard`} onClick={() => project_selected(project)}>
         <div
           className="card"
           style={{ background: colors[project.colorIndex] }}

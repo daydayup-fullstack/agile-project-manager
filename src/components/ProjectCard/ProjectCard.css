@@ -111,7 +111,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 0.81rem;
+  font-size: 0.72rem;
+  font-family: "Poppins", sans-serif;
   margin-top: 0.3rem;
   color: #6f7782;
 }
