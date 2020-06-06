@@ -6,7 +6,7 @@ const Panel = ({ panelName, children, projectsData}) => {
     const [shouldCollapse, setShouldCollapse] = useState(false);
 
     const handleTogglePanel = () => shouldCollapse ? setShouldCollapse(false) : setShouldCollapse(true)
-    const iconName = shouldCollapse ? "arrow_right" : "arrow_drop_down"
+    const iconName = shouldCollapse ? "arrow_right" : "arrow_drop_down";
     return (
         <div className="panel">
             <div className="panel__top">
