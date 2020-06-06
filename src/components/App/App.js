@@ -11,7 +11,6 @@ import {
 } from "react-router-dom";
 import LoginForm from "../LoginForm/LoginForm";
 import Project from "../../pages/Project/Project";
-import Team from "../../pages/Team/Team";
 import ContentHeader from "../ContentHeader/ContentHeader";
 import { connect } from "react-redux";
 import MenuBar from "../MenuBar/MenuBar";
