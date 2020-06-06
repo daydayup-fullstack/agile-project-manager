@@ -18,5 +18,9 @@
 *::-webkit-scrollbar-track {
   background: #ededed;
 }
+* a {
+  text-decoration: none;
+  color: #151b26;
+}
 
 /*# sourceMappingURL=index.css.map */

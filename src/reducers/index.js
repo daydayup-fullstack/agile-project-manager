@@ -27,6 +27,7 @@ import {
   SHOW_COLUMN_POPUP,
   HIDE_COLUMN_POPUP,
   PROJECT_DELETED,
+  PROJECT_ADDED
 } from "../actions";
 const devId = "user-scott";
 
@@ -397,6 +398,7 @@ const projectsInitial = [...loadInitialData(devId).allProjects];
 
 export const allProjects = (state = projectsInitial, action) => {
   switch (action.type) {
+<<<<<<< HEAD
     case PROJECT_CHANGED: {
       const update = action.project;
       let projectIndex;
@@ -413,6 +415,51 @@ export const allProjects = (state = projectsInitial, action) => {
       return [...newState];
     }
 
+||||||| merged common ancestors
+    // case PROJECT_CHANGED: {
+    //   const project = action.project;
+    //   return {
+    //     ...state,
+    //     [project.id]: {
+    //       ...state[project.id],
+    //       ...project,
+    //     },
+    //   };
+    // }
+    //
+    // case PROJECT_DELETED: {
+    //   const allProjects = { ...state };
+    //   delete allProjects[action.project.id];
+    //   return {
+    //     ...allProjects,
+    //   };
+    // }
+=======
+    // case PROJECT_CHANGED: {
+    //   const project = action.project;
+    //   return {
+    //     ...state,
+    //     [project.id]: {
+    //       ...state[project.id],
+    //       ...project,
+    //     },
+    //   };
+    // }
+    //
+    // case PROJECT_DELETED: {
+    //   const allProjects = { ...state };
+    //   delete allProjects[action.project.id];
+    //   return {
+    //     ...allProjects,
+    //   };
+    // }
+    case PROJECT_ADDED:{
+      return [
+        ...state,
+        action.payload
+      ]
+    }
+>>>>>>> daeac828123c97fc441712cb5372eb71a3c86c35
     default:
       return [...state];
   }

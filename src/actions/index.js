@@ -1,4 +1,5 @@
 import { db_columns, db_tasks } from "../data/database";
+import {generateId} from "../model/utility"
 
 // ============== Project ========================
 // region- Project related actions
@@ -21,6 +22,23 @@ export const project_changed = (project) => {
     project,
   };
 };
+
+export const PROJECT_ADDED = "PROJECT_ADDED";
+export const project_added = ({projectName}) => {
+  return {
+    type: PROJECT_ADDED,
+    payload: {
+      id: generateId(),
+      colorIndex: 0,
+      columnOrder: [],
+      createdOn: (Date.parse(new Date()))/1000,
+      dueDate: null,
+      iconIndex: 0,
+      name: projectName
+    }
+  };
+};
+
 
 //-------new task display
 export const CHANGE_NEW_TASK_DISPLAY = "CHANGE_NEW_TASK_DISPLAY";

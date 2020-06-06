@@ -5,9 +5,11 @@
   border: 1px solid #e8ecee;
   border-radius: 0.5rem;
 }
+
 .DisplayPhotoBlock:hover .DisplayPhotoBlock__overlay {
   opacity: 1;
 }
+
 .DisplayPhotoBlock__overlay {
   border-radius: 0.5rem;
   position: absolute;
@@ -17,26 +19,39 @@
   left: 0;
   background: rgba(21, 27, 38, 0.5);
   opacity: 0;
+  -webkit-transition: opacity 0.15s ease;
   transition: opacity 0.15s ease;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
 }
+
 .DisplayPhotoBlock__overlay span {
   color: #ffffff;
 }
+
 .DisplayPhotoBlock__overlay span:hover {
   color: #20aaea;
 }
+
 .DisplayPhotoBlock:hover {
   cursor: pointer;
 }
+
 .DisplayPhotoBlock img {
   border-radius: 0.5rem;
   height: 100%;
   width: 100%;
   pointer-events: none;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
-
 /*# sourceMappingURL=DisplayPhotoBlock.css.map */

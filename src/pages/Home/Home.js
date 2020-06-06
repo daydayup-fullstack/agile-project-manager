@@ -4,6 +4,7 @@ import Panel from "../../components/Panel/Panel";
 import ProjectCard from "../../components/ProjectCard/ProjectCard";
 import AddProjectCard from "../../components/AddProjectCard/AddProjectCard";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom"
 
 const Home = ({ starredProjects, projects }) => {
   const favorites = projects.filter(
@@ -27,7 +28,9 @@ const Home = ({ starredProjects, projects }) => {
             key={project.id}
           />
         ))}
-        <AddProjectCard />
+        <Link to={"/create-project"}>
+          <AddProjectCard />
+        </Link>
       </Panel>
     </div>
   );

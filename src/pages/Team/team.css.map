@@ -1,1 +1,10 @@
-{"version":3,"sourceRoot":"","sources":[],"names":[],"mappings":"","file":"team.css"}
+{
+    "version": 3,
+    "mappings": "",
+    "sources": [
+        "team.scss",
+        "../../style/_variables.scss"
+    ],
+    "names": [],
+    "file": "team.css"
+}

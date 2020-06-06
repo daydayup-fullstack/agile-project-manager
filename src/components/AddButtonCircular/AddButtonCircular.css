@@ -1,24 +1,38 @@
 .AddButtonCircular {
   height: 1.5rem;
   width: 1.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   border-radius: 1rem;
   border: none;
+  background: -webkit-gradient(linear, left bottom, right top, from(#ff5263), color-stop(35%, #ff7381), to(#fcbd01));
   background: linear-gradient(to top right, #ff5263 0%, #ff7381 35%, #fcbd01 100%);
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
+
 .AddButtonCircular span {
   color: #f5f5f5;
-  transform: scale(0.75);
+  -webkit-transform: scale(0.75);
+          transform: scale(0.75);
 }
+
 .AddButtonCircular:hover {
   cursor: pointer;
+  background: -webkit-gradient(linear, left bottom, right top, from(#ff1f35), color-stop(35%, #ff4053), to(#c99701));
   background: linear-gradient(to top right, #ff1f35, #ff4053 35%, #c99701);
 }
+
 .AddButtonCircular:hover span {
   color: white;
 }
-
 /*# sourceMappingURL=AddButtonCircular.css.map */

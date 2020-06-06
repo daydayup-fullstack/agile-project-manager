@@ -1,24 +1,43 @@
 .Filterbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   width: 100%;
-  align-items: center;
-  justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   padding: 0.25rem 1.5rem;
   font-family: "Poppins", sans-serif;
   font-size: 0.81rem;
   font-weight: 400;
   border-top: 1px solid #e8ecee;
-  box-shadow: 0 1px 3px 0 rgba(21, 27, 38, 0.15);
+  -webkit-box-shadow: 0 1px 3px 0 rgba(21, 27, 38, 0.15);
+          box-shadow: 0 1px 3px 0 rgba(21, 27, 38, 0.15);
   color: #6f7782;
 }
+
 .Filterbar__controls {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 .Filterbar__controls button {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   border: none;
   background: none;
   color: #6f7782;
@@ -26,16 +45,21 @@
   padding: 0.2rem 0.6rem 0.2rem 0.25rem;
   border-radius: 0.25rem;
 }
+
 .Filterbar__controls button:hover {
   background: #e8ecee;
 }
+
 .Filterbar__controls button:focus {
   outline: none;
 }
+
 .Filterbar__controls button span {
-  transform: scale(0.6);
+  -webkit-transform: scale(0.6);
+          transform: scale(0.6);
   color: #6f7782;
 }
+
 .Filterbar__controls .divider {
   height: 1rem;
   width: 2px;
@@ -43,10 +67,11 @@
   margin: 0 1.75rem 0 1rem;
   opacity: 0.6;
 }
+
 .Filterbar__controls .more {
   margin-right: 1.5rem;
   cursor: pointer;
-  transform: scale(0.8);
+  -webkit-transform: scale(0.8);
+          transform: scale(0.8);
 }
-
 /*# sourceMappingURL=Filterbar.css.map */
