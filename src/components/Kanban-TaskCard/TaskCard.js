@@ -22,6 +22,9 @@ const TaskCard = ({
 }) => {
   const [showContextMenu, setShowContextMenu] = React.useState(false);
   const [showExtra, setShowExtra] = React.useState(false);
+  const [taskName, setTaskName] = React.useState(task.name);
+  const taskNameInput = React.useRef(null);
+
 
   React.useEffect(() => {
     if (shouldShow === false) {
@@ -36,6 +39,13 @@ const TaskCard = ({
 
     if (e.key === "Escape") {
       e.target.value = "";
+      updateProject(e);
+    }
+  }
+
+  function handleTaskNameInputKeyDown(e) {
+    if (e.key === "Enter" || e.key === "Escape") {
+      taskNameInput.current.blur();
       updateProject(e);
     }
   }
@@ -118,7 +128,7 @@ const TaskCard = ({
         return (
           <CircularButton
             iconName={"person_outline"}
-            onCircularButtonClick={() => {}}
+            onCircularButtonClick={() => { }}
           />
         );
       }
@@ -133,7 +143,7 @@ const TaskCard = ({
         return (
           <CircularButton
             iconName={"calendar_today"}
-            onCircularButtonClick={() => {}}
+            onCircularButtonClick={() => { }}
           />
         );
       }
@@ -174,7 +184,7 @@ const TaskCard = ({
           onContextMenu={(event) => handleRightClick(event)}
           onMouseOver={(e) => handleMouseover(e)}
           onMouseLeave={(e) => handleMouseleave(e)}
-          // style={task.isCompleted ? { opacity: "0.5" } : {}}
+        // style={task.isCompleted ? { opacity: "0.5" } : {}}
         >
           {task.name && task.name !== "" && (
             <div className="taskCard__top">
@@ -189,7 +199,7 @@ const TaskCard = ({
             <div
               className={`coverImage  ${
                 task.isCompleted && "taskCard--completed"
-              }`}
+                }`}
             >
               <CoverPhotoBlock imageUrl={task.attachments[0]} />
             </div>
@@ -198,15 +208,20 @@ const TaskCard = ({
             className={`content ${task.isCompleted && "taskCard--completed"}`}
           >
             {task.name ? (
-              <div className={"name"}>{task.name}</div>
-            ) : (
-              <textarea
-                className={"new-task-input"}
-                autoFocus
-                onKeyDown={(e) => handleKeyDown(e)}
+              <input className={"name"} value={taskName} ref={taskNameInput}
+                onChange={(e) => setTaskName(e.target.value)}
                 onBlur={(event) => handleBlur(event)}
+                onKeyDown={(e) => handleTaskNameInputKeyDown(e)}
               />
-            )}
+            ) : (
+                <textarea
+                  className={"new-task-input"}
+                  autoFocus
+                  onKeyDown={(e) => handleKeyDown(e)}
+                  onBlur={(event) => handleBlur(event)}
+                  onChange={(e) => setTaskName(e.target.value)}
+                />
+              )}
           </div>
 
           {task.name && task.name !== "" && (
