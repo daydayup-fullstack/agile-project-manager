@@ -150,7 +150,9 @@ const ActionList = ({
         </li>
         {/*<li onMouseOver={dismissNextLevel}>Edit Name & Description...</li>*/}
         {/*<li onMouseOver={dismissNextLevel}>Copy Project Link</li>*/}
-        <li onMouseOver={dismissNextLevel} style={{color: "#E8384F"}}>Delete Project</li>
+        <li onMouseOver={dismissNextLevel} style={{ color: "#E8384F" }}>
+          Delete Project
+        </li>
         {showNextLevel && (
           <li className={"nextLevel"} style={calcPosition()} ref={nextAction}>
             <ColorArray colorIndex={project.colorIndex} />
@@ -350,7 +352,6 @@ const ActionList = ({
         },
       };
 
-
       project_changed(updatedProject);
     }
 
@@ -425,9 +426,8 @@ const ActionList = ({
 
   const ColumnPopup = () => {
     // todo - fix the dispositioning effect bug after horizontal scroll
-    function deleteColumn() {
-      const columnId = column_popup.column.id;
 
+    const updateProject = (columnId) => {
       const updatedProject = {
         ...project,
         columnOrder: project.columnOrder.filter((id) => id !== columnId),
@@ -441,6 +441,19 @@ const ActionList = ({
       });
 
       project_changed(updatedProject);
+    };
+    function deleteColumn() {
+      const columnId = column_popup.column.id;
+
+      if (project.columns[columnId].taskIds.length > 0) {
+        const goAhead = window.confirm(
+          "This column contains other tasks, Do you really want to delete it?"
+        );
+        if (goAhead) updateProject(columnId);
+        return;
+      }
+
+      updateProject(columnId);
     }
 
     return (
