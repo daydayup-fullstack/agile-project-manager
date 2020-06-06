@@ -11,6 +11,11 @@ import {
 } from "../../actions";
 import { db_workspaces } from "../../data/database";
 import { generateId } from "../../model/utility";
+import {
+  NavLink, Link, BrowserRouter as Router,
+  useHistory,
+  useLocation
+} from "react-router-dom";
 
 const ActionList = ({
   project,
@@ -28,6 +33,7 @@ const ActionList = ({
   column_popup,
   project_changed,
   delete_project,
+  handleLogin,
 }) => {
   const expandableAction = React.useRef(null);
   const popupItself = React.useRef(null);
@@ -35,7 +41,6 @@ const ActionList = ({
   const [showNextLevel, setShowNextLevel] = React.useState(false);
   const [nextAnchor, setNextAnchor] = React.useState({ x: 0, y: 0 });
   const [parentAnchor, setParentAnchor] = React.useState({ x: 0, y: 0 });
-
   function handleMouseOver(e) {
     setParentAnchor({
       x: e.target.offsetParent.offsetLeft,
@@ -197,31 +202,35 @@ const ActionList = ({
 
   const ProfilePopup = () => {
     return (
-      <div className={"ProfilePopup"}>
-        <ul>
-          {workspaces.map((w) => {
-            return (
-              <li onMouseOver={dismissNextLevel}>
-                {w === currentWorkspace.id && (
-                  <span className={"material-icons ProfilePopup__current"}>
-                    done
-                  </span>
-                )}
-                {db_workspaces[w].type === "personal"
-                  ? "Personal projects"
-                  : db_workspaces[w].name}
-              </li>
-            );
-          })}
-        </ul>
+      <Router>
+        <div className={"ProfilePopup"}>
+          <ul>
+            {workspaces.map((w) => {
+              return (
+                <li onMouseOver={dismissNextLevel}>
+                  {w === currentWorkspace.id && (
+                    <span className={"material-icons ProfilePopup__current"}>
+                      done
+                    </span>
+                  )}
+                  {db_workspaces[w].type === "personal"
+                    ? "Personal projects"
+                    : db_workspaces[w].name}
+                </li>
+              );
+            })}
+          </ul>
 
-        <div className="divider" />
+          <div className="divider" />
 
-        <ul>
-          {/*<li onMouseOver={dismissNextLevel}>Settings</li>*/}
-          <li onMouseOver={dismissNextLevel}>Logout</li>
-        </ul>
-      </div>
+          <ul>
+            {/*<li onMouseOver={dismissNextLevel}>Settings</li>*/}
+            <li onMouseOver={dismissNextLevel} onClick={() => {handleLogin(false)}}>
+              <Link to="/" style={{ textDecoration: 'none',color:'black' }}>Logout</Link>
+            </li>
+          </ul>
+        </div>
+      </Router>
     );
   };
 
@@ -394,7 +403,7 @@ const ActionList = ({
       project_changed(updatedProject);
     }
 
-    function renameTask(e) {}
+    function renameTask(e) { }
 
     return (
       <div className="TaskcardContextPopup">

@@ -34,6 +34,7 @@ const App = ({
   column_popup,
   init_user,
 }) => {
+  
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   React.useEffect(() => {
@@ -64,7 +65,7 @@ const App = ({
 
         {header_profile_popup.shouldShow && (
           <PopupMenu anchor={header_profile_popup.anchor}>
-            <ActionList />
+            <ActionList handleLogin={setIsLoggedIn} />
           </PopupMenu>
         )}
 
@@ -128,7 +129,7 @@ const App = ({
           </Switch>
         ) : (
           <>
-            <Route exact path={"/"}>
+            <Route path={"/"}>
               <LoginForm handleLogin={setIsLoggedIn} />
             </Route>
           </>
