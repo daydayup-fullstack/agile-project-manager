@@ -28,6 +28,7 @@ import {
   HIDE_TASKCARD_CONTEXT_MENU_POPUP,
   SHOW_COLUMN_POPUP,
   HIDE_COLUMN_POPUP,
+  PROJECT_DELETED,
 } from "../actions";
 const devId = "user-scott";
 
@@ -274,6 +275,15 @@ export const user = (state = initialUserState, action) => {
       };
     }
 
+    case PROJECT_DELETED: {
+      return {
+        ...state,
+        starredProjects: state.starredProjects.filter(
+          (id) => id !== action.project.id
+        ),
+      };
+    }
+
     default:
       return {
         ...state,
@@ -303,6 +313,34 @@ export const workspace = (state = initialWorkspace, action) => {
           [action.project.id]: action.project,
         },
       };
+
+    case PROJECT_DELETED: {
+      const index = state.projectsInOrder.indexOf(action.project.id);
+      const newProjectInOrder = [...state.projectsInOrder];
+      newProjectInOrder.splice(index, 1);
+      const newProjects = { ...state.projects };
+      delete newProjects[project.id];
+
+      return {
+        ...state,
+        projectsInOrder: newProjectInOrder,
+        projects: newProjects,
+      };
+    }
+
+    case PROJECT_CHANGED: {
+      const project = action.project;
+      return {
+        ...state,
+        projects: {
+          ...state.projects,
+          [project.id]: {
+            ...state.projects[project.id],
+            ...project,
+          },
+        },
+      };
+    }
     default:
       return {
         ...state,
@@ -383,6 +421,24 @@ const projectsInitial = {
 
 export const allProjects = (state = projectsInitial, action) => {
   switch (action.type) {
+    case PROJECT_CHANGED: {
+      const project = action.project;
+      return {
+        ...state,
+        [project.id]: {
+          ...state[project.id],
+          ...project,
+        },
+      };
+    }
+
+    case PROJECT_DELETED: {
+      const allProjects = { ...state };
+      delete allProjects[action.project.id];
+      return {
+        ...allProjects,
+      };
+    }
     default:
       return {
         ...state,

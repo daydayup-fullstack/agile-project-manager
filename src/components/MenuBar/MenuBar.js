@@ -8,6 +8,7 @@ import {
   add_project_star,
   changeNewTaskDisplay,
   open_app_drawer,
+  project_changed,
   remove_project_star,
   show_header_profile_popup,
   show_header_projectIcon_popup,
@@ -25,8 +26,15 @@ const MenuBar = ({
   show_header_projectIcon_popup,
   show_header_profile_popup,
   show_header_projectInfo_popup,
+  project_changed,
 }) => {
   const [starHover, setStarHover] = React.useState(false);
+  const [projectTitle, setProjectTitle] = React.useState("");
+  const titleInput = React.useRef(null);
+
+  React.useEffect(() => {
+    setProjectTitle(currentProject.name);
+  }, [currentProject]);
 
   const starred = currentUser.starredProjects.indexOf(currentProject.id) >= 0;
   const starStyle = () => {
@@ -70,6 +78,40 @@ const MenuBar = ({
     };
   };
 
+  function updateProject(e) {
+    const newProject = {
+      ...currentProject,
+      name: e.target.value,
+    };
+
+    project_changed(newProject);
+  }
+
+  function handleBlur(e) {
+    updateProject(e);
+  }
+
+  function handleFocus(e) {
+    e.target.select();
+  }
+
+  function handleKeyDown(e) {
+    if (e.key === "Enter") {
+      updateProject(e);
+      e.target.blur();
+    }
+
+    if (e.key === "Escape") {
+      console.log("should blur");
+      e.target.value = currentProject.name;
+      e.target.blur();
+    }
+  }
+
+  function handleChange(e) {
+    setProjectTitle(e.target.value);
+  }
+
   return (
     <>
       <div className={"MenuBar"}>
@@ -95,15 +137,24 @@ const MenuBar = ({
           </div>
 
           {/* todo - edit a project name*/}
-          <h2>{currentProject.name}</h2>
+          {/*<h2>{currentProject.name}</h2>*/}
+          <input
+            className={"title"}
+            value={projectTitle}
+            onChange={(e) => handleChange(e)}
+            ref={titleInput}
+            onBlur={(event) => handleBlur(event)}
+            onFocus={(event) => handleFocus(event)}
+            onKeyDown={(event) => handleKeyDown(event)}
+          />
 
           <div className="iconGroup">
-            <span
-              className="material-icons icon"
-              onClick={(e) => show_header_projectInfo_popup(getAnchor(e))}
-            >
-              keyboard_arrow_down
-            </span>
+            {/*<span*/}
+            {/*  className="material-icons icon"*/}
+            {/*  onClick={(e) => show_header_projectInfo_popup(getAnchor(e))}*/}
+            {/*>*/}
+            {/*  keyboard_arrow_down*/}
+            {/*</span>*/}
             {/*<span className="material-icons-outlined icon">info</span>*/}
             <span
               className={"material-icons star"}
@@ -164,4 +215,5 @@ export default connect(mapStateToProps, {
   show_header_projectIcon_popup,
   show_header_profile_popup,
   show_header_projectInfo_popup,
+  project_changed,
 })(MenuBar);

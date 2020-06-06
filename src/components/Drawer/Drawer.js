@@ -44,7 +44,7 @@ const Drawer = ({
             </SideMenuSection>
             <SideMenuSection>
               <Team
-                projects={db_projects}
+                projects={currentWorkspace.projects}
                 team={team}
                 workspace={currentWorkspace}
               />
