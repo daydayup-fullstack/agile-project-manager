@@ -8,10 +8,7 @@ import Members from '../../components/TeamMember/TeamMember';
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import TeamFilterbar from "../../components/TeamFilter/TeamFilterbar";
-// import '../../components/TeamMember/TeamMember.css';
-// import '../../components/TeamDescriptionPanel/Panel.css';
-// import TeamMemberPopup from '../../components/TeamMemberPopup/TeamMemberPopup';
-// import AddTeamMember from '../../components/AddTeamMember/AddTeamMember';
+
 
 
 const Team = ({ projectsInOrder, projects }) => {
@@ -31,16 +28,19 @@ const Team = ({ projectsInOrder, projects }) => {
                     <Members />
                     </div>
                 </span>  
-                <span>
+                <span className= 'panel_right' >
                     <Panel panelName={"Projects"}>
-                        <span><AddProjectCard /></span>
-                        <span className='projects'>
-                        {projectsInOrder.map((id) => (
+                    
+                        <div className='projects'>
+                        <span><AddProjectCard /></span>  
+                        
+                        <div className='project_list'>{projectsInOrder.map((id) => (
                         <Link to={`/project/${id}`} key={id} style={style}>
                             <ProjectCard project={projects[id]} />
                         </Link>
-                        ))}
-                        </span>            
+                        ))}</div> 
+                        </div>   
+                               
                     </Panel>
                 </span> 
             </div >      

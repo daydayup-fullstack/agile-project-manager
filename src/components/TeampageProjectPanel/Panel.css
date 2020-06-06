@@ -1,10 +1,10 @@
-.panel {
+.teampanel {
   width: 600px;
   margin-top: 2rem;
+  height: 600px
 }
 .panel__top {
   display: flex;
-  /* justify-content: flex-start; */
   padding: 8px 0px;
   margin-left: 0;
 }
@@ -23,24 +23,28 @@
   user-select: none;
 }
 .panel__divider {
-  content: "";
   width: 100%;
-  height: 0.1rem;
+  height: 0.15rem;
   background: #e8ecee;
   transform: scaleY(1);
   margin-bottom: 1rem;
 }
-.panel__bottom {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 150px);
-  justify-content: space-between;
-  overflow: hidden;
+.teampanel__bottom {
+  
+  overflow: hidden; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 2.7rem;
+ 
 }
-.panel .collapse {
+.teampanel .collapse {
   display: none;
 }
-.panel .expand {
-  display: grid;
+.teampanel .expand {
+  /* display: grid; */
+  display: flex;
+  flex-direction: column;
 }
 
 .change_view{

@@ -1,22 +1,22 @@
 import React from 'react';
 import './TeamMember.css';
 import '../TeamDescriptionPanel/Panel.css';
-import TeamMemberPopup from '../TeamMemberPopup/TeamMemberPopup';
-import { show_addmember_popup } from '../../actions';
-import {connect} from 'react-redux';
-
+import '../TeamMemberPopup/TeamMemberPopup.css';
 
 
 const Members=()=>{
     const [addMemberPopup, setaddMemberPopup] = React.useState(false);
-    const [content, setContent] = React.useState(<></>);
+    const [InvitePopup,setInvitePopup]=React.useState(false);
 
-    const show=()=> {   
-        setaddMemberPopup(true);
-        setContent(<TeamMemberPopup />);
+    const show=()=> {    //toggle函数
+        return addMemberPopup ? setaddMemberPopup(false) : setaddMemberPopup(true); 
+        //click后让addMemberPopup的值从true变为false，或者从false变为true
+        
     }
-
-   
+    const invite=()=> {   
+        return InvitePopup ? setInvitePopup(false) :setInvitePopup(true); 
+    }
+  
     return(
         <div className='members'>
             <div className='panel__top'>
@@ -33,9 +33,36 @@ const Members=()=>{
                     <span><h3 className='Add_text'>Add member</h3> </span>
                 </div>
                 {addMemberPopup && (
-                    <div>
-                        {content}
+                <div className="TeamPopup" >
+                    <div className="addmember" >
+                        <div className='AddMember'>
+                            <span><h2>Invite people to Dayday Up</h2></span>
+                            <span className='close' onClick={show}>+</span>
+                            <div className='divider'/>
+                            <div className='content'>
+                            <h4 className='content-description'>Your teammates will get an email that gives them access to your team.</h4>
+                            <div className='content-title'>
+                            <p className='content-email'>Email address</p>
+                            <span class="material-icons email-icon">email</span>
+                            <p className='content-contact'>Connect contacts</p></div>
+                            <textarea className='text-email' placeholder='name@company.com, name@company.com, . . .'/>
+                            <div className='input-field'>
+                            <label>Choose a starting project</label><br/>
+                            <textarea className='inputtext' placeholder='Start tpying to add a project'/><br/>
+                            <button className='send' onClick={invite}>Send</button></div>
+                            {InvitePopup &&  
+                            <div className="InvitePopup" >  
+                                <div className='invite-top'></div>
+                                <div className='invite-content'>
+                                    <span className='invite-close' onClick={invite}>+</span>
+                                    <h4 className='invite-description'>Invite 1 teammate to</h4>
+                                    <p className='invite-team'>Dayday Up!</p>
+                                </div>
+                            </div>  }
+                            </div>
+                        </div>    
                     </div>
+                </div>
                 )}
                 <div className='circle_1'><p className='init_1'>S</p>
                     <span className='info_1'><h3>Silvia</h3>
@@ -69,11 +96,5 @@ const Members=()=>{
     )
 };
 
-// const mapStateToProps = (state) => {
-//   return {};
-// };
 
-// export default connect(mapStateToProps, {
-//     show_addmember_popup,
-// })(Members);
 export default Members;
