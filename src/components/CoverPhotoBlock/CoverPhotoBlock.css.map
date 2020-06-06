@@ -1,1 +1,10 @@
-{"version":3,"sourceRoot":"","sources":["CoverPhotoBlock.scss"],"names":[],"mappings":"AAEA;EACE;;AACA;EACE;EACA;EACA;EACA;EACA","file":"CoverPhotoBlock.css"}
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,gBAAgB,CAAC;EACf,KAAK,EAAE,KAAK;CAQb;;AATD,AAEE,gBAFc,CAEd,GAAG,CAAC;EACF,MAAM,EAAE,IAAI;EACZ,KAAK,EAAE,IAAI;EACX,cAAc,EAAE,IAAI;EACpB,WAAW,EAAE,IAAI;EACjB,aAAa,EAAE,OAAO;CACvB",
+    "sources": [
+        "CoverPhotoBlock.scss",
+        "../../style/_variables.scss"
+    ],
+    "names": [],
+    "file": "CoverPhotoBlock.css"
+}

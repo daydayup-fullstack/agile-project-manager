@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import LoginForm from "../LoginForm/LoginForm";
 import Project from "../../pages/Project/Project";
+import ProjectDetail from "../../pages/ProjectDetail/ProjectDetail";
 import ContentHeader from "../ContentHeader/ContentHeader";
 import { connect } from "react-redux";
 import MenuBar from "../MenuBar/MenuBar";
@@ -19,6 +20,7 @@ import ActionList from "../ActionList/ActionList";
 import Tooltip from "../Tooltip/Tooltip";
 import AddTaskPopup from "../AddTaskPopup/AddTaskPopup";
 import { db_users } from "../../data/database";
+
 
 const App = ({
   projectCard_popup,
@@ -113,6 +115,10 @@ const App = ({
               {/*  <ContentHeader title={"Team"} />*/}
               {/*  <Team />*/}
               {/*</Route>*/}
+
+              <Route path={"/create-project"}>
+                <ProjectDetail />
+              </Route>
             </Drawer>
           </Switch>
         ) : (
@@ -165,4 +171,4 @@ const mapStateToProps = (state) => {
     newTaskDisplay: state.taskDisplay.newTaskDisplay,
   };
 };
-export default connect(mapStateToProps, {})(App);
+export default connect(mapStateToProps)(App);

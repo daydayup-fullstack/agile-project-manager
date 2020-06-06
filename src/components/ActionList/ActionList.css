@@ -1,6 +1,7 @@
 .ActionList {
   margin: 0.25rem 0;
 }
+
 .ActionList ul {
   list-style: none;
   color: #151b26;
@@ -9,38 +10,63 @@
   font-weight: 400;
   width: 180px;
 }
+
 .ActionList ul li {
   padding: 0.5rem 0.5rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  user-select: none;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
+
 .ActionList ul li .material-icons-outlined {
   font-size: 1rem;
   position: relative;
   top: -1px;
   right: -6px;
 }
+
 .ActionList ul li:hover {
   background-color: #e8ecee;
 }
+
 .ActionList ul .nextLevel {
   position: absolute;
   border: 1px solid #e8ecee;
   min-width: 150px;
   border-radius: 0.2rem;
   background: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 .ActionList ul .nextLevel:hover {
   background-color: #fff;
 }
+
 .ActionList .FilterFilter {
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
   height: fit-content;
 }
+
 .ActionList .FilterFilter__title {
   font-family: "Poppins", sans-serif;
   font-size: 0.72rem;
@@ -48,6 +74,7 @@
   color: #9ca6af;
   padding: 0.5rem 0.5rem;
 }
+
 .ActionList .ProfilePopup .divider,
 .ActionList .FilterFilter .divider,
 .ActionList .FilterSort .divider,
@@ -56,18 +83,27 @@
   width: 100%;
   height: 1px;
   background: #e8ecee;
-  transform: scaleY(1);
+  -webkit-transform: scaleY(1);
+          transform: scaleY(1);
 }
+
 .ActionList .ProfilePopup li,
 .ActionList .FilterFilter li,
 .ActionList .FilterSort li,
 .ActionList .FilterTasks li {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding-left: 2rem;
   position: relative;
 }
+
 .ActionList .ProfilePopup li .material-icons,
 .ActionList .ProfilePopup li .material-icons-outlined,
 .ActionList .FilterFilter li .material-icons,
@@ -80,24 +116,34 @@
   position: absolute;
   left: 0.5rem;
 }
+
 .ActionList .ProfilePopup li__current,
 .ActionList .FilterFilter li__current,
 .ActionList .FilterSort li__current,
 .ActionList .FilterTasks li__current {
   width: 1rem;
-  transform: scale(0.5);
+  -webkit-transform: scale(0.5);
+          transform: scale(0.5);
   position: absolute;
   left: 0.5rem;
 }
+
 .ActionList .ProfilePopup .expandableItem,
 .ActionList .FilterFilter .expandableItem,
 .ActionList .FilterSort .expandableItem,
 .ActionList .FilterTasks .expandableItem {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   position: relative;
 }
+
 .ActionList .ProfilePopup .expandableItem .moreActions,
 .ActionList .FilterFilter .expandableItem .moreActions,
 .ActionList .FilterSort .expandableItem .moreActions,
@@ -106,28 +152,34 @@
   top: unset;
   right: 0.25rem;
 }
+
 .ActionList .TaskcardContextPopup ul li {
   padding-left: 0.5rem;
 }
+
 .ActionList .TaskcardContextPopup ul li .icon {
   margin-right: 0.75rem;
   color: #9ca6af;
 }
+
 .ActionList .TaskcardContextPopup ul:nth-of-type(2) {
   border-top: 1px solid #e8ecee;
   border-bottom: 1px solid #e8ecee;
 }
+
 .ActionList .TaskcardContextPopup ul:nth-of-type(2) li span {
   margin-left: 0.25rem;
 }
+
 .ActionList .TaskcardContextPopup ul:last-of-type {
   color: #e8384f;
 }
+
 .ActionList .TaskcardContextPopup ul:last-of-type li span {
   margin-left: 0.25rem;
 }
+
 .ActionList .ColumnPopup li {
   color: #e8384f;
 }
-
 /*# sourceMappingURL=ActionList.css.map */

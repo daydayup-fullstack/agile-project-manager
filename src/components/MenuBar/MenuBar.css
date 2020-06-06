@@ -1,40 +1,67 @@
 .MenuBar {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding: 0.5rem 1.5rem;
   height: 4.5rem;
 }
+
 .MenuBar__title {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 .MenuBar__title .icon {
   margin-right: 1rem;
   cursor: pointer;
 }
+
 .MenuBar__title__project-icon {
   width: 3rem;
   height: 3rem;
   cursor: pointer;
 }
+
 .MenuBar__title__project-icon .card {
   border-radius: 0.75rem;
   width: 100%;
   height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 .MenuBar__title__project-icon .card .themeIcon {
   font-size: 1.8rem;
-  filter: invert(97%) sepia(1%) saturate(489%) hue-rotate(140deg) brightness(103%) contrast(95%);
+  -webkit-filter: invert(97%) sepia(1%) saturate(489%) hue-rotate(140deg) brightness(103%) contrast(95%);
+          filter: invert(97%) sepia(1%) saturate(489%) hue-rotate(140deg) brightness(103%) contrast(95%);
   display: inline-block;
   opacity: 0.8;
+  -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   pointer-events: none;
 }
+
 .MenuBar__title .title {
   margin-left: 1rem;
   font-family: "Poppins", sans-serif;
@@ -42,39 +69,56 @@
   font-weight: 500;
   border: none;
 }
+
 .MenuBar__title .title:hover {
   cursor: pointer;
 }
+
 .MenuBar__title .iconGroup {
   margin-left: 0.25rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
+
 .MenuBar__title .iconGroup span {
-  transform: scale(0.8);
+  -webkit-transform: scale(0.8);
+          transform: scale(0.8);
   margin: 0 0.5rem;
   color: #9ca6af;
   cursor: pointer;
 }
+
 .MenuBar__title .iconGroup span:hover {
   color: #151b26;
 }
+
 .MenuBar__title .iconGroup .star {
   color: #9ca6af;
 }
+
 .MenuBar__more-content {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   margin-right: 1rem;
 }
+
 .MenuBar__more-content .MultipleUserProfile {
   margin-right: 2rem;
 }
+
 .MenuBar__more-content .userSection {
   list-style: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
+
 .MenuBar__more-content .userSection li {
   margin: 0 0.5rem;
 }
-
 /*# sourceMappingURL=MenuBar.css.map */

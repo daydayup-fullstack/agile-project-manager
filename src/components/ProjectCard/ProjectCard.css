@@ -1,103 +1,162 @@
 .ProjectCard--holdHover {
   background-color: #f6f8f9;
   cursor: pointer;
-  transform: translateY(-4px);
+  -webkit-transform: translateY(-4px);
+          transform: translateY(-4px);
 }
+
 .ProjectCard--holdHover .card .material-icons {
   opacity: 1;
+  -webkit-transition: opacity 0.4s ease;
   transition: opacity 0.4s ease;
 }
+
 .ProjectCard--holdHover .card .themeIcon {
-  transform: translateY(-2px);
+  -webkit-transform: translateY(-2px);
+          transform: translateY(-2px);
+  -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
 }
+
 .ProjectCard--holdHover .card .profile-container {
   opacity: 1;
+  -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
-  transform: translateY(-4px);
+  -webkit-transform: translateY(-4px);
+          transform: translateY(-4px);
 }
 
 .ProjectCard {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 150px;
+  -webkit-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
   padding: 1.25rem 0.4rem 3.75rem 0.4rem;
   border-radius: 1.875rem;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
+
 .ProjectCard:hover {
   background-color: #f6f8f9;
   cursor: pointer;
-  transform: translateY(-4px);
+  -webkit-transform: translateY(-4px);
+          transform: translateY(-4px);
 }
+
 .ProjectCard:hover .card .material-icons {
   opacity: 1;
+  -webkit-transition: opacity 0.4s ease;
   transition: opacity 0.4s ease;
 }
+
 .ProjectCard:hover .card .themeIcon {
-  transform: translateY(-2px);
+  -webkit-transform: translateY(-2px);
+          transform: translateY(-2px);
+  -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
 }
+
 .ProjectCard:hover .card .profile-container {
   opacity: 1;
+  -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
-  transform: translateY(-4px);
+  -webkit-transform: translateY(-4px);
+          transform: translateY(-4px);
 }
+
 .ProjectCard .card {
   width: 7.5rem;
   height: 7.5rem;
   border-radius: 1.25rem;
-  box-shadow: inset 0 -2px rgba(0, 0, 0, 0.05);
+  -webkit-box-shadow: inset 0 -2px rgba(0, 0, 0, 0.05);
+          box-shadow: inset 0 -2px rgba(0, 0, 0, 0.05);
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 .ProjectCard .card .themeIcon {
   font-size: 3.5rem;
-  filter: invert(97%) sepia(1%) saturate(489%) hue-rotate(140deg) brightness(103%) contrast(95%);
+  -webkit-filter: invert(97%) sepia(1%) saturate(489%) hue-rotate(140deg) brightness(103%) contrast(95%);
+          filter: invert(97%) sepia(1%) saturate(489%) hue-rotate(140deg) brightness(103%) contrast(95%);
   display: inline-block;
   opacity: 0.8;
+  -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
 }
+
 .ProjectCard .card span:first-of-type {
   color: #e8ecee;
   opacity: 0;
+  -webkit-transition: opacity 0.4s ease;
   transition: opacity 0.4s ease;
-  transform: scale(0.8);
+  -webkit-transform: scale(0.8);
+          transform: scale(0.8);
   left: 0.5rem;
   top: 0.3rem;
   position: absolute;
 }
+
 .ProjectCard .card span:last-of-type {
   color: #e8ecee;
   position: absolute;
   top: 0.3rem;
   right: 0.5rem;
   opacity: 0;
+  -webkit-transition: opacity 0.4s ease;
   transition: opacity 0.4s ease;
-  transform: scale(0.9);
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
 }
+
 .ProjectCard .card span:last-of-type:hover {
   color: #fff;
 }
+
 .ProjectCard .card .profile-container {
   position: absolute;
   bottom: 0.3rem;
   opacity: 0;
+  -webkit-transition: all 0.4s ease;
   transition: all 0.4s ease;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: row-reverse;
-  justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+      -ms-flex-direction: row-reverse;
+          flex-direction: row-reverse;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   list-style: none;
 }
+
 .ProjectCard .card .profile-container li {
   position: relative;
   margin: 0 -0.15rem;
   opacity: 0.9;
 }
+
 .ProjectCard .title {
   margin-top: 0.625rem;
   font-family: "Poppins", sans-serif;
@@ -107,17 +166,24 @@
   max-height: 2rem;
   width: 100%;
 }
+
 .ProjectCard .private-project-indicator {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   font-size: 0.72rem;
   font-family: "Poppins", sans-serif;
   margin-top: 0.3rem;
   color: #6f7782;
 }
+
 .ProjectCard .private-project-indicator .material-icons {
   font-size: 0.8rem;
 }
-
 /*# sourceMappingURL=ProjectCard.css.map */

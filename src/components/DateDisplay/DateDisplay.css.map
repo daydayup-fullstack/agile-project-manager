@@ -1,1 +1,10 @@
-{"version":3,"sourceRoot":"","sources":["DateDisplay.scss"],"names":[],"mappings":"AAGE;EACE;;AAGF;EACE;;AAGF;EACE","file":"DateDisplay.css"}
+{
+    "version": 3,
+    "mappings": "AAEA,AACE,YADU,CACV,QAAQ,CAAC;EACP,KAAK,EAAE,OAAO;CACf;;AAHH,AAKE,YALU,CAKV,OAAO,CAAC;EACN,KAAK,EAAE,OAAO;CACf;;AAPH,AASE,YATU,CASV,IAAI,CAAC;EACH,SAAS,EAAE,OAAgB;CAC5B",
+    "sources": [
+        "DateDisplay.scss",
+        "../../style/_variables.scss"
+    ],
+    "names": [],
+    "file": "DateDisplay.css"
+}

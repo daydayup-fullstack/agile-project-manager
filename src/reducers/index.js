@@ -27,6 +27,7 @@ import {
   SHOW_COLUMN_POPUP,
   HIDE_COLUMN_POPUP,
   PROJECT_DELETED,
+  PROJECT_ADDED
 } from "../actions";
 const devId = "user-scott";
 
@@ -441,6 +442,12 @@ export const allProjects = (state = projectsInitial, action) => {
     //     ...allProjects,
     //   };
     // }
+    case PROJECT_ADDED:{
+      return [
+        ...state,
+        action.payload
+      ]
+    }
     default:
       return [...state];
   }
