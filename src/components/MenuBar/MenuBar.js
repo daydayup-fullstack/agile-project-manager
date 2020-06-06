@@ -13,7 +13,6 @@ import {
   show_header_projectIcon_popup,
   show_header_projectInfo_popup,
 } from "../../actions";
-import Filterbar from "../Filterbar/Filterbar";
 import { colors, iconNames } from "../../model/model";
 
 const MenuBar = ({

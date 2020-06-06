@@ -8,7 +8,7 @@ export const db_users = {
       "https://s3.amazonaws.com/profile_photos/4720159505425.uVij5QIkQPduW5RhPC9j_27x27.png",
     colorIndex: 0,
     starredProjects: ["project-00"],
-    privateProjects: {},
+    privateProjects: ["project-01"],
     workspaces: ["workspace-daydayup-team", "workspace-scott-personal"],
   },
   "user-lawrence": {
