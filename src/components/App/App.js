@@ -31,8 +31,9 @@ const App = ({
   taskcard_context_menu,
   column_popup,
 }) => {
+  
   const [isLoggedIn, setIsLoggedIn] = useState(true);
-
+  
   return (
     <div className="App">
       {newTaskDisplay ? <AddTaskPopup user={db_users["user-scott"]} /> : <></>}
@@ -57,7 +58,7 @@ const App = ({
 
         {header_profile_popup.shouldShow && (
           <PopupMenu anchor={header_profile_popup.anchor}>
-            <ActionList />
+            <ActionList handleLogin={setIsLoggedIn} />
           </PopupMenu>
         )}
 
@@ -117,7 +118,7 @@ const App = ({
           </Switch>
         ) : (
           <>
-            <Route exact path={"/"}>
+            <Route path={"/"}>
               <LoginForm handleLogin={setIsLoggedIn} />
             </Route>
           </>
