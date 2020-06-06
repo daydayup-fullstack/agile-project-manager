@@ -1,7 +1,7 @@
 import React from "react";
 import "./ColorArray.css";
 import { connect } from "react-redux";
-import { select_project_color } from "../../actions";
+import { project_changed } from "../../actions";
 
 export const colors = {
   none: "#cbd4db",
@@ -41,7 +41,7 @@ export const colorInOrder = [
   "#8DA3A6",
 ];
 
-const ColorArray = ({ project, select_project_color }) => {
+const ColorArray = ({ project, project_changed }) => {
   return (
     <div className="ColorPicker PotColorPicker-colorPicker">
       <div className="ColorPicker-cellsContainer">
@@ -61,7 +61,7 @@ const ColorArray = ({ project, select_project_color }) => {
             htmlFor={name}
             onClick={() => {
               const index = colorInOrder.indexOf(color);
-              select_project_color({
+              project_changed({
                 ...project,
                 colorIndex: index,
               });
@@ -82,4 +82,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { select_project_color })(ColorArray);
+export default connect(mapStateToProps, { project_changed })(ColorArray);

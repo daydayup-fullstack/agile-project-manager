@@ -5,7 +5,6 @@ import { db_columns, db_tasks } from "../data/database";
 export const PROJECT_SELECTED = "PROJECT_SELECTED";
 export const project_selected = (project) => {
 
-  console.log(project);
   return {
     type: PROJECT_SELECTED,
     project,

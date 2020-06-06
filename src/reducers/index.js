@@ -241,7 +241,6 @@ export const app = (state = initialAppState, action) => {
 const initialUserState = { ...loadInitialData(devId).user };
 
 export const user = (state = initialUserState, action) => {
-  console.log(state);
   switch (action.type) {
     case PROJECT_STAR_ADDED: {
       return {
@@ -326,37 +325,37 @@ export const workspace = (state = initialWorkspace, action) => {
 
 export const project = (state = {}, action) => {
   switch (action.type) {
-    // case PROJECT_SELECTED:
-    //   const project = {
-    //     ...state,
-    //     ...action.project,
-    //     columns: {
-    //       ...action.columns,
-    //     },
-    //     tasks: {
-    //       ...action.tasks,
-    //     },
-    //   };
-    //   return project;
-    //
-    // case PROJECT_CHANGED: {
-    //   return {
-    //     ...state,
-    //     ...action.project,
-    //   };
-    // }
-    //
-    // case PROJECT_ICON_SELECTED:
-    //   return {
-    //     ...state,
-    //     ...action.project,
-    //   };
-    //
-    // case PROJECT_COLOR_SELECTED:
-    //   return {
-    //     ...state,
-    //     ...action.project,
-    //   };
+    case PROJECT_SELECTED:
+      const project = {
+        ...state,
+        ...action.project,
+        columns: {
+          ...action.columns,
+        },
+        tasks: {
+          ...action.tasks,
+        },
+      };
+      return project;
+
+    case PROJECT_CHANGED: {
+      return {
+        ...state,
+        ...action.project,
+      };
+    }
+
+    case PROJECT_ICON_SELECTED:
+      return {
+        ...state,
+        ...action.project,
+      };
+
+    case PROJECT_COLOR_SELECTED:
+      return {
+        ...state,
+        ...action.project,
+      };
 
     default:
       return {
@@ -398,29 +397,10 @@ const projectsInitial = [...loadInitialData(devId).allProjects];
 
 export const allProjects = (state = projectsInitial, action) => {
   switch (action.type) {
-    // case PROJECT_CHANGED: {
-    //   const project = action.project;
-    //   return {
-    //     ...state,
-    //     [project.id]: {
-    //       ...state[project.id],
-    //       ...project,
-    //     },
-    //   };
-    // }
-    //
-    // case PROJECT_DELETED: {
-    //   const allProjects = { ...state };
-    //   delete allProjects[action.project.id];
-    //   return {
-    //     ...allProjects,
-    //   };
-    // }
-
-    case PROJECT_COLOR_SELECTED: {
+    case PROJECT_CHANGED: {
       const update = action.project;
       let projectIndex;
-      state.map((p, index) => {
+      state.forEach((p, index) => {
         if (p.id === update.id) {
           projectIndex = index;
         }
@@ -432,16 +412,6 @@ export const allProjects = (state = projectsInitial, action) => {
 
       return [...newState];
     }
-
-    case PROJECT_CHANGED: {
-      break;
-    }
-    //
-    // case PROJECT_ICON_SELECTED:
-    //   return {
-    //     ...state,
-    //     ...action.project,
-    //   };
 
     default:
       return [...state];
