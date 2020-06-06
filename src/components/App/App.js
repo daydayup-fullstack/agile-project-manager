@@ -20,6 +20,7 @@ import ActionList from "../ActionList/ActionList";
 import Tooltip from "../Tooltip/Tooltip";
 import AddTaskPopup from "../AddTaskPopup/AddTaskPopup";
 import { db_users } from "../../data/database";
+import { init_user } from "../../actions";
 
 const App = ({
   projectCard_popup,
@@ -31,8 +32,13 @@ const App = ({
   newTaskDisplay,
   taskcard_context_menu,
   column_popup,
+  init_user,
 }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  React.useEffect(() => {
+    init_user();
+  }, []);
 
   return (
     <div className="App">
@@ -170,4 +176,4 @@ const mapStateToProps = (state) => {
     newTaskDisplay: state.taskDisplay.newTaskDisplay,
   };
 };
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, { init_user })(App);

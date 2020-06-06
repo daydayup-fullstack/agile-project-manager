@@ -1,6 +1,15 @@
 import { db_columns, db_tasks } from "../data/database";
 import { generateId } from "../model/utility";
 
+// ============== User ========================
+
+export const INIT_USER = "INIT_USER";
+export const init_user = () => {
+  return {
+    type: INIT_USER,
+  };
+};
+
 // ============== Project ========================
 // region- Project related actions
 export const PROJECT_SELECTED = "PROJECT_SELECTED";

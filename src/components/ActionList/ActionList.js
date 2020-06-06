@@ -133,7 +133,7 @@ const ActionList = ({
     // const height = 343;
 
     let deleteProject = () => {
-      let ahead = window.confirm("Do you really want to delete this project?");
+      let ahead = window.confirm("Are you sure about deleting this project?");
 
       if (ahead) {
         delete_project(project);

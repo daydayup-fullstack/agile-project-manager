@@ -28,6 +28,7 @@ import {
   HIDE_COLUMN_POPUP,
   PROJECT_DELETED,
   PROJECT_ADDED,
+  INIT_USER,
 } from "../actions";
 const devId = "user-scott";
 
@@ -265,6 +266,15 @@ export const user = (state = initialUserState, action) => {
         starredProjects: state.starredProjects.filter(
           (id) => id !== action.project.id
         ),
+        privateProjects: state.starredProjects.filter(
+          (id) => id !== action.project.id
+        ),
+      };
+    }
+
+    case INIT_USER: {
+      return {
+        ...state
       };
     }
 
@@ -282,37 +292,6 @@ const initialWorkspace = {
 
 export const workspace = (state = initialWorkspace, action) => {
   switch (action.type) {
-    // case PROJECT_ICON_SELECTED:
-    //   return {
-    //     ...state,
-    //     projects: {
-    //       ...state.projects,
-    //       [action.project.id]: action.project,
-    //     },
-    //   };
-    //
-    // case PROJECT_COLOR_SELECTED:
-    //   return {
-    //     ...state,
-    //     projects: {
-    //       ...state.projects,
-    //       [action.project.id]: action.project,
-    //     },
-    //   };
-    //
-    // case PROJECT_DELETED: {
-    //   const index = state.projectsInOrder.indexOf(action.project.id);
-    //   const newProjectInOrder = [...state.projectsInOrder];
-    //   newProjectInOrder.splice(index, 1);
-    //   const newProjects = { ...state.projects };
-    //   delete newProjects[project.id];
-    //
-    //   return {
-    //     ...state,
-    //     projectsInOrder: newProjectInOrder,
-    //     projects: newProjects,
-    //   };
-    // }
     default:
       return {
         ...state,
@@ -416,6 +395,19 @@ export const allProjects = (state = projectsInitial, action) => {
 
     case PROJECT_ADDED: {
       return [...state, action.payload];
+    }
+
+    case PROJECT_DELETED: {
+      let projectIndex;
+      state.forEach((p, index) => {
+        if (p.id === action.project.id) {
+          projectIndex = index;
+        }
+      });
+      const newState = [...state];
+      newState.splice(projectIndex, 1);
+
+      return [...newState];
     }
 
     default:
