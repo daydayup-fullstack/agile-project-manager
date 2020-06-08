@@ -67,8 +67,8 @@ const ContentHeader = ({
         </div>
       </header>
     </>
-  );
-};
+    )
+}
 
 function mapStateToProps(state) {
   // console.log(state.workspace);

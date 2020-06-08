@@ -8,6 +8,7 @@ import {
   HIDE_HEADER_PROJECT_ICON_POPUP,
   HIDE_HEADER_PROJECT_INFO_POPUP,
   HIDE_PROJECT_CARD_POPUP,
+  HIDE_ADD_MEMBER_POPUP,
   PROJECT_CHANGED,
   PROJECT_COLOR_SELECTED,
   PROJECT_ICON_SELECTED,
@@ -20,6 +21,7 @@ import {
   SHOW_HEADER_PROJECT_ICON_POPUP,
   SHOW_HEADER_PROJECT_INFO_POPUP,
   SHOW_PROJECT_CARD_POPUP,
+  SHOW_ADD_MEMBER_POPUP,
   CHANGE_NEW_TASK_DISPLAY,
   CHANGE_CALENDAR_DISPLAY,
   SHOW_TASKCARD_CONTEXT_MENU_POPUP,
@@ -89,7 +91,22 @@ export const app = (state = initialAppState, action) => {
           shouldShow: false,
         },
       };
-
+//======
+    case HIDE_ADD_MEMBER_POPUP:
+      return {
+        ...state,
+        ui_addmember_popup: {
+          ShowPopup: false,
+        },
+      };
+    case SHOW_ADD_MEMBER_POPUP:
+    return {
+      ...state,
+      ui_addmember_popup: {
+        ShowPopup: true,
+      },
+    };
+//======
     case DRAWER_OPENED:
       return {
         ...state,

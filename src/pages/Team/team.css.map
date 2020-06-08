@@ -1,10 +1,1 @@
-{
-    "version": 3,
-    "mappings": "",
-    "sources": [
-        "team.scss",
-        "../../style/_variables.scss"
-    ],
-    "names": [],
-    "file": "team.css"
-}
+{"version":3,"sourceRoot":"","sources":["Team.scss"],"names":[],"mappings":"AAEA;EACE;EACA;EACA;EACA;EACA;EACA","file":"Team.css"}

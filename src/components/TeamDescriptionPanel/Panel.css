@@ -1,0 +1,57 @@
+.description_part{
+  margin-bottom: 3rem;
+  max-height: fit-content;
+}
+.panel__top {
+  display: flex;
+  justify-content: flex-start;
+  padding: 8px 0px;
+  margin-top: 2rem;
+  
+
+}
+.panel__name {
+  color: #151b26;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 20px;
+  user-select: none;
+}
+.divider {
+  content: "";
+  width: 200px;
+  height: 0.13rem;
+  background: #e8ecee;
+  transform: scaleY(1);
+  margin:0;
+ 
+  
+}
+
+.description_text{
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 0.75rem;
+  color:#5f686f;
+  border:none;
+  width: 200px;
+  outline:0;
+  min-height: 50px;
+  border-radius: 4px;
+  padding:0.1rem 0.2rem 1rem 0.1rem;
+  margin-top: 0.5rem;
+  resize: none;
+  
+
+}
+
+.description_text:hover{
+  border: 0.5px solid #afb8bd;
+  
+}
+
+.description_text:focus{
+  border: 0.7px solid #afb8bd;
+}
+/*# sourceMappingURL=Panel.css.map */

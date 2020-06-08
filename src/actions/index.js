@@ -149,7 +149,20 @@ export const hide_projectCard_popup = () => {
     type: HIDE_PROJECT_CARD_POPUP,
   };
 };
-
+//=======
+export const SHOW_ADD_MEMBER_POPUP = "SHOW_ADD_MEMBER_POPUP";
+export const show_addmember_popup = () => {
+  return {
+    type: SHOW_ADD_MEMBER_POPUP,
+  };
+};
+export const HIDE_ADD_MEMBER_POPUP = "HIDE_ADD_MEMBER_POPUP";
+export const hide_addmember_popup = () => {
+  return {
+    type: HIDE_ADD_MEMBER_POPUP,
+  };
+};
+//========
 export const CLEAR_PROJECT_CARD_HOLD = "CLEAR_PROJECT_CARD_HOLD";
 
 export const clear_projectCard_hold = () => {

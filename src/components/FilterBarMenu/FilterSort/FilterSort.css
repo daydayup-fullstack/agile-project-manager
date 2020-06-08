@@ -1,0 +1,314 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.ActionList {
+  margin: 0.25rem 0;
+  background-color: #ffffff;
+}
+
+.ActionList ul {
+  list-style: none;
+  color: #34373c;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  width: 190px;
+}
+.ActionList ul li {
+  padding: 0.5rem;
+  display: flex;
+  /* align-items: center; */
+  justify-content: space-between;
+
+}
+.ActionList ul li:hover {
+  background-color: #e8ecee;
+}
+
+.ActionList_Sort{
+  margin: 0.25rem 0;
+  background-color: #ffffff;
+}
+
+.ActionList_Sort ul{
+  list-style: none;
+  color: #34373c;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  width: 180px;
+}
+.ActionList_Sort ul li{
+  padding: 0.5rem 2rem 0.5rem 0.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+.ActionList_Sort ul li:hover {
+  background-color: #e8ecee;
+}
+
+.ActionList_Filter{
+  margin: 0.25rem 0;
+  background-color: #ffffff;
+}
+.ActionList_Filter ul{
+  list-style: none;
+  color: #34373c;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  width: 190px;
+}
+
+.ActionList_Filter ul li{
+  padding: 0.4rem 0.3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ActionList_Filter ul li:hover {
+  background-color: #e8ecee;
+}
+.task_done{
+  font-size: 1.2rem;
+  color:#666b74;
+}
+.task_tick{
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  padding-right: 2rem;
+  color: #666b74;
+  font-size: 0.75rem;
+}
+.complete_tick{
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  padding-left: 1.8rem;
+  padding-right:0;
+  color: #666b74;
+  font-size: 0.75rem;
+}
+.all_tick{
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  padding-left: 1.8rem;
+  color: #666b74;
+  font-size: 0.75rem;
+}
+
+/* h4{
+  font-size: 0.8rem;
+  font-weight: 400;
+  padding-right: 2.15rem;
+} */
+.complete_task{
+  padding-left:1.25rem ;
+}
+
+/* .ActionList ul li span {
+  font-size: 1rem;
+  position: relative;
+  top: -1px;
+  right: -6px;
+} */
+
+.nextLevel {
+  list-style: none;
+  position: absolute;
+  border: 1px solid #9ca6af;
+  min-width: 180px;
+  border-radius: 0.2rem;
+  
+}
+.ActionList ul .nextLevel li{
+  padding-left:1rem;
+}
+.ActionList ul .nextLevel li:hover{
+  background-color: #e8ecee;
+}
+
+.sort_tick{
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  padding-right: 5.2rem;
+  color:#666b74;
+  font-size: 0.75rem;
+}
+.Sort_list{
+  padding-left:1.5rem ;
+  color:#666b74;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 0.75rem;
+}
+.sort_done{
+  font-size:1.2rem;
+  color:#666b74;
+}
+.filter_first{
+  color:#b2b9bd;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding-left: 0.5rem;
+}
+
+.filter_tick{
+  padding-right: 4.4rem;
+  color:#666b74;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 0.75rem;
+}
+.filter1week_tick{
+  padding-right: 4.25rem;
+  color:#666b74;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 0.75rem;
+}
+.filter2week_tick{
+  padding-right: 3.96rem;
+  color:#666b74;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 0.75rem;
+}
+
+.filter_edge{
+  border-bottom: 1px solid #d2dce4;
+}
+.filter_end{ 
+  padding-right: 4.1rem;
+  color:#666b74;
+  font-size: 0.8rem;
+}
+.filter_margin{
+  margin-top: 0.25rem;
+  align-items: center;
+  padding: 0;
+}
+
+.filter_person{
+  font-size: 1.3rem;
+  padding-left:0.1rem ;
+  color:#666b74;
+}
+.filter_today{
+  font-size: 1.1rem;
+  padding-left:0.2rem;
+  color:#666b74;
+}
+.filter_next{
+  font-size: 1.1rem;
+  padding-left: 0.2rem;
+  color:#666b74;
+}
+.filter_add{
+  font-size: 1.5rem;
+  color:#666b74;
+}
+
+.Filter_button {
+  background-color: transparent;
+  color:rgb(92, 88, 88);
+  height: 32px;
+  line-height: 32px;
+  padding: 0 0.6rem;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  min-width: 48px;
+  text-align: center;
+  -webkit-transition: all .2s;
+  transition: all .2s;
+  outline: none;
+}
+
+.Filter_button:hover {
+  background-color: #e4ebf0;
+ 
+}
+
+.Filter_button:focus{
+  color:rgb(102, 212, 255);
+  background-color: #e4ebf0;
+}
+
+.description{
+  color:rgb(92, 88, 88);
+  display: flex;
+  margin-top: 0.3rem;
+  margin-left: 1rem;
+
+}
+.first{
+  margin-left: auto;
+}
+
+.task{
+  font-size:0.8rem;
+  cursor: pointer;
+  background-color: transparent;
+  margin-right: 0.2rem;
+}
+
+.swap{
+  font-size: 0.9rem;
+}
+.filter{
+  font-size: 0.9rem;
+}
+
+.add_text{
+  margin-left: 0;
+  font-size: 0.3rem;
+  color:#151b26;
+}
+.field{
+  font-size:0.9rem;
+}
+.rules{
+  font-size:0.9rem;
+}
+.more{
+ font-size: 0.9rem;
+ line-height: 32px;
+  padding: 0 15px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all .2s;
+  text-align: center;
+  
+}
+.more:hover{
+  background-color: #bdc6cd;
+}
+
+.line{
+  margin: 0.3rem 0.5rem 0 0.5rem;
+  color:#bbc1c6;
+}
+
+
+.nextLevel_text li{
+  font-family: "Poppins", sans-serif;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  margin-left:0.5rem;
+  color: #666b74;
+  font-size: 0.75rem;
+}
+
+
+/*# sourceMappingURL=ActionList.css.map */

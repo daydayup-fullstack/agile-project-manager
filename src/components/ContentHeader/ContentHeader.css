@@ -30,6 +30,7 @@
   height: fit-content;
   margin: 0.5rem;
   color: #6f7782;
+  
 }
 
 .ContentHeader .title h2 {
@@ -45,10 +46,9 @@
       align-self: center;
   height: 25px;
   line-height: 25px;
-  margin-left: 1rem;
+  margin-left: 15rem;
   cursor: pointer;
 }
-
 .ContentHeader .title .searchContainer {
   margin-left: 1rem;
   -ms-flex-item-align: center;
@@ -60,6 +60,7 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+
 }
 
 .ContentHeader .title .searchContainer > span:nth-of-type(1) {
@@ -110,4 +111,12 @@
 .ContentHeader .more-content__userSection li {
   margin: 0 0.5rem;
 }
+
+
+.ContentHeader .more-content .help_icon{
+  font-size: 1.6rem;
+  font-weight: 300;
+
+}
 /*# sourceMappingURL=ContentHeader.css.map */
+
