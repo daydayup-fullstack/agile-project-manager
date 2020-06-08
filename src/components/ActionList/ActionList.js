@@ -5,17 +5,14 @@ import IconArray from "../IconArray/IconArray";
 import { connect } from "react-redux";
 import {
   add_project_star,
+  change_workspace,
   delete_project,
   project_changed,
   remove_project_star,
 } from "../../actions";
 import { db_workspaces } from "../../data/database";
 import { generateId } from "../../model/utility";
-import {
-  NavLink, Link, BrowserRouter as Router,
-  useHistory,
-  useLocation
-} from "react-router-dom";
+import { Link, BrowserRouter as Router } from "react-router-dom";
 
 const ActionList = ({
   project,
@@ -34,6 +31,7 @@ const ActionList = ({
   project_changed,
   delete_project,
   handleLogin,
+  change_workspace,
 }) => {
   const expandableAction = React.useRef(null);
   const popupItself = React.useRef(null);
@@ -201,13 +199,22 @@ const ActionList = ({
   };
 
   const ProfilePopup = () => {
+    function handleClick(selectedWorkspaceId) {
+      if (selectedWorkspaceId !== currentWorkspace) {
+        change_workspace(selectedWorkspaceId);
+      }
+    }
+
     return (
       <Router>
         <div className={"ProfilePopup"}>
           <ul>
             {workspaces.map((w) => {
               return (
-                <li onMouseOver={dismissNextLevel}>
+                <li
+                  onMouseOver={dismissNextLevel}
+                  onClick={() => handleClick(w)}
+                >
                   {w === currentWorkspace.id && (
                     <span className={"material-icons ProfilePopup__current"}>
                       done
@@ -225,8 +232,15 @@ const ActionList = ({
 
           <ul>
             {/*<li onMouseOver={dismissNextLevel}>Settings</li>*/}
-            <li onMouseOver={dismissNextLevel} onClick={() => {handleLogin(false)}}>
-              <Link to="/" style={{ textDecoration: 'none',color:'black' }}>Logout</Link>
+            <li
+              onMouseOver={dismissNextLevel}
+              onClick={() => {
+                handleLogin(false);
+              }}
+            >
+              <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+                Logout
+              </Link>
             </li>
           </ul>
         </div>
@@ -403,7 +417,7 @@ const ActionList = ({
       project_changed(updatedProject);
     }
 
-    function renameTask(e) { }
+    function renameTask(e) {}
 
     return (
       <div className="TaskcardContextPopup">
@@ -540,4 +554,5 @@ export default connect(mapStateToProps, {
   remove_project_star,
   add_project_star,
   delete_project,
+  change_workspace,
 })(ActionList);
