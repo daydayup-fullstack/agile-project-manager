@@ -6,7 +6,7 @@ import SideMenuSection, {
   Favorites,
   Team,
 } from "../SideMenuSection/SideMenuSection";
-import { db_projects, team } from "../../data/database";
+import { team } from "../../data/database";
 
 const Drawer = ({
   nav,
@@ -15,8 +15,11 @@ const Drawer = ({
   close_app_drawer,
   starredProjects,
   currentWorkspace,
+  allProjects,
 }) => {
-  const favorites = starredProjects.map((id) => currentWorkspace.projects[id]);
+  const favorites = allProjects.filter(
+    (project) => starredProjects.indexOf(project.id) >= 0
+  );
 
   return (
     <div className="Drawer">
@@ -44,7 +47,7 @@ const Drawer = ({
             </SideMenuSection>
             <SideMenuSection>
               <Team
-                projects={currentWorkspace.projects}
+                projects={allProjects}
                 team={team}
                 workspace={currentWorkspace}
               />
@@ -65,6 +68,7 @@ const mapStateToProps = (state) => {
     shouldOpen: state.app.ui_drawer.shouldOpen,
     starredProjects: state.user.starredProjects,
     currentWorkspace: state.workspace,
+    allProjects: state.allProjects,
   };
 };
 

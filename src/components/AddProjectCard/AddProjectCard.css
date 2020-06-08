@@ -1,37 +1,58 @@
 .addProjectCard {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   width: 150px;
+  -webkit-transition: all 0.4s ease-in-out;
   transition: all 0.4s ease-in-out;
   padding: 1.25rem 0.4rem 3.75rem 0.4rem;
   border-radius: 1.875rem;
 }
+
 .addProjectCard:hover {
   background-color: #f6f8f9;
   cursor: pointer;
-  transform: translateY(-4px);
+  -webkit-transform: translateY(-4px);
+          transform: translateY(-4px);
 }
+
 .addProjectCard:hover .addProjectCard__content {
   border: 2px dashed #6f7782;
 }
+
 .addProjectCard:hover .addProjectCard__content__icon {
   color: #6f7782;
 }
+
 .addProjectCard__content {
   width: 7.5rem;
   height: 7.5rem;
   border-radius: 1.25rem;
   background-color: #ffffff;
   border: 2px dashed #9ca6af;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
+
 .addProjectCard__content__icon {
   font-size: 2.25rem;
   color: #9ca6af;
 }
+
 .addProjectCard__title {
   margin-top: 0.625rem;
   font-family: "Poppins", sans-serif;
@@ -41,5 +62,4 @@
   max-height: 2rem;
   width: 100%;
 }
-
 /*# sourceMappingURL=AddProjectCard.css.map */

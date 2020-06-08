@@ -7,9 +7,9 @@ export const db_users = {
     avatar:
       "https://s3.amazonaws.com/profile_photos/4720159505425.uVij5QIkQPduW5RhPC9j_27x27.png",
     colorIndex: 0,
-    starredProjects: ["project-00"],
-    privateProjects: ["project-01"],
-    workspaces: ["workspace-daydayup-team", "workspace-scott-personal"],
+    starredProjects: ["project-04"],
+    privateProjects: ["project-00"],
+    workspaces: ["workspace-scott-personal", "workspace-daydayup-team"],
   },
   "user-lawrence": {
     id: "user-lawrence",
@@ -54,69 +54,38 @@ export const db_users = {
 export const db_workspaces = {
   "workspace-scott-personal": {
     type: "personal",
-    projectsInOrder: [
-      "project-00",
-      "project-01",
-      "project-02",
-      "project-03",
-      "project-04",
-    ],
+    projectsInOrder: ["project-00", "project-01", "project-04"],
     userId: "user-scott",
+    members: ["user-scott"],
   },
   "workspace-lawrence-personal": {
     type: "personal",
-    projectsInOrder: [
-      "project-00",
-      "project-01",
-      "project-02",
-      "project-03",
-      "project-04",
-    ],
+    projectsInOrder: ["project-01"],
     userId: "user-lawrence",
+    members: ["user-lawrence"],
   },
   "workspace-ollie-personal": {
     type: "personal",
-    projectsInOrder: [
-      "project-00",
-      "project-01",
-      "project-02",
-      "project-03",
-      "project-04",
-    ],
+    projectsInOrder: ["project-02"],
     userId: "user-ollie",
+    members: ["user-ollie"],
   },
   "workspace-silvia-personal": {
     type: "personal",
-    projectsInOrder: [
-      "project-00",
-      "project-01",
-      "project-02",
-      "project-03",
-      "project-04",
-    ],
+    projectsInOrder: ["project-03"],
     userId: "user-silvia",
+    members: ["user-silvia"],
   },
   "workspace-sarah-personal": {
     type: "personal",
-    projectsInOrder: [
-      "project-00",
-      "project-01",
-      "project-02",
-      "project-03",
-      "project-04",
-    ],
+    projectsInOrder: ["project-00"],
     userId: "user-sarah",
+    members: ["user-sarah"],
   },
 
   "workspace-daydayup-team": {
     type: "team",
-    projectsInOrder: [
-      "project-00",
-      "project-01",
-      "project-02",
-      "project-03",
-      "project-04",
-    ],
+    projectsInOrder: ["project-03", "project-04"],
     name: "daydayup",
     description: "JR Academy full-stack class study group",
     members: [
@@ -250,14 +219,14 @@ export const db_tasks = {
   },
 };
 
-export const db_stories = {
-  "story-00": {
-    what: "CREATED",
-    who: "user-scott",
-    when: 1556516450,
-    taskId: "task-03",
-  },
-};
+// export const db_stories = {
+//   "story-00": {
+//     what: "CREATED",
+//     who: "user-scott",
+//     when: 1556516450,
+//     taskId: "task-03",
+//   },
+// };
 
 export const loadInitialData = (devId) => {
   const {
@@ -274,6 +243,9 @@ export const loadInitialData = (devId) => {
 
   const defaultWorkspace = db_workspaces[workspaces[0]];
   const { type, projectsInOrder } = defaultWorkspace;
+  const projects = defaultWorkspace.projectsInOrder.map(
+    (id) => db_projects[id]
+  );
 
   return {
     user: {
@@ -291,9 +263,9 @@ export const loadInitialData = (devId) => {
       id: workspaces[0],
       type,
       projectsInOrder,
-      projects: { ...db_projects },
       members: [...db_workspaces[workspaces[0]].members],
     },
+    allProjects: [...projects],
   };
 };
 

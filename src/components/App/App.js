@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 import Drawer from "../Drawer/Drawer";
 import Home from "../../pages/Home/Home";
-import Team from '../../pages/Team/Team';
+import Team from "../../pages/Team/Team";
 import Navigation from "../Navigation/Navigation";
 import {
   Switch,
@@ -12,6 +12,7 @@ import {
 } from "react-router-dom";
 import LoginForm from "../LoginForm/LoginForm";
 import Project from "../../pages/Project/Project";
+import ProjectDetail from "../../pages/ProjectDetail/ProjectDetail";
 import ContentHeader from "../ContentHeader/ContentHeader";
 import { connect } from "react-redux";
 import MenuBar from "../MenuBar/MenuBar";
@@ -20,6 +21,7 @@ import ActionList from "../ActionList/ActionList";
 import Tooltip from "../Tooltip/Tooltip";
 import AddTaskPopup from "../AddTaskPopup/AddTaskPopup";
 import { db_users } from "../../data/database";
+import { init_user } from "../../actions";
 
 const App = ({
   projectCard_popup,
@@ -31,8 +33,13 @@ const App = ({
   newTaskDisplay,
   taskcard_context_menu,
   column_popup,
+  init_user,
 }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  React.useEffect(() => {
+    init_user();
+  }, [init_user]);
 
   return (
     <div className="App">
@@ -58,7 +65,7 @@ const App = ({
 
         {header_profile_popup.shouldShow && (
           <PopupMenu anchor={header_profile_popup.anchor}>
-            <ActionList />
+            <ActionList handleLogin={setIsLoggedIn} />
           </PopupMenu>
         )}
 
@@ -110,16 +117,23 @@ const App = ({
                 <Project />
               </Route>
 
+              {/*<Route path={"/team"}>*/}
+              {/*  <ContentHeader title={"Team"} />*/}
+              {/*  <Team />*/}
+              {/*</Route>*/}
+
+              <Route path={"/create-project"}>
+                <ProjectDetail />
+              </Route>
               <Route path={"/team"}>
                 <ContentHeader title={"Team"} />
                 <Team />
               </Route>
-
             </Drawer>
           </Switch>
         ) : (
           <>
-            <Route exact path={"/"}>
+            <Route path={"/"}>
               <LoginForm handleLogin={setIsLoggedIn} />
             </Route>
           </>
@@ -129,7 +143,6 @@ const App = ({
   );
 };
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     projectCard_popup: {
       shouldShow: state.app.ui_projectCard_popup.shouldShow,
@@ -168,4 +181,4 @@ const mapStateToProps = (state) => {
     newTaskDisplay: state.taskDisplay.newTaskDisplay,
   };
 };
-export default connect(mapStateToProps, {})(App);
+export default connect(mapStateToProps, { init_user })(App);
