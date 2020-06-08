@@ -2,12 +2,7 @@ import React from "react";
 import "./Panel.css";
 
 const Panel = ({ panelName }) => {
-  // function textareaH(box){
-  //     let obj=box;
-  //     obj.style.height=obj.scrollHeight+'px';}
-  //     `${textarea}`.on('keyup',function(){
-  //         textareaH('textarea');
-  //     });
+
 
   return (
     <div className="description_part">
@@ -22,5 +17,6 @@ const Panel = ({ panelName }) => {
     </div>
   );
 };
+
 
 export default Panel;
