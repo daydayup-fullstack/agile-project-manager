@@ -1,11 +1,12 @@
-.panel {
-  width: 840px;
+.teampanel {
+  width: 600px;
   margin-top: 2rem;
+  height: 600px
 }
 .panel__top {
   display: flex;
-  justify-content: flex-start;
   padding: 8px 0px;
+  margin-left: 0;
 }
 .panel__icon {
   line-height: 20px;
@@ -22,24 +23,39 @@
   user-select: none;
 }
 .panel__divider {
-  content: "";
   width: 100%;
   height: 0.15rem;
   background: #e8ecee;
   transform: scaleY(1);
   margin-bottom: 1rem;
 }
-.panel__bottom {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 150px);
-  justify-content: space-between;
-  overflow: hidden;
+.teampanel__bottom {
+ 
+  overflow: hidden; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-left: 2.7rem;
+ 
 }
-.panel .collapse {
+.teampanel .collapse {
   display: none;
 }
-.panel .expand {
-  display: grid;
+.teampanel .expand {
+  /* display: grid; */
+  display: flex;
+  flex-direction: column;
+}
+
+.change_view{
+  display: flex;
+  justify-content: flex-end;
+  margin-left: 485px;
+  font-size: 1.3rem;
+  color: #9ca6af;
+}
+.change_view:hover{
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=Panel.css.map */
