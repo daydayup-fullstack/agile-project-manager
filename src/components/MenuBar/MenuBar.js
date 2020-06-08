@@ -95,6 +95,7 @@ const MenuBar = ({
   }
 
   function handleKeyDown(e) {
+    e.preventDefault();
     if (e.key === "Enter") {
       updateProject(e);
       e.target.blur();
@@ -135,11 +136,9 @@ const MenuBar = ({
             </div>
           </div>
 
-          {/* todo - edit a project name*/}
-          {/*<h2>{currentProject.name}</h2>*/}
           <input
             className={"title"}
-            value={projectTitle}
+            value={projectTitle || ""}
             onChange={(e) => handleChange(e)}
             ref={titleInput}
             onBlur={(event) => handleBlur(event)}

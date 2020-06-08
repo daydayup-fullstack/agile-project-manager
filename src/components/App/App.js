@@ -35,12 +35,12 @@ const App = ({
   column_popup,
   init_user,
 }) => {
-  
+
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   React.useEffect(() => {
     init_user();
-  }, []);
+  }, [init_user]);
 
   return (
     <div className="App">

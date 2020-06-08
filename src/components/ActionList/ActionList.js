@@ -11,11 +11,7 @@ import {
 } from "../../actions";
 import { db_workspaces } from "../../data/database";
 import { generateId } from "../../model/utility";
-import {
-  NavLink, Link, BrowserRouter as Router,
-  useHistory,
-  useLocation
-} from "react-router-dom";
+import { Link, BrowserRouter as Router } from "react-router-dom";
 
 const ActionList = ({
   project,
@@ -225,8 +221,15 @@ const ActionList = ({
 
           <ul>
             {/*<li onMouseOver={dismissNextLevel}>Settings</li>*/}
-            <li onMouseOver={dismissNextLevel} onClick={() => {handleLogin(false)}}>
-              <Link to="/" style={{ textDecoration: 'none',color:'black' }}>Logout</Link>
+            <li
+              onMouseOver={dismissNextLevel}
+              onClick={() => {
+                handleLogin(false);
+              }}
+            >
+              <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+                Logout
+              </Link>
             </li>
           </ul>
         </div>
@@ -403,7 +406,7 @@ const ActionList = ({
       project_changed(updatedProject);
     }
 
-    function renameTask(e) { }
+    function renameTask(e) {}
 
     return (
       <div className="TaskcardContextPopup">

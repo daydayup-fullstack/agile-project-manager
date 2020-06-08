@@ -14,6 +14,8 @@ const Project = ({ allProjects, project_selected }) => {
     if (project && project.length > 0) {
       project_selected(project[0]);
     }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   return (
