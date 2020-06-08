@@ -3,8 +3,7 @@ import './TeamMember.css';
 import '../TeamDescriptionPanel/Panel.css';
 import '../TeamMemberPopup/TeamMemberPopup.css';
 
-
-const Members=()=>{
+const Members = ({invite_popup}) => {
     const [addMemberPopup, setaddMemberPopup] = React.useState(false);
     const [InvitePopup,setInvitePopup]=React.useState(false);
 
@@ -26,10 +25,10 @@ const Members=()=>{
             </div>
             <div className="divider"/>
             <div className='member_list'>
-                
+
                 <div className='Add_member' onClick={show}>
-                    <div className='circle' >
-                    <span class="material-icons add_icon">add</span></div>
+                    <div className='circle'>
+                        <span className="material-icons add_icon">add</span></div>
                     <span><h3 className='Add_text'>Add member</h3> </span>
                 </div>
                 {addMemberPopup && (
@@ -90,14 +89,14 @@ const Members=()=>{
                     <span className='info_5'><h3>Lawrence Liu</h3>
                     <h4>lawrence@gmail.com</h4></span>
                 </div>
-                
+
                 <div className='Add_member'>
                     <div className='circle_bottom'>
-                    <span class="material-icons more_icon">more_horiz</span></div>
-                    <span ><h3 className='Add_text'>See all members</h3></span>
+                        <span className="material-icons more_icon">more_horiz</span></div>
+                    <span><h3 className='Add_text'>See all members</h3></span>
                 </div>
-                
-            </div> 
+
+            </div>
         </div>
     )
 };

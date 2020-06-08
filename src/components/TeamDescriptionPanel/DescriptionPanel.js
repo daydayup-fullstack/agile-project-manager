@@ -4,13 +4,6 @@ import { $CombinedState } from 'redux';
 
 const Panel = ({ panelName, children, projectsData}) => {
     
-    // function textareaH(box){
-    //     let obj=box;
-    //     obj.style.height=obj.scrollHeight+'px';}
-    //     `${textarea}`.on('keyup',function(){
-    //         textareaH('textarea');
-    //     });
-
     return (
         <div className='description_part'>
             <div className='panel__top'>
