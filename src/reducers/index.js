@@ -1,4 +1,4 @@
-import { db_projects, loadInitialData } from "../data/database";
+import { db_projects, db_workspaces, loadInitialData } from "../data/database";
 import {
   DRAWER_CLOSED,
   DRAWER_OPENED,
@@ -10,8 +10,6 @@ import {
   HIDE_PROJECT_CARD_POPUP,
   HIDE_ADD_MEMBER_POPUP,
   PROJECT_CHANGED,
-  PROJECT_COLOR_SELECTED,
-  PROJECT_ICON_SELECTED,
   PROJECT_SELECTED,
   PROJECT_STAR_ADDED,
   PROJECT_STAR_REMOVED,
@@ -29,6 +27,9 @@ import {
   SHOW_COLUMN_POPUP,
   HIDE_COLUMN_POPUP,
   PROJECT_DELETED,
+  PROJECT_ADDED,
+  INIT_USER,
+  WORKSPACE_CHANGED,
 } from "../actions";
 const devId = "user-scott";
 
@@ -89,7 +90,7 @@ export const app = (state = initialAppState, action) => {
           shouldShow: false,
         },
       };
-//======
+    //======
     case HIDE_ADD_MEMBER_POPUP:
       return {
         ...state,
@@ -98,13 +99,13 @@ export const app = (state = initialAppState, action) => {
         },
       };
     case SHOW_ADD_MEMBER_POPUP:
-    return {
-      ...state,
-      ui_addmember_popup: {
-        ShowPopup: true,
-      },
-    };
-//======
+      return {
+        ...state,
+        ui_addmember_popup: {
+          ShowPopup: true,
+        },
+      };
+    //======
     case DRAWER_OPENED:
       return {
         ...state,
@@ -281,6 +282,29 @@ export const user = (state = initialUserState, action) => {
         starredProjects: state.starredProjects.filter(
           (id) => id !== action.project.id
         ),
+        privateProjects: state.starredProjects.filter(
+          (id) => id !== action.project.id
+        ),
+      };
+    }
+
+    case WORKSPACE_CHANGED: {
+
+      const index = state.workspaces.indexOf(action.workspaceId);
+      const newWorkspaces = [...state.workspaces];
+
+      newWorkspaces.splice(index, 1);
+      newWorkspaces.splice(0, 0, action.workspaceId);
+
+      return {
+        ...state,
+        workspaces: [...newWorkspaces]
+      }
+    }
+
+    case INIT_USER: {
+      return {
+        ...state,
       };
     }
 
@@ -292,55 +316,20 @@ export const user = (state = initialUserState, action) => {
 };
 // ============= WORKSPACE reducers ==================
 
-const initialWorkspace = { ...loadInitialData(devId).currentWorkspace };
+const initialWorkspace = {
+  ...loadInitialData(devId).currentWorkspace,
+};
 
 export const workspace = (state = initialWorkspace, action) => {
   switch (action.type) {
-    case PROJECT_ICON_SELECTED:
+    case WORKSPACE_CHANGED: {
+      // todo - future async might be needed
       return {
-        ...state,
-        projects: {
-          ...state.projects,
-          [action.project.id]: action.project,
-        },
-      };
-
-    case PROJECT_COLOR_SELECTED:
-      return {
-        ...state,
-        projects: {
-          ...state.projects,
-          [action.project.id]: action.project,
-        },
-      };
-
-    case PROJECT_DELETED: {
-      const index = state.projectsInOrder.indexOf(action.project.id);
-      const newProjectInOrder = [...state.projectsInOrder];
-      newProjectInOrder.splice(index, 1);
-      const newProjects = { ...state.projects };
-      delete newProjects[project.id];
-
-      return {
-        ...state,
-        projectsInOrder: newProjectInOrder,
-        projects: newProjects,
+        id: action.workspaceId,
+        ...db_workspaces[action.workspaceId],
       };
     }
 
-    case PROJECT_CHANGED: {
-      const project = action.project;
-      return {
-        ...state,
-        projects: {
-          ...state.projects,
-          [project.id]: {
-            ...state.projects[project.id],
-            ...project,
-          },
-        },
-      };
-    }
     default:
       return {
         ...state,
@@ -349,15 +338,24 @@ export const workspace = (state = initialWorkspace, action) => {
 };
 
 // ============= PROJECT reducers ==================
+// todo - adding async fetching operation here
+// current selected project - fetching additional data
 
 export const project = (state = {}, action) => {
   switch (action.type) {
     case PROJECT_SELECTED:
-      return {
+      const project = {
         ...state,
-        ...action.payload.project,
-        columns: { ...action.payload.columns },
-        tasks: { ...action.payload.tasks },
+        ...action.project,
+        columns: {
+          ...action.columns,
+        },
+        tasks: {
+          ...action.tasks,
+        },
+      };
+      return {
+        ...project,
       };
 
     case PROJECT_CHANGED: {
@@ -366,18 +364,6 @@ export const project = (state = {}, action) => {
         ...action.project,
       };
     }
-
-    case PROJECT_ICON_SELECTED:
-      return {
-        ...state,
-        iconIndex: action.payload,
-      };
-
-    case PROJECT_COLOR_SELECTED:
-      return {
-        ...state,
-        colorIndex: action.payload,
-      };
 
     default:
       return {
@@ -415,33 +401,53 @@ export const taskDisplay = (state = initialNewTaskDisplay, action) => {
 };
 
 // ==================== allProjects ======================
-const projectsInitial = {
-  ...db_projects,
-};
+const projectsInitial = [...loadInitialData(devId).allProjects];
 
 export const allProjects = (state = projectsInitial, action) => {
   switch (action.type) {
+    case WORKSPACE_CHANGED: {
+      // todo - future async fetch
+      const projects = db_workspaces[action.workspaceId].projectsInOrder.map(
+        (id) => db_projects[id]
+      );
+
+      return [...projects];
+    }
+
     case PROJECT_CHANGED: {
-      const project = action.project;
-      return {
-        ...state,
-        [project.id]: {
-          ...state[project.id],
-          ...project,
-        },
-      };
+      const update = action.project;
+      let projectIndex;
+      state.forEach((p, index) => {
+        if (p.id === update.id) {
+          projectIndex = index;
+        }
+      });
+
+      const newState = [...state];
+      newState.splice(projectIndex, 1);
+      newState.splice(projectIndex, 0, update);
+
+      return [...newState];
+    }
+
+    case PROJECT_ADDED: {
+      return [...state, action.payload];
     }
 
     case PROJECT_DELETED: {
-      const allProjects = { ...state };
-      delete allProjects[action.project.id];
-      return {
-        ...allProjects,
-      };
+      let projectIndex;
+      state.forEach((p, index) => {
+        if (p.id === action.project.id) {
+          projectIndex = index;
+        }
+      });
+      const newState = [...state];
+      newState.splice(projectIndex, 1);
+
+      return [...newState];
     }
+
     default:
-      return {
-        ...state,
-      };
+      return [...state];
   }
 };

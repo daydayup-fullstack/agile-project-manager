@@ -61,7 +61,7 @@ export const login = async (username, password) => {
 };
 
 export const calcAnchor = (e) => {
-  console.log(e.target.offsetLeft, e.target.offsetTop);
+  // console.log(e.target.offsetLeft, e.target.offsetTop);
   return {
     anchor: {
       x: e.target.offsetLeft,

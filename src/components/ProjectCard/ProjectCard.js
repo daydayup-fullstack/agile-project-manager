@@ -102,6 +102,7 @@ const ProjectCard = ({
         </div>
         <span className={"title"}>{project.name}</span>
         {currentUser.privateProjects &&
+          currentUser.privateProjects.length !== 0 &&
           currentUser.privateProjects.indexOf(project.id) >= 0 && (
             <div className={"private-project-indicator"}>
               <span className={"material-icons"}>lock</span>

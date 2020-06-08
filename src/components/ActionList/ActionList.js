@@ -5,12 +5,14 @@ import IconArray from "../IconArray/IconArray";
 import { connect } from "react-redux";
 import {
   add_project_star,
+  change_workspace,
   delete_project,
   project_changed,
   remove_project_star,
 } from "../../actions";
 import { db_workspaces } from "../../data/database";
 import { generateId } from "../../model/utility";
+import { Link, BrowserRouter as Router } from "react-router-dom";
 
 const ActionList = ({
   project,
@@ -28,6 +30,8 @@ const ActionList = ({
   column_popup,
   project_changed,
   delete_project,
+  handleLogin,
+  change_workspace,
 }) => {
   const expandableAction = React.useRef(null);
   const popupItself = React.useRef(null);
@@ -35,7 +39,6 @@ const ActionList = ({
   const [showNextLevel, setShowNextLevel] = React.useState(false);
   const [nextAnchor, setNextAnchor] = React.useState({ x: 0, y: 0 });
   const [parentAnchor, setParentAnchor] = React.useState({ x: 0, y: 0 });
-
   function handleMouseOver(e) {
     setParentAnchor({
       x: e.target.offsetParent.offsetLeft,
@@ -133,7 +136,7 @@ const ActionList = ({
     // const height = 343;
 
     let deleteProject = () => {
-      let ahead = window.confirm("Do you really want to delete this project?");
+      let ahead = window.confirm("Are you sure about deleting this project?");
 
       if (ahead) {
         delete_project(project);
@@ -196,32 +199,52 @@ const ActionList = ({
   };
 
   const ProfilePopup = () => {
+    function handleClick(selectedWorkspaceId) {
+      if (selectedWorkspaceId !== currentWorkspace) {
+        change_workspace(selectedWorkspaceId);
+      }
+    }
+
     return (
-      <div className={"ProfilePopup"}>
-        <ul>
-          {workspaces.map((w) => {
-            return (
-              <li onMouseOver={dismissNextLevel}>
-                {w === currentWorkspace.id && (
-                  <span className={"material-icons ProfilePopup__current"}>
-                    done
-                  </span>
-                )}
-                {db_workspaces[w].type === "personal"
-                  ? "Personal projects"
-                  : db_workspaces[w].name}
-              </li>
-            );
-          })}
-        </ul>
+      <Router>
+        <div className={"ProfilePopup"}>
+          <ul>
+            {workspaces.map((w) => {
+              return (
+                <li
+                  onMouseOver={dismissNextLevel}
+                  onClick={() => handleClick(w)}
+                >
+                  {w === currentWorkspace.id && (
+                    <span className={"material-icons ProfilePopup__current"}>
+                      done
+                    </span>
+                  )}
+                  {db_workspaces[w].type === "personal"
+                    ? "Personal projects"
+                    : db_workspaces[w].name}
+                </li>
+              );
+            })}
+          </ul>
 
-        <div className="divider" />
+          <div className="divider" />
 
-        <ul>
-          {/*<li onMouseOver={dismissNextLevel}>Settings</li>*/}
-          <li onMouseOver={dismissNextLevel}>Logout</li>
-        </ul>
-      </div>
+          <ul>
+            {/*<li onMouseOver={dismissNextLevel}>Settings</li>*/}
+            <li
+              onMouseOver={dismissNextLevel}
+              onClick={() => {
+                handleLogin(false);
+              }}
+            >
+              <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+                Logout
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </Router>
     );
   };
 
@@ -531,4 +554,5 @@ export default connect(mapStateToProps, {
   remove_project_star,
   add_project_star,
   delete_project,
+  change_workspace,
 })(ActionList);

@@ -1,1 +1,10 @@
-{"version":3,"sourceRoot":"","sources":["TaskList.scss"],"names":[],"mappings":"AAEA;EACE","file":"TaskList.css"}
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,SAAS,CAAC;EACR,KAAK,EAAE,IAAI;CACZ",
+    "sources": [
+        "TaskList.scss",
+        "../../style/_variables.scss"
+    ],
+    "names": [],
+    "file": "TaskList.css"
+}

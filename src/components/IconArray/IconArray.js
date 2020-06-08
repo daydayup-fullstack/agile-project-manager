@@ -2,14 +2,9 @@ import React from "react";
 import "./IconArray.css";
 import { colors, iconNames } from "../../model/model";
 import { connect } from "react-redux";
-import { select_project_icon } from "../../actions";
+import { project_changed } from "../../actions";
 
-const IconArray = ({
-  iconIndex,
-  colorIndex,
-  currentProject,
-  select_project_icon,
-}) => {
+const IconArray = ({ iconIndex, colorIndex, project_changed, project }) => {
   const showCorrectStyle = (index) => {
     if (iconIndex === index) {
       return {
@@ -28,8 +23,8 @@ const IconArray = ({
               key={index}
               style={showCorrectStyle(index)}
               onClick={() => {
-                select_project_icon({
-                  ...currentProject,
+                project_changed({
+                  ...project,
                   iconIndex: index,
                 });
               }}
@@ -44,8 +39,8 @@ const IconArray = ({
 };
 const mapStateToProps = (state) => {
   return {
-    currentProject: state.project,
+    project: state.project,
   };
 };
 
-export default connect(mapStateToProps, { select_project_icon })(IconArray);
+export default connect(mapStateToProps, { project_changed })(IconArray);
