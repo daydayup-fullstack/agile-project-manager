@@ -50,7 +50,7 @@ export const Team = ({ projects, team, workspace }) => {
     <>
       {workspace.type === "team" && (
         <>
-          <Link to={"/team"}>
+          <Link to={"/team"} style={{ textDecoration: "none", color: "#fff" }}>
             <header className={"teamHeader"}>{workspace.name}</header>
           </Link>
 

@@ -1,4 +1,4 @@
-import { loadInitialData } from "../data/database";
+import { db_projects, db_workspaces, loadInitialData } from "../data/database";
 import {
   DRAWER_CLOSED,
   DRAWER_OPENED,
@@ -10,8 +10,6 @@ import {
   HIDE_PROJECT_CARD_POPUP,
   HIDE_ADD_MEMBER_POPUP,
   PROJECT_CHANGED,
-  PROJECT_COLOR_SELECTED,
-  PROJECT_ICON_SELECTED,
   PROJECT_SELECTED,
   PROJECT_STAR_ADDED,
   PROJECT_STAR_REMOVED,
@@ -31,6 +29,7 @@ import {
   PROJECT_DELETED,
   PROJECT_ADDED,
   INIT_USER,
+  WORKSPACE_CHANGED,
 } from "../actions";
 const devId = "user-scott";
 
@@ -91,7 +90,7 @@ export const app = (state = initialAppState, action) => {
           shouldShow: false,
         },
       };
-//======
+    //======
     case HIDE_ADD_MEMBER_POPUP:
       return {
         ...state,
@@ -100,13 +99,13 @@ export const app = (state = initialAppState, action) => {
         },
       };
     case SHOW_ADD_MEMBER_POPUP:
-    return {
-      ...state,
-      ui_addmember_popup: {
-        ShowPopup: true,
-      },
-    };
-//======
+      return {
+        ...state,
+        ui_addmember_popup: {
+          ShowPopup: true,
+        },
+      };
+    //======
     case DRAWER_OPENED:
       return {
         ...state,
@@ -291,7 +290,7 @@ export const user = (state = initialUserState, action) => {
 
     case INIT_USER: {
       return {
-        ...state
+        ...state,
       };
     }
 
@@ -309,6 +308,14 @@ const initialWorkspace = {
 
 export const workspace = (state = initialWorkspace, action) => {
   switch (action.type) {
+    case WORKSPACE_CHANGED: {
+      // todo - future async might be needed
+      return {
+        id: action.workspaceId,
+        ...db_workspaces[action.workspaceId],
+      };
+    }
+
     default:
       return {
         ...state,
@@ -333,7 +340,9 @@ export const project = (state = {}, action) => {
           ...action.tasks,
         },
       };
-      return project;
+      return {
+        ...project,
+      };
 
     case PROJECT_CHANGED: {
       return {
@@ -341,18 +350,6 @@ export const project = (state = {}, action) => {
         ...action.project,
       };
     }
-
-    case PROJECT_ICON_SELECTED:
-      return {
-        ...state,
-        ...action.project,
-      };
-
-    case PROJECT_COLOR_SELECTED:
-      return {
-        ...state,
-        ...action.project,
-      };
 
     default:
       return {
@@ -394,6 +391,15 @@ const projectsInitial = [...loadInitialData(devId).allProjects];
 
 export const allProjects = (state = projectsInitial, action) => {
   switch (action.type) {
+    case WORKSPACE_CHANGED: {
+      // todo - future async fetch
+      const projects = db_workspaces[action.workspaceId].projectsInOrder.map(
+        (id) => db_projects[id]
+      );
+
+      return [...projects];
+    }
+
     case PROJECT_CHANGED: {
       const update = action.project;
       let projectIndex;

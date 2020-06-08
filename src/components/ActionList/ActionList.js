@@ -5,6 +5,7 @@ import IconArray from "../IconArray/IconArray";
 import { connect } from "react-redux";
 import {
   add_project_star,
+  change_workspace,
   delete_project,
   project_changed,
   remove_project_star,
@@ -30,6 +31,7 @@ const ActionList = ({
   project_changed,
   delete_project,
   handleLogin,
+  change_workspace,
 }) => {
   const expandableAction = React.useRef(null);
   const popupItself = React.useRef(null);
@@ -197,13 +199,22 @@ const ActionList = ({
   };
 
   const ProfilePopup = () => {
+    function handleClick(selectedWorkspaceId) {
+      if (selectedWorkspaceId !== currentWorkspace) {
+        change_workspace(selectedWorkspaceId);
+      }
+    }
+
     return (
       <Router>
         <div className={"ProfilePopup"}>
           <ul>
             {workspaces.map((w) => {
               return (
-                <li onMouseOver={dismissNextLevel}>
+                <li
+                  onMouseOver={dismissNextLevel}
+                  onClick={() => handleClick(w)}
+                >
                   {w === currentWorkspace.id && (
                     <span className={"material-icons ProfilePopup__current"}>
                       done
@@ -543,4 +554,5 @@ export default connect(mapStateToProps, {
   remove_project_star,
   add_project_star,
   delete_project,
+  change_workspace,
 })(ActionList);

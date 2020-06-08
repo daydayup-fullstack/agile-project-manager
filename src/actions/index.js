@@ -9,6 +9,15 @@ export const init_user = () => {
   };
 };
 
+// ============== Workspace ====================
+export const WORKSPACE_CHANGED = "WORKSPACE_CHANGED";
+export const change_workspace = (workspaceId) => {
+  return {
+    type: WORKSPACE_CHANGED,
+    workspaceId,
+  };
+};
+
 // ============== Project ========================
 // region- Project related actions
 export const PROJECT_SELECTED = "PROJECT_SELECTED";
@@ -92,40 +101,6 @@ export const PROJECT_STAR_REMOVED = " PROJECT_STAR_REMOVED";
 export const remove_project_star = (project) => {
   return {
     type: PROJECT_STAR_REMOVED,
-    project,
-  };
-};
-
-export const PROJECT_ICON_SELECTED = "PROJECT_ICON_SELECTED ";
-export const select_project_icon = (project) => {
-  return {
-    type: PROJECT_ICON_SELECTED,
-    project,
-  };
-};
-
-export const PROJECT_COLOR_SELECTED = "PROJECT_COLOR_SELECTED ";
-export const select_project_color = (project) => {
-  return {
-    type: PROJECT_COLOR_SELECTED,
-    project,
-  };
-};
-
-export const START_CREATING_NEW_TASK = "START_CREATING_NEW_TASK";
-export const start_creating_new_task = ({ project }) => {
-  return {
-    type: START_CREATING_NEW_TASK,
-    project,
-  };
-};
-
-export const ADD_TASK_TO_PROJECT = "ADD_TASK";
-export const add_task_to_project = ({ task, column, project }) => {
-  return {
-    type: ADD_TASK_TO_PROJECT,
-    task,
-    column,
     project,
   };
 };

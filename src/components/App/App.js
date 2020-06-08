@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 import Drawer from "../Drawer/Drawer";
 import Home from "../../pages/Home/Home";
-import Team from '../../pages/Team/Team';
+import Team from "../../pages/Team/Team";
 import Navigation from "../Navigation/Navigation";
 import {
   Switch,
@@ -35,7 +35,6 @@ const App = ({
   column_popup,
   init_user,
 }) => {
-
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   React.useEffect(() => {
@@ -130,7 +129,6 @@ const App = ({
                 <ContentHeader title={"Team"} />
                 <Team />
               </Route>
-
             </Drawer>
           </Switch>
         ) : (

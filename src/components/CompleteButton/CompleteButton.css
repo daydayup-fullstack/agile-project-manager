@@ -7,35 +7,26 @@
   padding: 0.12rem 0.5rem;
   text-align: center;
   border-radius: 0.25rem;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
   width: fit-content;
   background: transparent;
-  -webkit-transition: all 0.1s ease;
   transition: all 0.1s ease;
 }
-
 .complete-button:hover {
   border-color: #00bf9c;
   color: #00bf9c;
   cursor: pointer;
-  background: #00bf9c;
+  background: rgba(0, 191, 156, 0.1);
 }
-
 .complete-button .content {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
-
 .complete-button .content span {
   font-size: 0.9rem;
   position: relative;
   top: -1px;
   margin-right: 0.2rem;
+  z-index: 10;
 }
 
 .completed {
@@ -43,9 +34,9 @@
   background: #00e8bd;
   border: none;
 }
-
 .completed:hover {
   color: white;
   background: #00bf9c;
 }
+
 /*# sourceMappingURL=CompleteButton.css.map */
