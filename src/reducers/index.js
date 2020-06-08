@@ -288,6 +288,20 @@ export const user = (state = initialUserState, action) => {
       };
     }
 
+    case WORKSPACE_CHANGED: {
+
+      const index = state.workspaces.indexOf(action.workspaceId);
+      const newWorkspaces = [...state.workspaces];
+
+      newWorkspaces.splice(index, 1);
+      newWorkspaces.splice(0, 0, action.workspaceId);
+
+      return {
+        ...state,
+        workspaces: [...newWorkspaces]
+      }
+    }
+
     case INIT_USER: {
       return {
         ...state,
