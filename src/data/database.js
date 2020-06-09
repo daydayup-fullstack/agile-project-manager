@@ -109,7 +109,7 @@ export const db_projects = {
     columnOrder: [],
     activeUsers: []
   },
-  
+
   "project-01": {
     id: "project-01",
     name: "Group Project",
@@ -130,7 +130,7 @@ export const db_projects = {
     columnOrder: [],
     activeUsers: []
   },
-  
+
   "project-03": {
     id: "project-03",
     name: "Integration",
@@ -141,7 +141,7 @@ export const db_projects = {
     columnOrder: [],
     activeUsers: []
   },
-  
+
   "project-04": {
     id: "project-04",
     name: "Demo",
@@ -230,46 +230,46 @@ export const db_tasks = {
 //   },
 // };
 
-export const loadInitialData = (devId) => {
-  const {
-    id,
-    firstName,
-    lastName,
-    email,
-    colorIndex,
-    avatar,
-    privateProjects,
-    starredProjects,
-    workspaces,
-  } = db_users[devId];
-
-  const defaultWorkspace = db_workspaces[workspaces[0]];
-  const { type, projectsInOrder } = defaultWorkspace;
-  const projects = defaultWorkspace.projectsInOrder.map(
-    (id) => db_projects[id]
-  );
-
-  return {
-    user: {
-      id,
-      firstName,
-      lastName,
-      email,
-      privateProjects,
-      avatar,
-      colorIndex,
-      starredProjects,
-      workspaces,
-    },
-    currentWorkspace: {
-      id: workspaces[0],
-      type,
-      projectsInOrder,
-      members: [...db_workspaces[workspaces[0]].members],
-    },
-    allProjects: [...projects],
-  };
-};
+// export const loadInitialData = (devId) => {
+//   const {
+//     id,
+//     firstName,
+//     lastName,
+//     email,
+//     colorIndex,
+//     avatar,
+//     privateProjects,
+//     starredProjects,
+//     workspaces,
+//   } = db_users[devId];
+//
+//   const defaultWorkspace = db_workspaces[workspaces[0]];
+//   const { type, projectsInOrder } = defaultWorkspace;
+//   const projects = defaultWorkspace.projectsInOrder.map(
+//     (id) => db_projects[id]
+//   );
+//
+//   return {
+//     user: {
+//       id,
+//       firstName,
+//       lastName,
+//       email,
+//       privateProjects,
+//       avatar,
+//       colorIndex,
+//       starredProjects,
+//       workspaces,
+//     },
+//     currentWorkspace: {
+//       id: workspaces[0],
+//       type,
+//       projectsInOrder,
+//       members: [...db_workspaces[workspaces[0]].members],
+//     },
+//     allProjects: [...projects],
+//   };
+// };
 
 export const team = {
   id: "3d452d24",

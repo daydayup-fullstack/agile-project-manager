@@ -1,4 +1,4 @@
-import { db_projects, db_workspaces, loadInitialData } from "../data/database";
+import { db_projects, db_workspaces } from "../data/database";
 import {
   DRAWER_CLOSED,
   DRAWER_OPENED,
@@ -30,6 +30,8 @@ import {
   PROJECT_ADDED,
   INIT_USER,
   WORKSPACE_CHANGED,
+  USER_LOGIN,
+  USER_LOGOUT,
 } from "../actions";
 const devId = "user-scott";
 
@@ -256,10 +258,41 @@ export const app = (state = initialAppState, action) => {
 };
 // ============= USER reducers ==================
 
-const initialUserState = { ...loadInitialData(devId).user };
+const initialUserState = {
+  id: "",
+  firstName: "",
+  lastName: "",
+  email: "",
+  privateProjects: [],
+  avatar: "",
+  colorIndex: 0,
+  starredProjects: [],
+  workspaces: [],
+  isLoggedIn: false,
+};
 
 export const user = (state = initialUserState, action) => {
   switch (action.type) {
+    case USER_LOGIN: {
+      return {
+        ...state,
+        id: action.userId,
+        isLoggedIn: true,
+      };
+    }
+    case INIT_USER: {
+      console.log(action.data);
+      return {
+        ...state,
+        ...action.data,
+      };
+    }
+    case USER_LOGOUT: {
+      return {
+        ...state,
+        isLoggedIn: false,
+      };
+    }
     case PROJECT_STAR_ADDED: {
       return {
         ...state,
@@ -289,7 +322,6 @@ export const user = (state = initialUserState, action) => {
     }
 
     case WORKSPACE_CHANGED: {
-
       const index = state.workspaces.indexOf(action.workspaceId);
       const newWorkspaces = [...state.workspaces];
 
@@ -298,13 +330,7 @@ export const user = (state = initialUserState, action) => {
 
       return {
         ...state,
-        workspaces: [...newWorkspaces]
-      }
-    }
-
-    case INIT_USER: {
-      return {
-        ...state,
+        workspaces: [...newWorkspaces],
       };
     }
 
@@ -316,9 +342,7 @@ export const user = (state = initialUserState, action) => {
 };
 // ============= WORKSPACE reducers ==================
 
-const initialWorkspace = {
-  ...loadInitialData(devId).currentWorkspace,
-};
+const initialWorkspace = {};
 
 export const workspace = (state = initialWorkspace, action) => {
   switch (action.type) {
@@ -401,7 +425,7 @@ export const taskDisplay = (state = initialNewTaskDisplay, action) => {
 };
 
 // ==================== allProjects ======================
-const projectsInitial = [...loadInitialData(devId).allProjects];
+const projectsInitial = [];
 
 export const allProjects = (state = projectsInitial, action) => {
   switch (action.type) {

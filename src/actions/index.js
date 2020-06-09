@@ -1,11 +1,34 @@
 import { db_columns, db_tasks } from "../data/database";
-
+import backend from "../apis/backend";
+import { login } from "../model/utility";
 // ============== User ========================
-
+//
 export const INIT_USER = "INIT_USER";
-export const init_user = () => {
-  return {
+export const init_user = (userId) => async (dispatch) => {
+  const data = await backend.get(`/users/${userId}`);
+  dispatch({
     type: INIT_USER,
+    data,
+  });
+};
+
+export const USER_LOGIN = "USER_LOGIN";
+export const login_user = ({ username, password }) => async (dispatch) => {
+  const result = await login(username, password);
+
+  let { userId } = JSON.parse(result);
+
+  console.log(userId);
+
+  dispatch({
+    type: USER_LOGIN,
+    userId: userId || "",
+  });
+};
+export const USER_LOGOUT = "USER_LOGOUT";
+export const logout_user = () => {
+  return {
+    type: USER_LOGOUT,
   };
 };
 
