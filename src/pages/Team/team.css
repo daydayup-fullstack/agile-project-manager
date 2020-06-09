@@ -7,16 +7,25 @@
   align-items: center;
   width: 100%;
   margin-top: 0;
-  
-}    
-
-.panels{
-display: flex;
-width: 900px;
-
 }
-.panel_left{
-margin-right: 0;
+
+.panels {
+  display: flex;
+  width: 900px;
+}
+
+.panel_left {
+  margin-right: 0;
+}
+
+.projects {
+  display: flex;
+  /* flex-direction: column; */
+}
+
+.project_list {
+  display: flex;
+  width: 500px;
 }
 .projects{
 display: flex;

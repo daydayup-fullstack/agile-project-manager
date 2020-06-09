@@ -15,6 +15,7 @@ import {
   show_header_projectInfo_popup,
 } from "../../actions";
 import { colors, iconNames } from "../../model/model";
+import Filterbar from "../Filterbar/Filterbar";
 
 const MenuBar = ({
   shouldOpen,
@@ -190,7 +191,7 @@ const MenuBar = ({
           </ul>
         </div>
       </div>
-      {/*<Filterbar />*/}
+      <Filterbar />
     </>
   );
 };
