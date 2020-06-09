@@ -145,6 +145,7 @@ const App = ({
   );
 };
 const mapStateToProps = (state) => {
+  // console.log(state);
   return {
     projectCard_popup: {
       shouldShow: state.app.ui_projectCard_popup.shouldShow,

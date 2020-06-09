@@ -28,10 +28,12 @@ import {
   HIDE_COLUMN_POPUP,
   PROJECT_DELETED,
   PROJECT_ADDED,
-  INIT_USER,
   WORKSPACE_CHANGED,
   USER_LOGIN,
   USER_LOGOUT,
+  INIT_USER_SUCCESS,
+  INIT_USER_FAILED,
+  INIT_USER_REQUESTED,
 } from "../actions";
 
 // ============= APP reducers ==================
@@ -72,10 +74,31 @@ const initialAppState = {
     shouldShow: false,
     anchor: { x: 0, y: 0, width: 0, height: 0 },
   },
+  ui_isLoading: false,
 };
 
 export const app = (state = initialAppState, action) => {
   switch (action.type) {
+    case INIT_USER_REQUESTED: {
+      return {
+        ...state,
+        ui_isLoading: true,
+      };
+    }
+
+    case INIT_USER_SUCCESS: {
+      return {
+        ...state,
+        ui_isLoading: false,
+      };
+    }
+
+    case INIT_USER_FAILED: {
+      return {
+        ...state,
+        ui_isLoading: false,
+      };
+    }
     case SHOW_PROJECT_CARD_POPUP:
       return {
         ...state,
@@ -276,14 +299,19 @@ export const user = (state = initialUserState, action) => {
       return {
         ...state,
         id: action.userId,
-        isLoggedIn: true,
       };
     }
-    case INIT_USER: {
-      console.log(action.user);
+    case INIT_USER_SUCCESS: {
       return {
         ...state,
         ...action.user,
+        isLoggedIn: true,
+      };
+    }
+    case INIT_USER_FAILED: {
+      return {
+        ...state,
+        error: action.error,
       };
     }
     case USER_LOGOUT: {
@@ -341,14 +369,26 @@ export const user = (state = initialUserState, action) => {
 };
 // ============= WORKSPACE reducers ==================
 
-const initialWorkspace = {};
+const initialWorkspace = {
+  type: "",
+  projectOrder: [],
+  members: [],
+  description: "",
+  name: "",
+};
 
 export const workspace = (state = initialWorkspace, action) => {
   switch (action.type) {
-    case INIT_USER: {
+    case INIT_USER_SUCCESS: {
       return {
         ...state,
         ...action.workspace,
+      };
+    }
+    case INIT_USER_FAILED: {
+      return {
+        ...state,
+        error: action.error,
       };
     }
     case WORKSPACE_CHANGED: {
@@ -434,9 +474,11 @@ const projectsInitial = [];
 
 export const allProjects = (state = projectsInitial, action) => {
   switch (action.type) {
-    case INIT_USER: {
-      console.log(action.allProjects);
+    case INIT_USER_SUCCESS: {
       return [...action.allProjects];
+    }
+    case INIT_USER_FAILED: {
+      return [];
     }
     case WORKSPACE_CHANGED: {
       // todo - future async fetch

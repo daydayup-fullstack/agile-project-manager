@@ -3,15 +3,35 @@ import backend from "../apis/backend";
 import { login } from "../model/utility";
 // ============== User ========================
 //
-export const INIT_USER = "INIT_USER";
+export const INIT_USER_REQUESTED = "INIT_USER";
+export const init_user_requested = () => {
+  return {
+    type: INIT_USER_REQUESTED,
+  };
+};
+export const INIT_USER_SUCCESS = "INIT_USER_SUCCESS";
+const init_user_success = (response) => {
+  return {
+    type: INIT_USER_SUCCESS,
+    user: response.data.user || {},
+    workspace: response.data.workspace || {},
+    allProjects: response.data.allProjects || [],
+  };
+};
+export const INIT_USER_FAILED = "INIT_USER_FAILED";
+const init_user_failed = (e) => {
+  return {
+    type: INIT_USER_FAILED,
+    error: e,
+  };
+};
 export const init_user = (userId) => async (dispatch) => {
-  const response = await backend.get(`/users/${userId}`);
-  dispatch({
-    type: INIT_USER,
-    user: response.data.user,
-    allProjects: response.data.allProjects,
-    workspace: response.data.workspace,
-  });
+  try {
+    const response = await backend.get(`/users/${userId}`);
+    dispatch(init_user_success(response));
+  } catch (e) {
+    dispatch(init_user_failed(e));
+  }
 };
 
 export const USER_LOGIN = "USER_LOGIN";

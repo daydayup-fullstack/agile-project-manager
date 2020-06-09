@@ -1,26 +1,22 @@
 import React from "react";
 import "./LoginForm.css";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
-import { login_user } from "../../actions";
+import { init_user_requested, login_user } from "../../actions";
 import { connect } from "react-redux";
 
-const LoginForm = ({ login_user }) => {
+const LoginForm = ({ login_user, isLoading, init_user_requested }) => {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
-
   const [error, setError] = React.useState("");
-  const [isLoading, setIsLoading] = React.useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    setIsLoading(true);
     try {
+      init_user_requested();
       login_user({ username, password });
-      setIsLoading(false);
     } catch (e) {
       setError("the username or password is not correct!");
-      setIsLoading(false);
       setUsername("");
       setPassword("");
     }
@@ -85,6 +81,10 @@ const LoginForm = ({ login_user }) => {
   );
 };
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    isLoading: state.app.ui_isLoading,
+  };
 };
-export default connect(mapStateToProps, { login_user })(LoginForm);
+export default connect(mapStateToProps, { login_user, init_user_requested })(
+  LoginForm
+);
