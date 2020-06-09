@@ -5,10 +5,12 @@ import { login } from "../model/utility";
 //
 export const INIT_USER = "INIT_USER";
 export const init_user = (userId) => async (dispatch) => {
-  const data = await backend.get(`/users/${userId}`);
+  const response = await backend.get(`/users/${userId}`);
   dispatch({
     type: INIT_USER,
-    data,
+    user: response.data.user,
+    allProjects: response.data.allProjects,
+    workspace: response.data.workspace,
   });
 };
 
@@ -18,13 +20,12 @@ export const login_user = ({ username, password }) => async (dispatch) => {
 
   let { userId } = JSON.parse(result);
 
-  console.log(userId);
-
   dispatch({
     type: USER_LOGIN,
     userId: userId || "",
   });
 };
+
 export const USER_LOGOUT = "USER_LOGOUT";
 export const logout_user = () => {
   return {

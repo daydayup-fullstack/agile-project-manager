@@ -33,7 +33,6 @@ import {
   USER_LOGIN,
   USER_LOGOUT,
 } from "../actions";
-const devId = "user-scott";
 
 // ============= APP reducers ==================
 const initialAppState = {
@@ -281,10 +280,10 @@ export const user = (state = initialUserState, action) => {
       };
     }
     case INIT_USER: {
-      console.log(action.data);
+      console.log(action.user);
       return {
         ...state,
-        ...action.data,
+        ...action.user,
       };
     }
     case USER_LOGOUT: {
@@ -346,6 +345,12 @@ const initialWorkspace = {};
 
 export const workspace = (state = initialWorkspace, action) => {
   switch (action.type) {
+    case INIT_USER: {
+      return {
+        ...state,
+        ...action.workspace,
+      };
+    }
     case WORKSPACE_CHANGED: {
       // todo - future async might be needed
       return {
@@ -429,6 +434,10 @@ const projectsInitial = [];
 
 export const allProjects = (state = projectsInitial, action) => {
   switch (action.type) {
+    case INIT_USER: {
+      console.log(action.allProjects);
+      return [...action.allProjects];
+    }
     case WORKSPACE_CHANGED: {
       // todo - future async fetch
       const projects = db_workspaces[action.workspaceId].projectsInOrder.map(

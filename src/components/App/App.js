@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
 import Drawer from "../Drawer/Drawer";
 import Home from "../../pages/Home/Home";
@@ -35,10 +35,13 @@ const App = ({
   column_popup,
   init_user,
   isLoggedIn,
+  userId,
 }) => {
   React.useEffect(() => {
-    // init_user();
-  }, [init_user]);
+    if (userId !== "" || userId) {
+      init_user(userId);
+    }
+  }, [init_user, userId]);
 
   return (
     <div className="App">
@@ -142,7 +145,6 @@ const App = ({
   );
 };
 const mapStateToProps = (state) => {
-  console.log(state);
   return {
     projectCard_popup: {
       shouldShow: state.app.ui_projectCard_popup.shouldShow,

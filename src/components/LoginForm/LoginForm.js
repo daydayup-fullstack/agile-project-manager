@@ -1,7 +1,7 @@
 import React from "react";
 import "./LoginForm.css";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
-import { init_user, login_user } from "../../actions";
+import { login_user } from "../../actions";
 import { connect } from "react-redux";
 
 const LoginForm = ({ login_user }) => {
