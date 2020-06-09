@@ -1,4 +1,3 @@
-import { db_columns, db_tasks } from "../data/database";
 import backend from "../apis/backend";
 import { login } from "../model/utility";
 // ============== User ========================
@@ -64,32 +63,74 @@ export const change_workspace = (workspaceId) => {
 
 // ============== Project ========================
 // region- Project related actions
-export const PROJECT_SELECTED = "PROJECT_SELECTED";
-export const project_selected = (project) => {
-  let columns = {};
-  let tasks = {};
+// export const PROJECT_SELECTED = "PROJECT_SELECTED";
+// export const project_selected = (project) => {
+//   let columns = {};
+//   let tasks = {};
+//
+//   if (!project.columns) {
+//     columns = { ...db_columns };
+//   }
+//
+//   if (!project.tasks) {
+//     tasks = { ...db_tasks };
+//   }
+//
+//   // todo - change to dynamic data source
+//   return {
+//     type: PROJECT_SELECTED,
+//     project,
+//     columns: {
+//       ...project.columns,
+//       ...columns,
+//     },
+//     tasks: {
+//       ...project.tasks,
+//       ...tasks,
+//     },
+//   };
+// };
 
-  if (!project.columns) {
-    columns = { ...db_columns };
-  }
-
-  if (!project.tasks) {
-    tasks = { ...db_tasks };
-  }
-
-  // todo - change to dynamic data source
+export const PROJECT_SELECTED_REQUESTED = "PROJECT_SELECTED_REQUESTED";
+const project_selected_requested = () => {
   return {
-    type: PROJECT_SELECTED,
+    type: PROJECT_SELECTED_REQUESTED,
+  };
+};
+
+export const PROJECT_SELECTED_SUCCESS = "PROJECT_SELECTED_SUCCESS";
+const project_selected_success = (project, response) => {
+  console.log(response.data);
+  return {
+    type: PROJECT_SELECTED_SUCCESS,
     project,
     columns: {
       ...project.columns,
-      ...columns,
+      ...response.data.columns,
     },
     tasks: {
       ...project.tasks,
-      ...tasks,
+      ...response.data.tasks,
     },
   };
+};
+
+export const PROJECT_SELECTED_FAILED = "PROJECT_SELECTED_FAILED";
+const project_selected_failed = (error) => {
+  return {
+    type: PROJECT_SELECTED_FAILED,
+    error: error,
+  };
+};
+
+export const project_selected = (project) => async (dispatch) => {
+  try {
+    dispatch(project_selected_requested());
+    const response = await backend.get(`/projects/${project.id}`);
+    dispatch(project_selected_success(project, response));
+  } catch (e) {
+    dispatch(project_selected_failed(e));
+  }
 };
 
 export const PROJECT_CHANGED = "PROJECT_CHANGED";

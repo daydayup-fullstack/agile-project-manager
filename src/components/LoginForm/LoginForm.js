@@ -82,7 +82,7 @@ const LoginForm = ({ login_user, isLoading, init_user_requested }) => {
 };
 const mapStateToProps = (state) => {
   return {
-    isLoading: state.app.ui_isLoading,
+    isLoading: state.app.ui_isWorkspaceLoading,
   };
 };
 export default connect(mapStateToProps, { login_user, init_user_requested })(

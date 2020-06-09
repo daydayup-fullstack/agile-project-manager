@@ -10,7 +10,6 @@ import {
   HIDE_PROJECT_CARD_POPUP,
   HIDE_ADD_MEMBER_POPUP,
   PROJECT_CHANGED,
-  PROJECT_SELECTED,
   PROJECT_STAR_ADDED,
   PROJECT_STAR_REMOVED,
   SHOW_HEADER_ADD_BUTTON_POPUP,
@@ -34,6 +33,9 @@ import {
   INIT_USER_SUCCESS,
   INIT_USER_FAILED,
   INIT_USER_REQUESTED,
+  PROJECT_SELECTED_SUCCESS,
+  PROJECT_SELECTED_REQUESTED,
+  PROJECT_SELECTED_FAILED,
 } from "../actions";
 
 // ============= APP reducers ==================
@@ -74,7 +76,8 @@ const initialAppState = {
     shouldShow: false,
     anchor: { x: 0, y: 0, width: 0, height: 0 },
   },
-  ui_isLoading: false,
+  ui_isWorkspaceLoading: false,
+  ui_isProjectLoading: false,
 };
 
 export const app = (state = initialAppState, action) => {
@@ -82,23 +85,45 @@ export const app = (state = initialAppState, action) => {
     case INIT_USER_REQUESTED: {
       return {
         ...state,
-        ui_isLoading: true,
+        ui_isWorkspaceLoading: true,
       };
     }
 
     case INIT_USER_SUCCESS: {
       return {
         ...state,
-        ui_isLoading: false,
+        ui_isWorkspaceLoading: false,
       };
     }
 
     case INIT_USER_FAILED: {
       return {
         ...state,
-        ui_isLoading: false,
+        ui_isWorkspaceLoading: false,
       };
     }
+
+    case PROJECT_SELECTED_REQUESTED: {
+      return {
+        ...state,
+        ui_isProjectLoading: true,
+      };
+    }
+
+    case PROJECT_SELECTED_SUCCESS: {
+      return {
+        ...state,
+        ui_isProjectLoading: false,
+      };
+    }
+
+    case PROJECT_SELECTED_FAILED: {
+      return {
+        ...state,
+        ui_isProjectLoading: false,
+      };
+    }
+
     case SHOW_PROJECT_CARD_POPUP:
       return {
         ...state,
@@ -412,7 +437,13 @@ export const workspace = (state = initialWorkspace, action) => {
 
 export const project = (state = {}, action) => {
   switch (action.type) {
-    case PROJECT_SELECTED:
+    case PROJECT_SELECTED_FAILED: {
+      return {
+        ...state,
+        error: action.error,
+      };
+    }
+    case PROJECT_SELECTED_SUCCESS:
       const project = {
         ...state,
         ...action.project,
