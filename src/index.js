@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./style/index.css";
 import App from "./components/App/App";
 import { applyMiddleware, combineReducers, createStore } from "redux";
+import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from "react-redux";
 
 import {project, user, workspace, taskDisplay, app, allProjects} from "./reducers";
@@ -18,7 +19,7 @@ const reducers = combineReducers({
   app,
   allProjects,
 });
-const store = createStore(reducers, {}, applyMiddleware(...middleware));
+const store = createStore(reducers, {}, composeWithDevTools(applyMiddleware(...middleware)));
 
 ReactDOM.render(
   <Provider store={store}>
