@@ -19,6 +19,7 @@ class ProjectDetail extends Component {
     this.handleRadioChange = this.handleRadioChange.bind(this);
     this.handleAddDescription = this.handleAddDescription.bind(this);
     this.handleChangeDescription = this.handleChangeDescription.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleProjectNameChange(e) {
@@ -45,6 +46,23 @@ class ProjectDetail extends Component {
     });
   }
 
+  handleSubmit() {
+    const projectId = generateId();
+    const newProject = {
+      id: projectId,
+      colorIndex: Math.floor(Math.random() * 16),
+      columnOrder: [],
+      createdOn: Date.parse(new Date()) / 1000,
+      dueDate: null,
+      iconIndex: Math.floor(Math.random() * 28),
+      name: this.state.projectName
+    };
+    this.props.project_added(newProject);
+    this.props.project_selected(newProject);
+    /* this.props.history.push(`/home`); */
+    this.props.history.push(`/projects/${newProject.id}`);
+  }
+
   render() {
     const { projectName, description } = this.state;
 
@@ -63,25 +81,7 @@ class ProjectDetail extends Component {
           className="projectDetail__form"
           onSubmit={(e) => {
             e.preventDefault();
-
-            const projectId = generateId();
-
-            const newProject = {
-              id: projectId,
-              colorIndex: Math.floor(Math.random() * 16),
-              columnOrder: [],
-              createdOn: Date.parse(new Date()) / 1000,
-              dueDate: null,
-              iconIndex: Math.floor(Math.random()*28),
-              name: projectName,
-            };
-
-
-            this.props.project_added(newProject);
-            this.props.project_selected(newProject);
-
-            // this.props.history.push(`/projects/${projectId}`);
-            this.props.history.push(`/home`);
+            this.handleSubmit();
           }}
         >
           <div className="projectDetail__title">
@@ -108,10 +108,10 @@ class ProjectDetail extends Component {
                 value={description}
               />
             ) : (
-              <button type="button" onClick={this.handleAddDescription}>
-                Add a description
-              </button>
-            )}
+                <button type="button" onClick={this.handleAddDescription}>
+                  Add a description
+                </button>
+              )}
           </div>
           <div className="projectDetail__defaultView">
             <label htmlFor="defaultView" className="projectDetail__label">
@@ -184,12 +184,7 @@ class ProjectDetail extends Component {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state);
-  const { allProjects } = state;
-  const projectId = allProjects[allProjects.length - 1].id;
-  return {
-    projectId: projectId,
-  };
+  return null
 };
 
 export default connect(mapStateToProps, { project_added, project_selected })(
