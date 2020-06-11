@@ -76,14 +76,15 @@
 .taskCard--dropzone .content .name {
   height: fit-content;
   padding: 0.25rem 0;
-  width: 100%;
-  border: 1px solid #fff;
+  width: fit-content;
+  border: none;
   font-family: "Poppins", sans-serif;
   font-size: 0.81rem;
   font-weight: 400;
   outline: none;
-  width: 70%;
-  color: #6f7782;
+  resize: none;
+  cursor: pointer;
+  background: transparent;
 }
 .taskCard--dropzone .content .name:focus {
   color: black;
@@ -94,6 +95,7 @@
   font-size: 0.81rem;
   font-weight: 400;
   height: 100%;
+  width: 100%;
   resize: none;
 }
 .taskCard--dropzone .content .new-task-input:focus {

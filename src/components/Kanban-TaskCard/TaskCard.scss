@@ -96,14 +96,17 @@
       .name {
         height: fit-content;
         padding: 0.25rem 0;
-        width: 100%;
-        border: 1px solid #fff;
+        width: fit-content;
+        border: none;
         font-family: $font-family;
         font-size: $desc-size * 0.9;
         font-weight: $desc-weight;
         outline: none;
-        width: 70%;
-        color: #6f7782;
+        //color: #6f7782;
+        resize: none;
+        cursor: pointer;
+        background: transparent;
+
         &:focus {
           color: black;
         }
@@ -115,6 +118,7 @@
         font-size: $desc-size * 0.9;
         font-weight: $desc-weight;
         height: 100%;
+        width: 100%;
         resize: none;
 
         &:focus {
