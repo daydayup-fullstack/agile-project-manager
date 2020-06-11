@@ -9,6 +9,7 @@ import Profile from "../Profile/Profile";
 import { db_users } from "../../data/database";
 import DateDisplay from "../DateDisplay/DateDisplay";
 import CompleteButton from "../CompleteButton/CompleteButton";
+import { useDropzone } from "../../hooks/customHooks";
 
 const TaskCard = ({
   task,
@@ -18,14 +19,33 @@ const TaskCard = ({
   columnId,
   show_taskcard_context_menu,
   shouldShow,
-  shouldEditTaskName,
+  currentUser,
 }) => {
   const [showContextMenu, setShowContextMenu] = React.useState(false);
   const [showExtra, setShowExtra] = React.useState(false);
-  const [taskName, setTaskName] = React.useState(task.name);
+  const [taskName, setTaskName] = React.useState(() => task.name);
   const taskNameInput = React.useRef(null);
 
+  const dropzoneRef = React.useRef(null);
+  const [isFilesDragging] = useDropzone(dropzoneRef, updateTaskUrl);
 
+  function updateTaskUrl(url) {
+    const updatedProject = {
+      ...project,
+      tasks: {
+        ...project.tasks,
+        [task.id]: {
+          // todo - fixed state issue
+          ...project.tasks[task.id],
+          attachments: [url],
+        },
+      },
+    };
+
+    project_changed(updatedProject);
+  }
+
+  //region - old
   React.useEffect(() => {
     if (shouldShow === false) {
       setShowContextMenu(shouldShow);
@@ -60,13 +80,19 @@ const TaskCard = ({
       const newTask = {
         ...task,
         name: e.target.value,
+        attachments: [],
+        authorId: currentUser.id,
+        isCompleted: false,
       };
 
       const updatedProject = {
         ...project,
         tasks: {
           ...project.tasks,
-          [task.id]: newTask,
+          [task.id]: {
+            ...project.tasks[task.Id],
+            ...newTask,
+          },
         },
       };
 
@@ -128,7 +154,7 @@ const TaskCard = ({
         return (
           <CircularButton
             iconName={"person_outline"}
-            onCircularButtonClick={() => { }}
+            onCircularButtonClick={() => {}}
           />
         );
       }
@@ -143,7 +169,7 @@ const TaskCard = ({
         return (
           <CircularButton
             iconName={"calendar_today"}
-            onCircularButtonClick={() => { }}
+            onCircularButtonClick={() => {}}
           />
         );
       }
@@ -173,6 +199,8 @@ const TaskCard = ({
     project_changed(updatedProject);
   };
 
+  //endregion
+
   return (
     <Draggable draggableId={task.id} type={"task"} index={index}>
       {(provided) => (
@@ -184,36 +212,48 @@ const TaskCard = ({
           onContextMenu={(event) => handleRightClick(event)}
           onMouseOver={(e) => handleMouseover(e)}
           onMouseLeave={(e) => handleMouseleave(e)}
-        // style={task.isCompleted ? { opacity: "0.5" } : {}}
+          // style={task.isCompleted ? { opacity: "0.5" } : {}}
         >
-          {task.name && task.name !== "" && (
-            <div className="taskCard__top">
-              <CompleteButton
-                completed={task.isCompleted}
-                onClick={toggleCompleted}
-              />
-            </div>
-          )}
+          <div className="taskCard--dropzone" ref={dropzoneRef}>
+            {task.name && task.name !== "" && (
+              <div className="taskCard__top">
+                <CompleteButton
+                  completed={task.isCompleted}
+                  onClick={toggleCompleted}
+                />
+              </div>
+            )}
 
-          {task.attachments && task.attachments.length > 0 && (
-            <div
-              className={`coverImage  ${
-                task.isCompleted && "taskCard--completed"
+            {task.attachments && task.attachments.length > 0 ? (
+              <div
+                className={`coverImage  ${
+                  task.isCompleted && "taskCard--completed"
                 }`}
-            >
-              <CoverPhotoBlock imageUrl={task.attachments[0]} />
-            </div>
-          )}
-          <div
-            className={`content ${task.isCompleted && "taskCard--completed"}`}
-          >
-            {task.name ? (
-              <input className={"name"} value={taskName} ref={taskNameInput}
-                onChange={(e) => setTaskName(e.target.value)}
-                onBlur={(event) => handleBlur(event)}
-                onKeyDown={(e) => handleTaskNameInputKeyDown(e)}
-              />
+              >
+                <CoverPhotoBlock imageUrl={task.attachments[0]} />
+              </div>
             ) : (
+              <div
+                className={`uploadArea ${
+                  isFilesDragging && "uploadArea--show"
+                }`}
+              >
+                <span className={"material-icons"}>add</span>
+              </div>
+            )}
+            <div
+              className={`content ${task.isCompleted && "taskCard--completed"}`}
+            >
+              {task.name ? (
+                <input
+                  className={"name"}
+                  value={taskName}
+                  ref={taskNameInput}
+                  onChange={(e) => setTaskName(e.target.value)}
+                  onBlur={(event) => handleBlur(event)}
+                  onKeyDown={(e) => handleTaskNameInputKeyDown(e)}
+                />
+              ) : (
                 <textarea
                   className={"new-task-input"}
                   autoFocus
@@ -222,32 +262,33 @@ const TaskCard = ({
                   onChange={(e) => setTaskName(e.target.value)}
                 />
               )}
-          </div>
-
-          {task.name && task.name !== "" && (
-            <div
-              className={`extra ${task.isCompleted && "taskCard--completed"}`}
-            >
-              <div className="actions">
-                <ul>
-                  <li className={"button"}>{renderUserProfile()}</li>
-                  <li className={"button"}>{renderDueDate()}</li>
-                </ul>
-              </div>
-              {/*<div className="info">*/}
-              {/*  <ul>*/}
-              {/*    {task.likedBy && task.likedBy.length > 0 && (*/}
-              {/*      <li>*/}
-              {/*        <span className={"numberOfLikes"}>*/}
-              {/*          {task.likedBy.length}*/}
-              {/*        </span>*/}
-              {/*        <span className={"material-icons"}>thumb_up</span>*/}
-              {/*      </li>*/}
-              {/*    )}*/}
-              {/*  </ul>*/}
-              {/*</div>*/}
             </div>
-          )}
+
+            {task.name && task.name !== "" && (
+              <div
+                className={`extra ${task.isCompleted && "taskCard--completed"}`}
+              >
+                <div className="actions">
+                  <ul>
+                    <li className={"button"}>{renderUserProfile()}</li>
+                    <li className={"button"}>{renderDueDate()}</li>
+                  </ul>
+                </div>
+                {/*<div className="info">*/}
+                {/*  <ul>*/}
+                {/*    {task.likedBy && task.likedBy.length > 0 && (*/}
+                {/*      <li>*/}
+                {/*        <span className={"numberOfLikes"}>*/}
+                {/*          {task.likedBy.length}*/}
+                {/*        </span>*/}
+                {/*        <span className={"material-icons"}>thumb_up</span>*/}
+                {/*      </li>*/}
+                {/*    )}*/}
+                {/*  </ul>*/}
+                {/*</div>*/}
+              </div>
+            )}
+          </div>
         </div>
       )}
     </Draggable>
@@ -258,6 +299,7 @@ const mapStateToProps = (state) => {
   return {
     project: state.project,
     shouldShow: state.app.ui_taskcard_context_menu.shouldShow,
+    currentUser: state.user,
   };
 };
 

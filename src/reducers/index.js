@@ -432,10 +432,21 @@ export const workspace = (state = initialWorkspace, action) => {
 };
 
 // ============= PROJECT reducers ==================
-// todo - adding async fetching operation here
 // current selected project - fetching additional data
+const initialProjectState = {
+  id: "",
+  name: "",
+  colorIndex: 0,
+  iconIndex: 0,
+  createdOn: null,
+  dueDate: null,
+  columnOrder: [],
+  activeUsers: [],
+  columns: {},
+  tasks: {},
+};
 
-export const project = (state = {}, action) => {
+export const project = (state = initialProjectState, action) => {
   switch (action.type) {
     case PROJECT_SELECTED_FAILED: {
       return {
