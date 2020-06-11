@@ -289,7 +289,6 @@ export const user = (state = initialUserState, action) => {
     }
 
     case WORKSPACE_CHANGED: {
-
       const index = state.workspaces.indexOf(action.workspaceId);
       const newWorkspaces = [...state.workspaces];
 
@@ -298,8 +297,8 @@ export const user = (state = initialUserState, action) => {
 
       return {
         ...state,
-        workspaces: [...newWorkspaces]
-      }
+        workspaces: [...newWorkspaces],
+      };
     }
 
     case INIT_USER: {
@@ -338,10 +337,21 @@ export const workspace = (state = initialWorkspace, action) => {
 };
 
 // ============= PROJECT reducers ==================
-// todo - adding async fetching operation here
 // current selected project - fetching additional data
+const initialProjectState = {
+  id: "",
+  name: "",
+  colorIndex: 0,
+  iconIndex: 0,
+  createdOn: null,
+  dueDate: null,
+  columnOrder: [],
+  activeUsers: [],
+  columns: {},
+  tasks: {},
+};
 
-export const project = (state = {}, action) => {
+export const project = (state = initialProjectState, action) => {
   switch (action.type) {
     case PROJECT_SELECTED:
       const project = {

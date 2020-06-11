@@ -9,7 +9,7 @@ import Profile from "../Profile/Profile";
 import { db_users } from "../../data/database";
 import DateDisplay from "../DateDisplay/DateDisplay";
 import CompleteButton from "../CompleteButton/CompleteButton";
-import { useDropzone } from "../Dropzone/Dropzone";
+import { useDropzone } from "../../hooks/customHooks";
 
 const TaskCard = ({
   task,
@@ -19,14 +19,31 @@ const TaskCard = ({
   columnId,
   show_taskcard_context_menu,
   shouldShow,
+  currentUser,
 }) => {
   const [showContextMenu, setShowContextMenu] = React.useState(false);
   const [showExtra, setShowExtra] = React.useState(false);
-  const [taskName, setTaskName] = React.useState(task.name);
+  const [taskName, setTaskName] = React.useState(() => task.name);
   const taskNameInput = React.useRef(null);
 
   const dropzoneRef = React.useRef(null);
-  const [isFilesDragging] = useDropzone(dropzoneRef);
+  const [isFilesDragging] = useDropzone(dropzoneRef, updateTaskUrl);
+
+  function updateTaskUrl(url) {
+    const updatedProject = {
+      ...project,
+      tasks: {
+        ...project.tasks,
+        [task.id]: {
+          // todo - fixed state issue
+          ...project.tasks[task.id],
+          attachments: [url],
+        },
+      },
+    };
+
+    project_changed(updatedProject);
+  }
 
   //region - old
   React.useEffect(() => {
@@ -63,13 +80,19 @@ const TaskCard = ({
       const newTask = {
         ...task,
         name: e.target.value,
+        attachments: [],
+        authorId: currentUser.id,
+        isCompleted: false,
       };
 
       const updatedProject = {
         ...project,
         tasks: {
           ...project.tasks,
-          [task.id]: newTask,
+          [task.id]: {
+            ...project.tasks[task.Id],
+            ...newTask,
+          },
         },
       };
 
@@ -276,6 +299,7 @@ const mapStateToProps = (state) => {
   return {
     project: state.project,
     shouldShow: state.app.ui_taskcard_context_menu.shouldShow,
+    currentUser: state.user,
   };
 };
 
