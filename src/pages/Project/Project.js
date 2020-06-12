@@ -15,6 +15,8 @@ const Project = ({ allProjects, project_selected }) => {
       project_selected(project[0]);
     }
 
+    // todo - call action to load project details here
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
 import Drawer from "../Drawer/Drawer";
 import Home from "../../pages/Home/Home";
@@ -34,12 +34,14 @@ const App = ({
   taskcard_context_menu,
   column_popup,
   init_user,
+  isLoggedIn,
+  userId,
 }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-
   React.useEffect(() => {
-    init_user();
-  }, [init_user]);
+    if (userId !== "" || userId) {
+      init_user(userId);
+    }
+  }, [init_user, userId]);
 
   return (
     <div className="App">
@@ -65,7 +67,7 @@ const App = ({
 
         {header_profile_popup.shouldShow && (
           <PopupMenu anchor={header_profile_popup.anchor}>
-            <ActionList handleLogin={setIsLoggedIn} />
+            <ActionList />
           </PopupMenu>
         )}
 
@@ -134,7 +136,7 @@ const App = ({
         ) : (
           <>
             <Route path={"/"}>
-              <LoginForm handleLogin={setIsLoggedIn} />
+              <LoginForm />
             </Route>
           </>
         )}
@@ -143,6 +145,7 @@ const App = ({
   );
 };
 const mapStateToProps = (state) => {
+  // console.log(state);
   return {
     projectCard_popup: {
       shouldShow: state.app.ui_projectCard_popup.shouldShow,
@@ -179,6 +182,8 @@ const mapStateToProps = (state) => {
       anchor: state.app.ui_column_popup.anchor,
     },
     newTaskDisplay: state.taskDisplay.newTaskDisplay,
+    isLoggedIn: state.user.isLoggedIn,
+    userId: state.user.id,
   };
 };
 export default connect(mapStateToProps, { init_user })(App);

@@ -66,7 +66,6 @@ const ProjectCard = ({
             onMouseOver={() => setStarHover(true)}
             onMouseLeave={() => setStarHover(false)}
             onClick={toggleStar}
-            // style={holdHover ? { opacity: 1 } : {}}
           >
             {starHover || starred ? "star" : "star_border"}
           </span>
@@ -78,7 +77,6 @@ const ProjectCard = ({
             onClick={showPopup}
             onMouseOver={() => setMoreButtonHover(true)}
             onMouseLeave={() => setMoreButtonHover(false)}
-            // style={holdHover ? { opacity: 1, color: "#fff" } : {}}
           >
             more_horiz
           </span>

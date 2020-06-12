@@ -1,8 +1,6 @@
 import React from "react";
 import "./MenuBar.css";
 import Profile from "../Profile/Profile";
-
-import { db_users } from "../../data/database";
 import { connect } from "react-redux";
 import {
   add_project_star,
@@ -185,8 +183,7 @@ const MenuBar = ({
             <li
               onClick={(e) => show_header_profile_popup(getAnchorForProfile(e))}
             >
-              {/*todo - hardcoded data - fix this later*/}
-              <Profile user={db_users["user-scott"]} />
+              <Profile user={currentUser} />
             </li>
           </ul>
         </div>

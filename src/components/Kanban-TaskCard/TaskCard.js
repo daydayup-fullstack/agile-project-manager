@@ -9,6 +9,7 @@ import Profile from "../Profile/Profile";
 import { db_users } from "../../data/database";
 import DateDisplay from "../DateDisplay/DateDisplay";
 import CompleteButton from "../CompleteButton/CompleteButton";
+import { handleUpload, useDropzone } from "../../hooks/customHooks";
 
 const TaskCard = ({
   task,
@@ -18,14 +19,35 @@ const TaskCard = ({
   columnId,
   show_taskcard_context_menu,
   shouldShow,
-  shouldEditTaskName,
+  currentUser,
 }) => {
   const [showContextMenu, setShowContextMenu] = React.useState(false);
   const [showExtra, setShowExtra] = React.useState(false);
-  const [taskName, setTaskName] = React.useState(task.name);
+  const [title, setTitle] = React.useState(task.name);
   const taskNameInput = React.useRef(null);
+  const [isEditingTitle, setIsEditingTitle] = React.useState(false);
+  const uploadFilesRef = React.useRef(null);
 
+  const [originalTitle, setOriginalTitle] = React.useState("");
+  const dropzoneRef = React.useRef(null);
+  const [isFilesDragging] = useDropzone(dropzoneRef, updateTaskUrl);
 
+  function updateTaskUrl(url) {
+    const updatedProject = {
+      ...project,
+      tasks: {
+        ...project.tasks,
+        [task.id]: {
+          ...project.tasks[task.id],
+          attachments: [url, ...project.tasks[task.id].attachments],
+        },
+      },
+    };
+
+    project_changed(updatedProject);
+  }
+
+  //region - old
   React.useEffect(() => {
     if (shouldShow === false) {
       setShowContextMenu(shouldShow);
@@ -34,24 +56,40 @@ const TaskCard = ({
 
   function handleKeyDown(e) {
     if (e.key === "Enter") {
+      setTitle(e.target.value);
+      e.target.blur();
       updateProject(e);
     }
 
     if (e.key === "Escape") {
       e.target.value = "";
+      e.target.blur();
       updateProject(e);
     }
   }
 
   function handleTaskNameInputKeyDown(e) {
-    if (e.key === "Enter" || e.key === "Escape") {
+    if (e.key === "Enter") {
+      if (!e.target.value) {
+        e.target.value = "Untitled";
+      }
+      taskNameInput.current.blur();
+      setTitle(e.target.value);
+      updateProject(e);
+    }
+
+    if (e.key === "Escape") {
+      setTitle(originalTitle);
+      e.target.value = originalTitle;
       taskNameInput.current.blur();
       updateProject(e);
     }
   }
 
   function handleBlur(e) {
+    setTitle(e.target.value);
     updateProject(e);
+    setIsEditingTitle(false);
   }
 
   const updateProject = (e) => {
@@ -60,40 +98,48 @@ const TaskCard = ({
       const newTask = {
         ...task,
         name: e.target.value,
+        authorId: currentUser.id,
+        isCompleted: false,
       };
 
       const updatedProject = {
         ...project,
         tasks: {
           ...project.tasks,
-          [task.id]: newTask,
+          [task.id]: {
+            ...project.tasks[task.Id],
+            ...newTask,
+          },
         },
       };
 
       project_changed(updatedProject);
     } else {
       //  empty value, remove the current task
-
       // delete project.tasks[task.id];
 
-      delete project.tasks[task.id];
-
-      const updatedProject = {
-        ...project,
-        columns: {
-          ...project.columns,
-          [columnId]: {
-            ...project.columns[columnId],
-            taskIds: [
-              ...project.columns[columnId].taskIds.filter(
-                (id) => id !== task.id
-              ),
-            ],
+      if (!originalTitle) {
+        const updatedProject = {
+          ...project,
+          columns: {
+            ...project.columns,
+            [columnId]: {
+              ...project.columns[columnId],
+              taskIds: [
+                ...project.columns[columnId].taskIds.filter(
+                  (id) => id !== task.id
+                ),
+              ],
+            },
           },
-        },
-      };
+          tasks: {
+            ...project.tasks,
+            [task.id]: undefined,
+          },
+        };
 
-      project_changed(updatedProject);
+        project_changed(updatedProject);
+      }
     }
   };
 
@@ -128,7 +174,7 @@ const TaskCard = ({
         return (
           <CircularButton
             iconName={"person_outline"}
-            onCircularButtonClick={() => { }}
+            onCircularButtonClick={() => {}}
           />
         );
       }
@@ -143,7 +189,7 @@ const TaskCard = ({
         return (
           <CircularButton
             iconName={"calendar_today"}
-            onCircularButtonClick={() => { }}
+            onCircularButtonClick={() => {}}
           />
         );
       }
@@ -173,6 +219,52 @@ const TaskCard = ({
     project_changed(updatedProject);
   };
 
+  //endregion
+
+  function handleFocus(event) {
+    taskNameInput.current.select();
+    setTitle(event.target.value);
+    setOriginalTitle(event.target.value);
+  }
+
+  function renderTextarea() {
+    if (!task.name) {
+      return (
+        <textarea
+          className={"new-task-input"}
+          autoFocus
+          onKeyDown={(e) => handleKeyDown(e)}
+          onBlur={(event) => handleBlur(event)}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+      );
+    } else {
+      return (
+        <textarea
+          className={"name"}
+          value={title}
+          ref={taskNameInput}
+          autoFocus={isEditingTitle}
+          onChange={(e) => setTitle(e.target.value)}
+          onBlur={(event) => handleBlur(event)}
+          onKeyDown={(e) => handleTaskNameInputKeyDown(e)}
+          onFocus={(event) => handleFocus(event)}
+        />
+      );
+    }
+  }
+
+  function handleFiles(event) {
+    const files = [...event.target.files];
+    handleUpload(files).then((url) => {
+      updateTaskUrl(url);
+    });
+  }
+
+  function showUpload(e) {
+    uploadFilesRef.current.click();
+  }
+
   return (
     <Draggable draggableId={task.id} type={"task"} index={index}>
       {(provided) => (
@@ -184,70 +276,112 @@ const TaskCard = ({
           onContextMenu={(event) => handleRightClick(event)}
           onMouseOver={(e) => handleMouseover(e)}
           onMouseLeave={(e) => handleMouseleave(e)}
-        // style={task.isCompleted ? { opacity: "0.5" } : {}}
+          // style={task.isCompleted ? { opacity: "0.5" } : {}}
         >
-          {task.name && task.name !== "" && (
-            <div className="taskCard__top">
-              <CompleteButton
-                completed={task.isCompleted}
-                onClick={toggleCompleted}
-              />
-            </div>
-          )}
-
-          {task.attachments && task.attachments.length > 0 && (
-            <div
-              className={`coverImage  ${
-                task.isCompleted && "taskCard--completed"
-                }`}
-            >
-              <CoverPhotoBlock imageUrl={task.attachments[0]} />
-            </div>
-          )}
-          <div
-            className={`content ${task.isCompleted && "taskCard--completed"}`}
-          >
-            {task.name ? (
-              <input className={"name"} value={taskName} ref={taskNameInput}
-                onChange={(e) => setTaskName(e.target.value)}
-                onBlur={(event) => handleBlur(event)}
-                onKeyDown={(e) => handleTaskNameInputKeyDown(e)}
-              />
-            ) : (
-                <textarea
-                  className={"new-task-input"}
-                  autoFocus
-                  onKeyDown={(e) => handleKeyDown(e)}
-                  onBlur={(event) => handleBlur(event)}
-                  onChange={(e) => setTaskName(e.target.value)}
+          <div className="taskCard--dropzone" ref={dropzoneRef}>
+            {task.name && task.name !== "" && (
+              <div className="taskCard__top">
+                <CompleteButton
+                  completed={task.isCompleted}
+                  onClick={toggleCompleted}
                 />
-              )}
-          </div>
 
-          {task.name && task.name !== "" && (
-            <div
-              className={`extra ${task.isCompleted && "taskCard--completed"}`}
-            >
-              <div className="actions">
-                <ul>
-                  <li className={"button"}>{renderUserProfile()}</li>
-                  <li className={"button"}>{renderDueDate()}</li>
-                </ul>
+                <div
+                  className={`taskCard__top__right ${
+                    task.isCompleted && "taskCard--completed"
+                  }`}
+                >
+                  <input
+                    ref={uploadFilesRef}
+                    type="file"
+                    className={"fileUpload"}
+                    multiple
+                    onChange={(event) => handleFiles(event)}
+                  />
+                  {!isEditingTitle && showExtra && (
+                    <>
+                      <span
+                        className={"material-icons"}
+                        onClick={(event) => showUpload(event)}
+                      >
+                        insert_photo
+                      </span>
+                      <span
+                        className={"material-icons"}
+                        onClick={(event) => {
+                          setIsEditingTitle(true);
+                          taskNameInput.current.select();
+                          taskNameInput.current.focus();
+                        }}
+                      >
+                        edit
+                      </span>
+                    </>
+                  )}
+
+                  {isEditingTitle && (
+                    <span
+                      className={"material-icons"}
+                      onClick={() => {
+                        setIsEditingTitle(false);
+                        taskNameInput.current.blur();
+                      }}
+                    >
+                      close
+                    </span>
+                  )}
+                </div>
               </div>
-              {/*<div className="info">*/}
-              {/*  <ul>*/}
-              {/*    {task.likedBy && task.likedBy.length > 0 && (*/}
-              {/*      <li>*/}
-              {/*        <span className={"numberOfLikes"}>*/}
-              {/*          {task.likedBy.length}*/}
-              {/*        </span>*/}
-              {/*        <span className={"material-icons"}>thumb_up</span>*/}
-              {/*      </li>*/}
-              {/*    )}*/}
-              {/*  </ul>*/}
-              {/*</div>*/}
+            )}
+
+            {task.attachments && task.attachments.length > 0 ? (
+              <div
+                className={`coverImage  ${
+                  task.isCompleted && "taskCard--completed"
+                }`}
+              >
+                <CoverPhotoBlock imageUrl={task.attachments[0]} />
+              </div>
+            ) : (
+              <div
+                className={`uploadArea ${
+                  isFilesDragging && "uploadArea--show"
+                }`}
+              >
+                <span className={"material-icons"}>add</span>
+              </div>
+            )}
+            <div
+              className={`content ${task.isCompleted && "taskCard--completed"}`}
+            >
+              {renderTextarea()}
             </div>
-          )}
+
+            {task.name && task.name !== "" && (
+              <div
+                className={`extra ${task.isCompleted && "taskCard--completed"}`}
+              >
+                <div className="actions">
+                  <ul>
+                    <li className={"button"}>{renderUserProfile()}</li>
+                    <li className={"button"}>{renderDueDate()}</li>
+                  </ul>
+                </div>
+                {/*<div className="info">*/}
+                {/*  <ul>*/}
+                {/*    {task.likedBy && task.likedBy.length > 0 && (*/}
+                {/*      <li>*/}
+                {/*        <span className={"numberOfLikes"}>*/}
+                {/*          {task.likedBy.length}*/}
+                {/*        </span>*/}
+                {/*        <span className={"material-icons"}>thumb_up</span>*/}
+                {/*      </li>*/}
+                {/*    )}*/}
+                {/*  </ul>*/}
+                {/*</div>*/}
+              </div>
+            )}
+          </div>
         </div>
       )}
     </Draggable>
@@ -258,6 +392,7 @@ const mapStateToProps = (state) => {
   return {
     project: state.project,
     shouldShow: state.app.ui_taskcard_context_menu.shouldShow,
+    currentUser: state.user,
   };
 };
 
