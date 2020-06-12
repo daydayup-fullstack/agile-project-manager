@@ -256,7 +256,9 @@ const TaskCard = ({
 
   function handleFiles(event) {
     const files = [...event.target.files];
-    handleUpload(files);
+    handleUpload(files).then((url) => {
+      updateTaskUrl(url);
+    });
   }
 
   function showUpload(e) {
