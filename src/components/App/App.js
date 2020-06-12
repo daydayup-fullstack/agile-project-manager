@@ -40,6 +40,7 @@ const App = ({
   userId,
   calender_popup
 }) => {
+
   React.useEffect(() => {
     if (userId !== "" || userId) {
       init_user(userId);
@@ -145,7 +146,7 @@ const App = ({
         ) : (
             <>
               <Route path={"/"}>
-                <LoginForm handleLogin={setIsLoggedIn} />
+                <LoginForm />
               </Route>
             </>
           )}

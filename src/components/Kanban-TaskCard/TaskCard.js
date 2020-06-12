@@ -1,8 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import "./TaskCard.css";
 import { Draggable } from "react-beautiful-dnd";
 import { connect } from "react-redux";
-import { project_changed, show_taskcard_context_menu, show_calendar_popup } from "../../actions";
+import {
+  project_changed,
+  show_taskcard_context_menu,
+  show_calendar_popup,
+} from "../../actions";
 import CoverPhotoBlock from "../CoverPhotoBlock/CoverPhotoBlock";
 import CircularButton from "../CircularButton/CircularButton";
 import Profile from "../Profile/Profile";
@@ -23,7 +27,7 @@ const TaskCard = ({
   shouldEditTaskName,
   show_calendar_popup,
   calendarShouldShow,
-  calendarId
+  calendarId,
 }) => {
   const [showContextMenu, setShowContextMenu] = React.useState(false);
   const [showExtra, setShowExtra] = React.useState(false);
@@ -31,10 +35,7 @@ const TaskCard = ({
   const taskNameInput = React.useRef(null);
   const [isEditingTitle, setIsEditingTitle] = React.useState(false);
   const uploadFilesRef = React.useRef(null);
-  const [showContextMenu, setShowContextMenu] = useState(false);
-  const [showExtra, setShowExtra] = useState(false);
   const [taskName, setTaskName] = useState(task.name);
-  const taskNameInput = useRef(null);
 
   const [originalTitle, setOriginalTitle] = React.useState("");
   const dropzoneRef = React.useRef(null);
@@ -59,7 +60,7 @@ const TaskCard = ({
   React.useEffect(() => {
     if (shouldShow === false) {
       setShowContextMenu(shouldShow);
-    };
+    }
   }, [shouldShow]);
 
   function handleKeyDown(e) {
@@ -189,20 +190,19 @@ const TaskCard = ({
     }
   };
 
-  const renderDueDate = () => {
-    if (task.dueDate) {
-      return <DateDisplay date={task.dueDate} />;
-    } else {
-      if (showExtra) {
-        return (
-          <CircularButton
-            iconName={"calendar_today"}
-            onCircularButtonClick={() => {}}
-          />
-        );
-      }
-    }
-  };
+
+  const onClicked = (e) => {
+    e.preventDefault();
+    show_calendar_popup({
+      anchor: {
+        x: e.clientX,
+        y: e.clientY,
+        width: e.currentTarget.clientWidth,
+        height: e.currentTarget.clientHeight,
+      },
+      calendarId: task.id
+    })
+  }
 
   function handleMouseover(e) {
     setShowExtra(true);
@@ -372,7 +372,23 @@ const TaskCard = ({
                 <div className="actions">
                   <ul>
                     <li className={"button"}>{renderUserProfile()}</li>
-                    <li className={"button"}>{renderDueDate()}</li>
+                    <li className={"button"}>
+                      {/*唯有当被选中的日历的calendarId与当前taskId相等时，才能弹出当前circularbutton*/}
+                      {task.dueDate ? (
+                        <DateDisplay
+                          handleClick={onClicked}
+                          date={task.dueDate}
+                        />
+                      ) : (
+                        (showExtra ||
+                          (calendarShouldShow && calendarId === task.id)) && (
+                          <CircularButton
+                            iconName={"calendar_today"}
+                            handleClick={onClicked}
+                          />
+                        )
+                      )}
+                    </li>{" "}
                   </ul>
                 </div>
                 {/*<div className="info">*/}
@@ -402,12 +418,12 @@ const mapStateToProps = (state) => {
     shouldShow: state.app.ui_taskcard_context_menu.shouldShow,
     currentUser: state.user,
     calendarShouldShow: state.app.ui_calendar_popup.shouldShow,
-    calendarId: state.app.ui_calendar_popup.calendarId
+    calendarId: state.app.ui_calendar_popup.calendarId,
   };
 };
 
 export default connect(mapStateToProps, {
   project_changed,
   show_taskcard_context_menu,
-  show_calendar_popup
+  show_calendar_popup,
 })(TaskCard);
