@@ -9,7 +9,7 @@ import Profile from "../Profile/Profile";
 import { db_users } from "../../data/database";
 import DateDisplay from "../DateDisplay/DateDisplay";
 import CompleteButton from "../CompleteButton/CompleteButton";
-import { useDropzone } from "../../hooks/customHooks";
+import { handleUpload, useDropzone } from "../../hooks/customHooks";
 
 const TaskCard = ({
   task,
@@ -25,20 +25,21 @@ const TaskCard = ({
   const [showExtra, setShowExtra] = React.useState(false);
   const [title, setTitle] = React.useState(task.name);
   const taskNameInput = React.useRef(null);
+  const [isEditingTitle, setIsEditingTitle] = React.useState(false);
+  const uploadFilesRef = React.useRef(null);
 
   const [originalTitle, setOriginalTitle] = React.useState("");
   const dropzoneRef = React.useRef(null);
   const [isFilesDragging] = useDropzone(dropzoneRef, updateTaskUrl);
 
   function updateTaskUrl(url) {
-    setOriginalTitle(task.name);
     const updatedProject = {
       ...project,
       tasks: {
         ...project.tasks,
         [task.id]: {
           ...project.tasks[task.id],
-          attachments: [url],
+          attachments: [url, ...project.tasks[task.id].attachments],
         },
       },
     };
@@ -88,6 +89,7 @@ const TaskCard = ({
   function handleBlur(e) {
     setTitle(e.target.value);
     updateProject(e);
+    setIsEditingTitle(false);
   }
 
   const updateProject = (e) => {
@@ -242,6 +244,7 @@ const TaskCard = ({
           className={"name"}
           value={title}
           ref={taskNameInput}
+          autoFocus={isEditingTitle}
           onChange={(e) => setTitle(e.target.value)}
           onBlur={(event) => handleBlur(event)}
           onKeyDown={(e) => handleTaskNameInputKeyDown(e)}
@@ -249,6 +252,15 @@ const TaskCard = ({
         />
       );
     }
+  }
+
+  function handleFiles(event) {
+    const files = [...event.target.files];
+    handleUpload(files);
+  }
+
+  function showUpload(e) {
+    uploadFilesRef.current.click();
   }
 
   return (
@@ -271,6 +283,52 @@ const TaskCard = ({
                   completed={task.isCompleted}
                   onClick={toggleCompleted}
                 />
+
+                <div
+                  className={`taskCard__top__right ${
+                    task.isCompleted && "taskCard--completed"
+                  }`}
+                >
+                  <input
+                    ref={uploadFilesRef}
+                    type="file"
+                    className={"fileUpload"}
+                    multiple
+                    onChange={(event) => handleFiles(event)}
+                  />
+                  {!isEditingTitle && showExtra && (
+                    <>
+                      <span
+                        className={"material-icons"}
+                        onClick={(event) => showUpload(event)}
+                      >
+                        insert_photo
+                      </span>
+                      <span
+                        className={"material-icons"}
+                        onClick={(event) => {
+                          setIsEditingTitle(true);
+                          taskNameInput.current.select();
+                          taskNameInput.current.focus();
+                        }}
+                      >
+                        edit
+                      </span>
+                    </>
+                  )}
+
+                  {isEditingTitle && (
+                    <span
+                      className={"material-icons"}
+                      onClick={() => {
+                        setIsEditingTitle(false);
+                        taskNameInput.current.blur();
+                      }}
+                    >
+                      close
+                    </span>
+                  )}
+                </div>
               </div>
             )}
 

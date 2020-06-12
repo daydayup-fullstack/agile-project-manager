@@ -52,12 +52,30 @@
 .taskCard--dropzone .taskCard__top {
   width: 100%;
   margin-bottom: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.taskCard--dropzone .taskCard__top input[type=file] {
+  display: none;
 }
 .taskCard--dropzone .taskCard__top .complete-button {
   font-size: 0.63rem;
 }
 .taskCard--dropzone .taskCard__top .complete-button:focus {
   outline: none;
+}
+.taskCard--dropzone .taskCard__top__right {
+  display: flex;
+  align-items: center;
+}
+.taskCard--dropzone .taskCard__top__right span {
+  color: #9ca6af;
+  font-size: 1rem;
+  margin-left: 0.3rem;
+}
+.taskCard--dropzone .taskCard__top__right span:hover {
+  color: #6f7782;
 }
 .taskCard--dropzone .coverImage {
   margin-bottom: 0.8rem;
@@ -85,6 +103,7 @@
   resize: none;
   cursor: pointer;
   background: transparent;
+  pointer-events: none;
 }
 .taskCard--dropzone .content .name:focus {
   color: black;

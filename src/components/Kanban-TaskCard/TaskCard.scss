@@ -63,11 +63,33 @@
     .taskCard__top {
       width: 100%;
       margin-bottom: 0.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      input[type="file"] {
+        display: none;
+      }
       .complete-button {
         font-size: $desc-size * 0.7;
 
         &:focus {
           outline: none;
+        }
+      }
+
+      &__right {
+        display: flex;
+        align-items: center;
+
+        span {
+          color: $gray-300;
+          font-size: 1rem;
+          margin-left: 0.3rem;
+
+          &:hover {
+            color: $gray-400;
+          }
         }
       }
     }
@@ -106,6 +128,7 @@
         resize: none;
         cursor: pointer;
         background: transparent;
+        pointer-events: none;
 
         &:focus {
           color: black;

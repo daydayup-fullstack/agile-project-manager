@@ -15,9 +15,8 @@ const uploadFiles = async (fileToUpload) => {
   };
 
   try {
-    // todo - swap to api
     const response = await Axios.post(
-      "http://127.0.0.1:8888/upload",
+      "https://shrouded-beach-96188.herokuapp.com/upload",
       data,
       config
     );
@@ -29,7 +28,7 @@ const uploadFiles = async (fileToUpload) => {
   }
 };
 
-const handleUpload = (fileList) => {
+export const handleUpload = (fileList) => {
   const files = [...fileList];
   const MAX_FILE_SIZE = 2e6;
   const MAX_NUMBER_OF_FILES = 1;
