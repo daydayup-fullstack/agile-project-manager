@@ -137,7 +137,18 @@ const TaskCard = ({
     }
   };
 
-
+  const onClicked = (e) => {
+    e.preventDefault();
+    show_calendar_popup({
+      anchor: {
+        x: e.clientX,
+        y: e.clientY,
+        width: e.currentTarget.clientWidth,
+        height: e.currentTarget.clientHeight,
+      },
+      calendarId: task.id
+    })
+  }
 
 
 
@@ -225,20 +236,11 @@ const TaskCard = ({
                   <li className={"button"}>
                     {/*唯有当被选中的日历的calendarId与当前taskId相等时，才能弹出当前circularbutton*/}
                     {task.dueDate
-                      ? <DateDisplay date={task.dueDate} />
+                      ? <DateDisplay handleClick={onClicked} date={task.dueDate} />
                       : (showExtra || (calendarShouldShow && calendarId === task.id)) &&
                       (<CircularButton
                         iconName={"calendar_today"}
-                        handleClick={(e) =>
-                          show_calendar_popup({
-                            anchor: {
-                              x: e.clientX,
-                              y: e.clientY,
-                              width: e.currentTarget.clientWidth,
-                              height: e.currentTarget.clientHeight,
-                            },
-                            calendarId: task.id
-                          })}
+                        handleClick={onClicked}
                       />)}
                   </li>
                 </ul>

@@ -41,10 +41,6 @@ const PopupCircularButton = ({
     }
   }, [anchor.x, anchor.y, anchor.width, anchor.height]);
 
-  const dismiss = () => {
-    hide_calendar_popup();
-  };
-
   return (
     <div
       className="PopupCircularButton__container">
