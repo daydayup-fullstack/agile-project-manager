@@ -57,7 +57,7 @@ const CalenderPopup = ({
     );
     return gridDays;
   };
-  const handleClick = () =>{
+  const handleClick = (e) =>{
     hide_calendar_popup();
     const dueDate = Date.parse(selectedDate) / 1000;
     set_task_due_day({ dueDate, calendarId })
