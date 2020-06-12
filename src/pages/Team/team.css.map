@@ -1,1 +1,10 @@
-{"version":3,"sourceRoot":"","sources":["team.scss"],"names":[],"mappings":"AAEA;EACE;EACA;EACA;EACA;EACA;EACA;EACA;EACA;;;AAIF;EACA;EACA;;;AAEA;EACA;;;AAEA;EACA;AACA;;;AAEA;EACA;EACA","file":"team.css"}
+{
+    "version": 3,
+    "mappings": "AAEA,AAAA,SAAS,CAAC;EACR,MAAM,EAAE,IAAI;EACZ,UAAU,EAAE,MAAM;EAClB,aAAa,EAAE,IAAI;EACnB,OAAO,EAAE,IAAI;EACb,cAAc,EAAE,MAAM;EACtB,WAAW,EAAE,MAAM;EACnB,KAAK,EAAE,IAAI;EACX,UAAU,EAAE,CAAC;CAEd;;AAED,AAAA,OAAO,CAAA;EACP,OAAO,EAAE,IAAI;EACb,KAAK,EAAE,KAAK;CACX;;AACD,AAAA,WAAW,CAAA;EACX,YAAY,EAAE,CAAC;CACd;;AACD,AAAA,SAAS,CAAA;EACT,OAAO,EAAE,IAAI;EACb,6BAA6B;CAC5B;;AACD,AAAA,aAAa,CAAA;EACb,OAAO,EAAE,IAAI;EACb,KAAK,EAAE,KAAK;CAGX",
+    "sources": [
+        "team.scss",
+        "../../style/_variables.scss"
+    ],
+    "names": [],
+    "file": "team.css"
+}

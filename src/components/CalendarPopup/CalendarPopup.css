@@ -1,5 +1,5 @@
 .calendarPopup {
-  background-color: #f6f8f9;
+  background-color: #e8ecee;
   -webkit-box-shadow: 6px 7px 10px -4px #9ca6af;
           box-shadow: 6px 7px 10px -4px #9ca6af;
   width: 264px;
@@ -85,17 +85,16 @@
   background-color: #14aaf5;
 }
 
-.calendarPopup::before {
+.calendarPopup__before {
+  background-color: #e8ecee;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  content: "";
   display: block;
   height: 14px;
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
   width: 14px;
   position: absolute;
-  background-color: #f6f8f9;
   -webkit-box-shadow: 6px 7px 20px -4px #9ca6af;
           box-shadow: 6px 7px 20px -4px #9ca6af;
   top: -7px;

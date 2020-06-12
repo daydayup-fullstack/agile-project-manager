@@ -15,10 +15,13 @@ import {
   isEqual,
 } from "date-fns";
 import { chunk } from "lodash";
-import { changeCalendarDisplay } from '../../actions/index'
+import { hide_calendar_popup, set_task_due_day } from '../../actions'
 import { connect } from 'react-redux';
 
-const CalenderPopup = ({changeCalendarDisplay}) => {
+const CalenderPopup = ({
+  hide_calendar_popup,
+  calendarId,
+  set_task_due_day }) => {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   const setPreviousMonth = () => {
@@ -54,9 +57,15 @@ const CalenderPopup = ({changeCalendarDisplay}) => {
     );
     return gridDays;
   };
+  const handleClick = () =>{
+    hide_calendar_popup();
+    const dueDate = Date.parse(selectedDate) / 1000;
+    set_task_due_day({ dueDate, calendarId })
+  }
 
   return (
     <div className="calendarPopup">
+      <div className="calendarPopup__before"></div>
       <div className="calendarPopup__title">
         <div className="calendarPopup__icons">
           <div
@@ -154,17 +163,17 @@ const CalenderPopup = ({changeCalendarDisplay}) => {
                   <td
                     className={`calendarPopup__cell${
                       isEqual(selectedDate, day) ? " active" : ""
-                    }`}
+                      }`}
                     key={`day-cell-${i}`}
                     onClick={() => setSelectedDate(day)}
                   >
                     {getDate(day)}
                   </td>
                 ) : (
-                  <td className="calendarPopup__empty" key={`day-cell-${i}`}>
-                    &nbsp;
-                  </td>
-                )
+                    <td className="calendarPopup__empty" key={`day-cell-${i}`}>
+                      &nbsp;
+                    </td>
+                  )
               )}
             </tr>
           ))}
@@ -173,7 +182,7 @@ const CalenderPopup = ({changeCalendarDisplay}) => {
       <button
         type="button"
         className="calendarPopup__btn"
-        onClick={()=>changeCalendarDisplay(false)}
+        onClick={handleClick}
       >
         Done
       </button>
@@ -184,7 +193,7 @@ const CalenderPopup = ({changeCalendarDisplay}) => {
 
 function mapStateToProps(state) {
   return {
-      calendarDisplay: state.taskDisplay.calendarDisplay
+    calendarId: state.app.ui_calendar_popup.calendarId
   }
 }
-export default connect(mapStateToProps, { changeCalendarDisplay })(CalenderPopup);
+export default connect(mapStateToProps, { hide_calendar_popup, set_task_due_day })(CalenderPopup);

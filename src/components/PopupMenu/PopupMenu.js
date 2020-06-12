@@ -12,6 +12,7 @@ import {
   hide_projectCard_popup,
   hide_taskcard_context_menu,
   show_taskcard_context_menu,
+  hide_calendar_popup
 } from "../../actions";
 
 const PopupMenu = ({
@@ -26,6 +27,7 @@ const PopupMenu = ({
   hide_header_filter_popup,
   hide_taskcard_context_menu,
   hide_column_popup,
+  hide_calendar_popup,
   onDismiss,
 }) => {
   const [origin, setOrigin] = React.useState({
@@ -62,6 +64,7 @@ const PopupMenu = ({
     hide_header_filter_popup();
     hide_taskcard_context_menu();
     hide_column_popup();
+    hide_calendar_popup();
   };
 
   const styleFix = header_projectIcon_popup.shouldShow
@@ -114,4 +117,5 @@ export default connect(mapStateToProps, {
   hide_taskcard_context_menu,
   show_taskcard_context_menu,
   hide_column_popup,
+  hide_calendar_popup
 })(PopupMenu);

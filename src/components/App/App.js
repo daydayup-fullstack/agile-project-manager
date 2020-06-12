@@ -22,6 +22,8 @@ import Tooltip from "../Tooltip/Tooltip";
 import AddTaskPopup from "../AddTaskPopup/AddTaskPopup";
 import { db_users } from "../../data/database";
 import { init_user } from "../../actions";
+import PopupCircularButton from "../PopupCircularButton/PopupCircularButton"
+import CalendarPopup from "../CalendarPopup/CalendarPopup";
 
 const App = ({
   projectCard_popup,
@@ -34,6 +36,7 @@ const App = ({
   taskcard_context_menu,
   column_popup,
   init_user,
+  calender_popup
 }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
@@ -92,6 +95,12 @@ const App = ({
             <ActionList />
           </PopupMenu>
         )}
+
+        {calender_popup.shouldShow && (
+          <PopupCircularButton anchor={calender_popup.anchor}>
+            <CalendarPopup />
+          </PopupCircularButton>
+        )}
       </div>
 
       <Router>
@@ -132,12 +141,12 @@ const App = ({
             </Drawer>
           </Switch>
         ) : (
-          <>
-            <Route path={"/"}>
-              <LoginForm handleLogin={setIsLoggedIn} />
-            </Route>
-          </>
-        )}
+            <>
+              <Route path={"/"}>
+                <LoginForm handleLogin={setIsLoggedIn} />
+              </Route>
+            </>
+          )}
       </Router>
     </div>
   );
@@ -179,6 +188,12 @@ const mapStateToProps = (state) => {
       anchor: state.app.ui_column_popup.anchor,
     },
     newTaskDisplay: state.taskDisplay.newTaskDisplay,
+
+    calender_popup: {
+      shouldShow: state.app.ui_calendar_popup.shouldShow,
+      anchor: state.app.ui_calendar_popup.anchor,
+      
+    }
   };
 };
 export default connect(mapStateToProps, { init_user })(App);

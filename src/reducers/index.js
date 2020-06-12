@@ -30,6 +30,9 @@ import {
   PROJECT_ADDED,
   INIT_USER,
   WORKSPACE_CHANGED,
+  SHOW_CALENDAR_POPUP,
+  HIDE_CALENDAR_POPUP,
+  SET_TASK_DUE_DAY
 } from "../actions";
 const devId = "user-scott";
 
@@ -71,10 +74,35 @@ const initialAppState = {
     shouldShow: false,
     anchor: { x: 0, y: 0, width: 0, height: 0 },
   },
+  ui_calendar_popup: {
+    shouldShow: false,
+    anchor: { x: 0, y: 0, width: 0, height: 0}
+  }
 };
 
 export const app = (state = initialAppState, action) => {
   switch (action.type) {
+    //========
+    case SHOW_CALENDAR_POPUP: {
+      return {
+        ...state,
+        ui_calendar_popup: {
+          shouldShow: true,
+          anchor: action.payload.anchor,
+          calendarId: action.payload.calendarId
+        }
+      }
+    }
+
+    case HIDE_CALENDAR_POPUP: {
+      return {
+        ...state,
+        ui_calendar_popup: {
+          shouldShow: false,
+        }
+      }
+    }
+    //========
     case SHOW_PROJECT_CARD_POPUP:
       return {
         ...state,
@@ -247,7 +275,6 @@ export const app = (state = initialAppState, action) => {
         },
       };
     }
-
     default:
       return {
         ...state,
@@ -363,6 +390,19 @@ export const project = (state = {}, action) => {
         ...state,
         ...action.project,
       };
+    }
+
+    case SET_TASK_DUE_DAY:{
+      return {
+        ...state,
+        tasks: {
+          ...state.tasks,
+          [action.payload.calendarId]:{
+            ...state.tasks[action.payload.calendarId],
+            dueDate: action.payload.dueDate,
+          }
+        }
+      }
     }
 
     default:

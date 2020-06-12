@@ -105,6 +105,16 @@ export const remove_project_star = (project) => {
   };
 };
 
+export const SET_TASK_DUE_DAY = "SET_TASK_DUE_DAY";
+export const set_task_due_day = ({dueDate, calendarId}) => {
+  return {
+    type: SET_TASK_DUE_DAY,
+    payload: {
+      dueDate,
+      calendarId
+    }
+  };
+};
 //endregion
 
 // ================ ui state ======================
@@ -277,6 +287,26 @@ export const HIDE_COLUMN_POPUP = "HIDE_COLUMN_POPUP";
 export const hide_column_popup = () => {
   return {
     type: HIDE_COLUMN_POPUP,
+  };
+};
+//endregion
+
+// calendar popup
+export const SHOW_CALENDAR_POPUP = "SHOW_CALENDAR_POPUP";
+export const show_calendar_popup = ({ anchor, calendarId }) => {
+  return {
+    type: SHOW_CALENDAR_POPUP,
+    payload: {
+      anchor,
+      calendarId
+    }
+  };
+};
+
+export const HIDE_CALENDAR_POPUP = "HIDE_CALENDAR_POPUP";
+export const hide_calendar_popup = () => {
+  return {
+    type: HIDE_CALENDAR_POPUP,
   };
 };
 //endregion
