@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./TaskCard.css";
 import { Draggable } from "react-beautiful-dnd";
 import { connect } from "react-redux";
-import { project_changed, show_taskcard_context_menu } from "../../actions";
+import { project_changed, show_taskcard_context_menu, show_calendar_popup } from "../../actions";
 import CoverPhotoBlock from "../CoverPhotoBlock/CoverPhotoBlock";
 import CircularButton from "../CircularButton/CircularButton";
 import Profile from "../Profile/Profile";
@@ -20,6 +20,10 @@ const TaskCard = ({
   show_taskcard_context_menu,
   shouldShow,
   currentUser,
+  shouldEditTaskName,
+  show_calendar_popup,
+  calendarShouldShow,
+  calendarId
 }) => {
   const [showContextMenu, setShowContextMenu] = React.useState(false);
   const [showExtra, setShowExtra] = React.useState(false);
@@ -27,6 +31,10 @@ const TaskCard = ({
   const taskNameInput = React.useRef(null);
   const [isEditingTitle, setIsEditingTitle] = React.useState(false);
   const uploadFilesRef = React.useRef(null);
+  const [showContextMenu, setShowContextMenu] = useState(false);
+  const [showExtra, setShowExtra] = useState(false);
+  const [taskName, setTaskName] = useState(task.name);
+  const taskNameInput = useRef(null);
 
   const [originalTitle, setOriginalTitle] = React.useState("");
   const dropzoneRef = React.useRef(null);
@@ -51,7 +59,7 @@ const TaskCard = ({
   React.useEffect(() => {
     if (shouldShow === false) {
       setShowContextMenu(shouldShow);
-    }
+    };
   }, [shouldShow]);
 
   function handleKeyDown(e) {
@@ -393,10 +401,13 @@ const mapStateToProps = (state) => {
     project: state.project,
     shouldShow: state.app.ui_taskcard_context_menu.shouldShow,
     currentUser: state.user,
+    calendarShouldShow: state.app.ui_calendar_popup.shouldShow,
+    calendarId: state.app.ui_calendar_popup.calendarId
   };
 };
 
 export default connect(mapStateToProps, {
   project_changed,
   show_taskcard_context_menu,
+  show_calendar_popup
 })(TaskCard);
