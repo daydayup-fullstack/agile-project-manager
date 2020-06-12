@@ -32,7 +32,6 @@ const TaskCard = ({
 
   function updateTaskUrl(url) {
     setOriginalTitle(task.name);
-    console.log(originalTitle);
     const updatedProject = {
       ...project,
       tasks: {
@@ -136,12 +135,6 @@ const TaskCard = ({
             [task.id]: undefined,
           },
         };
-
-        console.log(project.columns[columnId].taskIds);
-        console.log(updatedProject.columns[columnId].taskIds);
-
-        console.log(project.tasks[task.id]);
-        console.log(updatedProject.tasks[task.id]);
 
         project_changed(updatedProject);
       }
