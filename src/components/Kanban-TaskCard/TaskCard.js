@@ -26,19 +26,18 @@ const TaskCard = ({
   const [title, setTitle] = React.useState(task.name);
   const taskNameInput = React.useRef(null);
 
-  const [value, setValue] = React.useState("");
+  const [originalTitle, setOriginalTitle] = React.useState("");
   const dropzoneRef = React.useRef(null);
   const [isFilesDragging] = useDropzone(dropzoneRef, updateTaskUrl);
 
   function updateTaskUrl(url) {
-    setValue(task.name);
-    console.log(value);
+    setOriginalTitle(task.name);
+    console.log(originalTitle);
     const updatedProject = {
       ...project,
       tasks: {
         ...project.tasks,
         [task.id]: {
-          // todo - fixed state issue
           ...project.tasks[task.id],
           attachments: [url],
         },
@@ -59,43 +58,45 @@ const TaskCard = ({
     if (e.key === "Enter") {
       setTitle(e.target.value);
       e.target.blur();
-      updateProject();
+      updateProject(e);
     }
 
     if (e.key === "Escape") {
-      setTitle("");
-      updateProject();
+      e.target.value = "";
+      e.target.blur();
+      updateProject(e);
     }
   }
 
   function handleTaskNameInputKeyDown(e) {
     if (e.key === "Enter") {
+      if (!e.target.value) {
+        e.target.value = "Untitled";
+      }
       taskNameInput.current.blur();
       setTitle(e.target.value);
-      updateProject();
+      updateProject(e);
     }
 
     if (e.key === "Escape") {
-      setTitle(value);
-      e.target.value = value;
+      setTitle(originalTitle);
+      e.target.value = originalTitle;
       taskNameInput.current.blur();
-      updateProject();
+      updateProject(e);
     }
   }
 
   function handleBlur(e) {
     setTitle(e.target.value);
-    if (!value) {
-      updateProject();
-    }
+    updateProject(e);
   }
 
-  const updateProject = () => {
-    if (title) {
+  const updateProject = (e) => {
+    if (e.target.value) {
       // save it to project
       const newTask = {
         ...task,
-        name: title,
+        name: e.target.value,
         authorId: currentUser.id,
         isCompleted: false,
       };
@@ -114,11 +115,9 @@ const TaskCard = ({
       project_changed(updatedProject);
     } else {
       //  empty value, remove the current task
-
       // delete project.tasks[task.id];
-      if (!value) {
-        delete project.tasks[task.id];
 
+      if (!originalTitle) {
         const updatedProject = {
           ...project,
           columns: {
@@ -132,7 +131,17 @@ const TaskCard = ({
               ],
             },
           },
+          tasks: {
+            ...project.tasks,
+            [task.id]: undefined,
+          },
         };
+
+        console.log(project.columns[columnId].taskIds);
+        console.log(updatedProject.columns[columnId].taskIds);
+
+        console.log(project.tasks[task.id]);
+        console.log(updatedProject.tasks[task.id]);
 
         project_changed(updatedProject);
       }
@@ -220,7 +229,33 @@ const TaskCard = ({
   function handleFocus(event) {
     taskNameInput.current.select();
     setTitle(event.target.value);
-    setValue(event.target.value);
+    setOriginalTitle(event.target.value);
+  }
+
+  function renderTextarea() {
+    if (!task.name) {
+      return (
+        <textarea
+          className={"new-task-input"}
+          autoFocus
+          onKeyDown={(e) => handleKeyDown(e)}
+          onBlur={(event) => handleBlur(event)}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+      );
+    } else {
+      return (
+        <textarea
+          className={"name"}
+          value={title}
+          ref={taskNameInput}
+          onChange={(e) => setTitle(e.target.value)}
+          onBlur={(event) => handleBlur(event)}
+          onKeyDown={(e) => handleTaskNameInputKeyDown(e)}
+          onFocus={(event) => handleFocus(event)}
+        />
+      );
+    }
   }
 
   return (
@@ -266,25 +301,7 @@ const TaskCard = ({
             <div
               className={`content ${task.isCompleted && "taskCard--completed"}`}
             >
-              {task.name && task.name !== "" ? (
-                <textarea
-                  className={"name"}
-                  value={title}
-                  ref={taskNameInput}
-                  onChange={(e) => setTitle(e.target.value)}
-                  onBlur={(event) => handleBlur(event)}
-                  onKeyDown={(e) => handleTaskNameInputKeyDown(e)}
-                  onFocus={(event) => handleFocus(event)}
-                />
-              ) : (
-                <textarea
-                  className={"new-task-input"}
-                  autoFocus
-                  onKeyDown={(e) => handleKeyDown(e)}
-                  onBlur={(event) => handleBlur(event)}
-                  onChange={(e) => setTitle(e.target.value)}
-                />
-              )}
+              {renderTextarea()}
             </div>
 
             {task.name && task.name !== "" && (

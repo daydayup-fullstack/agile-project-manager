@@ -76,7 +76,7 @@
 .taskCard--dropzone .content .name {
   height: fit-content;
   padding: 0.25rem 0;
-  width: fit-content;
+  width: 100%;
   border: none;
   font-family: "Poppins", sans-serif;
   font-size: 0.81rem;
