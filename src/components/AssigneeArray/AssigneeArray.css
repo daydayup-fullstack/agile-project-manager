@@ -5,6 +5,7 @@
   border: 1px solid #6f7782;
   border-radius: .2rem;
   overflow: auto;
+  background-color: #fff;
 }
 
 .assigneeScrollable .spinner {

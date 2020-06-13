@@ -531,8 +531,6 @@ export const project = (state = initialProjectState, action) => {
     }
 
     case SET_TASK_ASSIGNEE:
-      console.log(state)
-      console.log(action)
       return {
         ...state,
         tasks: {

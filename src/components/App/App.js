@@ -101,9 +101,13 @@ const App = ({
           </PopupMenu>
         )}
         {assigneeScrollable.shouldShow && (
-          <PopupMenu className='assigneeScrollable' anchor={{ x: 600, y: 300, width: 0, height: 0 }}>
+          // <PopupMenu className='assigneeScrollable' anchor={{ x: 600, y: 300, width: 0, height: 0 }}>
+          //   <AssigneeArrayContainer />
+          // </PopupMenu>
+          <PopupCircularButton anchor={assigneeScrollable.anchor}>
             <AssigneeArrayContainer />
-          </PopupMenu>
+          </PopupCircularButton>
+
         )}
 
         {calender_popup.shouldShow && (

@@ -230,21 +230,20 @@ const TaskCard = ({
   };
 
   let handleAssigneeClick = (e) => {
-    // e.stopPropagation();
+    e.stopPropagation();
     //task task.id as identifier, which equals assigneeId in the reducer
-    show_task_assignee_scrollable_popup({ anchor: getAnchorForProfile(e), assigneeId: task.id })
+    show_task_assignee_scrollable_popup({
+      anchor: {
+        x: e.clientX,
+        y: e.clientY,
+        width: e.currentTarget.clientWidth,
+        height: e.currentTarget.clientHeight,
+      },
+      assigneeId: task.id
+    })
   }
 
-  const getAnchorForProfile = (e) => {
-    return {
-      anchor: {
-        x: e.target.offsetLeft + 2,
-        y: e.target.offsetTop + e.target.clientHeight / 2,
-        width: e.target.clientWidth,
-        height: e.target.clientHeight,
-      },
-    };
-  };
+
 
   //endregion
 
