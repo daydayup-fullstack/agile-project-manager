@@ -1,162 +1,193 @@
 .TeamPopup {
-    position: absolute; 
-    top:100px;
-    left: 180px;
-    display: flex;
-    z-index:100;
-
-
-  }
-  .addmember {
-    max-width: fit-content;
-    background: #fff;
-    border: 1px solid #e8ecee;
-    border-radius: 0.4rem;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    height: 440px;
-    box-shadow: 0 0 5px rgb(65, 64, 64);
-    transition: all ease 0.5s;
-  }
-
-  .addmember:hover{
-    transform: translateY(-4px);
-  }
-  .AddMember{
-    margin: 0;
-    padding:0;
-    width:560px;
-    height: 420px;
-    border-radius: 8px;
-    position: relative;
-}
-.AddMember .close{
-    position: absolute;
-    top:0.3rem;
-    right:0.7rem;
-    transform:rotate(45deg);
-    font-size: 1.7rem;
-    color: #828485;
-    cursor: pointer;
+  position: absolute;
+  top: 100px;
+  left: 180px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  z-index: 100;
 }
 
-
-.AddMember .divider{
-    margin-top: 8px;
-    width: 560px;
-    content: "";
-    height: 0.1rem;
-    background: #e8ecee;
-    /* transform: scaleY(1); */
-  
-}
-.AddMember h2{
-    font-family: "Poppins", sans-serif;
-    font-size: 1.3rem;
-    font-weight: 500;
-    margin: 0.5rem 0 0 2rem;
-}
-
-.AddMember .content{
-    margin: 1.4rem 2rem;
-}
-.AddMember .content-title p{
-    display: inline;
-}
-.content-description{
-    font-family: "Poppins", sans-serif;
-    font-size: 0.8rem;
-    font-weight: 400;
-    color:#47494a;
-    margin-bottom: 2.4rem;
-}
-.content-email{
-   
-    font-family: "Poppins", sans-serif;
-    font-size: 0.7rem;
-    font-weight: 400;
-    color:#6b6f71;
-}
-.content-contact{
-    display: flex;
-    /* margin-left: 19.4rem; */
-    font-family: "Poppins", sans-serif;
-    font-size: 0.7rem;
-    font-weight: 400;
-    color:#6b6f71;
-   
-   
+.addmember {
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  background: #fff;
+  border: 1px solid #e8ecee;
+  border-radius: 0.4rem;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 440px;
+  -webkit-box-shadow: 0 0 5px #414040;
+          box-shadow: 0 0 5px #414040;
+  -webkit-transition: all ease 0.5s;
+  transition: all ease 0.5s;
 }
 
-.text-email{
-    margin-top:0.5rem;
-    resize: none;
-    height: 110px;
-    width: 490px;
-    color: #2d3032;
-    outline: none;
-    padding: 0.5rem;
-    border-color: #a2aaae;
-    border-radius: 4px;
-    font-family: "Poppins", sans-serif;
-    font-size: 0.7rem;
-    font-weight: 400;
-}
-.text-email:focus{
-    box-shadow: 2px 2px -1px gray;
-    
+.addmember:hover {
+  -webkit-transform: translateY(-4px);
+          transform: translateY(-4px);
 }
 
-.input-field{
-    margin-top:2rem;
-    font-family: "Poppins", sans-serif;
-    font-size: 0.7rem;
-    font-weight: 400;
-    color:#47494a;
-    
-}
-.inputtext{
-    width:490px;
-    padding: 0.4rem 0.3rem;
-    outline: none;
-    border-color: #a2aaae;
-    border-radius: 4px;
-    height: 32px;
-    resize: none;
-    align-items: center;
-    font-family: "Poppins", sans-serif;
-    font-size: 0.7rem;
-    font-weight: 400;
-    margin-top:0.4rem;
-
+.AddMember {
+  margin: 0;
+  padding: 0;
+  width: 560px;
+  height: 420px;
+  border-radius: 8px;
+  position: relative;
 }
 
-.send{
-    margin: 30px 70px 50px 430px;
-    display: flex;
-    justify-content: flex-end;
-    height: 30px;
-    width: 60px;
-    padding-right:13px;
-    color:#a2aaae;
-    align-items: center;
-    border:none;
-    border-radius: 4px;
-    outline: none;
-    cursor: pointer;
-    transition: all ease 0.3s;
-    
+.AddMember .close {
+  position: absolute;
+  top: 0.3rem;
+  right: 0.7rem;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  font-size: 1.7rem;
+  color: #828485;
+  cursor: pointer;
 }
-.send:hover{
-    background-color: #0ad4e3;
-    color:rgb(255, 255, 255)
+
+.AddMember .divider {
+  margin-top: 8px;
+  width: 560px;
+  content: "";
+  height: 0.1rem;
+  background: #e8ecee;
+  /* transform: scaleY(1); */
 }
-.email-icon{
-    margin-right: 0.3rem;
-    font-size: 1rem;
-    color:rgb(240, 64, 51);
-    margin-left: 18rem;
-    justify-content: center;
+
+.AddMember h2 {
+  font-family: "Poppins", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 0.5rem 0 0 2rem;
 }
+
+.AddMember .content {
+  margin: 1.4rem 2rem;
+}
+
+.AddMember .content-title p {
+  display: inline;
+}
+
+.content-description {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: #47494a;
+  margin-bottom: 2.4rem;
+}
+
+.content-email {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: #6b6f71;
+}
+
+.content-contact {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  /* margin-left: 19.4rem; */
+  font-family: "Poppins", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: #6b6f71;
+}
+
+.text-email {
+  margin-top: 0.5rem;
+  resize: none;
+  height: 110px;
+  width: 490px;
+  color: #2d3032;
+  outline: none;
+  padding: 0.5rem;
+  border-color: #a2aaae;
+  border-radius: 4px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+}
+
+.text-email:focus {
+  -webkit-box-shadow: 2px 2px -1px gray;
+          box-shadow: 2px 2px -1px gray;
+}
+
+.input-field {
+  margin-top: 2rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: #47494a;
+}
+
+.inputtext {
+  width: 490px;
+  padding: 0.4rem 0.3rem;
+  outline: none;
+  border-color: #a2aaae;
+  border-radius: 4px;
+  height: 32px;
+  resize: none;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 400;
+  margin-top: 0.4rem;
+}
+
+.send {
+  margin: 30px 70px 50px 430px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  height: 30px;
+  width: 60px;
+  padding-right: 13px;
+  color: #a2aaae;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  -webkit-transition: all ease 0.3s;
+  transition: all ease 0.3s;
+}
+
+.send:hover {
+  background-color: #0ad4e3;
+  color: white;
+}
+
+.email-icon {
+  margin-right: 0.3rem;
+  font-size: 1rem;
+  color: #f04033;
+  margin-left: 18rem;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+/*# sourceMappingURL=TeamMemberPopup.css.map */

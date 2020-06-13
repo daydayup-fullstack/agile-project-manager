@@ -1,21 +1,33 @@
 .TeamFilterbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   width: 100%;
-  justify-content: flex-start;
-  align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding: 0 0.25rem 0 0.25rem;
   border-bottom: 1px solid gainsboro;
-  box-shadow: 1px 1px 1.5px #d5cece;
+  -webkit-box-shadow: 1px 1px 1.5px #d5cece;
+          box-shadow: 1px 1px 1.5px #d5cece;
   color: #8c8282;
 }
 
 .TeamFilterbar button {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   background-color: transparent;
   border: none;
   margin: 0 0.9rem;
-  box-shadow: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
   outline: none;
   padding: 0 0.3rem;
   font-family: "Poppins", sans-serif;
@@ -28,5 +40,4 @@
 .TeamFilterbar button:hover {
   cursor: pointer;
 }
-
 /*# sourceMappingURL=TeamFilterbar.css.map */

@@ -15,6 +15,7 @@ const AddBoardTaskButton = ({
       id: generateId(),
       name: "",
       authorId: currentUser.id,
+      attachments: [],
     };
 
     const updatedProject = {

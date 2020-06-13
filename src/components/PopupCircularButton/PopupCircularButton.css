@@ -1,4 +1,4 @@
-.PopupMenu {
+.PopupCircularButton__container {
   position: absolute;
   width: 100vw;
   height: 100vh;
@@ -6,10 +6,10 @@
   left: 0;
   z-index: 100;
 }
-.PopupMenu .menu {
+.PopupCircularButton__content {
   width: fit-content;
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid #e8ecee;
+  background: transparent;
+  border: none;
   border-radius: 0.2rem;
   position: relative;
   display: flex;
@@ -17,4 +17,4 @@
   align-items: center;
 }
 
-/*# sourceMappingURL=PopupMenu.css.map */
+/*# sourceMappingURL=PopupCircularButton.css.map */

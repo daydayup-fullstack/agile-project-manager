@@ -7,6 +7,7 @@ import {
   add_project_star,
   change_workspace,
   delete_project,
+  logout_user,
   project_changed,
   remove_project_star,
 } from "../../actions";
@@ -31,6 +32,7 @@ const ActionList = ({
   project_changed,
   delete_project,
   handleLogin,
+  logout_user,
   change_workspace,
 }) => {
   const expandableAction = React.useRef(null);
@@ -235,7 +237,7 @@ const ActionList = ({
             <li
               onMouseOver={dismissNextLevel}
               onClick={() => {
-                handleLogin(false);
+                logout_user();
               }}
             >
               <Link to="/" style={{ textDecoration: "none", color: "black" }}>
@@ -555,4 +557,5 @@ export default connect(mapStateToProps, {
   add_project_star,
   delete_project,
   change_workspace,
+  logout_user,
 })(ActionList);
