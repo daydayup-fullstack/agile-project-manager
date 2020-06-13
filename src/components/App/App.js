@@ -22,6 +22,7 @@ import Tooltip from "../Tooltip/Tooltip";
 import AddTaskPopup from "../AddTaskPopup/AddTaskPopup";
 import { db_users } from "../../data/database";
 import { init_user } from "../../actions";
+import AssigneeArrayContainer from "../AssigneeArray/AssigneeArrayContainer/AssigneeArrayContainer"
 
 const App = ({
   projectCard_popup,
@@ -34,6 +35,7 @@ const App = ({
   taskcard_context_menu,
   column_popup,
   init_user,
+  assigneeScrollable
 }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(true);
 
@@ -92,6 +94,11 @@ const App = ({
             <ActionList />
           </PopupMenu>
         )}
+        {assigneeScrollable.shouldShow && (
+          <PopupMenu className='assigneeScrollable' anchor={{ x: 600, y: 300, width: 0, height: 0 }}>
+            <AssigneeArrayContainer />
+          </PopupMenu>
+        )}
       </div>
 
       <Router>
@@ -132,12 +139,12 @@ const App = ({
             </Drawer>
           </Switch>
         ) : (
-          <>
-            <Route path={"/"}>
-              <LoginForm handleLogin={setIsLoggedIn} />
-            </Route>
-          </>
-        )}
+            <>
+              <Route path={"/"}>
+                <LoginForm handleLogin={setIsLoggedIn} />
+              </Route>
+            </>
+          )}
       </Router>
     </div>
   );
@@ -179,6 +186,8 @@ const mapStateToProps = (state) => {
       anchor: state.app.ui_column_popup.anchor,
     },
     newTaskDisplay: state.taskDisplay.newTaskDisplay,
+    assigneeScrollable: state.app.ui_assignee_scroll_popup
+
   };
 };
 export default connect(mapStateToProps, { init_user })(App);

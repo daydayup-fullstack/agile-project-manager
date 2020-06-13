@@ -2,7 +2,7 @@ import React from "react";
 import "./TaskCard.css";
 import { Draggable } from "react-beautiful-dnd";
 import { connect } from "react-redux";
-import { project_changed, show_taskcard_context_menu } from "../../actions";
+import { project_changed, show_taskcard_context_menu, show_task_assignee_scrollable_popup } from "../../actions";
 import CoverPhotoBlock from "../CoverPhotoBlock/CoverPhotoBlock";
 import CircularButton from "../CircularButton/CircularButton";
 import Profile from "../Profile/Profile";
@@ -19,6 +19,7 @@ const TaskCard = ({
   show_taskcard_context_menu,
   shouldShow,
   shouldEditTaskName,
+  show_task_assignee_scrollable_popup,
 }) => {
   const [showContextMenu, setShowContextMenu] = React.useState(false);
   const [showExtra, setShowExtra] = React.useState(false);
@@ -120,7 +121,7 @@ const TaskCard = ({
     if (task.assignedUserId && task.assignedUserId !== "") {
       return (
         <>
-          <Profile user={db_users[task.assignedUserId]} />
+          <Profile user={task.assignedUserId} />
         </>
       );
     } else {
@@ -171,6 +172,23 @@ const TaskCard = ({
     };
 
     project_changed(updatedProject);
+  };
+
+  let handleAssigneeClick = (e) => {
+    // e.stopPropagation();
+    //task task.id as identifier, which equals assigneeId in the reducer
+    show_task_assignee_scrollable_popup({ anchor: getAnchorForProfile(e), assigneeId: task.id })
+  }
+
+  const getAnchorForProfile = (e) => {
+    return {
+      anchor: {
+        x: e.target.offsetLeft + 2,
+        y: e.target.offsetTop + e.target.clientHeight / 2,
+        width: e.target.clientWidth,
+        height: e.target.clientHeight,
+      },
+    };
   };
 
   return (
@@ -230,7 +248,7 @@ const TaskCard = ({
             >
               <div className="actions">
                 <ul>
-                  <li className={"button"}>{renderUserProfile()}</li>
+                  <li className={"button"} onClick={(e) => handleAssigneeClick(e)}>{renderUserProfile()}</li>
                   <li className={"button"}>{renderDueDate()}</li>
                 </ul>
               </div>
@@ -258,10 +276,13 @@ const mapStateToProps = (state) => {
   return {
     project: state.project,
     shouldShow: state.app.ui_taskcard_context_menu.shouldShow,
+    assigneeScrollable: state.app.ui_assignee_scroll_popup,
+    assigneeId: state.app.ui_assignee_scroll_popup.assigneeId
   };
 };
 
 export default connect(mapStateToProps, {
   project_changed,
   show_taskcard_context_menu,
+  show_task_assignee_scrollable_popup,
 })(TaskCard);

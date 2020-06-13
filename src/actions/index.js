@@ -279,4 +279,29 @@ export const hide_column_popup = () => {
     type: HIDE_COLUMN_POPUP,
   };
 };
+
+//taskAssignee scrollable popup
+export const SHOW_TASK_ASSIGNEE_SCROLLABLE_POPUP = "SHOW_TASK_ASSIGNEE_SCROLLABLE_POPUP";
+export const show_task_assignee_scrollable_popup = ({ anchor,assigneeId }) => {
+  return {
+    type: SHOW_TASK_ASSIGNEE_SCROLLABLE_POPUP,
+    anchor,
+    assigneeId,
+  };
+};
+export const HIDE_TASK_ASSIGNEE_SCROLLABLE_POPUP = "HIDE_TASK_ASSIGNEE_SCROLLABLE_POPUP";
+export const hide_task_assignee_scrollable_popup = () => {
+  return {
+    type: HIDE_TASK_ASSIGNEE_SCROLLABLE_POPUP,
+  };
+};
+
+export const SET_TASK_ASSIGNEE = "SET_TASK_ASSIGNEE";
+export const set_task_assignee = ({user, assigneeId}) => {
+  return {
+    type: SET_TASK_ASSIGNEE,
+    user,
+    assigneeId,
+  };
+};
 //endregion

@@ -9,6 +9,7 @@ import {
   HIDE_HEADER_PROJECT_INFO_POPUP,
   HIDE_PROJECT_CARD_POPUP,
   HIDE_ADD_MEMBER_POPUP,
+  HIDE_TASK_ASSIGNEE_SCROLLABLE_POPUP,
   PROJECT_CHANGED,
   PROJECT_SELECTED,
   PROJECT_STAR_ADDED,
@@ -20,6 +21,8 @@ import {
   SHOW_HEADER_PROJECT_INFO_POPUP,
   SHOW_PROJECT_CARD_POPUP,
   SHOW_ADD_MEMBER_POPUP,
+  SHOW_TASK_ASSIGNEE_SCROLLABLE_POPUP,
+  SET_TASK_ASSIGNEE,
   CHANGE_NEW_TASK_DISPLAY,
   CHANGE_CALENDAR_DISPLAY,
   SHOW_TASKCARD_CONTEXT_MENU_POPUP,
@@ -68,6 +71,10 @@ const initialAppState = {
     anchor: { x: 0, y: 0, width: 0, height: 0 },
   },
   ui_column_popup: {
+    shouldShow: false,
+    anchor: { x: 0, y: 0, width: 0, height: 0 },
+  },
+  ui_assignee_scroll_popup: {
     shouldShow: false,
     anchor: { x: 0, y: 0, width: 0, height: 0 },
   },
@@ -248,6 +255,25 @@ export const app = (state = initialAppState, action) => {
       };
     }
 
+    case SHOW_TASK_ASSIGNEE_SCROLLABLE_POPUP:
+      return {
+        ...state,
+        ui_assignee_scroll_popup: {
+          shouldShow: true,
+          anchor: action.anchor,
+          assigneeId: action.assigneeId
+        }
+      };
+
+    case HIDE_TASK_ASSIGNEE_SCROLLABLE_POPUP:
+      return {
+        ...state,
+        ui_assignee_scroll_popup: {
+          shouldShow: false,
+        }
+      }
+
+    
     default:
       return {
         ...state,
@@ -365,6 +391,20 @@ export const project = (state = {}, action) => {
       };
     }
 
+    case SET_TASK_ASSIGNEE:
+      console.log(state)
+      console.log(action)
+      return {
+        ...state,
+        tasks: {
+          ...state.tasks,
+          [action.assigneeId]:{
+            ...state.tasks[action.assigneeId],
+            assignedUserId:action.user
+            
+          }
+        }
+      }
     default:
       return {
         ...state,

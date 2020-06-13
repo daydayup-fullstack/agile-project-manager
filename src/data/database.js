@@ -201,7 +201,7 @@ export const db_tasks = {
     attachments: [
       "https://media.wired.com/photos/5bd86f1cb0c71179a8e94cbd/16:9/w_1519,h_854,c_limit/macmini1.jpg",
     ],
-    assignedUserId: "user-lawrence",
+    assignedUserId: "",
     likedBy: ["user-scott", "user-ollie"],
   },
   "task-03": {
@@ -216,7 +216,7 @@ export const db_tasks = {
     attachments: [
       "https://media.wired.com/photos/5bd86f1cb0c71179a8e94cbd/16:9/w_1519,h_854,c_limit/macmini1.jpg",
     ],
-    assignedUserId: "user-scott",
+    assignedUserId: "",
     likedBy: [],
   },
 };
