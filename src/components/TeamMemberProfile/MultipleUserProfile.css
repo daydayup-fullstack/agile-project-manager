@@ -1,0 +1,21 @@
+.member-info {
+  display: flex;
+  max-width: 300px;
+  align-items: center;
+ 
+  /* position: relative; */
+}
+
+.member-info__ul {
+  display: flex;
+  
+}
+
+.member-info__li {
+ padding: 0 0.2rem;
+  
+}
+
+
+
+/*# sourceMappingURL=MultipleUserProfile.css.map */

@@ -52,7 +52,7 @@ export const db_users = {
 };
 
 export const db_workspaces = {
-  "workspace-scott-personal": {
+   "workspace-scott-personal" : {
     type: "personal",
     projectsInOrder: ["project-00", "project-01", "project-04"],
     userId: "user-scott",

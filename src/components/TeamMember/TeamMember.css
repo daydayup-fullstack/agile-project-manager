@@ -31,7 +31,7 @@ h4{
 .add_icon:hover{
     color:#51575c;
 }
-.member_list li{
+.member_list {
     padding: 0.3rem 0.2rem;
     justify-content: space-between;
     align-items: center;

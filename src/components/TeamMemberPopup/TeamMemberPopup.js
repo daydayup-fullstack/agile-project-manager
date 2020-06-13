@@ -1,33 +1,21 @@
 import React from "react";
 import "./TeamMemberPopup.css";
-import '../InviteSuccess/InviteSuccess';
-import { connect } from "react-redux";
-import {show_addmember_popup, hide_addmember_popup, hide_invite_popup} from "../../actions";
-import InviteSuccess from "../InviteSuccess/InviteSuccess";
+import "../TeamMember/TeamMember.css";
 
-const TeamMemberPopup = ({hide_invite_popup}) => {
+const TeamMemberPopup = ({show}) => {
 
-    const [ShowPopup, setShowPopup] = React.useState(false);
     const [InvitePopup,setInvitePopup]=React.useState(false);
-    const [content, setContent]=React.useState(<></>);
 
-    const closePopup = () => {
-    setShowPopup(false);
-    };
-
-    const show=()=> {
-      // setInvitePopup(true);
-      hide_invite_popup();
-      setContent(<InviteSuccess />);
-  };
+    const invite=()=> {   
+        return InvitePopup ? setInvitePopup(false):setInvitePopup(true); 
+    }
     return (
       <>
-        { ShowPopup && (
         <div className="TeamPopup" >
           <div className="addmember" >
           <div className='AddMember'>
                 <span><h2>Invite people to Dayday Up</h2></span>
-                <span className='close' onClick={closePopup}>+</span>
+                <span className='close' onClick={show}>+</span>
                 <div className='divider'/>
                 <div className='content'>
                     <h4 className='content-description'>Your teammates will get an email that gives them access to your team.</h4>
@@ -39,21 +27,22 @@ const TeamMemberPopup = ({hide_invite_popup}) => {
                     <div className='input-field'>
                     <label>Choose a starting project</label><br/>
                     <textarea className='inputtext' placeholder='Start tpying to add a project'/><br/>
-                    <button className='send' onClick={show}>Send</button></div>
-                    {InvitePopup && (<div >{content}</div>)}
+                    <button className='send' onClick={invite}>Send</button></div>
+                    {InvitePopup &&  
+                            <div className="InvitePopup" >  
+                                <div className='invite-top'></div>
+                                <div className='invite-content'>
+                                    <span className='invite-close' onClick={invite}>+</span>
+                                    <h4 className='invite-description'>Invite 1 teammate to</h4>
+                                    <p className='invite-team'>Dayday Up!</p>
+                                </div>
+                            </div>  }
                 </div>
               </div>
            </div>
            </div>
-         )}
          </>
     );
 };
 
-const mapStateToProps = (state) => {
-  return {};
-};
-
-export default connect(mapStateToProps, {hide_invite_popup
-})(TeamMemberPopup);
-// export default TeamMemberPopup;
+export default TeamMemberPopup;

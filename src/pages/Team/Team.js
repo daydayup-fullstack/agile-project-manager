@@ -29,7 +29,9 @@ const Team = ({ projects }) => {
           <Panel panelName={"Projects"}>
             <div className="projects">
               <span>
+              <Link to={"/create-project"}>
                 <AddProjectCard />
+              </Link>
               </span>
 
               <div className="project_list">

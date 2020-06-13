@@ -6,13 +6,14 @@ import { changeNewTaskDisplay } from "../../actions/index";
 import { open_app_drawer, show_header_profile_popup } from "../../actions";
 import { calcAnchor } from "../../model/utility";
 
+
 const ContentHeader = ({
   shouldOpen,
   open_app_drawer,
   show_header_profile_popup,
   currentUser,
   workspace,
-    title
+    title,
 }) => {
   return (
     <>
