@@ -22,6 +22,7 @@ import Tooltip from "../Tooltip/Tooltip";
 import AddTaskPopup from "../AddTaskPopup/AddTaskPopup";
 import { db_users } from "../../data/database";
 import { init_user } from "../../actions";
+import AssigneeArrayContainer from "../AssigneeArray/AssigneeArrayContainer/AssigneeArrayContainer"
 import PopupCircularButton from "../PopupCircularButton/PopupCircularButton"
 import CalendarPopup from "../CalendarPopup/CalendarPopup";
 
@@ -36,6 +37,7 @@ const App = ({
   taskcard_context_menu,
   column_popup,
   init_user,
+  assigneeScrollable,
   isLoggedIn,
   userId,
   calender_popup
@@ -97,6 +99,15 @@ const App = ({
           <PopupMenu anchor={column_popup.anchor}>
             <ActionList />
           </PopupMenu>
+        )}
+        {assigneeScrollable.shouldShow && (
+          // <PopupMenu className='assigneeScrollable' anchor={{ x: 600, y: 300, width: 0, height: 0 }}>
+          //   <AssigneeArrayContainer />
+          // </PopupMenu>
+          <PopupCircularButton anchor={assigneeScrollable.anchor}>
+            <AssigneeArrayContainer />
+          </PopupCircularButton>
+
         )}
 
         {calender_popup.shouldShow && (
@@ -192,13 +203,13 @@ const mapStateToProps = (state) => {
       anchor: state.app.ui_column_popup.anchor,
     },
     newTaskDisplay: state.taskDisplay.newTaskDisplay,
+    assigneeScrollable: state.app.ui_assignee_scroll_popup,
     isLoggedIn: state.user.isLoggedIn,
     userId: state.user.id,
-
     calender_popup: {
       shouldShow: state.app.ui_calendar_popup.shouldShow,
       anchor: state.app.ui_calendar_popup.anchor,
-      
+
     }
   };
 };

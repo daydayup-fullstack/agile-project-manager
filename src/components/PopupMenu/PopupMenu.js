@@ -12,6 +12,7 @@ import {
   hide_projectCard_popup,
   hide_taskcard_context_menu,
   show_taskcard_context_menu,
+  hide_task_assignee_scrollable_popup,
   hide_calendar_popup
 } from "../../actions";
 
@@ -27,6 +28,7 @@ const PopupMenu = ({
   hide_header_filter_popup,
   hide_taskcard_context_menu,
   hide_column_popup,
+  hide_task_assignee_scrollable_popup,
   hide_calendar_popup,
   onDismiss,
 }) => {
@@ -64,6 +66,7 @@ const PopupMenu = ({
     hide_header_filter_popup();
     hide_taskcard_context_menu();
     hide_column_popup();
+    hide_task_assignee_scrollable_popup();
     hide_calendar_popup();
   };
 
@@ -117,5 +120,6 @@ export default connect(mapStateToProps, {
   hide_taskcard_context_menu,
   show_taskcard_context_menu,
   hide_column_popup,
+  hide_task_assignee_scrollable_popup,
   hide_calendar_popup
 })(PopupMenu);

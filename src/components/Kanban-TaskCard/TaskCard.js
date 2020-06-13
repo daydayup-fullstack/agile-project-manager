@@ -6,6 +6,7 @@ import {
   project_changed,
   show_taskcard_context_menu,
   show_calendar_popup,
+  show_task_assignee_scrollable_popup,
 } from "../../actions";
 import CoverPhotoBlock from "../CoverPhotoBlock/CoverPhotoBlock";
 import CircularButton from "../CircularButton/CircularButton";
@@ -25,6 +26,7 @@ const TaskCard = ({
   shouldShow,
   currentUser,
   shouldEditTaskName,
+  show_task_assignee_scrollable_popup,
   show_calendar_popup,
   calendarShouldShow,
   calendarId,
@@ -175,7 +177,7 @@ const TaskCard = ({
     if (task.assignedUserId && task.assignedUserId !== "") {
       return (
         <>
-          <Profile user={db_users[task.assignedUserId]} />
+          <Profile user={task.assignedUserId} />
         </>
       );
     } else {
@@ -183,7 +185,7 @@ const TaskCard = ({
         return (
           <CircularButton
             iconName={"person_outline"}
-            onCircularButtonClick={() => {}}
+            onCircularButtonClick={() => { }}
           />
         );
       }
@@ -226,6 +228,22 @@ const TaskCard = ({
 
     project_changed(updatedProject);
   };
+
+  let handleAssigneeClick = (e) => {
+    e.stopPropagation();
+    //task task.id as identifier, which equals assigneeId in the reducer
+    show_task_assignee_scrollable_popup({
+      anchor: {
+        x: e.clientX,
+        y: e.clientY,
+        width: e.currentTarget.clientWidth,
+        height: e.currentTarget.clientHeight,
+      },
+      assigneeId: task.id
+    })
+  }
+
+
 
   //endregion
 
@@ -284,7 +302,7 @@ const TaskCard = ({
           onContextMenu={(event) => handleRightClick(event)}
           onMouseOver={(e) => handleMouseover(e)}
           onMouseLeave={(e) => handleMouseleave(e)}
-          // style={task.isCompleted ? { opacity: "0.5" } : {}}
+        // style={task.isCompleted ? { opacity: "0.5" } : {}}
         >
           <div className="taskCard--dropzone" ref={dropzoneRef}>
             {task.name && task.name !== "" && (
@@ -297,7 +315,7 @@ const TaskCard = ({
                 <div
                   className={`taskCard__top__right ${
                     task.isCompleted && "taskCard--completed"
-                  }`}
+                    }`}
                 >
                   <input
                     ref={uploadFilesRef}
@@ -346,19 +364,19 @@ const TaskCard = ({
               <div
                 className={`coverImage  ${
                   task.isCompleted && "taskCard--completed"
-                }`}
+                  }`}
               >
                 <CoverPhotoBlock imageUrl={task.attachments[0]} />
               </div>
             ) : (
-              <div
-                className={`uploadArea ${
-                  isFilesDragging && "uploadArea--show"
-                }`}
-              >
-                <span className={"material-icons"}>add</span>
-              </div>
-            )}
+                <div
+                  className={`uploadArea ${
+                    isFilesDragging && "uploadArea--show"
+                    }`}
+                >
+                  <span className={"material-icons"}>add</span>
+                </div>
+              )}
             <div
               className={`content ${task.isCompleted && "taskCard--completed"}`}
             >
@@ -371,7 +389,7 @@ const TaskCard = ({
               >
                 <div className="actions">
                   <ul>
-                    <li className={"button"}>{renderUserProfile()}</li>
+                    <li className={"button"} onClick={(e) => handleAssigneeClick(e)}>{renderUserProfile()}</li>
                     <li className={"button"}>
                       {/*唯有当被选中的日历的calendarId与当前taskId相等时，才能弹出当前circularbutton*/}
                       {task.dueDate ? (
@@ -380,14 +398,14 @@ const TaskCard = ({
                           date={task.dueDate}
                         />
                       ) : (
-                        (showExtra ||
-                          (calendarShouldShow && calendarId === task.id)) && (
-                          <CircularButton
-                            iconName={"calendar_today"}
-                            handleClick={onClicked}
-                          />
-                        )
-                      )}
+                          (showExtra ||
+                            (calendarShouldShow && calendarId === task.id)) && (
+                            <CircularButton
+                              iconName={"calendar_today"}
+                              handleClick={onClicked}
+                            />
+                          )
+                        )}
                     </li>{" "}
                   </ul>
                 </div>
@@ -416,6 +434,8 @@ const mapStateToProps = (state) => {
   return {
     project: state.project,
     shouldShow: state.app.ui_taskcard_context_menu.shouldShow,
+    assigneeScrollable: state.app.ui_assignee_scroll_popup,
+    assigneeId: state.app.ui_assignee_scroll_popup.assigneeId,
     currentUser: state.user,
     calendarShouldShow: state.app.ui_calendar_popup.shouldShow,
     calendarId: state.app.ui_calendar_popup.calendarId,
@@ -425,5 +445,6 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps, {
   project_changed,
   show_taskcard_context_menu,
+  show_task_assignee_scrollable_popup,
   show_calendar_popup,
 })(TaskCard);
