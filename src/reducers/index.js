@@ -1,4 +1,4 @@
-import {db_projects, db_workspaces} from "../data/database";
+import { db_projects, db_workspaces } from "../data/database";
 import {
   DRAWER_CLOSED,
   DRAWER_OPENED,
@@ -48,49 +48,49 @@ import {
 const initialAppState = {
   ui_projectCard_popup: {
     shouldShow: false,
-    anchor: {x: 0, y: 0, width: 0, height: 0},
+    anchor: { x: 0, y: 0, width: 0, height: 0 },
   },
   ui_drawer: {
     shouldOpen: true,
   },
   ui_header_project_icon_popup: {
     shouldShow: false,
-    anchor: {x: 0, y: 0, width: 0, height: 0},
+    anchor: { x: 0, y: 0, width: 0, height: 0 },
   },
   ui_header_project_info_popup: {
     shouldShow: false,
-    anchor: {x: 0, y: 0, width: 0, height: 0},
+    anchor: { x: 0, y: 0, width: 0, height: 0 },
   },
   ui_header_profile_popup: {
     shouldShow: false,
-    anchor: {x: 0, y: 0, width: 0, height: 0},
+    anchor: { x: 0, y: 0, width: 0, height: 0 },
   },
   ui_header_addButton_popup: {
     shouldShow: false,
-    anchor: {x: 0, y: 0, width: 0, height: 0},
+    anchor: { x: 0, y: 0, width: 0, height: 0 },
   },
   ui_header_filter_popup: {
     shouldShow: false,
     content: null,
-    anchor: {x: 0, y: 0, width: 0, height: 0},
+    anchor: { x: 0, y: 0, width: 0, height: 0 },
   },
   ui_taskcard_context_menu: {
     shouldShow: false,
-    anchor: {x: 0, y: 0, width: 0, height: 0},
+    anchor: { x: 0, y: 0, width: 0, height: 0 },
   },
   ui_column_popup: {
     shouldShow: false,
-    anchor: {x: 0, y: 0, width: 0, height: 0},
+    anchor: { x: 0, y: 0, width: 0, height: 0 },
   },
   ui_assignee_scroll_popup: {
     shouldShow: false,
-    anchor: {x: 0, y: 0, width: 0, height: 0},
+    anchor: { x: 0, y: 0, width: 0, height: 0 },
   },
   ui_isWorkspaceLoading: false,
   ui_isProjectLoading: false,
   ui_calendar_popup: {
     shouldShow: false,
-    anchor: {x: 0, y: 0, width: 0, height: 0},
+    anchor: { x: 0, y: 0, width: 0, height: 0 },
   },
 };
 
@@ -138,7 +138,7 @@ export const app = (state = initialAppState, action) => {
       };
     }
 
-      //========
+    //========
     case SHOW_CALENDAR_POPUP: {
       return {
         ...state,
@@ -158,7 +158,7 @@ export const app = (state = initialAppState, action) => {
         },
       };
     }
-      //========
+    //========
     case SHOW_PROJECT_CARD_POPUP:
       return {
         ...state,
@@ -174,7 +174,7 @@ export const app = (state = initialAppState, action) => {
           shouldShow: false,
         },
       };
-      //======
+    //======
     case HIDE_ADD_MEMBER_POPUP:
       return {
         ...state,
@@ -189,7 +189,7 @@ export const app = (state = initialAppState, action) => {
           ShowPopup: true,
         },
       };
-      //======
+    //======
     case DRAWER_OPENED:
       return {
         ...state,
@@ -409,7 +409,7 @@ export const user = (state = initialUserState, action) => {
       return {
         ...state,
         starredProjects: state.starredProjects.filter(
-            (id) => id !== action.project.id
+          (id) => id !== action.project.id
         ),
       };
     }
@@ -418,10 +418,10 @@ export const user = (state = initialUserState, action) => {
       return {
         ...state,
         starredProjects: state.starredProjects.filter(
-            (id) => id !== action.project.id
+          (id) => id !== action.project.id
         ),
         privateProjects: state.starredProjects.filter(
-            (id) => id !== action.project.id
+          (id) => id !== action.project.id
         ),
       };
     }
@@ -600,7 +600,7 @@ export const allProjects = (state = projectsInitial, action) => {
     }
     case WORKSPACE_CHANGED: {
       const projects = db_workspaces[action.workspaceId].projectsInOrder.map(
-          (id) => db_projects[id]
+        (id) => db_projects[id]
       );
 
       return [...projects];
@@ -623,7 +623,7 @@ export const allProjects = (state = projectsInitial, action) => {
     }
 
     case PROJECT_ADDED: {
-      return [...state, action.payload];
+      return [...state, action.project];
     }
 
     case PROJECT_DELETED: {

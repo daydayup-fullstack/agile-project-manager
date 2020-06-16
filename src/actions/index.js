@@ -179,12 +179,57 @@ export const project_changed_failed = (error) => {
 };
 
 export const PROJECT_ADDED = "PROJECT_ADDED";
-export const project_added = (project) => {
+export const project_added = (project) => async (dispatch) => {
+    try {
+        dispatch(project_added_in_store(project));
+        const { name, colorIndex, iconIndex, columnOrder, activeUsers } = project;
+
+        const response = await backend.post("/projects", {
+            name,
+            colorIndex,
+            iconIndex,
+            columnOrder,
+            activeUsers,
+        });
+
+        console.log(response);
+
+        dispatch(project_changed_success());
+    } catch (error) {
+        dispatch(project_changed_failed(error));
+    }
+};
+
+export const PROJECT_ADDED_SUCCESS = "PROJECT_ADDED_SUCCESS";
+export const project_added_success = () => {
     return {
-        type: PROJECT_ADDED,
-        payload: project,
+        type: PROJECT_ADDED_SUCCESS,
     };
 };
+
+export const project_added_in_store = (project) => {
+    return {
+        type: PROJECT_ADDED,
+        project,
+    };
+};
+
+export const PROJECT_ADDED_FAILED = "PROJECT_ADDED_FAILED";
+export const project_added_failed = (error) => {
+    // todo - should activate sync failed warning in ui
+    return {
+        type: PROJECT_ADDED_SUCCESS,
+        error,
+    };
+};
+
+// export const PROJECT_ADDED = "PROJECT_ADDED";
+// export const project_added = (project) => {
+//     return {
+//         type: PROJECT_ADDED,
+//         payload: project,
+//     };
+// };
 
 //-------new task display
 export const CHANGE_NEW_TASK_DISPLAY = "CHANGE_NEW_TASK_DISPLAY";
