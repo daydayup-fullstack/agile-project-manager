@@ -48,6 +48,8 @@ export const updateTaskToServer = async (task) => {
             dueDate,
             likedBy,
             projectIds,
+            columnId,
+            authorId,
         } = task;
         const response = await backend.put(`/tasks/${task.id}`, {
             name,
@@ -58,6 +60,20 @@ export const updateTaskToServer = async (task) => {
             dueDate,
             likedBy,
             projectIds,
+            columnId,
+            authorId,
+        });
+
+        console.log(response);
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+export const updateTaskImageCover = async (task) => {
+    try {
+        const response = await backend.put(`/tasks/${task.id}`, {
+            ...task,
         });
 
         console.log(response);
