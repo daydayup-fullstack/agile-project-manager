@@ -13,3 +13,12 @@ export const saveColumnToServer = async (column, project) => {
         console.log(e);
     }
 };
+
+export const deleteColumnFromServer = async (columnId) => {
+    try {
+        const response = await backend.delete(`/columns/${columnId}`);
+        console.log(response);
+    } catch (e) {
+        console.log(e);
+    }
+};
