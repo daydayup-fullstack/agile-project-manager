@@ -1,3 +1,4 @@
+
 export const db_users = {
   "user-scott": {
     id: "user-scott",
@@ -227,6 +228,20 @@ export const db_tasks = {
 //     who: "user-scott",
 //     when: 1556516450,
 //     taskId: "task-03",
+
+// export const db_users = {
+//   "user-scott": {
+//     id: "user-scott",
+//     firstName: "Scott",
+//     lastName: "Wang",
+//     email: "scotteau@gmail.com",
+//     avatar:
+//       "https://s3.amazonaws.com/profile_photos/4720159505425.uVij5QIkQPduW5RhPC9j_27x27.png",
+//     colorIndex: 0,
+//     starredProjects: ["project-04"],
+//     privateProjects: ["project-00"],
+//     workspaces: ["workspace-scott-personal", "workspace-daydayup-team"],
+
 //   },
 //   "user-lawrence": {
 //     id: "user-lawrence",
