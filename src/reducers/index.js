@@ -1,6 +1,5 @@
 import { db_projects, db_workspaces } from "../data/database";
 import _ from 'lodash';
-
 import {
   DRAWER_CLOSED,
   DRAWER_OPENED,
@@ -45,57 +44,56 @@ import {
   HIDE_CALENDAR_POPUP,
   SET_TASK_DUE_DAY,
   MEMBER_LIST
-
 } from "../actions";
 
 // ============= APP reducers ==================
 const initialAppState = {
   ui_projectCard_popup: {
     shouldShow: false,
-    anchor: { x: 0, y: 0, width: 0, height: 0 },
+    anchor: {x: 0, y: 0, width: 0, height: 0},
   },
   ui_drawer: {
     shouldOpen: true,
   },
   ui_header_project_icon_popup: {
     shouldShow: false,
-    anchor: { x: 0, y: 0, width: 0, height: 0 },
+    anchor: {x: 0, y: 0, width: 0, height: 0},
   },
   ui_header_project_info_popup: {
     shouldShow: false,
-    anchor: { x: 0, y: 0, width: 0, height: 0 },
+    anchor: {x: 0, y: 0, width: 0, height: 0},
   },
   ui_header_profile_popup: {
     shouldShow: false,
-    anchor: { x: 0, y: 0, width: 0, height: 0 },
+    anchor: {x: 0, y: 0, width: 0, height: 0},
   },
   ui_header_addButton_popup: {
     shouldShow: false,
-    anchor: { x: 0, y: 0, width: 0, height: 0 },
+    anchor: {x: 0, y: 0, width: 0, height: 0},
   },
   ui_header_filter_popup: {
     shouldShow: false,
     content: null,
-    anchor: { x: 0, y: 0, width: 0, height: 0 },
+    anchor: {x: 0, y: 0, width: 0, height: 0},
   },
   ui_taskcard_context_menu: {
     shouldShow: false,
-    anchor: { x: 0, y: 0, width: 0, height: 0 },
+    anchor: {x: 0, y: 0, width: 0, height: 0},
   },
   ui_column_popup: {
     shouldShow: false,
-    anchor: { x: 0, y: 0, width: 0, height: 0 },
+    anchor: {x: 0, y: 0, width: 0, height: 0},
   },
   ui_assignee_scroll_popup: {
     shouldShow: false,
-    anchor: { x: 0, y: 0, width: 0, height: 0 },
+    anchor: {x: 0, y: 0, width: 0, height: 0},
   },
   ui_isWorkspaceLoading: false,
   ui_isProjectLoading: false,
   ui_calendar_popup: {
     shouldShow: false,
-    anchor: { x: 0, y: 0, width: 0, height: 0}
-  }
+    anchor: {x: 0, y: 0, width: 0, height: 0},
+  },
 };
 
 export const app = (state = initialAppState, action) => {
@@ -142,16 +140,16 @@ export const app = (state = initialAppState, action) => {
       };
     }
 
-    //========
+      //========
     case SHOW_CALENDAR_POPUP: {
       return {
         ...state,
         ui_calendar_popup: {
           shouldShow: true,
           anchor: action.payload.anchor,
-          calendarId: action.payload.calendarId
-        }
-      }
+          calendarId: action.payload.calendarId,
+        },
+      };
     }
 
     case HIDE_CALENDAR_POPUP: {
@@ -159,10 +157,10 @@ export const app = (state = initialAppState, action) => {
         ...state,
         ui_calendar_popup: {
           shouldShow: false,
-        }
-      }
+        },
+      };
     }
-    //========
+      //========
     case SHOW_PROJECT_CARD_POPUP:
       return {
         ...state,
@@ -178,7 +176,7 @@ export const app = (state = initialAppState, action) => {
           shouldShow: false,
         },
       };
-    //======
+      //======
     case HIDE_ADD_MEMBER_POPUP:
       return {
         ...state,
@@ -193,7 +191,7 @@ export const app = (state = initialAppState, action) => {
           ShowPopup: true,
         },
       };
-    //======
+      //======
     case DRAWER_OPENED:
       return {
         ...state,
@@ -342,8 +340,8 @@ export const app = (state = initialAppState, action) => {
         ui_assignee_scroll_popup: {
           shouldShow: true,
           anchor: action.anchor,
-          assigneeId: action.assigneeId
-        }
+          assigneeId: action.assigneeId,
+        },
       };
 
     case HIDE_TASK_ASSIGNEE_SCROLLABLE_POPUP:
@@ -351,10 +349,9 @@ export const app = (state = initialAppState, action) => {
         ...state,
         ui_assignee_scroll_popup: {
           shouldShow: false,
-        }
-      }
+        },
+      };
 
-    
     default:
       return {
         ...state,
@@ -414,7 +411,7 @@ export const user = (state = initialUserState, action) => {
       return {
         ...state,
         starredProjects: state.starredProjects.filter(
-          (id) => id !== action.project.id
+            (id) => id !== action.project.id
         ),
       };
     }
@@ -423,10 +420,10 @@ export const user = (state = initialUserState, action) => {
       return {
         ...state,
         starredProjects: state.starredProjects.filter(
-          (id) => id !== action.project.id
+            (id) => id !== action.project.id
         ),
         privateProjects: state.starredProjects.filter(
-          (id) => id !== action.project.id
+            (id) => id !== action.project.id
         ),
       };
     }
@@ -455,7 +452,7 @@ export const user = (state = initialUserState, action) => {
 
 const initialWorkspace = {
   type: "",
-  projectOrder: [],
+  projectsInOrder: [],
   members: [],
   description: "",
   name: "",
@@ -476,7 +473,6 @@ export const workspace = (state = initialWorkspace, action) => {
       };
     }
     case WORKSPACE_CHANGED: {
-      // todo - future async might be needed
       return {
         id: action.workspaceId,
         ...db_workspaces[action.workspaceId],
@@ -542,24 +538,23 @@ export const project = (state = initialProjectState, action) => {
         ...state,
         tasks: {
           ...state.tasks,
-          [action.assigneeId]:{
+          [action.assigneeId]: {
             ...state.tasks[action.assigneeId],
-            assignedUserId:action.user
-            
-          }
-        }
-      }
-    case SET_TASK_DUE_DAY:{
+            assignedUserId: action.user,
+          },
+        },
+      };
+    case SET_TASK_DUE_DAY: {
       return {
         ...state,
         tasks: {
           ...state.tasks,
-          [action.payload.calendarId]:{
+          [action.payload.calendarId]: {
             ...state.tasks[action.payload.calendarId],
             dueDate: action.payload.dueDate,
-          }
-        }
-      }
+          },
+        },
+      };
     }
 
     default:
@@ -609,9 +604,8 @@ export const allProjects = (state = projectsInitial, action) => {
       return [];
     }
     case WORKSPACE_CHANGED: {
-      // todo - future async fetch
       const projects = db_workspaces[action.workspaceId].projectsInOrder.map(
-        (id) => db_projects[id]
+          (id) => db_projects[id]
       );
 
       return [...projects];

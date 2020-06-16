@@ -1,18 +1,19 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import "./BoardColumn.css";
-import { Draggable } from "react-beautiful-dnd";
+import {Draggable} from "react-beautiful-dnd";
 import AddBoardTaskButton from "../Kanban-AddBoardTaskButton/AddBoardTaskButton";
-import { connect } from "react-redux";
-import { project_changed, show_column_popup } from "../../actions";
+import {connect} from "react-redux";
+import {project_changed, show_column_popup} from "../../actions";
+import {updateColumnToServer} from "../../apis/api";
 
 const BoardColumn = ({
-  column,
-  index,
-  children,
-  show_column_popup,
-  project,
-  project_changed,
-}) => {
+                       column,
+                       index,
+                       children,
+                       show_column_popup,
+                       project,
+                       project_changed,
+                     }) => {
   const [shouldHighlighted, setShouldHighlighted] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const inputElement = useRef(null);
@@ -34,7 +35,7 @@ const BoardColumn = ({
       height: e.target.clientHeight,
     };
 
-    show_column_popup({ anchor: anchor, column: column });
+    show_column_popup({anchor: anchor, column: column});
   };
 
   function handleColumnNameChange(e) {
@@ -44,18 +45,20 @@ const BoardColumn = ({
   function handleSubmit(e) {
     e.preventDefault();
     const title = e.currentTarget["board-column-title"].value;
+    const newColumn = {
+      ...project.columns[column.id],
+      title,
+    };
     const updatedProject = {
       ...project,
       columns: {
         ...project.columns,
-        [column.id]: {
-          ...project.columns[column.id],
-          title: title,
-        },
+        [column.id]: newColumn,
       },
     };
 
     project_changed(updatedProject);
+    updateColumnToServer(newColumn);
 
     setIsEditing(false);
   }
@@ -67,53 +70,53 @@ const BoardColumn = ({
   }
 
   return (
-    <Draggable draggableId={column.id} index={index} type={"column"}>
-      {(provided, snapshot) => (
-        <div
-          {...provided.draggableProps}
-          ref={provided.innerRef}
-          className={`board-column ${
-            shouldHighlighted && "board-column--hovered"
-          } ${snapshot.isDragging && "board-column--isDragging"}`}
-        >
-          <div
-            className="header"
-            {...provided.dragHandleProps}
-            onMouseEnter={() => setShouldHighlighted(true)}
-            onMouseLeave={() => setShouldHighlighted(false)}
-          >
-            {!isEditing ? (
-              <>
+      <Draggable draggableId={column.id} index={index} type={"column"}>
+        {(provided, snapshot) => (
+            <div
+                {...provided.draggableProps}
+                ref={provided.innerRef}
+                className={`board-column ${
+                    shouldHighlighted && "board-column--hovered"
+                } ${snapshot.isDragging && "board-column--isDragging"}`}
+            >
+              <div
+                  className="header"
+                  {...provided.dragHandleProps}
+                  onMouseEnter={() => setShouldHighlighted(true)}
+                  onMouseLeave={() => setShouldHighlighted(false)}
+              >
+                {!isEditing ? (
+                    <>
                 <span className={"title"} onClick={() => setIsEditing(true)}>
                   {column.title}
                 </span>
-                <span
-                  className={"material-icons button"}
-                  onClick={(e) => showPopup(e)}
-                >
+                      <span
+                          className={"material-icons button"}
+                          onClick={(e) => showPopup(e)}
+                      >
                   more_horiz
                 </span>
-              </>
-            ) : (
-              <form onSubmit={(e) => handleSubmit(e)}>
-                <input
-                  type="text"
-                  ref={inputElement}
-                  id={"board-column-title"}
-                  value={value}
-                  onBlur={() => setIsEditing(false)}
-                  onChange={handleColumnNameChange}
-                  onKeyDown={handleKeyDown}
-                />
-              </form>
-            )}
-          </div>
+                    </>
+                ) : (
+                    <form onSubmit={(e) => handleSubmit(e)}>
+                      <input
+                          type="text"
+                          ref={inputElement}
+                          id={"board-column-title"}
+                          value={value}
+                          onBlur={() => setIsEditing(false)}
+                          onChange={handleColumnNameChange}
+                          onKeyDown={handleKeyDown}
+                      />
+                    </form>
+                )}
+              </div>
 
-          <AddBoardTaskButton column={column} />
-          {children}
-        </div>
-      )}
-    </Draggable>
+              <AddBoardTaskButton column={column}/>
+              {children}
+            </div>
+        )}
+      </Draggable>
   );
 };
 const mapStateToProps = (state) => {
@@ -125,6 +128,6 @@ const mapStateToProps = (state) => {
     project: state.project,
   };
 };
-export default connect(mapStateToProps, { show_column_popup, project_changed })(
-  BoardColumn
+export default connect(mapStateToProps, {show_column_popup, project_changed})(
+    BoardColumn
 );
