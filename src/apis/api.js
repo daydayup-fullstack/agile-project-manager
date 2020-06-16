@@ -36,3 +36,32 @@ export const updateColumnToServer = async (column) => {
         console.log(e);
     }
 };
+
+export const updateTaskToServer = async (task) => {
+    try {
+        const {
+            name,
+            isCompleted,
+            description,
+            attachments,
+            assignedUserIds,
+            dueDate,
+            likedBy,
+            projectIds,
+        } = task;
+        const response = await backend.put(`/tasks/${task.id}`, {
+            name,
+            isCompleted,
+            description,
+            attachments,
+            assignedUserIds,
+            dueDate,
+            likedBy,
+            projectIds,
+        });
+
+        console.log(response);
+    } catch (e) {
+        console.log(e);
+    }
+};
