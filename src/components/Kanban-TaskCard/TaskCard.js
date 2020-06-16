@@ -14,7 +14,11 @@ import Profile from "../Profile/Profile";
 import DateDisplay from "../DateDisplay/DateDisplay";
 import CompleteButton from "../CompleteButton/CompleteButton";
 import {handleUpload, useDropzone} from "../../hooks/customHooks";
-import {updateTaskToServer} from "../../apis/api";
+import {
+    updateColumnToServer,
+    updateTaskImageCover,
+    updateTaskToServer,
+} from "../../apis/api";
 
 const TaskCard = ({
                       task,
@@ -55,10 +59,9 @@ const TaskCard = ({
         };
 
         project_changed(updatedProject);
-        updateTaskToServer(updatedTask);
+        updateTaskImageCover(updatedTask);
     }
 
-    //region - old
     React.useEffect(() => {
         if (shouldShow === false) {
             setShowContextMenu(shouldShow);
@@ -70,6 +73,17 @@ const TaskCard = ({
             setTitle(e.target.value);
             e.target.blur();
             updateProject(e);
+
+            const newTask = {
+                ...task,
+                name: e.target.value,
+                authorId: currentUser.id,
+                isCompleted: false,
+                projectIds: [project.id],
+                columnId,
+            };
+
+            updateTaskToServer(newTask);
         }
 
         if (e.key === "Escape") {
@@ -87,6 +101,17 @@ const TaskCard = ({
             taskNameInput.current.blur();
             setTitle(e.target.value);
             updateProject(e);
+
+            const newTask = {
+                ...task,
+                name: e.target.value,
+                authorId: currentUser.id,
+                isCompleted: false,
+                projectIds: [project.id],
+                columnId,
+            };
+
+            updateTaskToServer(newTask);
         }
 
         if (e.key === "Escape") {
@@ -101,6 +126,17 @@ const TaskCard = ({
         setTitle(e.target.value);
         updateProject(e);
         setIsEditingTitle(false);
+
+        const newTask = {
+            ...task,
+            name: e.target.value,
+            authorId: currentUser.id,
+            isCompleted: false,
+            projectIds: [project.id],
+            columnId,
+        };
+
+        updateTaskToServer(newTask);
     }
 
     const updateProject = (e) => {
@@ -111,6 +147,7 @@ const TaskCard = ({
                 name: e.target.value,
                 authorId: currentUser.id,
                 isCompleted: false,
+                projectIds: [project.id],
             };
 
             const updatedProject = {
@@ -125,7 +162,6 @@ const TaskCard = ({
             };
 
             project_changed(updatedProject);
-            updateTaskToServer(newTask);
         } else {
             //  empty value, remove the current task
             // delete project.tasks[task.id];
@@ -245,8 +281,6 @@ const TaskCard = ({
             assigneeId: task.id,
         });
     };
-
-    //endregion
 
     function handleFocus(event) {
         taskNameInput.current.select();

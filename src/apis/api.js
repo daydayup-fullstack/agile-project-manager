@@ -48,6 +48,8 @@ export const updateTaskToServer = async (task) => {
             dueDate,
             likedBy,
             projectIds,
+            columnId,
+            authorId,
         } = task;
         const response = await backend.put(`/tasks/${task.id}`, {
             name,
@@ -58,6 +60,20 @@ export const updateTaskToServer = async (task) => {
             dueDate,
             likedBy,
             projectIds,
+            columnId,
+            authorId,
+        });
+
+        console.log(response);
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+export const updateTaskImageCover = async (task) => {
+    try {
+        const response = await backend.put(`/tasks/${task.id}`, {
+            ...task,
         });
 
         console.log(response);
@@ -68,13 +84,7 @@ export const updateTaskToServer = async (task) => {
 
 export const saveNewProjectToServer = async (newProject, workspace) => {
     try {
-        const {
-            id,
-            colorIndex,
-            iconIndex,
-            columnOrder,
-            name,
-        } = newProject;
+        const {id, colorIndex, iconIndex, columnOrder, name} = newProject;
 
         const response = await backend.post(`/projects`, {
             id,
@@ -83,8 +93,25 @@ export const saveNewProjectToServer = async (newProject, workspace) => {
             iconIndex,
             columnOrder,
             workspace: workspace.id,
-            projectOrder: workspace.projectsInOrder
+            projectOrder: workspace.projectsInOrder,
         });
+        console.log(response);
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+export const saveNewTaskToServer = async (newTask) => {
+    try {
+        // const {} = newTask;
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+export const deleteTaskFromServer = async (task) => {
+    try {
+        const response = await backend.delete(`/tasks/${task.id}`);
         console.log(response);
     } catch (e) {
         console.log(e);
