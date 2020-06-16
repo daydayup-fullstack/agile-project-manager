@@ -65,3 +65,28 @@ export const updateTaskToServer = async (task) => {
         console.log(e);
     }
 };
+
+export const saveNewProjectToServer = async (newProject, workspace) => {
+    try {
+        const {
+            id,
+            colorIndex,
+            iconIndex,
+            columnOrder,
+            name,
+        } = newProject;
+
+        const response = await backend.post(`/projects`, {
+            id,
+            name,
+            colorIndex,
+            iconIndex,
+            columnOrder,
+            workspace: workspace.id,
+            projectOrder: workspace.projectsInOrder
+        });
+        console.log(response);
+    } catch (e) {
+        console.log(e);
+    }
+};

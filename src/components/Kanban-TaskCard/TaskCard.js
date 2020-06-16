@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import "./TaskCard.css";
 import {Draggable} from "react-beautiful-dnd";
 import {connect} from "react-redux";
