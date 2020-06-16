@@ -1,7 +1,7 @@
 @import "../../style/variables";
 
 .calendarPopup {
-  background-color: $gray-100;
+  background-color: $gray-200;
   box-shadow: 6px 7px 10px -4px $gray-300;
   width: 264px;
   height: 319px;
@@ -60,15 +60,14 @@
     text-decoration: underline;
     background-color: #14aaf5;
   }
-  &::before {
+  &__before {
+    background-color: $gray-200;
     box-sizing: border-box;
-    content: "";
     display: block;
     height: 14px;
     transform: rotate(45deg);
     width: 14px;
     position: absolute;
-    background-color: $gray-100;
     box-shadow: 6px 7px 20px -4px $gray-300;
     top: -7px;
     left: 10px;

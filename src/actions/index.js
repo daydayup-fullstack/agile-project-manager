@@ -1,11 +1,63 @@
-import { db_columns, db_tasks } from "../data/database";
-
+import backend from "../apis/backend";
+import { login } from "../model/utility";
 // ============== User ========================
-
-export const INIT_USER = "INIT_USER";
-export const init_user = () => {
+//
+export const INIT_USER_REQUESTED = "INIT_USER";
+export const init_user_requested = () => {
   return {
-    type: INIT_USER,
+    type: INIT_USER_REQUESTED,
+  };
+};
+export const INIT_USER_SUCCESS = "INIT_USER_SUCCESS";
+const init_user_success = (response) => {
+  return {
+    type: INIT_USER_SUCCESS,
+    user: response.data.user || {},
+    workspace: response.data.workspace || {},
+    allProjects: response.data.allProjects || [],
+  };
+};
+export const INIT_USER_FAILED = "INIT_USER_FAILED";
+const init_user_failed = (e) => {
+  return {
+    type: INIT_USER_FAILED,
+    error: e,
+  };
+};
+export const init_user = (userId) => async (dispatch) => {
+  try {
+    const response = await backend.get(`/users/${userId}`);
+    dispatch(init_user_success(response));
+  } catch (e) {
+    dispatch(init_user_failed(e));
+  }
+};
+
+//===== Get Members =======
+export const MEMBER_LIST = 'MEMBER_LIST';
+export const member_list=()=>async (dispatch)=>{
+    const response=await backend.get('/workspaces/eRVjCPQdalku7cGBNaBx/members');
+    console.log(response);
+    dispatch({type:MEMBER_LIST,payload:response.data});
+  
+}
+
+export const USER_LOGIN = "USER_LOGIN";
+export const login_user = ({ username, password }) => async (dispatch) => {
+  const result = await login(username, password);
+
+  let { userId } = JSON.parse(result);
+
+  dispatch({
+    type: USER_LOGIN,
+    userId: userId || "",
+  });
+};
+
+export const USER_LOGOUT = "USER_LOGOUT";
+export const logout_user = () => {
+  return {
+    type: USER_LOGOUT,
   };
 };
 
@@ -20,32 +72,74 @@ export const change_workspace = (workspaceId) => {
 
 // ============== Project ========================
 // region- Project related actions
-export const PROJECT_SELECTED = "PROJECT_SELECTED";
-export const project_selected = (project) => {
-  let columns = {};
-  let tasks = {};
+// export const PROJECT_SELECTED = "PROJECT_SELECTED";
+// export const project_selected = (project) => {
+//   let columns = {};
+//   let tasks = {};
+//
+//   if (!project.columns) {
+//     columns = { ...db_columns };
+//   }
+//
+//   if (!project.tasks) {
+//     tasks = { ...db_tasks };
+//   }
+//
+//   // todo - change to dynamic data source
+//   return {
+//     type: PROJECT_SELECTED,
+//     project,
+//     columns: {
+//       ...project.columns,
+//       ...columns,
+//     },
+//     tasks: {
+//       ...project.tasks,
+//       ...tasks,
+//     },
+//   };
+// };
 
-  if (!project.columns) {
-    columns = { ...db_columns };
-  }
-
-  if (!project.tasks) {
-    tasks = { ...db_tasks };
-  }
-
-  // todo - change to dynamic data source
+export const PROJECT_SELECTED_REQUESTED = "PROJECT_SELECTED_REQUESTED";
+const project_selected_requested = () => {
   return {
-    type: PROJECT_SELECTED,
+    type: PROJECT_SELECTED_REQUESTED,
+  };
+};
+
+export const PROJECT_SELECTED_SUCCESS = "PROJECT_SELECTED_SUCCESS";
+const project_selected_success = (project, response) => {
+  console.log(response.data);
+  return {
+    type: PROJECT_SELECTED_SUCCESS,
     project,
     columns: {
       ...project.columns,
-      ...columns,
+      ...response.data.columns,
     },
     tasks: {
       ...project.tasks,
-      ...tasks,
+      ...response.data.tasks,
     },
   };
+};
+
+export const PROJECT_SELECTED_FAILED = "PROJECT_SELECTED_FAILED";
+const project_selected_failed = (error) => {
+  return {
+    type: PROJECT_SELECTED_FAILED,
+    error: error,
+  };
+};
+
+export const project_selected = (project) => async (dispatch) => {
+  try {
+    dispatch(project_selected_requested());
+    const response = await backend.get(`/projects/${project.id}`);
+    dispatch(project_selected_success(project, response));
+  } catch (e) {
+    dispatch(project_selected_failed(e));
+  }
 };
 
 export const PROJECT_CHANGED = "PROJECT_CHANGED";
@@ -105,6 +199,16 @@ export const remove_project_star = (project) => {
   };
 };
 
+export const SET_TASK_DUE_DAY = "SET_TASK_DUE_DAY";
+export const set_task_due_day = ({dueDate, calendarId}) => {
+  return {
+    type: SET_TASK_DUE_DAY,
+    payload: {
+      dueDate,
+      calendarId
+    }
+  };
+};
 //endregion
 
 // ================ ui state ======================
@@ -277,6 +381,51 @@ export const HIDE_COLUMN_POPUP = "HIDE_COLUMN_POPUP";
 export const hide_column_popup = () => {
   return {
     type: HIDE_COLUMN_POPUP,
+  };
+};
+
+//taskAssignee scrollable popup
+export const SHOW_TASK_ASSIGNEE_SCROLLABLE_POPUP = "SHOW_TASK_ASSIGNEE_SCROLLABLE_POPUP";
+export const show_task_assignee_scrollable_popup = ({ anchor,assigneeId }) => {
+  return {
+    type: SHOW_TASK_ASSIGNEE_SCROLLABLE_POPUP,
+    anchor,
+    assigneeId,
+  };
+};
+export const HIDE_TASK_ASSIGNEE_SCROLLABLE_POPUP = "HIDE_TASK_ASSIGNEE_SCROLLABLE_POPUP";
+export const hide_task_assignee_scrollable_popup = () => {
+  return {
+    type: HIDE_TASK_ASSIGNEE_SCROLLABLE_POPUP,
+  };
+};
+
+export const SET_TASK_ASSIGNEE = "SET_TASK_ASSIGNEE";
+export const set_task_assignee = ({user, assigneeId}) => {
+  return {
+    type: SET_TASK_ASSIGNEE,
+    user,
+    assigneeId,
+  };
+};
+//endregion
+
+// calendar popup
+export const SHOW_CALENDAR_POPUP = "SHOW_CALENDAR_POPUP";
+export const show_calendar_popup = ({ anchor, calendarId }) => {
+  return {
+    type: SHOW_CALENDAR_POPUP,
+    payload: {
+      anchor,
+      calendarId
+    }
+  };
+};
+
+export const HIDE_CALENDAR_POPUP = "HIDE_CALENDAR_POPUP";
+export const hide_calendar_popup = () => {
+  return {
+    type: HIDE_CALENDAR_POPUP,
   };
 };
 //endregion

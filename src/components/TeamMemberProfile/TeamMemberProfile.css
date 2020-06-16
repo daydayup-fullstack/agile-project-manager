@@ -1,0 +1,45 @@
+.member-info {
+  display: flex;
+  max-width: 300px;
+  align-items: center;
+ 
+  /* position: relative; */
+}
+
+.member-info__ul {
+  display: flex;
+  
+}
+
+.member-info__li {
+ padding: 0 0.2rem;
+  
+}
+
+.team-profile{
+  font-family: "Poppins", sans-serif;
+  color: #f6f8f9;
+  font-weight: bolder;
+  font-size: 11px;
+  width: 2rem;
+  height: 2rem;
+  line-height: 2rem;
+  border-radius: 50%;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
+}
+
+.team-profile img{
+  width: 2rem;
+  height: 2rem;
+}
+
+
+
+/*# sourceMappingURL=MultipleUserProfile.css.map */

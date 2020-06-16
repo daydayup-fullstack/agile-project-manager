@@ -6,7 +6,7 @@ import SideMenuSection, {
   Favorites,
   Team,
 } from "../SideMenuSection/SideMenuSection";
-import { team } from "../../data/database";
+// import { team } from "../../data/database";
 
 const Drawer = ({
   nav,
@@ -46,11 +46,11 @@ const Drawer = ({
               <Favorites projects={favorites} />
             </SideMenuSection>
             <SideMenuSection>
-              <Team
+              {/* <Team
                 projects={allProjects}
                 team={team}
                 workspace={currentWorkspace}
-              />
+              /> */}
             </SideMenuSection>
           </div>
         </div>

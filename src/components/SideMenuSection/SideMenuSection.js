@@ -54,13 +54,13 @@ export const Team = ({ projects, team, workspace }) => {
             <header className={"teamHeader"}>{workspace.name}</header>
           </Link>
 
-          <ul className={"memberList"}>
+          {/* <ul className={"memberList"}>
             {team.members.map((user) => (
               <li key={user.id} className={"member"}>
                 <Profile user={user} />
               </li>
             ))}
-          </ul>
+          </ul> */}
         </>
       )}
 

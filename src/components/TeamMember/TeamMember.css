@@ -1,214 +1,274 @@
-.members{
-    
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width:300px;
-    white-space: nowrap;
+.members {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 300px;
+  white-space: nowrap;
 }
-h2{
+
+h2 {
   color: #151b26;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
-  
-}
-h3{
-    font-size: 0.8rem;
-    color:#3c4043;
-    font-family: "Poppins", sans-serif;
 }
 
-h4{
-    font-size: 0.7rem;
-    color:#9ca6af;
-    font-family: "Poppins", sans-serif;
+h3 {
+  font-size: 0.8rem;
+  color: #3c4043;
+  font-family: "Poppins", sans-serif;
+}
 
+h4 {
+  font-size: 0.7rem;
+  color: #9ca6af;
+  font-family: "Poppins", sans-serif;
 }
-.add_icon{
-    font-size: 1.5rem;
-    color: #9ca6af;
-    font-weight: 200;
-}
-.add_icon:hover{
-    color:#51575c;
-}
+
+
 .member_list {
     padding: 0.3rem 0.2rem;
     justify-content: space-between;
     align-items: center;
 }
-.Add_member{
-    display: flex;
-    width: 200px;
-    align-items: center;
-}
-.Add_member:hover{
-    cursor: pointer;
-    color:#51575c;
-}
-.circle{ 
-    height: 2.2rem;
-    width: 2.2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 1.1rem;
-    border: 2px dashed #9ca6af;
-    margin: 10px 0;
+
+.member_list li {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-.circle:hover{
-    border: 2px dashed #51575c;
+.Add_member {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 200px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-
-.circle_2{
-    height: 2.2rem;
-    width: 2.2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 1.1rem;
-    background-color: rgb(128, 0, 255);
-    margin: 0 0 10px 0;
-    
-}
-.init_2{
-    margin-left: 182px;
-    font-family: "Poppins", sans-serif;
-    color: azure;
-    font-weight: 400;
-    font-size: 0.9rem;
-    
+.Add_member:hover {
+  cursor: pointer;
+  color: #51575c;
 }
 
-.info_2{
-    margin-left: 25px;
+.circle {
+  height: 2rem;
+  width: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 1rem;
+  border: 2px dashed #9ca6af;
+  margin: 8px 0;
 }
 
-
-.user4{
-    display:flex;
-    width:300px;
-    height: 50px;
-}
-.circle_4{
-    height: 2.2rem;
-    width: 2.2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 0 10px 0;
-}
-.pic_4{
-    width: 100%;
-    height: 100%;
-    border-radius: 1.1rem;
+.circle:hover {
+  border: 2px dashed #51575c;
 }
 
-.info_4{
-    margin-left: 16px;
-
+.add_icon {
+  font-size: 1.5rem;
+  color: #9ca6af;
+  font-weight: 200;
 }
-.circle_5{
-    height: 2.2rem;
-    width: 2.2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 1.1rem;
-    background-color:rgb(255, 225, 0);
-    margin: 0 0 10px 0;
-    
-}
-.init_5{
-    margin-left: 155px;
-    font-family: "Poppins", sans-serif;
-    color: azure;
-    font-weight: 400;
-    font-size: 0.9rem;
-    
-}
-.info_5{
-    margin-left: 30px;
+.add_icon:hover{
+  color:#51575c;
 }
 
-.circle_bottom{ 
-    height: 2.2rem;
-    width: 2.2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 1.1rem;
-    background-color: #ccd1d7;
+.circle_2 {
+  height: 2.2rem;
+  width: 2.2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 1.1rem;
+  background-color: #8000ff;
+  margin: 0 0 10px 0;
+}
+
+.init_2 {
+  margin-left: 182px;
+  font-family: "Poppins", sans-serif;
+  color: azure;
+  font-weight: 400;
+  font-size: 0.9rem;
+}
+
+.info_2 {
+  margin-left: 25px;
+}
+
+.team-member {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 300px;
+  height: 50px;
+}
+
+.team-member_avatar{
+  height: 2.2rem;
+  width: 2.2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0 0 10px 0;
+}
+
+.pic_4 {
+  width: 100%;
+  height: 100%;
+  border-radius: 1.1rem;
+}
+
+.team-member_info{
+  margin-left: 16px;
+}
+
+.circle_5 {
+  height: 2.2rem;
+  width: 2.2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 1.1rem;
+  background-color: #ffe100;
+  margin: 0 0 10px 0;
+}
+
+.init_5 {
+  margin-left: 155px;
+  font-family: "Poppins", sans-serif;
+  color: azure;
+  font-weight: 400;
+  font-size: 0.9rem;
+}
+
+.info_5 {
+  margin-left: 30px;
+}
+
+.circle_bottom {
+  height: 2rem;
+  width: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-radius: 1rem;
+  background-color: #ccd1d7;
 }
 
 .more_icon {
-    font-size: 1.2rem;
-    color: #585f65;
+  font-size: 1.2rem;
+  color: #585f65;
 }
-.Add_text{
-    font-size:0.85rem;
-    color:#9ca6af;
-    margin-left: 15px;
-    font-weight: 300;
-    
+
+.Add_text {
+  font-size: 0.8rem;
+  color: #9ca6af;
+  margin-left: 1.2rem;
+  font-weight: 300;
 }
-.Add_text:hover{
-    color:#51575c;
+
+.Add_text:hover {
+  color: #51575c;
 }
 
 .InvitePopup {
-    position: absolute;
-    width: 200px;
-    height: 80px;
-    left: -170px;
-    bottom:-215px;
-    display: flex;
-    flex-direction: column;
-    background: #fff;
-    border: 1px solid #e8ecee;
-    border-radius: 0.3rem;
-    align-items: center;
-    box-shadow: 0 0 2px rgb(65, 64, 64);
-    transition: all ease 0.5s;
-    /* justify-content: center; */
-    padding: 0;
-
-  }
-  .InvitePopup:hover{
-    transform: translateY(-2px);
-  }
-
-  .invite-top{
-    height: 8px;
-    width: 100%;
-    background: linear-gradient(to right,rgb(186, 255, 186),#4ce3fe);
-  }
-
-  .invite-content .invite-close{
-    position: absolute;
-    top:0.3rem;
-    right:0.7rem;
-    transform:rotate(45deg);
-    font-size: 1.4rem;
-    color: #828485;
-    cursor: pointer;
+  position: absolute;
+  width: 200px;
+  height: 80px;
+  left: -170px;
+  bottom: -215px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background: #fff;
+  border: 1px solid #e8ecee;
+  border-radius: 0.3rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-shadow: 0 0 2px #414040;
+          box-shadow: 0 0 2px #414040;
+  -webkit-transition: all ease 0.5s;
+  transition: all ease 0.5s;
+  /* justify-content: center; */
+  padding: 0;
 }
-.invite-description{
-    margin-top: 0.8rem;
-    font-family: "Poppins", sans-serif;
-    font-size: 0.80rem;
-    font-weight: 400;
-    color:#47494a;
-   
+
+.InvitePopup:hover {
+  -webkit-transform: translateY(-2px);
+          transform: translateY(-2px);
 }
-  .invite-content .invite-team{
-    font-family: "Poppins", sans-serif;
-    color:#4ce3fe;
-    font-size: 0.9rem;
-    font-weight: 500;
 
-  }
+.invite-top {
+  height: 8px;
+  width: 100%;
+  background: -webkit-gradient(linear, left top, right top, from(#baffba), to(#4ce3fe));
+  background: linear-gradient(to right, #baffba, #4ce3fe);
+}
 
+.invite-content .invite-close {
+  position: absolute;
+  top: 0.3rem;
+  right: 0.7rem;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  font-size: 1.4rem;
+  color: #828485;
+  cursor: pointer;
+}
 
+.invite-description {
+  margin-top: 0.8rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.80rem;
+  font-weight: 400;
+  color: #47494a;
+}
 
+.invite-content .invite-team {
+  font-family: "Poppins", sans-serif;
+  color: #4ce3fe;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+/*# sourceMappingURL=TeamMember.css.map */

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
 import Drawer from "../Drawer/Drawer";
 import Home from "../../pages/Home/Home";
@@ -22,6 +22,9 @@ import Tooltip from "../Tooltip/Tooltip";
 import AddTaskPopup from "../AddTaskPopup/AddTaskPopup";
 import { db_users } from "../../data/database";
 import { init_user } from "../../actions";
+import AssigneeArrayContainer from "../AssigneeArray/AssigneeArrayContainer/AssigneeArrayContainer"
+import PopupCircularButton from "../PopupCircularButton/PopupCircularButton"
+import CalendarPopup from "../CalendarPopup/CalendarPopup";
 
 const App = ({
   projectCard_popup,
@@ -34,12 +37,17 @@ const App = ({
   taskcard_context_menu,
   column_popup,
   init_user,
+  assigneeScrollable,
+  isLoggedIn,
+  userId,
+  calender_popup
 }) => {
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
 
   React.useEffect(() => {
-    init_user();
-  }, [init_user]);
+    if (userId !== "" || userId) {
+      init_user(userId);
+    }
+  }, [init_user, userId]);
 
   return (
     <div className="App">
@@ -65,7 +73,7 @@ const App = ({
 
         {header_profile_popup.shouldShow && (
           <PopupMenu anchor={header_profile_popup.anchor}>
-            <ActionList handleLogin={setIsLoggedIn} />
+            <ActionList />
           </PopupMenu>
         )}
 
@@ -91,6 +99,21 @@ const App = ({
           <PopupMenu anchor={column_popup.anchor}>
             <ActionList />
           </PopupMenu>
+        )}
+        {assigneeScrollable.shouldShow && (
+          // <PopupMenu className='assigneeScrollable' anchor={{ x: 600, y: 300, width: 0, height: 0 }}>
+          //   <AssigneeArrayContainer />
+          // </PopupMenu>
+          <PopupCircularButton anchor={assigneeScrollable.anchor}>
+            <AssigneeArrayContainer />
+          </PopupCircularButton>
+
+        )}
+
+        {calender_popup.shouldShow && (
+          <PopupCircularButton anchor={calender_popup.anchor}>
+            <CalendarPopup />
+          </PopupCircularButton>
         )}
       </div>
 
@@ -132,17 +155,18 @@ const App = ({
             </Drawer>
           </Switch>
         ) : (
-          <>
-            <Route path={"/"}>
-              <LoginForm handleLogin={setIsLoggedIn} />
-            </Route>
-          </>
-        )}
+            <>
+              <Route path={"/"}>
+                <LoginForm />
+              </Route>
+            </>
+          )}
       </Router>
     </div>
   );
 };
 const mapStateToProps = (state) => {
+  // console.log(state);
   return {
     projectCard_popup: {
       shouldShow: state.app.ui_projectCard_popup.shouldShow,
@@ -179,6 +203,14 @@ const mapStateToProps = (state) => {
       anchor: state.app.ui_column_popup.anchor,
     },
     newTaskDisplay: state.taskDisplay.newTaskDisplay,
+    assigneeScrollable: state.app.ui_assignee_scroll_popup,
+    isLoggedIn: state.user.isLoggedIn,
+    userId: state.user.id,
+    calender_popup: {
+      shouldShow: state.app.ui_calendar_popup.shouldShow,
+      anchor: state.app.ui_calendar_popup.anchor,
+
+    }
   };
 };
 export default connect(mapStateToProps, { init_user })(App);

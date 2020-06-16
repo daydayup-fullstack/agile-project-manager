@@ -6,7 +6,7 @@ import { applyMiddleware, combineReducers, createStore } from "redux";
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { Provider } from "react-redux";
 
-import {project, user, workspace, taskDisplay, app, allProjects} from "./reducers";
+import {project, user, workspace, taskDisplay, app, allProjects,allMembers} from "./reducers";
 
 import thunk from "redux-thunk";
 
@@ -18,6 +18,7 @@ const reducers = combineReducers({
   taskDisplay,
   app,
   allProjects,
+  allMembers,
 });
 const store = createStore(reducers, {}, composeWithDevTools(applyMiddleware(...middleware)));
 

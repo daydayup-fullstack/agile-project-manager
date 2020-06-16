@@ -1,7 +1,7 @@
 import React from "react";
 import "./DateDisplay.css";
 
-const DateDisplay = ({ date }) => {
+const DateDisplay = ({ date, handleClick }) => {
   const [isLate, setIsLate] = React.useState(false);
   const [isClose, setIsClose] = React.useState(false);
   const [dateString, setDateString] = React.useState("");
@@ -52,7 +52,7 @@ const DateDisplay = ({ date }) => {
   }, [dueDate, options, today, tomorrow, yesterday]);
 
   return (
-    <div className={`DateDisplay `}>
+    <div className={`DateDisplay `} onClick={handleClick}>
       <span className={`${isClose && "isClose"} ${isLate && "isLate"}`}>
         {dateString}
       </span>
