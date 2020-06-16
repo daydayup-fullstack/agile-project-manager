@@ -22,3 +22,17 @@ export const deleteColumnFromServer = async (columnId) => {
         console.log(e);
     }
 };
+
+export const updateColumnToServer = async (column) => {
+    try {
+        const {title, taskIds} = column;
+        const response = await backend.put(`/columns/${column.id}`, {
+            title,
+            taskIds,
+        });
+
+        console.log(response);
+    } catch (e) {
+        console.log(e);
+    }
+};
