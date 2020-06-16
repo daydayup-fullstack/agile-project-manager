@@ -1,21 +1,22 @@
 import React from "react";
-import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import {DragDropContext, Droppable} from "react-beautiful-dnd";
 import "./Kanban.css";
 import BoardColumn from "../Kanban-BoardColumn/BoardColumn";
 import TaskCardList from "../Kanban-TaskCardList/TaskCardList";
 import AddNewColumn from "../Kanban-AddNewColumn/AddNewColumn";
-import { connect } from "react-redux";
-import { project_changed } from "../../actions";
+import {connect} from "react-redux";
+import {project_changed} from "../../actions";
+import {updateColumnToServer} from "../../apis/api";
 
-const Kanban = ({ project, project_changed }) => {
+const Kanban = ({project, project_changed}) => {
   const onDragEnd = (result) => {
-    const { destination, source, draggableId, type } = result;
+    const {destination, source, draggableId, type} = result;
 
     if (!destination) return;
 
     if (
-      destination.droppableId === source.droppableId &&
-      destination.index === source.index
+        destination.droppableId === source.droppableId &&
+        destination.index === source.index
     )
       return;
 
@@ -56,6 +57,7 @@ const Kanban = ({ project, project_changed }) => {
         };
 
         project_changed(newState);
+        updateColumnToServer(newColumn);
         return;
       }
 
@@ -87,50 +89,52 @@ const Kanban = ({ project, project_changed }) => {
       };
 
       project_changed(newState);
+      updateColumnToServer(updatedStart);
+      updateColumnToServer(updatedFinish);
     }
   };
 
   let renderColumns = () => {
     if (project.columnOrder) {
       return project.columnOrder.map((columnId, index) => (
-        <BoardColumn
-          key={columnId}
-          column={project.columns[columnId]}
-          index={index}
-        >
-          {
-            <TaskCardList
-              tasks={project.columns[columnId].taskIds.map(
-                (taskId) => project.tasks[taskId]
-              )}
-              columnId={columnId}
-            />
-          }
-        </BoardColumn>
+          <BoardColumn
+              key={columnId}
+              column={project.columns[columnId]}
+              index={index}
+          >
+            {
+              <TaskCardList
+                  tasks={project.columns[columnId].taskIds.map(
+                      (taskId) => project.tasks[taskId]
+                  )}
+                  columnId={columnId}
+              />
+            }
+          </BoardColumn>
       ));
     }
   };
 
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <Droppable
-        droppableId={project.id}
-        direction={"horizontal"}
-        type={"column"}
-      >
-        {(provided) => (
-          <div
-            className={"kanban"}
-            {...provided.droppableProps}
-            ref={provided.innerRef}
-          >
-            {renderColumns()}
-            {provided.placeholder}
-            <AddNewColumn />
-          </div>
-        )}
-      </Droppable>
-    </DragDropContext>
+      <DragDropContext onDragEnd={onDragEnd}>
+        <Droppable
+            droppableId={project.id}
+            direction={"horizontal"}
+            type={"column"}
+        >
+          {(provided) => (
+              <div
+                  className={"kanban"}
+                  {...provided.droppableProps}
+                  ref={provided.innerRef}
+              >
+                {renderColumns()}
+                {provided.placeholder}
+                <AddNewColumn/>
+              </div>
+          )}
+        </Droppable>
+      </DragDropContext>
   );
 };
 
@@ -140,4 +144,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { project_changed })(Kanban);
+export default connect(mapStateToProps, {project_changed})(Kanban);
