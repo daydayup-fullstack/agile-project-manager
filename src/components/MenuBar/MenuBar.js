@@ -94,7 +94,6 @@ const MenuBar = ({
   }
 
   function handleKeyDown(e) {
-    e.preventDefault();
     if (e.key === "Enter") {
       updateProject(e);
       e.target.blur();
