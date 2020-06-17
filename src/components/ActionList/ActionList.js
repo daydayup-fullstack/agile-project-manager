@@ -17,7 +17,6 @@ import {Link, BrowserRouter as Router} from "react-router-dom";
 import {
     deleteColumnFromServer,
     deleteTaskFromServer,
-    saveColumnToServer,
     updateColumnToServer,
 } from "../../apis/api";
 
@@ -37,7 +36,6 @@ const ActionList = ({
                         column_popup,
                         project_changed,
                         delete_project,
-                        handleLogin,
                         logout_user,
                         change_workspace,
                     }) => {

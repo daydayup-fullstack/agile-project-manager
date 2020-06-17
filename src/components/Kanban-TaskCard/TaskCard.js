@@ -15,7 +15,6 @@ import DateDisplay from "../DateDisplay/DateDisplay";
 import CompleteButton from "../CompleteButton/CompleteButton";
 import {handleUpload, useDropzone} from "../../hooks/customHooks";
 import {
-    updateColumnToServer,
     updateTaskImageCover,
     updateTaskToServer,
 } from "../../apis/api";

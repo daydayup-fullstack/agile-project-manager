@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import AssigneeItem from './AssigneeItem/AssigneeItem'
 import './AssigneeArray.css'
 import { LoadingSpinner } from './LoadingSpinner/LoadingSpinner'

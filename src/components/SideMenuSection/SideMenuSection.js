@@ -1,7 +1,6 @@
 import React from "react";
 import "./SideMenuSection.css";
 import { colorInOrder } from "../ColorArray/ColorArray";
-import Profile from "../Profile/Profile";
 import { Link, NavLink } from "react-router-dom";
 
 export const Favorites = ({ projects }) => {
