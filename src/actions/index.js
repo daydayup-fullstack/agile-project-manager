@@ -1,5 +1,5 @@
 import backend from "../apis/backend";
-import {login} from "../model/utility";
+import myFirebase from "../Firebase/firebase";
 // ============== User ========================
 //
 export const INIT_USER_REQUESTED = "INIT_USER";
@@ -35,9 +35,8 @@ export const init_user = (userId) => async (dispatch) => {
 
 export const USER_LOGIN = "USER_LOGIN";
 export const login_user = ({username, password}) => async (dispatch) => {
-    const result = await login(username, password);
-
-    let {userId} = JSON.parse(result);
+    const res = await myFirebase.doSignInWithEmailAndPassword(username, password);
+    const userId = res.user.uid;
 
     dispatch({
         type: USER_LOGIN,
