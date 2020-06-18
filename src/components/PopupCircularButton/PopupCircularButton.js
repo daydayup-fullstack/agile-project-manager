@@ -3,12 +3,14 @@ import "./PopupCircularButton.css";
 import { connect } from "react-redux";
 import {
   hide_calendar_popup,
+  hide_task_assignee_scrollable_popup,
 } from "../../actions";
 
 const PopupCircularButton = ({
   children,
   anchor = { x: 0, y: 0, width: 0, height: 0 },
-  hide_calendar_popup
+  hide_calendar_popup,
+  hide_task_assignee_scrollable_popup,
 }) => {
   const [origin, setOrigin] = useState({
     x: 0,
@@ -18,7 +20,16 @@ const PopupCircularButton = ({
   });
   const popup = useRef(null);
 
+  const handleContainerClick = (e) => {
+    e.stopPropagation();
+    hide_calendar_popup();
+    hide_task_assignee_scrollable_popup()
+  }
 
+  const handleContentClick = (e) => {
+    // e.nativeEvent.stopImmediatePropagation();
+    e.stopPropagation();
+  }
   useEffect(() => {
     const OFFSET_X = 7;
     if (anchor.y + popup.current.clientHeight > window.innerHeight) {
@@ -43,9 +54,10 @@ const PopupCircularButton = ({
 
   return (
     <div
-      className="PopupCircularButton__container">
+      className="PopupCircularButton__container" onClick={handleContainerClick}>
       <div
         className="PopupCircularButton__content"
+        onClick={handleContentClick}
         ref={popup}
         style={{
           top: `${origin.y}px`,
@@ -64,5 +76,6 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps, {
-  hide_calendar_popup
+  hide_calendar_popup,
+  hide_task_assignee_scrollable_popup
 })(PopupCircularButton);

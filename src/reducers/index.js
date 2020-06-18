@@ -95,8 +95,8 @@ const initialAppState = {
   ui_isProjectLoading: false,
   ui_calendar_popup: {
     shouldShow: false,
-    anchor: { x: 0, y: 0, width: 0, height: 0}
-  }
+    anchor: { x: 0, y: 0, width: 0, height: 0 },
+  },
 };
 
 export const app = (state = initialAppState, action) => {
@@ -150,9 +150,9 @@ export const app = (state = initialAppState, action) => {
         ui_calendar_popup: {
           shouldShow: true,
           anchor: action.payload.anchor,
-          calendarId: action.payload.calendarId
-        }
-      }
+          calendarId: action.payload.calendarId,
+        },
+      };
     }
 
     case HIDE_CALENDAR_POPUP: {
@@ -160,8 +160,8 @@ export const app = (state = initialAppState, action) => {
         ...state,
         ui_calendar_popup: {
           shouldShow: false,
-        }
-      }
+        },
+      };
     }
     //========
     case SHOW_PROJECT_CARD_POPUP:
@@ -474,7 +474,7 @@ export const user = (state = initialUserState, action) => {
 
 const initialWorkspace = {
   type: "",
-  projectOrder: [],
+  projectsInOrder: [],
   members: [],
   description: "",
   name: "",
@@ -495,7 +495,6 @@ export const workspace = (state = initialWorkspace, action) => {
       };
     }
     case WORKSPACE_CHANGED: {
-      // todo - future async might be needed
       return {
         id: action.workspaceId,
         ...db_workspaces[action.workspaceId],
@@ -641,7 +640,6 @@ export const allProjects = (state = projectsInitial, action) => {
       return [];
     }
     case WORKSPACE_CHANGED: {
-      // todo - future async fetch
       const projects = db_workspaces[action.workspaceId].projectsInOrder.map(
         (id) => db_projects[id]
       );
@@ -666,7 +664,7 @@ export const allProjects = (state = projectsInitial, action) => {
     }
 
     case PROJECT_ADDED: {
-      return [...state, action.payload];
+      return [...state, action.project];
     }
 
     case PROJECT_DELETED: {

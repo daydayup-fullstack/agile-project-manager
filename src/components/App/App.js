@@ -21,7 +21,7 @@ import ActionList from "../ActionList/ActionList";
 import Tooltip from "../Tooltip/Tooltip";
 import AddTaskPopup from "../AddTaskPopup/AddTaskPopup";
 import { db_users } from "../../data/database";
-import { init_user} from "../../actions";
+import { init_user } from "../../actions";
 import AssigneeArrayContainer from "../AssigneeArray/AssigneeArrayContainer/AssigneeArrayContainer"
 import PopupCircularButton from "../PopupCircularButton/PopupCircularButton"
 import CalendarPopup from "../CalendarPopup/CalendarPopup";
@@ -40,14 +40,12 @@ const App = ({
   assigneeScrollable,
   isLoggedIn,
   userId,
-  calender_popup,
-  
+  calender_popup
 }) => {
 
   React.useEffect(() => {
     if (userId !== "" || userId) {
       init_user(userId);
-       
     }
   }, [init_user, userId]);
 
