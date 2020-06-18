@@ -207,7 +207,7 @@ const TaskCard = ({
     }
 
     const renderUserProfile = () => {
-        if (task.assignedUserIds[0] && task.assignedUserIds[0] !== "") {
+        if (task.assignedUserIds && task.assignedUserIds.length > 0) {
             return (
                 <>
                     <Profile user={task.assignedUserIds[0]}/>
