@@ -1,0 +1,46 @@
+.UploadingPhotoBlock {
+  height: 4rem;
+  width: 280px;
+  border-radius: 0.5rem;
+  border: 1px solid #e8ecee;
+  display: flex;
+  align-items: center;
+}
+.UploadingPhotoBlock__icon {
+  color: #9ca6af;
+  font-size: 3rem;
+  margin-left: 0.25rem;
+}
+.UploadingPhotoBlock__info {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-right: 1rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.81rem;
+  font-weight: 400;
+  color: #151b26;
+  margin-left: 0.25rem;
+}
+.UploadingPhotoBlock__info .title {
+  margin-bottom: 0.3rem;
+}
+.UploadingPhotoBlock__info .ProgressBar {
+  height: 0.5rem;
+  background-color: crimson;
+  border-radius: 0.2rem;
+}
+
+.MoreActions {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 400;
+  padding: 0.1rem 0;
+  color: #9ca6af;
+}
+.MoreActions__download:hover {
+  color: #20AAEA;
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=UploadingPhotoBlock.css.map */

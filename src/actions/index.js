@@ -1,5 +1,5 @@
 import backend from "../apis/backend";
-import { login } from "../model/utility";
+import myFirebase from "../Firebase/firebase";
 // ============== User ========================
 //
 export const INIT_USER_REQUESTED = "INIT_USER";
@@ -18,7 +18,7 @@ const init_user_success = (response) => {
     };
 };
 export const INIT_USER_FAILED = "INIT_USER_FAILED";
-const init_user_failed = (e) => {
+export const init_user_failed = (e) => {
     return {
         type: INIT_USER_FAILED,
         error: e,
@@ -34,73 +34,59 @@ export const init_user = (userId) => async (dispatch) => {
 };
 
 export const USER_LOGIN = "USER_LOGIN";
-export const login_user = ({ username, password }) => async (dispatch) => {
-    const result = await login(username, password);
-
-    let { userId } = JSON.parse(result);
-
-    dispatch({
-        type: USER_LOGIN,
-        userId: userId || "",
-    });
+export const login_user = ({username, password}) => async (dispatch) => {
+    try {
+        const res = await myFirebase.doSignInWithEmailAndPassword(
+            username,
+            password
+        );
+        const userId = res.user.uid;
+        dispatch({
+            type: USER_LOGIN,
+            userId: userId || "",
+        });
+    } catch (e) {
+        console.log(e);
+    }
 };
 
 export const USER_LOGOUT = "USER_LOGOUT";
-export const logout_user = () => {
-    return {
-        type: USER_LOGOUT,
-    };
+export const logout_user = () => async (dispatch) => {
+    try {
+        dispatch({
+            type: USER_LOGOUT,
+        });
+        await myFirebase.doSignOut();
+    } catch (e) {
+        console.log(e);
+    }
 };
 
 // ============== Workspace ====================
 export const WORKSPACE_CHANGED = "WORKSPACE_CHANGED";
-export const change_workspace = (workspaceId) => {
-    return {
-        type: WORKSPACE_CHANGED,
-        workspaceId,
-    };
-};
+export const WORKSPACE_CHANGED_FAILED = "WORKSPACE_CHANGED_FAILED";
 
-// ============== Project ========================
-// region- Project related actions
-// export const PROJECT_SELECTED = "PROJECT_SELECTED";
-// export const project_selected = (project) => {
-//   let columns = {};
-//   let tasks = {};
-//
-//   if (!project.columns) {
-//     columns = { ...db_columns };
-//   }
-//
-//   if (!project.tasks) {
-//     tasks = { ...db_tasks };
-//   }
-//
-//   // todo - change to dynamic data source
-//   return {
-//     type: PROJECT_SELECTED,
-//     project,
-//     columns: {
-//       ...project.columns,
-//       ...columns,
-//     },
-//     tasks: {
-//       ...project.tasks,
-//       ...tasks,
-//     },
-//   };
-// };
+export const change_workspace = (workspace) => async (dispatch) => {
+    try {
+        // load all projects under new workspace
+        const res = await backend.get(`/workspaces/${workspace.id}`);
+
+        dispatch({
+            type: WORKSPACE_CHANGED,
+            workspace: res.data.workspace,
+            allProjects: res.data.allProjects,
+        });
+    } catch (e) {
+        dispatch({
+            type: WORKSPACE_CHANGED_FAILED,
+            error: e,
+        });
+    }
+};
 
 export const PROJECT_SELECTED_REQUESTED = "PROJECT_SELECTED_REQUESTED";
-const project_selected_requested = () => {
-    return {
-        type: PROJECT_SELECTED_REQUESTED,
-    };
-};
-
 export const PROJECT_SELECTED_SUCCESS = "PROJECT_SELECTED_SUCCESS";
 const project_selected_success = (project, response) => {
-    console.log(response.data);
     return {
         type: PROJECT_SELECTED_SUCCESS,
         project,
@@ -125,7 +111,9 @@ const project_selected_failed = (error) => {
 
 export const project_selected = (project) => async (dispatch) => {
     try {
-        dispatch(project_selected_requested());
+        dispatch({
+            type: PROJECT_SELECTED_REQUESTED,
+        });
         const response = await backend.get(`/projects/${project.id}`);
         dispatch(project_selected_success(project, response));
     } catch (e) {

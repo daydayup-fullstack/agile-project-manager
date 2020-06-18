@@ -36,7 +36,7 @@ export const handleUpload = (fileList) => {
 
   // must be an image file
   // file size can not exceed 2mb
-  // can only upload 5 image files at once
+  // can only upload 1 image files at once
 
   try {
     if (files.length > MAX_NUMBER_OF_FILES) {

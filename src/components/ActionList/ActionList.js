@@ -11,36 +11,33 @@ import {
     project_changed,
     remove_project_star,
 } from "../../actions";
-import { db_workspaces } from "../../data/database";
-import { generateId } from "../../model/utility";
-import { Link, BrowserRouter as Router } from "react-router-dom";
+import {generateId} from "../../model/utility";
+import {Link, BrowserRouter as Router} from "react-router-dom";
 import {
     deleteColumnFromServer,
     deleteTaskFromServer,
-    saveColumnToServer,
     updateColumnToServer,
 } from "../../apis/api";
 
 const ActionList = ({
-    project,
-    starredProjects,
-    remove_project_star,
-    add_project_star,
-    projectCard_popup,
-    header_project_icon_popup,
-    header_project_info_popup,
-    header_profile_popup,
-    taskcard_context_menu,
-    currentWorkspace,
-    workspaces,
-    header_filter_popup,
-    column_popup,
-    project_changed,
-    delete_project,
-    handleLogin,
-    logout_user,
-    change_workspace,
-}) => {
+                        project,
+                        starredProjects,
+                        remove_project_star,
+                        add_project_star,
+                        projectCard_popup,
+                        header_project_icon_popup,
+                        header_project_info_popup,
+                        header_profile_popup,
+                        taskcard_context_menu,
+                        currentWorkspace,
+                        user,
+                        header_filter_popup,
+                        column_popup,
+                        project_changed,
+                        delete_project,
+                        logout_user,
+                        change_workspace,
+                    }) => {
     const expandableAction = React.useRef(null);
     const popupItself = React.useRef(null);
     const nextAction = React.useRef(null);
@@ -210,7 +207,7 @@ const ActionList = ({
     const ProfilePopup = () => {
         function handleClick(selectedWorkspaceId) {
             if (selectedWorkspaceId !== currentWorkspace) {
-                change_workspace(selectedWorkspaceId);
+                change_workspace(user.allWorkspaces[selectedWorkspaceId]);
             }
         }
 
@@ -218,20 +215,20 @@ const ActionList = ({
             <Router>
                 <div className={"ProfilePopup"}>
                     <ul>
-                        {workspaces.map((w) => {
+                        {user.workspaces.map((id) => {
                             return (
                                 <li
                                     onMouseOver={dismissNextLevel}
-                                    onClick={() => handleClick(w)}
+                                    onClick={() => handleClick(id)}
                                 >
-                                    {w === currentWorkspace.id && (
+                                    {id === currentWorkspace.id && (
                                         <span className={"material-icons ProfilePopup__current"}>
                                             done
                                         </span>
                                     )}
-                                    {db_workspaces[w].type === "personal"
+                                    {user.allWorkspaces[id].type === "personal"
                                         ? "Personal projects"
-                                        : db_workspaces[w].name}
+                                        : user.allWorkspaces[id].name}
                                 </li>
                             );
                         })}
@@ -240,7 +237,6 @@ const ActionList = ({
                     <div className="divider" />
 
                     <ul>
-                        {/*<li onMouseOver={dismissNextLevel}>Settings</li>*/}
                         <li
                             onMouseOver={dismissNextLevel}
                             onClick={() => {
@@ -563,7 +559,7 @@ const mapStateToProps = (state) => {
             column: state.app.ui_column_popup.column,
         },
         currentWorkspace: state.workspace,
-        workspaces: state.user.workspaces,
+        user: state.user,
     };
 };
 

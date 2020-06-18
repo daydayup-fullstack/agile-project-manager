@@ -21,8 +21,16 @@ $purple: #796eff;
   width: 100vw;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+
+  .app-logo {
+    color: $gray-300;
+    position: absolute;
+    bottom: 3rem;
+  }
 
   &__error {
     position: absolute;
@@ -138,6 +146,7 @@ $purple: #796eff;
           &:focus {
             border-color: rgba($purple, 0.8);
           }
+
           &::placeholder {
             color: $gray-300;
           }

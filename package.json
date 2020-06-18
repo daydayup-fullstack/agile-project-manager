@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.19.2",
     "date-fns": "^2.14.0",
+    "firebase": "^7.15.1",
     "normalize.css": "^8.0.1",
     "react": "^16.13.1",
     "react-beautiful-dnd": "^13.0.0",

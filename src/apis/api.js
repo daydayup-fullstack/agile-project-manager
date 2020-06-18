@@ -101,18 +101,23 @@ export const saveNewProjectToServer = async (newProject, workspace) => {
     }
 };
 
-export const saveNewTaskToServer = async (newTask) => {
+export const deleteTaskFromServer = async (task) => {
     try {
-        // const {} = newTask;
+        const response = await backend.delete(`/tasks/${task.id}`);
+        console.log(response);
     } catch (e) {
         console.log(e);
     }
 };
 
-export const deleteTaskFromServer = async (task) => {
+export const updateUserToServer = async (user) => {
     try {
-        const response = await backend.delete(`/tasks/${task.id}`);
-        console.log(response);
+        const res = await backend.put(`/users/${user.id}`, {
+            starredProjects: user.starredProjects,
+            workspaces: user.workspaces,
+        });
+
+        console.log(res);
     } catch (e) {
         console.log(e);
     }

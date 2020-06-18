@@ -1,65 +1,60 @@
 import React from "react";
 import "./Drawer.css";
-import { close_app_drawer } from "../../actions";
-import { connect } from "react-redux";
+import {close_app_drawer} from "../../actions";
+import {connect} from "react-redux";
 import SideMenuSection, {
   Favorites,
   Team,
 } from "../SideMenuSection/SideMenuSection";
-import { team } from "../../data/database";
 
 const Drawer = ({
-  nav,
-  children,
-  shouldOpen,
-  close_app_drawer,
-  starredProjects,
-  currentWorkspace,
-  allProjects,
-}) => {
+                  nav,
+                  children,
+                  shouldOpen,
+                  close_app_drawer,
+                  starredProjects,
+                  currentWorkspace,
+                  allProjects,
+                }) => {
   const favorites = allProjects.filter(
-    (project) => starredProjects.indexOf(project.id) >= 0
+      (project) => starredProjects.indexOf(project.id) >= 0
   );
 
   return (
-    <div className="Drawer">
-      <section
-        className={`SideMenu ${
-          shouldOpen ? "SideMenu--open" : "SideMenu--close"
-        }`}
-      >
-        <header className={"SideMenu--header"}>
-          <h1>Agilo</h1>
-          <span
-            className="material-icons"
-            onClick={() => {
-              close_app_drawer();
-            }}
-          >
+      <div className="Drawer">
+        <section
+            className={`SideMenu ${
+                shouldOpen ? "SideMenu--open" : "SideMenu--close"
+            }`}
+        >
+          <header className={"SideMenu--header"}>
+            <h1>Agilo</h1>
+            <span
+                className="material-icons"
+                onClick={() => {
+                  close_app_drawer();
+                }}
+            >
             menu_open
           </span>
-        </header>
-        <div className="SideMenu--content">
-          {nav}
-          <div className="below">
-            <SideMenuSection>
-              <Favorites projects={favorites} />
-            </SideMenuSection>
-            <SideMenuSection>
-              <Team
-                projects={allProjects}
-                team={team}
-                workspace={currentWorkspace}
-              />
-            </SideMenuSection>
+          </header>
+          <div className="SideMenu--content">
+            {nav}
+            <div className="below">
+              <SideMenuSection>
+                <Favorites projects={favorites}/>
+              </SideMenuSection>
+              <SideMenuSection>
+                <Team projects={allProjects} workspace={currentWorkspace}/>
+              </SideMenuSection>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className={`main`}>
-        <div className="main--content">{children}</div>
-      </section>
-    </div>
+        <section className={`main`}>
+          <div className="main--content">{children}</div>
+        </section>
+      </div>
   );
 };
 
@@ -72,4 +67,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { close_app_drawer })(Drawer);
+export default connect(mapStateToProps, {close_app_drawer})(Drawer);
