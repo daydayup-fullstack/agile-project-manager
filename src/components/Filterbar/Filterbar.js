@@ -1,7 +1,7 @@
 import React from "react";
 import "./Filterbar.css";
 import { connect } from "react-redux";
-import { show_header_filter_popup } from "../../actions";
+import { show_header_filter_popup,member_list } from "../../actions";
 
 
 const Filterbar = ({ show_header_filter_popup,show}) => {
@@ -14,12 +14,7 @@ const Filterbar = ({ show_header_filter_popup,show}) => {
     };
     return anchor;
   };
-  // const [showMyName,setshowMyName]=React.useState(false);
-
-  // const show=()=> {    //toggle函数控制filter名字
-  //   return showMyName ? setshowMyName(false):setshowMyName(true); 
-   
-  // }
+  
   function filterByCompletion(e) {
     show_header_filter_popup({
       anchor: getAnchor(e),
@@ -27,11 +22,8 @@ const Filterbar = ({ show_header_filter_popup,show}) => {
     });
   }
 
-  function filterByDeadline(e) {
-    show_header_filter_popup({
-      anchor: getAnchor(e),
-      content: 'FilterFilter',
-    });
+  function filterByDeadline() {
+    member_list();
   }
 
   function sortByCriteria(e) {
@@ -51,7 +43,7 @@ const Filterbar = ({ show_header_filter_popup,show}) => {
         </button>
         <button className="Filterbar_button" onClick={filterByDeadline}>
           <span className="material-icons">filter_list</span>
-          {show}
+          Filter
         </button>
         <button className="Filterbar_button" onClick={sortByCriteria}>
           <span className="material-icons">swap_vert</span>Sort
