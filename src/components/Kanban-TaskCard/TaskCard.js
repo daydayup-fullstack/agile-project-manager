@@ -211,10 +211,10 @@ const TaskCard = ({
     }
 
     const renderUserProfile = () => {
-        if (task.assignedUserId && task.assignedUserId !== "") {
+        if (task.assignedUserIds[0] && task.assignedUserIds[0] !== "") {
             return (
                 <>
-                    <Profile user={task.assignedUserId}/>
+                    <Profile user={task.assignedUserIds[0]}/>
                 </>
             );
         } else {
@@ -279,6 +279,7 @@ const TaskCard = ({
                 height: e.currentTarget.clientHeight,
             },
             assigneeId: task.id,
+            project,
         });
     };
 

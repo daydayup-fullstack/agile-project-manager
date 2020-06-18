@@ -339,6 +339,7 @@ export const app = (state = initialAppState, action) => {
           shouldShow: true,
           anchor: action.anchor,
           assigneeId: action.assigneeId,
+          project:action.project
         },
       };
 
