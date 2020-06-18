@@ -35,13 +35,31 @@ export const init_user = (userId) => async (dispatch) => {
 
 export const USER_LOGIN = "USER_LOGIN";
 export const login_user = ({username, password}) => async (dispatch) => {
-    const res = await myFirebase.doSignInWithEmailAndPassword(username, password);
-    const userId = res.user.uid;
-
-    dispatch({
-        type: USER_LOGIN,
-        userId: userId || "",
-    });
+    try {
+        myFirebase.auth.onAuthStateChanged(async (user) => {
+            if (!user) {
+                console.log("Not logged in");
+                const res = await myFirebase.doSignInWithEmailAndPassword(
+                    username,
+                    password
+                );
+                const userId = res.user.uid;
+                console.log("now logged in");
+                dispatch({
+                    type: USER_LOGIN,
+                    userId: userId || "",
+                });
+            } else {
+                console.log("Already logged in");
+                dispatch({
+                    type: USER_LOGIN,
+                    userId: user.uid,
+                });
+            }
+        });
+    } catch (e) {
+        console.log(e);
+    }
 };
 
 export const USER_LOGOUT = "USER_LOGOUT";
