@@ -1,26 +1,32 @@
 * {
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
+
 *::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
+
 *::-webkit-scrollbar-thumb {
   border-radius: 8px;
   background-color: rgba(144, 146, 152, 0.3);
+  -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
 }
+
 *::-webkit-scrollbar-thumb:hover {
   background: #bbb;
 }
+
 *::-webkit-scrollbar-track {
   background: #ededed;
 }
+
 * a {
   text-decoration: none;
   color: #151b26;
 }
-
 /*# sourceMappingURL=index.css.map */

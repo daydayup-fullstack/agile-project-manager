@@ -1,4 +1,4 @@
-import { db_projects, db_workspaces, loadInitialData } from "../data/database";
+import { db_projects, db_workspaces } from "../data/database";
 import {
   DRAWER_CLOSED,
   DRAWER_OPENED,
@@ -9,8 +9,8 @@ import {
   HIDE_HEADER_PROJECT_INFO_POPUP,
   HIDE_PROJECT_CARD_POPUP,
   HIDE_ADD_MEMBER_POPUP,
+  HIDE_TASK_ASSIGNEE_SCROLLABLE_POPUP,
   PROJECT_CHANGED,
-  PROJECT_SELECTED,
   PROJECT_STAR_ADDED,
   PROJECT_STAR_REMOVED,
   SHOW_HEADER_ADD_BUTTON_POPUP,
@@ -20,6 +20,8 @@ import {
   SHOW_HEADER_PROJECT_INFO_POPUP,
   SHOW_PROJECT_CARD_POPUP,
   SHOW_ADD_MEMBER_POPUP,
+  SHOW_TASK_ASSIGNEE_SCROLLABLE_POPUP,
+  SET_TASK_ASSIGNEE,
   CHANGE_NEW_TASK_DISPLAY,
   CHANGE_CALENDAR_DISPLAY,
   SHOW_TASKCARD_CONTEXT_MENU_POPUP,
@@ -28,10 +30,19 @@ import {
   HIDE_COLUMN_POPUP,
   PROJECT_DELETED,
   PROJECT_ADDED,
-  INIT_USER,
   WORKSPACE_CHANGED,
+  USER_LOGIN,
+  USER_LOGOUT,
+  INIT_USER_SUCCESS,
+  INIT_USER_FAILED,
+  INIT_USER_REQUESTED,
+  PROJECT_SELECTED_SUCCESS,
+  PROJECT_SELECTED_REQUESTED,
+  PROJECT_SELECTED_FAILED,
+  SHOW_CALENDAR_POPUP,
+  HIDE_CALENDAR_POPUP,
+  SET_TASK_DUE_DAY,
 } from "../actions";
-const devId = "user-scott";
 
 // ============= APP reducers ==================
 const initialAppState = {
@@ -71,10 +82,83 @@ const initialAppState = {
     shouldShow: false,
     anchor: { x: 0, y: 0, width: 0, height: 0 },
   },
+  ui_assignee_scroll_popup: {
+    shouldShow: false,
+    anchor: { x: 0, y: 0, width: 0, height: 0 },
+  },
+  ui_isWorkspaceLoading: false,
+  ui_isProjectLoading: false,
+  ui_calendar_popup: {
+    shouldShow: false,
+    anchor: { x: 0, y: 0, width: 0, height: 0 },
+  },
 };
 
 export const app = (state = initialAppState, action) => {
   switch (action.type) {
+    case INIT_USER_REQUESTED: {
+      return {
+        ...state,
+        ui_isWorkspaceLoading: true,
+      };
+    }
+
+    case INIT_USER_SUCCESS: {
+      return {
+        ...state,
+        ui_isWorkspaceLoading: false,
+      };
+    }
+
+    case INIT_USER_FAILED: {
+      return {
+        ...state,
+        ui_isWorkspaceLoading: false,
+      };
+    }
+
+    case PROJECT_SELECTED_REQUESTED: {
+      return {
+        ...state,
+        ui_isProjectLoading: true,
+      };
+    }
+
+    case PROJECT_SELECTED_SUCCESS: {
+      return {
+        ...state,
+        ui_isProjectLoading: false,
+      };
+    }
+
+    case PROJECT_SELECTED_FAILED: {
+      return {
+        ...state,
+        ui_isProjectLoading: false,
+      };
+    }
+
+    //========
+    case SHOW_CALENDAR_POPUP: {
+      return {
+        ...state,
+        ui_calendar_popup: {
+          shouldShow: true,
+          anchor: action.payload.anchor,
+          calendarId: action.payload.calendarId,
+        },
+      };
+    }
+
+    case HIDE_CALENDAR_POPUP: {
+      return {
+        ...state,
+        ui_calendar_popup: {
+          shouldShow: false,
+        },
+      };
+    }
+    //========
     case SHOW_PROJECT_CARD_POPUP:
       return {
         ...state,
@@ -248,6 +332,25 @@ export const app = (state = initialAppState, action) => {
       };
     }
 
+    case SHOW_TASK_ASSIGNEE_SCROLLABLE_POPUP:
+      return {
+        ...state,
+        ui_assignee_scroll_popup: {
+          shouldShow: true,
+          anchor: action.anchor,
+          assigneeId: action.assigneeId,
+          project:action.project
+        },
+      };
+
+    case HIDE_TASK_ASSIGNEE_SCROLLABLE_POPUP:
+      return {
+        ...state,
+        ui_assignee_scroll_popup: {
+          shouldShow: false,
+        },
+      };
+
     default:
       return {
         ...state,
@@ -256,10 +359,46 @@ export const app = (state = initialAppState, action) => {
 };
 // ============= USER reducers ==================
 
-const initialUserState = { ...loadInitialData(devId).user };
+const initialUserState = {
+  id: "",
+  firstName: "",
+  lastName: "",
+  email: "",
+  privateProjects: [],
+  avatar: "",
+  colorIndex: 0,
+  starredProjects: [],
+  workspaces: [],
+  isLoggedIn: false,
+};
 
 export const user = (state = initialUserState, action) => {
   switch (action.type) {
+    case USER_LOGIN: {
+      return {
+        ...state,
+        id: action.userId,
+      };
+    }
+    case INIT_USER_SUCCESS: {
+      return {
+        ...state,
+        ...action.user,
+        isLoggedIn: true,
+      };
+    }
+    case INIT_USER_FAILED: {
+      return {
+        ...state,
+        error: action.error,
+      };
+    }
+    case USER_LOGOUT: {
+      return {
+        ...state,
+        isLoggedIn: false,
+      };
+    }
     case PROJECT_STAR_ADDED: {
       return {
         ...state,
@@ -289,7 +428,6 @@ export const user = (state = initialUserState, action) => {
     }
 
     case WORKSPACE_CHANGED: {
-
       const index = state.workspaces.indexOf(action.workspaceId);
       const newWorkspaces = [...state.workspaces];
 
@@ -298,13 +436,7 @@ export const user = (state = initialUserState, action) => {
 
       return {
         ...state,
-        workspaces: [...newWorkspaces]
-      }
-    }
-
-    case INIT_USER: {
-      return {
-        ...state,
+        workspaces: [...newWorkspaces],
       };
     }
 
@@ -317,13 +449,28 @@ export const user = (state = initialUserState, action) => {
 // ============= WORKSPACE reducers ==================
 
 const initialWorkspace = {
-  ...loadInitialData(devId).currentWorkspace,
+  type: "",
+  projectsInOrder: [],
+  members: [],
+  description: "",
+  name: "",
 };
 
 export const workspace = (state = initialWorkspace, action) => {
   switch (action.type) {
+    case INIT_USER_SUCCESS: {
+      return {
+        ...state,
+        ...action.workspace,
+      };
+    }
+    case INIT_USER_FAILED: {
+      return {
+        ...state,
+        error: action.error,
+      };
+    }
     case WORKSPACE_CHANGED: {
-      // todo - future async might be needed
       return {
         id: action.workspaceId,
         ...db_workspaces[action.workspaceId],
@@ -338,12 +485,29 @@ export const workspace = (state = initialWorkspace, action) => {
 };
 
 // ============= PROJECT reducers ==================
-// todo - adding async fetching operation here
 // current selected project - fetching additional data
+const initialProjectState = {
+  id: "",
+  name: "",
+  colorIndex: 0,
+  iconIndex: 0,
+  createdOn: null,
+  dueDate: null,
+  columnOrder: [],
+  activeUsers: [],
+  columns: {},
+  tasks: {},
+};
 
-export const project = (state = {}, action) => {
+export const project = (state = initialProjectState, action) => {
   switch (action.type) {
-    case PROJECT_SELECTED:
+    case PROJECT_SELECTED_FAILED: {
+      return {
+        ...state,
+        error: action.error,
+      };
+    }
+    case PROJECT_SELECTED_SUCCESS:
       const project = {
         ...state,
         ...action.project,
@@ -362,6 +526,30 @@ export const project = (state = {}, action) => {
       return {
         ...state,
         ...action.project,
+      };
+    }
+
+    case SET_TASK_ASSIGNEE:
+      return {
+        ...state,
+        tasks: {
+          ...state.tasks,
+          [action.assigneeId]: {
+            ...state.tasks[action.assigneeId],
+            assignedUserId: action.user,
+          },
+        },
+      };
+    case SET_TASK_DUE_DAY: {
+      return {
+        ...state,
+        tasks: {
+          ...state.tasks,
+          [action.payload.calendarId]: {
+            ...state.tasks[action.payload.calendarId],
+            dueDate: action.payload.dueDate,
+          },
+        },
       };
     }
 
@@ -401,12 +589,17 @@ export const taskDisplay = (state = initialNewTaskDisplay, action) => {
 };
 
 // ==================== allProjects ======================
-const projectsInitial = [...loadInitialData(devId).allProjects];
+const projectsInitial = [];
 
 export const allProjects = (state = projectsInitial, action) => {
   switch (action.type) {
+    case INIT_USER_SUCCESS: {
+      return [...action.allProjects];
+    }
+    case INIT_USER_FAILED: {
+      return [];
+    }
     case WORKSPACE_CHANGED: {
-      // todo - future async fetch
       const projects = db_workspaces[action.workspaceId].projectsInOrder.map(
         (id) => db_projects[id]
       );
@@ -431,7 +624,7 @@ export const allProjects = (state = projectsInitial, action) => {
     }
 
     case PROJECT_ADDED: {
-      return [...state, action.payload];
+      return [...state, action.project];
     }
 
     case PROJECT_DELETED: {

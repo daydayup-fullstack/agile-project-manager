@@ -1,0 +1,17 @@
+.assigneeScrollable {
+  max-height: 190px;
+  width: 500px;
+  list-style: none;
+  border: 1px solid #6f7782;
+  border-radius: .2rem;
+  overflow: auto;
+  background-color: #fff;
+}
+
+.assigneeScrollable .spinner {
+  position: relative;
+  left: 50%;
+  -webkit-transform: translate(-2rem);
+          transform: translate(-2rem);
+}
+/*# sourceMappingURL=AssigneeArray.css.map */

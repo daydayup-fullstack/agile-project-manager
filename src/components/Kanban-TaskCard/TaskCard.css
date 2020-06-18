@@ -2,233 +2,197 @@
   border: 1px solid red;
   width: 17.5rem;
   min-height: 5.25rem;
-  padding: 1rem 1rem 0;
   border: 1px solid #e8ecee;
   background: #fff;
   border-radius: 0.3rem;
   cursor: pointer;
-  -webkit-box-shadow: 0 1px 3px 0 rgba(21, 27, 38, 0.15);
-          box-shadow: 0 1px 3px 0 rgba(21, 27, 38, 0.15);
+  box-shadow: 0 1px 3px 0 rgba(21, 27, 38, 0.15);
   position: relative;
   margin-bottom: 0.5rem;
   font-family: "Poppins", sans-serif;
   font-size: 0.81rem;
   color: #151b26;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  outline: none;
 }
-
 .taskCard--highlighted {
   border: 1px solid #20aaea;
   background: rgba(32, 170, 234, 0.1);
+  outline: none;
 }
-
 .taskCard--completed {
   opacity: 0.5;
 }
-
-.taskCard .taskCard__top {
-  width: 100%;
-  margin-bottom: 0.75rem;
-}
-
-.taskCard .taskCard__top .complete-button {
-  font-size: 0.63rem;
-}
-
-.taskCard .taskCard__top .complete-button:focus {
+.taskCard--dropzone {
+  padding: 1rem 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   outline: none;
 }
-
-.taskCard .coverImage {
+.taskCard--dropzone .uploadArea {
+  height: 0;
+  width: 100%;
+  transition: all 0.3s ease 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.taskCard--dropzone .uploadArea span {
+  opacity: 0;
+  transition: all 0.3s ease 0.2s;
+  font-size: 2rem;
+  color: #9ca6af;
+}
+.taskCard--dropzone .uploadArea--show {
+  height: 5rem;
+  background-color: #e8ecee;
+}
+.taskCard--dropzone .uploadArea--show span {
+  opacity: 0.5;
+}
+.taskCard--dropzone .taskCard__top {
+  width: 100%;
+  margin-bottom: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.taskCard--dropzone .taskCard__top input[type=file] {
+  display: none;
+}
+.taskCard--dropzone .taskCard__top .complete-button {
+  font-size: 0.63rem;
+}
+.taskCard--dropzone .taskCard__top .complete-button:focus {
+  outline: none;
+}
+.taskCard--dropzone .taskCard__top__right {
+  display: flex;
+  align-items: center;
+}
+.taskCard--dropzone .taskCard__top__right span {
+  color: #9ca6af;
+  font-size: 1rem;
+  margin-left: 0.3rem;
+}
+.taskCard--dropzone .taskCard__top__right span:hover {
+  color: #6f7782;
+}
+.taskCard--dropzone .coverImage {
   margin-bottom: 0.8rem;
 }
-
-.taskCard:hover {
+.taskCard--dropzone:hover {
   cursor: pointer;
 }
-
-.taskCard .content {
+.taskCard--dropzone .content {
   width: 100%;
   position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  user-select: none;
 }
-
-.taskCard .content .name {
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
+.taskCard--dropzone .content .name {
   height: fit-content;
   padding: 0.25rem 0;
   width: 100%;
-  border: 1px solid #fff;
+  border: none;
   font-family: "Poppins", sans-serif;
   font-size: 0.81rem;
   font-weight: 400;
   outline: none;
-  width: 70%;
-  color: #6f7782;
+  resize: none;
+  cursor: pointer;
+  background: transparent;
+  pointer-events: none;
 }
-
-.taskCard .content .name:focus {
+.taskCard--dropzone .content .name:focus {
   color: black;
 }
-
-.taskCard .content .new-task-input {
+.taskCard--dropzone .content .new-task-input {
   border: none;
   font-family: "Poppins", sans-serif;
   font-size: 0.81rem;
   font-weight: 400;
   height: 100%;
+  width: 100%;
   resize: none;
 }
-
-.taskCard .content .new-task-input:focus {
+.taskCard--dropzone .content .new-task-input:focus {
   outline: none;
 }
-
-.taskCard .content button {
+.taskCard--dropzone .content button {
   background: none;
   border: none;
   display: inline-block;
   position: relative;
   top: -0.1rem;
-  -webkit-transform: scale(0.8);
-          transform: scale(0.8);
+  transform: scale(0.8);
   visibility: hidden;
   cursor: pointer;
 }
-
-.taskCard .content button span {
+.taskCard--dropzone .content button span {
   color: #9ca6af;
 }
-
-.taskCard .content button span:hover {
+.taskCard--dropzone .content button span:hover {
   color: #6f7782;
 }
-
-.taskCard .extra {
+.taskCard--dropzone .extra {
   height: 2rem;
   position: relative;
   width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
   margin-bottom: 0.5rem;
 }
-
-.taskCard .extra .actions {
-  display: -webkit-box;
-  display: -ms-flexbox;
+.taskCard--dropzone .extra .actions {
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
+  align-items: center;
+  justify-content: space-between;
   width: fit-content;
 }
-
-.taskCard .extra .actions ul {
+.taskCard--dropzone .extra .actions ul {
   list-style: none;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
-
-.taskCard .extra .actions ul .button {
+.taskCard--dropzone .extra .actions ul .button {
   margin-right: 0.5rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
 }
-
-.taskCard .extra .actions ul .button .circularButton {
+.taskCard--dropzone .extra .actions ul .button .circularButton {
   width: 1.5rem;
   height: 1.5rem;
 }
-
-.taskCard .extra .actions ul .button .circularButton .material-icons {
+.taskCard--dropzone .extra .actions ul .button .circularButton .material-icons {
   font-size: 1.1rem;
 }
-
-.taskCard .extra .info {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
+.taskCard--dropzone .extra .info {
   width: fit-content;
 }
-
-.taskCard .extra .info ul {
+.taskCard--dropzone .extra .info ul {
   list-style: none;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
-
-.taskCard .extra .info ul li {
-  display: -webkit-box;
-  display: -ms-flexbox;
+.taskCard--dropzone .extra .info ul li {
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   margin-left: 0.2rem;
 }
-
-.taskCard .extra .info ul li .numberOfLikes {
+.taskCard--dropzone .extra .info ul li .numberOfLikes {
   display: inline-block;
   color: #9ca6af;
   line-height: 1.5;
 }
-
-.taskCard .extra .info ul li .material-icons,
-.taskCard .extra .info ul li .material-icons-outlined {
+.taskCard--dropzone .extra .info ul li .material-icons,
+.taskCard--dropzone .extra .info ul li .material-icons-outlined {
   font-size: 0.9rem;
   margin-left: 0.25rem;
   color: #9ca6af;
 }
+
 /*# sourceMappingURL=TaskCard.css.map */
