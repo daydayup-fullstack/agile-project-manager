@@ -41,7 +41,9 @@ import {
     SHOW_CALENDAR_POPUP,
     HIDE_CALENDAR_POPUP,
     SET_TASK_DUE_DAY,
+    WORKSPACE_CHANGED_FAILED,
 } from "../actions";
+import {updateUserToServer} from "../apis/api";
 
 // ============= APP reducers ==================
 const initialAppState = {
@@ -432,6 +434,9 @@ export const user = (state = initialUserState, action) => {
             newWorkspaces.splice(index, 1);
             newWorkspaces.splice(0, 0, action.workspace.id);
 
+            // todo - possible error handling here
+            updateUserToServer({id: state.id, workspaces: newWorkspaces});
+
             return {
                 ...state,
                 workspaces: [...newWorkspaces],
@@ -527,6 +532,9 @@ export const project = (state = initialProjectState, action) => {
             };
         }
 
+        case WORKSPACE_CHANGED: {
+            return {};
+        }
         case SET_TASK_ASSIGNEE:
             return {
                 ...state,
@@ -597,7 +605,12 @@ export const allProjects = (state = projectsInitial, action) => {
         case INIT_USER_FAILED: {
             return [];
         }
+
         case WORKSPACE_CHANGED: {
+            return [...action.allProjects];
+        }
+
+        case WORKSPACE_CHANGED_FAILED: {
             return [];
         }
 
