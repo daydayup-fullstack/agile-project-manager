@@ -63,10 +63,15 @@ export const login_user = ({username, password}) => async (dispatch) => {
 };
 
 export const USER_LOGOUT = "USER_LOGOUT";
-export const logout_user = () => {
-    return {
-        type: USER_LOGOUT,
-    };
+export const logout_user = () => async (dispatch) => {
+    try {
+        dispatch({
+            type: USER_LOGOUT,
+        });
+        await myFirebase.doSignOut();
+    } catch (e) {
+        console.log(e);
+    }
 };
 
 // ============== Workspace ====================

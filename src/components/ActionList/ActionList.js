@@ -11,7 +11,6 @@ import {
     project_changed,
     remove_project_star,
 } from "../../actions";
-import {db_workspaces} from "../../data/database";
 import {generateId} from "../../model/utility";
 import {Link, BrowserRouter as Router} from "react-router-dom";
 import {
@@ -215,30 +214,29 @@ const ActionList = ({
         return (
             <Router>
                 <div className={"ProfilePopup"}>
-                    <ul>
-                        {workspaces.map((w) => {
-                            return (
-                                <li
-                                    onMouseOver={dismissNextLevel}
-                                    onClick={() => handleClick(w)}
-                                >
-                                    {w === currentWorkspace.id && (
-                                        <span className={"material-icons ProfilePopup__current"}>
-                      done
-                    </span>
-                                    )}
-                                    {db_workspaces[w].type === "personal"
-                                        ? "Personal projects"
-                                        : db_workspaces[w].name}
-                                </li>
-                            );
-                        })}
-                    </ul>
+                    {/*<ul>*/}
+                    {/*    {workspaces.map((w) => {*/}
+                    {/*        return (*/}
+                    {/*            <li*/}
+                    {/*                onMouseOver={dismissNextLevel}*/}
+                    {/*                onClick={() => handleClick(w)}*/}
+                    {/*            >*/}
+                    {/*                {w === currentWorkspace.id && (*/}
+                    {/*                    <span className={"material-icons ProfilePopup__current"}>*/}
+                    {/*  done*/}
+                    {/*</span>*/}
+                    {/*                )}*/}
+                    {/*                {db_workspaces[w].type === "personal"*/}
+                    {/*                    ? "Personal projects"*/}
+                    {/*                    : db_workspaces[w].name}*/}
+                    {/*            </li>*/}
+                    {/*        );*/}
+                    {/*    })}*/}
+                    {/*</ul>*/}
 
                     <div className="divider"/>
 
                     <ul>
-                        {/*<li onMouseOver={dismissNextLevel}>Settings</li>*/}
                         <li
                             onMouseOver={dismissNextLevel}
                             onClick={() => {
