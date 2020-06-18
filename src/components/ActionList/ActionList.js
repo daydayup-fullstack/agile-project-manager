@@ -2,7 +2,7 @@ import React from "react";
 import "./ActionList.css";
 import ColorArray from "../ColorArray/ColorArray";
 import IconArray from "../IconArray/IconArray";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 import {
     add_project_star,
     change_workspace,
@@ -11,9 +11,9 @@ import {
     project_changed,
     remove_project_star,
 } from "../../actions";
-import {db_workspaces} from "../../data/database";
-import {generateId} from "../../model/utility";
-import {Link, BrowserRouter as Router} from "react-router-dom";
+import { db_workspaces } from "../../data/database";
+import { generateId } from "../../model/utility";
+import { Link, BrowserRouter as Router } from "react-router-dom";
 import {
     deleteColumnFromServer,
     deleteTaskFromServer,
@@ -22,31 +22,31 @@ import {
 } from "../../apis/api";
 
 const ActionList = ({
-                        project,
-                        starredProjects,
-                        remove_project_star,
-                        add_project_star,
-                        projectCard_popup,
-                        header_project_icon_popup,
-                        header_project_info_popup,
-                        header_profile_popup,
-                        taskcard_context_menu,
-                        currentWorkspace,
-                        workspaces,
-                        header_filter_popup,
-                        column_popup,
-                        project_changed,
-                        delete_project,
-                        handleLogin,
-                        logout_user,
-                        change_workspace,
-                    }) => {
+    project,
+    starredProjects,
+    remove_project_star,
+    add_project_star,
+    projectCard_popup,
+    header_project_icon_popup,
+    header_project_info_popup,
+    header_profile_popup,
+    taskcard_context_menu,
+    currentWorkspace,
+    workspaces,
+    header_filter_popup,
+    column_popup,
+    project_changed,
+    delete_project,
+    handleLogin,
+    logout_user,
+    change_workspace,
+}) => {
     const expandableAction = React.useRef(null);
     const popupItself = React.useRef(null);
     const nextAction = React.useRef(null);
     const [showNextLevel, setShowNextLevel] = React.useState(false);
-    const [nextAnchor, setNextAnchor] = React.useState({x: 0, y: 0});
-    const [parentAnchor, setParentAnchor] = React.useState({x: 0, y: 0});
+    const [nextAnchor, setNextAnchor] = React.useState({ x: 0, y: 0 });
+    const [parentAnchor, setParentAnchor] = React.useState({ x: 0, y: 0 });
 
     function handleMouseOver(e) {
         setParentAnchor({
@@ -78,7 +78,7 @@ const ActionList = ({
         const parentWidth = popupItself.current.clientWidth;
         const parentHeight = popupItself.current.clientHeight;
 
-        let anchor = {x: 0, y: 0};
+        let anchor = { x: 0, y: 0 };
 
         const visualGap_x = 100;
         const visualGap_y = 200;
@@ -109,7 +109,7 @@ const ActionList = ({
     }, [header_project_icon_popup.shouldShow, parentAnchor]);
 
     const calcPosition = () => {
-        return {top: `${nextAnchor.y}px`, left: `${nextAnchor.x}px`};
+        return { top: `${nextAnchor.y}px`, left: `${nextAnchor.x}px` };
     };
 
     function dismissNextLevel() {
@@ -155,7 +155,7 @@ const ActionList = ({
         return (
             <ul>
                 <li onMouseOver={handleMouseOver} ref={expandableAction}>
-                    Set Color & Icon <Arrow/>
+                    Set Color & Icon <Arrow />
                 </li>
                 <li
                     onMouseOver={dismissNextLevel}
@@ -175,14 +175,14 @@ const ActionList = ({
                 {/*<li onMouseOver={dismissNextLevel}>Copy Project Link</li>*/}
                 <li
                     onMouseOver={dismissNextLevel}
-                    style={{color: "#E8384F"}}
+                    style={{ color: "#E8384F" }}
                     onClick={() => deleteProject()}
                 >
                     Delete Project
                 </li>
                 {showNextLevel && (
                     <li className={"nextLevel"} style={calcPosition()} ref={nextAction}>
-                        <ColorArray colorIndex={project.colorIndex}/>
+                        <ColorArray colorIndex={project.colorIndex} />
                         <IconArray
                             iconIndex={project.iconIndex}
                             colorIndex={project.colorIndex}
@@ -197,7 +197,7 @@ const ActionList = ({
         return (
             <ul className={"ProjectIconPopup"}>
                 <li className={"nextLevel"}>
-                    <ColorArray colorIndex={project.colorIndex}/>
+                    <ColorArray colorIndex={project.colorIndex} />
                     <IconArray
                         iconIndex={project.iconIndex}
                         colorIndex={project.colorIndex}
@@ -226,8 +226,8 @@ const ActionList = ({
                                 >
                                     {w === currentWorkspace.id && (
                                         <span className={"material-icons ProfilePopup__current"}>
-                      done
-                    </span>
+                                            done
+                                        </span>
                                     )}
                                     {db_workspaces[w].type === "personal"
                                         ? "Personal projects"
@@ -237,7 +237,7 @@ const ActionList = ({
                         })}
                     </ul>
 
-                    <div className="divider"/>
+                    <div className="divider" />
 
                     <ul>
                         {/*<li onMouseOver={dismissNextLevel}>Settings</li>*/}
@@ -247,7 +247,7 @@ const ActionList = ({
                                 logout_user();
                             }}
                         >
-                            <Link to="/" style={{textDecoration: "none", color: "black"}}>
+                            <Link to="/" style={{ textDecoration: "none", color: "black" }}>
                                 Logout
                             </Link>
                         </li>
@@ -263,8 +263,8 @@ const ActionList = ({
                 <li>
                     <span className="material-icons task_done">done</span>
                     <span className="task_tick">
-            <span>Incomplete tasks</span>
-          </span>
+                        <span>Incomplete tasks</span>
+                    </span>
                 </li>
                 <li ref={expandableAction} className={"expandableItem"}>
                     <span className="complete_task">Compelte tasks</span>
@@ -284,27 +284,27 @@ const ActionList = ({
                     <li>
                         <span className="material-icons filter_person">person_outline</span>
                         <span className="filter_tick">
-              <span>Just my tasks</span>
-            </span>
+                            <span>Just my tasks</span>
+                        </span>
                     </li>
                     <li>
                         <span className="material-icons filter_today">calendar_today</span>
                         <span className="filter_tickweek">
-              <span>Due this week</span>
-            </span>
+                            <span>Due this week</span>
+                        </span>
                     </li>
                     <li className="filter_edge">
                         <span className="material-icons filter_next">redo</span>
                         <span className="filter_ticknext">
-              <span>Due next week</span>
-            </span>
+                            <span>Due next week</span>
+                        </span>
                     </li>
 
                     <li className="filter_margin">
                         <span className={"material-icons filter_add"}>add</span>
                         <span className="filter_end">
-              <span>Custom filter</span>
-            </span>
+                            <span>Custom filter</span>
+                        </span>
                     </li>
                 </ul>
             </div>
@@ -317,28 +317,28 @@ const ActionList = ({
                 <li>
                     <span className="material-icons sort_done">done</span>
                     <span className="sort_tick">
-            <span>None</span>
-          </span>
+                        <span>None</span>
+                    </span>
                 </li>
                 <li>
-          <span>
-            <span className="Sort_list">Due Date</span>
-          </span>
+                    <span>
+                        <span className="Sort_list">Due Date</span>
+                    </span>
                 </li>
                 <li>
-          <span>
-            <span className="Sort_list">Assignee</span>
-          </span>
+                    <span>
+                        <span className="Sort_list">Assignee</span>
+                    </span>
                 </li>
                 <li>
-          <span>
-            <span className="Sort_list">Likes</span>
-          </span>
+                    <span>
+                        <span className="Sort_list">Likes</span>
+                    </span>
                 </li>
                 <li>
-          <span>
-            <span className="Sort_list">Alphabetical</span>
-          </span>
+                    <span>
+                        <span className="Sort_list">Alphabetical</span>
+                    </span>
                 </li>
             </ul>
         );
@@ -346,14 +346,14 @@ const ActionList = ({
 
     const determineContent = () => {
         if (header_filter_popup.content === "FilterTasks") {
-            return <FilterTasks/>;
+            return <FilterTasks />;
         }
 
         if (header_filter_popup.content === "FilterFilter") {
-            return <FilterFilter/>;
+            return <FilterFilter />;
         }
         if (header_filter_popup.content === "FilterSort") {
-            return <FilterSort/>;
+            return <FilterSort />;
         }
     };
 
@@ -380,7 +380,7 @@ const ActionList = ({
         function duplicateTask() {
             const id = generateId();
             const index = project.columns[columnId].taskIds.indexOf(task.id);
-            const newTask = {...task, id: id, createdOn: new Date().getTime()};
+            const newTask = { ...task, id: id, createdOn: new Date().getTime() };
             const newTaskIds = [...project.columns[columnId].taskIds];
             newTaskIds.splice(index, 0, id);
 
@@ -521,13 +521,13 @@ const ActionList = ({
 
     return (
         <div className={"ActionList"} ref={popupItself}>
-            {column_popup.shouldShow && <ColumnPopup/>}
-            {projectCard_popup.shouldShow && <ProjectCardPopup/>}
-            {header_project_info_popup.shouldShow && <ProjectCardPopup/>}
-            {header_profile_popup.shouldShow && <ProfilePopup/>}
-            {header_project_icon_popup.shouldShow && <ProjectIconPopup/>}
+            {column_popup.shouldShow && <ColumnPopup />}
+            {projectCard_popup.shouldShow && <ProjectCardPopup />}
+            {header_project_info_popup.shouldShow && <ProjectCardPopup />}
+            {header_profile_popup.shouldShow && <ProfilePopup />}
+            {header_project_icon_popup.shouldShow && <ProjectIconPopup />}
             {header_filter_popup.shouldShow && determineContent()}
-            {taskcard_context_menu.shouldShow && <TaskcardContextPopup/>}
+            {taskcard_context_menu.shouldShow && <TaskcardContextPopup />}
         </div>
     );
 };
