@@ -211,7 +211,6 @@ const TaskCard = ({
     }
 
     const renderUserProfile = () => {
-        console.log(task)
         if (task.assignedUserIds[0] && task.assignedUserIds[0] !== "") {
             return (
                 <>
