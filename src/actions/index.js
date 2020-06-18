@@ -85,15 +85,8 @@ export const change_workspace = (workspace) => async (dispatch) => {
 };
 
 export const PROJECT_SELECTED_REQUESTED = "PROJECT_SELECTED_REQUESTED";
-const project_selected_requested = () => {
-    return {
-        type: PROJECT_SELECTED_REQUESTED,
-    };
-};
-
 export const PROJECT_SELECTED_SUCCESS = "PROJECT_SELECTED_SUCCESS";
 const project_selected_success = (project, response) => {
-    console.log(response.data);
     return {
         type: PROJECT_SELECTED_SUCCESS,
         project,
@@ -118,7 +111,9 @@ const project_selected_failed = (error) => {
 
 export const project_selected = (project) => async (dispatch) => {
     try {
-        dispatch(project_selected_requested());
+        dispatch({
+            type: PROJECT_SELECTED_REQUESTED,
+        });
         const response = await backend.get(`/projects/${project.id}`);
         dispatch(project_selected_success(project, response));
     } catch (e) {
