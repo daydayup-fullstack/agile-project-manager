@@ -264,6 +264,24 @@ h4 {
   font-weight: 400;
   color: #47494a;
 }
+.invite-content .invite-close {
+  position: absolute;
+  top: 0.3rem;
+  right: 0.7rem;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  font-size: 1.4rem;
+  color: #828485;
+  cursor: pointer;
+}
+
+.invite-description {
+  margin-top: 0.8rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.80rem;
+  font-weight: 400;
+  color: #47494a;
+}
 
 .invite-content .invite-team {
   font-family: "Poppins", sans-serif;
@@ -271,4 +289,4 @@ h4 {
   font-size: 0.9rem;
   font-weight: 500;
 }
-/*# sourceMappingURL=TeamMember.css.map */
+

@@ -23,6 +23,7 @@ import {
 
 
 const ActionList = ({
+<<<<<<< HEAD
     project,
     starredProjects,
     remove_project_star,
@@ -55,6 +56,146 @@ const ActionList = ({
             y: e.target.offsetParent.offsetTop,
         });
         setShowNextLevel(true);
+||||||| merged common ancestors
+<<<<<<<<< Temporary merge branch 1
+  project,
+  starredProjects,
+  remove_project_star,
+  add_project_star,
+  projectCard_popup,
+  header_project_icon_popup,
+  header_project_info_popup,
+  header_profile_popup,
+  taskcard_context_menu,
+  currentWorkspace,
+  workspaces,
+  header_filter_popup,
+  column_popup,
+  project_changed,
+  delete_project,
+  handleLogin,
+  logout_user,
+  change_workspace,
+}) => {
+||||||||| merged common ancestors
+  project,
+  starredProjects,
+  remove_project_star,
+  add_project_star,
+  projectCard_popup,
+  header_project_icon_popup,
+  header_project_info_popup,
+  header_profile_popup,
+  taskcard_context_menu,
+  currentWorkspace,
+  workspaces,
+  header_filter_popup,
+  column_popup,
+  project_changed,
+  delete_project,
+  handleLogin,
+  change_workspace,
+}) => {
+=========
+                      project,
+                      starredProjects,
+                      remove_project_star,
+                      add_project_star,
+                      projectCard_popup,
+                      header_project_icon_popup,
+                      header_project_info_popup,
+                      header_profile_popup,
+                      taskcard_context_menu,
+                      currentWorkspace,
+                      workspaces,
+                      header_filter_popup,
+                      column_popup,
+                      project_changed,
+                      delete_project,
+                      handleLogin,
+                      logout_user,
+                      change_workspace,
+                    }) => {
+>>>>>>>>> Temporary merge branch 2
+  const expandableAction = React.useRef(null);
+  const popupItself = React.useRef(null);
+  const nextAction = React.useRef(null);
+  const [showNextLevel, setShowNextLevel] = React.useState(false);
+  const [nextAnchor, setNextAnchor] = React.useState({x: 0, y: 0});
+  const [parentAnchor, setParentAnchor] = React.useState({x: 0, y: 0});
+
+  function handleMouseOver(e) {
+    setParentAnchor({
+      x: e.target.offsetParent.offsetLeft,
+      y: e.target.offsetParent.offsetTop,
+    });
+    setShowNextLevel(true);
+  }
+
+  React.useEffect(() => {
+    let x;
+    let y;
+
+    x = popupItself.current.offsetLeft;
+    y = popupItself.current.offsetTop;
+
+    //todo - problem is here
+
+    let childWidth;
+    let childHeight;
+    if (header_project_icon_popup.shouldShow) {
+      childWidth = 268;
+      childHeight = 345;
+=======
+                      project,
+                      starredProjects,
+                      remove_project_star,
+                      add_project_star,
+                      projectCard_popup,
+                      header_project_icon_popup,
+                      header_project_info_popup,
+                      header_profile_popup,
+                      taskcard_context_menu,
+                      currentWorkspace,
+                      workspaces,
+                      header_filter_popup,
+                      column_popup,
+                      project_changed,
+                      delete_project,
+                      handleLogin,
+                      logout_user,
+                      change_workspace,
+                    }) => {
+  const expandableAction = React.useRef(null);
+  const popupItself = React.useRef(null);
+  const nextAction = React.useRef(null);
+  const [showNextLevel, setShowNextLevel] = React.useState(false);
+  const [nextAnchor, setNextAnchor] = React.useState({x: 0, y: 0});
+  const [parentAnchor, setParentAnchor] = React.useState({x: 0, y: 0});
+
+  function handleMouseOver(e) {
+    setParentAnchor({
+      x: e.target.offsetParent.offsetLeft,
+      y: e.target.offsetParent.offsetTop,
+    });
+    setShowNextLevel(true);
+  }
+
+  React.useEffect(() => {
+    let x;
+    let y;
+
+    x = popupItself.current.offsetLeft;
+    y = popupItself.current.offsetTop;
+
+    //todo - problem is here
+
+    let childWidth;
+    let childHeight;
+    if (header_project_icon_popup.shouldShow) {
+      childWidth = 268;
+      childHeight = 345;
+>>>>>>> 731ca609c6e12e9b11b9b50822e76aaff12297c5
     }
 
     React.useEffect(() => {
@@ -155,6 +296,7 @@ const ActionList = ({
 
         return (
             <ul>
+<<<<<<< HEAD
                 <li onMouseOver={handleMouseOver} ref={expandableAction}>
                     Set Color & Icon <Arrow />
                 </li>
@@ -188,6 +330,92 @@ const ActionList = ({
                             iconIndex={project.iconIndex}
                             colorIndex={project.colorIndex}
                         />
+||||||| merged common ancestors
+              {workspaces.map((w) => {
+                return (
+                    <li
+                        onMouseOver={dismissNextLevel}
+                        onClick={() => handleClick(w)}
+                    >
+                      {w === currentWorkspace.id && (
+                          <span className={"material-icons ProfilePopup__current"}>
+                      done
+                    </span>
+<<<<<<<<< Temporary merge branch 1
+                  )}
+                  {db_workspaces[w].type === "personal"
+                    ? "Personal projects"
+                    : db_workspaces[w].name}
+                </li>
+              );
+            })}
+          </ul>
+
+          <div className="divider" />
+
+          <ul>
+            {/*<li onMouseOver={dismissNextLevel}>Settings</li>*/}
+            <li
+              onMouseOver={dismissNextLevel}
+              onClick={() => {
+                logout_user();
+              }}
+            >
+              <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+                Logout
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </Router>
+||||||||| merged common ancestors
+                  )}
+                  {db_workspaces[w].type === "personal"
+                    ? "Personal projects"
+                    : db_workspaces[w].name}
+                </li>
+              );
+            })}
+          </ul>
+
+          <div className="divider" />
+
+          <ul>
+            {/*<li onMouseOver={dismissNextLevel}>Settings</li>*/}
+            <li
+              onMouseOver={dismissNextLevel}
+              onClick={() => {
+                handleLogin(false);
+              }}
+            >
+              <Link to="/" style={{ textDecoration: "none", color: "black" }}>
+                Logout
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </Router>
+=========
+                      )}
+                      {db_workspaces[w].type === "personal"
+                          ? "Personal projects"
+                          : db_workspaces[w].name}
+=======
+              {workspaces.map((w) => {
+                return (
+                    <li
+                        onMouseOver={dismissNextLevel}
+                        onClick={() => handleClick(w)}
+                    >
+                      {w === currentWorkspace.id && (
+                          <span className={"material-icons ProfilePopup__current"}>
+                      done
+                    </span>
+                      )}
+                      {db_workspaces[w].type === "personal"
+                          ? "Personal projects"
+                          : db_workspaces[w].name}
+>>>>>>> 731ca609c6e12e9b11b9b50822e76aaff12297c5
                     </li>
                 )}
             </ul>
@@ -205,8 +433,129 @@ const ActionList = ({
                     />
                 </li>
             </ul>
+<<<<<<< HEAD
         );
     };
+||||||| merged common ancestors
+          </div>
+        </Router>
+>>>>>>>>> Temporary merge branch 2
+    );
+  };
+
+  const FilterTasks = () => {
+    return (
+        <ul className={"FilterTasks"}>
+          <li>
+            <span className="material-icons task_done">done</span>
+            <span className="task_tick">
+            <span>Incomplete tasks</span>
+          </span>
+          </li>
+          <li ref={expandableAction} className={"expandableItem"}>
+            <span className="complete_task">Compelte tasks</span>
+          </li>
+          <li>
+            <span className="complete_task">All tasks</span>
+          </li>
+        </ul>
+    );
+  };
+
+  const FilterFilter = () => {
+    return (
+        <div className="FilterFilter">
+          <div className={"FilterFilter__title"}>Quick filters</div>
+          <ul>
+            <li>
+              <span className="material-icons filter_person">person_outline</span>
+              <span className="filter_tick">
+              <span>Just my tasks</span>
+            </span>
+            </li>
+            <li>
+              <span className="material-icons filter_today">calendar_today</span>
+              <span className="filter_tickweek">
+              <span>Due this week</span>
+            </span>
+            </li>
+            <li className="filter_edge">
+              <span className="material-icons filter_next">redo</span>
+              <span className="filter_ticknext">
+              <span>Due next week</span>
+            </span>
+            </li>
+
+            <li className="filter_margin">
+              <span className={"material-icons filter_add"}>add</span>
+              <span className="filter_end">
+              <span>Custom filter</span>
+            </span>
+            </li>
+          </ul>
+        </div>
+    );
+  };
+=======
+          </div>
+        </Router>
+    );
+  };
+
+  const FilterTasks = () => {
+    return (
+        <ul className={"FilterTasks"}>
+          <li>
+            <span className="material-icons task_done">done</span>
+            <span className="task_tick">
+            <span>Incomplete tasks</span>
+          </span>
+          </li>
+          <li ref={expandableAction} className={"expandableItem"}>
+            <span className="complete_task">Compelte tasks</span>
+          </li>
+          <li>
+            <span className="complete_task">All tasks</span>
+          </li>
+        </ul>
+    );
+  };
+
+  const FilterFilter = () => {
+    return (
+        <div className="FilterFilter">
+          <div className={"FilterFilter__title"}>Quick filters</div>
+          <ul>
+            <li>
+              <span className="material-icons filter_person">person_outline</span>
+              <span className="filter_tick">
+              <span>Just my tasks</span>
+            </span>
+            </li>
+            <li>
+              <span className="material-icons filter_today">calendar_today</span>
+              <span className="filter_tickweek">
+              <span>Due this week</span>
+            </span>
+            </li>
+            <li className="filter_edge">
+              <span className="material-icons filter_next">redo</span>
+              <span className="filter_ticknext">
+              <span>Due next week</span>
+            </span>
+            </li>
+
+            <li className="filter_margin">
+              <span className={"material-icons filter_add"}>add</span>
+              <span className="filter_end">
+              <span>Custom filter</span>
+            </span>
+            </li>
+          </ul>
+        </div>
+    );
+  };
+>>>>>>> 731ca609c6e12e9b11b9b50822e76aaff12297c5
 
     const ProfilePopup = () => {
         function handleClick(selectedWorkspaceId) {
