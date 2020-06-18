@@ -415,11 +415,12 @@ export const hide_column_popup = () => {
 //taskAssignee scrollable popup
 export const SHOW_TASK_ASSIGNEE_SCROLLABLE_POPUP =
     "SHOW_TASK_ASSIGNEE_SCROLLABLE_POPUP";
-export const show_task_assignee_scrollable_popup = ({anchor, assigneeId}) => {
+export const show_task_assignee_scrollable_popup = ({anchor, assigneeId,project}) => {
     return {
         type: SHOW_TASK_ASSIGNEE_SCROLLABLE_POPUP,
         anchor,
         assigneeId,
+        project,
     };
 };
 export const HIDE_TASK_ASSIGNEE_SCROLLABLE_POPUP =
