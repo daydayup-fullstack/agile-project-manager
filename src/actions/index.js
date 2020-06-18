@@ -76,42 +76,12 @@ export const logout_user = () => async (dispatch) => {
 
 // ============== Workspace ====================
 export const WORKSPACE_CHANGED = "WORKSPACE_CHANGED";
-export const change_workspace = (workspaceId) => {
+export const change_workspace = (workspace) => {
     return {
         type: WORKSPACE_CHANGED,
-        workspaceId,
+        workspace,
     };
 };
-
-// ============== Project ========================
-// region- Project related actions
-// export const PROJECT_SELECTED = "PROJECT_SELECTED";
-// export const project_selected = (project) => {
-//   let columns = {};
-//   let tasks = {};
-//
-//   if (!project.columns) {
-//     columns = { ...db_columns };
-//   }
-//
-//   if (!project.tasks) {
-//     tasks = { ...db_tasks };
-//   }
-//
-//   // todo - change to dynamic data source
-//   return {
-//     type: PROJECT_SELECTED,
-//     project,
-//     columns: {
-//       ...project.columns,
-//       ...columns,
-//     },
-//     tasks: {
-//       ...project.tasks,
-//       ...tasks,
-//     },
-//   };
-// };
 
 export const PROJECT_SELECTED_REQUESTED = "PROJECT_SELECTED_REQUESTED";
 const project_selected_requested = () => {

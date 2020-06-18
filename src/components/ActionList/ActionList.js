@@ -30,7 +30,7 @@ const ActionList = ({
                         header_profile_popup,
                         taskcard_context_menu,
                         currentWorkspace,
-                        workspaces,
+                        user,
                         header_filter_popup,
                         column_popup,
                         project_changed,
@@ -207,32 +207,32 @@ const ActionList = ({
     const ProfilePopup = () => {
         function handleClick(selectedWorkspaceId) {
             if (selectedWorkspaceId !== currentWorkspace) {
-                change_workspace(selectedWorkspaceId);
+                change_workspace(user.allWorkspaces[selectedWorkspaceId]);
             }
         }
 
         return (
             <Router>
                 <div className={"ProfilePopup"}>
-                    {/*<ul>*/}
-                    {/*    {workspaces.map((w) => {*/}
-                    {/*        return (*/}
-                    {/*            <li*/}
-                    {/*                onMouseOver={dismissNextLevel}*/}
-                    {/*                onClick={() => handleClick(w)}*/}
-                    {/*            >*/}
-                    {/*                {w === currentWorkspace.id && (*/}
-                    {/*                    <span className={"material-icons ProfilePopup__current"}>*/}
-                    {/*  done*/}
-                    {/*</span>*/}
-                    {/*                )}*/}
-                    {/*                {db_workspaces[w].type === "personal"*/}
-                    {/*                    ? "Personal projects"*/}
-                    {/*                    : db_workspaces[w].name}*/}
-                    {/*            </li>*/}
-                    {/*        );*/}
-                    {/*    })}*/}
-                    {/*</ul>*/}
+                    <ul>
+                        {user.workspaces.map((id) => {
+                            return (
+                                <li
+                                    onMouseOver={dismissNextLevel}
+                                    onClick={() => handleClick(id)}
+                                >
+                                    {id === currentWorkspace.id && (
+                                        <span className={"material-icons ProfilePopup__current"}>
+                      done
+                    </span>
+                                    )}
+                                    {user.allWorkspaces[id].type === "personal"
+                                        ? "Personal projects"
+                                        : user.allWorkspaces[id].name}
+                                </li>
+                            );
+                        })}
+                    </ul>
 
                     <div className="divider"/>
 
@@ -559,7 +559,7 @@ const mapStateToProps = (state) => {
             column: state.app.ui_column_popup.column,
         },
         currentWorkspace: state.workspace,
-        workspaces: state.user.workspaces,
+        user: state.user,
     };
 };
 
