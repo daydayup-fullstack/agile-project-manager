@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import "./ProjectDetail.css";
 import {Link, withRouter} from "react-router-dom";
-import {project_added, project_selected} from "../../actions";
+import { project_added_in_store, project_selected} from "../../actions";
 import {connect} from "react-redux";
 import {generateId} from "../../model/utility";
 import {saveNewProjectToServer} from "../../apis/api";
@@ -56,7 +56,7 @@ class ProjectDetail extends Component {
       iconIndex: Math.floor(Math.random() * 28),
       name: this.state.projectName,
     };
-    this.props.project_added(newProject);
+    this.props.project_added_in_store(newProject);
     this.props.project_selected(newProject);
     /* this.props.history.push(`/home`); */
     this.props.history.push(`/projects/${newProject.id}`);
@@ -189,6 +189,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, {project_added, project_selected})(
+export default connect(mapStateToProps, { project_added_in_store, project_selected})(
     withRouter(ProjectDetail)
 );
