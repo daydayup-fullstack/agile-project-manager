@@ -4,11 +4,7 @@ import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import {init_user_requested, login_user} from "../../actions";
 import {connect} from "react-redux";
 
-const LoginForm = ({
-                       login_user,
-                       isLoading,
-                       init_user_requested,
-                   }) => {
+const LoginForm = ({login_user, isLoading, init_user_requested}) => {
     const [username, setUsername] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [error, setError] = React.useState("");
@@ -32,7 +28,10 @@ const LoginForm = ({
 
     return (
         <div className={"LoginForm"}>
-            <div className="LoginForm__backdrop"/>
+            <div
+                className={"LoginForm__backdrop"}
+                style={isLoading ? {backgroundColor: "#f6f8f9"} : {}}
+            />
 
             {!isLoading ? (
                 <div className="LoginForm__content">

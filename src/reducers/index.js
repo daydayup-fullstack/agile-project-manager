@@ -87,12 +87,12 @@ const initialAppState = {
         shouldShow: false,
         anchor: {x: 0, y: 0, width: 0, height: 0},
     },
-    ui_isWorkspaceLoading: false,
-    ui_isProjectLoading: false,
     ui_calendar_popup: {
         shouldShow: false,
         anchor: {x: 0, y: 0, width: 0, height: 0},
     },
+    ui_isWorkspaceLoading: false,
+    ui_isProjectLoading: false,
 };
 
 export const app = (state = initialAppState, action) => {
@@ -139,7 +139,7 @@ export const app = (state = initialAppState, action) => {
             };
         }
 
-        //========
+
         case SHOW_CALENDAR_POPUP: {
             return {
                 ...state,
@@ -159,7 +159,7 @@ export const app = (state = initialAppState, action) => {
                 },
             };
         }
-        //========
+
         case SHOW_PROJECT_CARD_POPUP:
             return {
                 ...state,
@@ -175,7 +175,8 @@ export const app = (state = initialAppState, action) => {
                     shouldShow: false,
                 },
             };
-        //======
+
+
         case HIDE_ADD_MEMBER_POPUP:
             return {
                 ...state,
@@ -190,7 +191,8 @@ export const app = (state = initialAppState, action) => {
                     ShowPopup: true,
                 },
             };
-        //======
+
+
         case DRAWER_OPENED:
             return {
                 ...state,

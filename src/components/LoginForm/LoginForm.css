@@ -1,17 +1,10 @@
 .LoginForm {
   width: 100vw;
   height: 100vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
 }
-
 .LoginForm__error {
   position: absolute;
   z-index: 20;
@@ -22,7 +15,6 @@
   border-radius: 1rem;
   font-size: 0.9rem;
 }
-
 .LoginForm__backdrop {
   position: absolute;
   left: 0;
@@ -31,19 +23,11 @@
   height: 100%;
   background-color: rgba(21, 27, 38, 0.8);
 }
-
 .LoginForm__content {
   font-family: "Poppins", sans-serif;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  align-items: center;
+  flex-direction: column;
   max-width: 50rem;
   width: 90%;
   padding: 3rem 5rem;
@@ -52,32 +36,26 @@
   border-radius: 0.2rem;
   position: relative;
 }
-
 .LoginForm__content .close {
   border: none;
   background: transparent;
   color: #9ca6af;
-  -webkit-transform: scale(1.4);
-          transform: scale(1.4);
+  transform: scale(1.4);
   position: absolute;
   right: 1.3rem;
   top: 1.3rem;
-  -webkit-transition: color 0.2s ease;
   transition: color 0.2s ease;
 }
-
 .LoginForm__content .close:hover {
   cursor: pointer;
   color: #6f7782;
 }
-
 .LoginForm__content header {
   font-size: 2.25rem;
   font-weight: 300;
   font-family: "Poppins", sans-serif;
   margin-bottom: 2.5rem;
 }
-
 .LoginForm__content .loginWithGoogle {
   width: 60%;
   min-width: 18.75rem;
@@ -87,37 +65,26 @@
   font-family: "Poppins", sans-serif;
   font-size: 0.9rem;
   font-weight: 400;
-  -webkit-transition: all 0.25s ease;
   transition: all 0.25s ease;
   border-radius: 0.2rem;
-  -webkit-box-shadow: 0 3px 5px 0 rgba(36, 50, 66, 0.2);
-          box-shadow: 0 3px 5px 0 rgba(36, 50, 66, 0.2);
+  box-shadow: 0 3px 5px 0 rgba(36, 50, 66, 0.2);
   background-color: #ffffff;
   color: #9ca6af;
 }
-
 .LoginForm__content .loginWithGoogle:hover {
   cursor: pointer;
 }
-
 .LoginForm__content .loginWithGoogle:hover {
-  -webkit-box-shadow: 0 11px 12px 0 rgba(36, 50, 66, 0.12);
-          box-shadow: 0 11px 12px 0 rgba(36, 50, 66, 0.12);
+  box-shadow: 0 11px 12px 0 rgba(36, 50, 66, 0.12);
 }
-
 .LoginForm__content .divider {
   color: #9ca6af;
   font-family: "Poppins", sans-serif;
   font-size: 0.9rem;
   margin: 1.8rem 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
-
 .LoginForm__content .divider::before, .LoginForm__content .divider::after {
   content: "";
   width: 100px;
@@ -125,34 +92,23 @@
   background-color: #e8ecee;
   margin: 0 2rem;
 }
-
 .LoginForm__content form {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  align-items: center;
   min-width: 18.75rem;
   width: 60%;
 }
-
 .LoginForm__content form .LoginForm__content__field {
   margin-bottom: 1.5rem;
   width: 100%;
 }
-
 .LoginForm__content form .LoginForm__content__field label {
   color: #6f7782;
   display: block;
   font-size: 0.81rem;
   margin-bottom: 0.5rem;
 }
-
 .LoginForm__content form .LoginForm__content__field input {
   width: 100%;
   height: 2.3rem;
@@ -164,85 +120,56 @@
   color: #151b26;
   border: 2px solid #e8ecee;
 }
-
 .LoginForm__content form .LoginForm__content__field input:focus {
   border-color: rgba(121, 110, 255, 0.8);
 }
-
-.LoginForm__content form .LoginForm__content__field input::-webkit-input-placeholder {
-  color: #9ca6af;
-}
-
-.LoginForm__content form .LoginForm__content__field input:-ms-input-placeholder {
-  color: #9ca6af;
-}
-
-.LoginForm__content form .LoginForm__content__field input::-ms-input-placeholder {
-  color: #9ca6af;
-}
-
 .LoginForm__content form .LoginForm__content__field input::placeholder {
   color: #9ca6af;
 }
-
-.LoginForm__content form button[type="submit"] {
+.LoginForm__content form button[type=submit] {
   padding: 0 1.5rem;
   height: 2.3rem;
   border: none;
   font-family: "Poppins", sans-serif;
   font-size: 0.9rem;
   font-weight: 400;
-  -webkit-transition: all 0.25s ease;
   transition: all 0.25s ease;
   border-radius: 0.2rem;
   background-color: #796eff;
   color: white;
   width: 100%;
 }
-
-.LoginForm__content form button[type="submit"]:hover {
+.LoginForm__content form button[type=submit]:hover {
   cursor: pointer;
 }
-
-.LoginForm__content form button[type="submit"]:hover {
+.LoginForm__content form button[type=submit]:hover {
   background-color: #635ac7;
 }
-
 .LoginForm__content .LoginForm__extra {
   margin: 2.5rem 0;
   padding-top: 1rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  align-items: center;
   font-size: 0.81rem;
   color: #9ca6af;
 }
-
 .LoginForm__content .LoginForm__extra .forgotPassword:hover {
   text-decoration: underline;
   cursor: pointer;
 }
-
 .LoginForm__content .LoginForm__extra .dontHaveAccount {
   margin-top: 1rem;
   font-weight: 300;
 }
-
 .LoginForm__content .LoginForm__extra .dontHaveAccount a {
   color: #796eff;
   text-decoration: none;
   font-weight: 400;
 }
-
 .LoginForm__content .LoginForm__extra .dontHaveAccount a:hover {
   text-decoration: underline;
   cursor: pointer;
 }
+
 /*# sourceMappingURL=LoginForm.css.map */
