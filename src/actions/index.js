@@ -18,7 +18,7 @@ const init_user_success = (response) => {
     };
 };
 export const INIT_USER_FAILED = "INIT_USER_FAILED";
-const init_user_failed = (e) => {
+export const init_user_failed = (e) => {
     return {
         type: INIT_USER_FAILED,
         error: e,

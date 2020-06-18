@@ -2,8 +2,15 @@
   width: 100vw;
   height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
+}
+.LoginForm .app-logo {
+  color: #9ca6af;
+  position: absolute;
+  bottom: 3rem;
 }
 .LoginForm__error {
   position: absolute;

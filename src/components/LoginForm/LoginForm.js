@@ -37,9 +37,9 @@ const LoginForm = ({login_user, isLoading, init_user_requested}) => {
                 <div className="LoginForm__content">
                     <div className="LoginForm__error">{error}</div>
                     <button className={"close"} onClick={dismiss}>
-                        <span className={"material-icons"}>close</span>
+                        {/*<span className={"material-icons"}>close</span>*/}
                     </button>
-                    <header>Log in</header>
+                    <header>Welcome to Agilo</header>
                     <button className={"loginWithGoogle"}>Use Google Account</button>
 
                     <div className="divider">or</div>
@@ -78,7 +78,10 @@ const LoginForm = ({login_user, isLoading, init_user_requested}) => {
                     </footer>
                 </div>
             ) : (
-                <LoadingSpinner/>
+                <>
+                    <LoadingSpinner/>
+                    <h1 className={"app-logo"}>Agilo</h1>
+                </>
             )}
         </div>
     );

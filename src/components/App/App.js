@@ -21,7 +21,7 @@ import ActionList from "../ActionList/ActionList";
 import Tooltip from "../Tooltip/Tooltip";
 import AddTaskPopup from "../AddTaskPopup/AddTaskPopup";
 import {db_users} from "../../data/database";
-import {init_user} from "../../actions";
+import {init_user, init_user_failed} from "../../actions";
 import AssigneeArrayContainer from "../AssigneeArray/AssigneeArrayContainer/AssigneeArrayContainer";
 import PopupCircularButton from "../PopupCircularButton/PopupCircularButton";
 import CalendarPopup from "../CalendarPopup/CalendarPopup";
@@ -42,6 +42,7 @@ const App = ({
                  isLoggedIn,
                  userId,
                  calender_popup,
+                 init_user_failed,
              }) => {
     React.useEffect(() => {
         console.log("app starts");
@@ -49,6 +50,8 @@ const App = ({
         myFirebase.auth.onAuthStateChanged((user) => {
             if (user) {
                 init_user(user.uid);
+            } else {
+                init_user_failed(null);
             }
         });
     }, [init_user, userId]);
@@ -105,9 +108,6 @@ const App = ({
                     </PopupMenu>
                 )}
                 {assigneeScrollable.shouldShow && (
-                    // <PopupMenu className='assigneeScrollable' anchor={{ x: 600, y: 300, width: 0, height: 0 }}>
-                    //   <AssigneeArrayContainer />
-                    // </PopupMenu>
                     <PopupCircularButton anchor={assigneeScrollable.anchor}>
                         <AssigneeArrayContainer/>
                     </PopupCircularButton>
@@ -133,20 +133,10 @@ const App = ({
                                 <Home/>
                             </Route>
 
-                            {/*<Route path={"/tasks"}>*/}
-                            {/*  /!*<MyTasks tasks={tasks} />*!/*/}
-                            {/*  <ContentHeader title={"My Tasks"} />*/}
-                            {/*</Route>*/}
-
                             <Route path={"/projects/:id"}>
                                 <MenuBar/>
                                 <Project/>
                             </Route>
-
-                            {/*<Route path={"/team"}>*/}
-                            {/*  <ContentHeader title={"Team"} />*/}
-                            {/*  <Team />*/}
-                            {/*</Route>*/}
 
                             <Route path={"/create-project"}>
                                 <ProjectDetail/>
@@ -215,4 +205,4 @@ const mapStateToProps = (state) => {
         },
     };
 };
-export default connect(mapStateToProps, {init_user})(App);
+export default connect(mapStateToProps, {init_user, init_user_failed})(App);

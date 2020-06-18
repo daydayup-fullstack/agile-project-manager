@@ -91,7 +91,7 @@ const initialAppState = {
         shouldShow: false,
         anchor: {x: 0, y: 0, width: 0, height: 0},
     },
-    ui_isWorkspaceLoading: false,
+    ui_isWorkspaceLoading: true,
     ui_isProjectLoading: false,
 };
 
