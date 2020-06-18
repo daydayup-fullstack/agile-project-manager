@@ -74,4 +74,10 @@
   -webkit-transform: scale(0.8);
           transform: scale(0.8);
 }
+
+.Filterbar_button:focus{
+  color:#80e5f7;
+  background:#e4ebf0;
+}
+
 /*# sourceMappingURL=Filterbar.css.map */

@@ -43,7 +43,10 @@ import {
   SHOW_CALENDAR_POPUP,
   HIDE_CALENDAR_POPUP,
   SET_TASK_DUE_DAY,
-  MEMBER_LIST
+  MEMBER_LIST,
+  SET_FILTER_ASSIGNEE,
+  HIDE_FILTER_ASSIGNEE_SCROLLABLE_POPUP,
+  SHOW_FILTER_ASSIGNEE_SCROLLABLE_POPUP,
 } from "../actions";
 
 // ============= APP reducers ==================
@@ -352,6 +355,24 @@ export const app = (state = initialAppState, action) => {
         }
       }
 
+    case SHOW_FILTER_ASSIGNEE_SCROLLABLE_POPUP:
+      return {
+        ...state,
+        ui_assignee_scroll_popup: {
+          shouldShow: true,
+          anchor: action.anchor,
+          assigneeId: action.assigneeId
+        }
+      };
+
+    case HIDE_FILTER_ASSIGNEE_SCROLLABLE_POPUP:
+      return {
+        ...state,
+        ui_assignee_scroll_popup: {
+          shouldShow: false,
+        }
+      }
+
     
     default:
       return {
@@ -547,6 +568,19 @@ export const project = (state = initialProjectState, action) => {
           }
         }
       }
+//======NEED TO FIX========
+      case SET_FILTER_ASSIGNEE:
+        return {
+          ...state,
+          tasks: {
+            ...state.tasks,
+            [action.assigneeId]:{
+              ...state.tasks[action.assigneeId],
+              assignedUserId:action.user
+              
+          }
+        }
+      }
     case SET_TASK_DUE_DAY:{
       return {
         ...state,
@@ -668,3 +702,14 @@ export const allMembers = (state ={}, action) => {
       return state;
   }
 };
+
+//======Show member name in filterbar=======
+// export const showMyName= (state ='Filter', action) => {
+//     if(action.type===SHOW_MY_NAME) {
+    
+//       return 'Filter: Chuyue';
+//     }
+//     else{
+//       return state;
+//   }
+// };

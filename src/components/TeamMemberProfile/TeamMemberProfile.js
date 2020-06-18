@@ -3,7 +3,7 @@ import "./TeamMemberProfile.css";
 import { colors} from "../../model/model";
 
 
-function TeamProfile({ user }) {
+function TeamMemberProfile({ user }) {
     return (
         user
             ? user.avatar || user.avatar !== ""
@@ -30,4 +30,4 @@ function TeamProfile({ user }) {
     )
 }
 
-export default TeamProfile;
+export default TeamMemberProfile;

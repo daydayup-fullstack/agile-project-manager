@@ -1,10 +1,10 @@
 import React from "react";
 import "./Filterbar.css";
-
 import { connect } from "react-redux";
 import { show_header_filter_popup } from "../../actions";
 
-const Filterbar = ({ show_header_filter_popup, project }) => {
+
+const Filterbar = ({ show_header_filter_popup,show}) => {
   const getAnchor = (e) => {
     const anchor = {
       x: e.target.offsetLeft,
@@ -14,7 +14,12 @@ const Filterbar = ({ show_header_filter_popup, project }) => {
     };
     return anchor;
   };
+  // const [showMyName,setshowMyName]=React.useState(false);
 
+  // const show=()=> {    //toggle函数控制filter名字
+  //   return showMyName ? setshowMyName(false):setshowMyName(true); 
+   
+  // }
   function filterByCompletion(e) {
     show_header_filter_popup({
       anchor: getAnchor(e),
@@ -25,7 +30,7 @@ const Filterbar = ({ show_header_filter_popup, project }) => {
   function filterByDeadline(e) {
     show_header_filter_popup({
       anchor: getAnchor(e),
-      content: "FilterFilter",
+      content: 'FilterFilter',
     });
   }
 
@@ -40,15 +45,16 @@ const Filterbar = ({ show_header_filter_popup, project }) => {
     <div className="Filterbar">
       <div className="Filterbar__description"/>
       <div className="Filterbar__controls">
-        <button className="Filter_button first" onClick={filterByCompletion}>
-          <span className="material-icons task">check_circle_outline</span>All
+        <button className="Filterbar_button" onClick={filterByCompletion}>
+          <span className="material-icons filter_icon">check_circle_outline</span>All
           Tasks
         </button>
-        <button className="Filter_button" onClick={filterByDeadline}>
-          <span className="material-icons filter">filter_list</span>Filter
+        <button className="Filterbar_button" onClick={filterByDeadline}>
+          <span className="material-icons">filter_list</span>
+          {show}
         </button>
-        <button className="Filter_button" onClick={sortByCriteria}>
-          <span className="material-icons swap">swap_vert</span>Sort
+        <button className="Filterbar_button" onClick={sortByCriteria}>
+          <span className="material-icons">swap_vert</span>Sort
         </button>
 
         {/*<span className={"divider"} />*/}
@@ -62,6 +68,7 @@ const Filterbar = ({ show_header_filter_popup, project }) => {
 const mapStateToProps = (state) => {
   return {
     project: state.project,
+    showMyName:state.showMyName
   };
 };
 export default connect(mapStateToProps, { show_header_filter_popup })(

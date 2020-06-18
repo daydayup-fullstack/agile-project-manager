@@ -27,17 +27,31 @@ const init_user_failed = (e) => {
 export const init_user = (userId) => async (dispatch) => {
   try {
     const response = await backend.get(`/users/${userId}`);
+    // console.log(response)
     dispatch(init_user_success(response));
   } catch (e) {
     dispatch(init_user_failed(e));
   }
 };
 
+//=====filterbar show name======need to fix
+// export const SHOW_CHUYUE ='SHOW_CHUYUE';
+// export const SHOW_MY_NAME='SHOW_MY_NAME'
+// export const show_my_name=(userId)=> async dispatch=>{
+//   const response = await backend.get(`/users/${userId}`);
+  // console.log(response.data);
+  // dispatch ({
+  //   type:SHOW_MY_NAME,
+  //   payload:response.data
+  //   })
+  //  return {type:SHOW_MY_NAME}
+// }
+
 //===== Get Members =======
 export const MEMBER_LIST = 'MEMBER_LIST';
 export const member_list=()=>async (dispatch)=>{
     const response=await backend.get('/workspaces/eRVjCPQdalku7cGBNaBx/members');
-    console.log(response);
+    // console.log(response);
     dispatch({type:MEMBER_LIST,payload:response.data});
   
 }
@@ -409,6 +423,31 @@ export const set_task_assignee = ({user, assigneeId}) => {
   };
 };
 //endregion
+
+export const SET_FILTER_ASSIGNEE = "SET_FILTER_ASSIGNEE";
+export const set_filter_assignee = ({user, assigneeId}) => {
+  return {
+    type: SET_FILTER_ASSIGNEE,
+    user,
+    assigneeId,
+  };
+};
+
+export const SHOW_FILTER_ASSIGNEE_SCROLLABLE_POPUP = "SHOW_FILTER_ASSIGNEE_SCROLLABLE_POPUP";
+export const show_filter_assignee_scrollable_popup = ({ anchor,assigneeId }) => {
+  return {
+    type: SHOW_FILTER_ASSIGNEE_SCROLLABLE_POPUP,
+    anchor,
+    assigneeId,
+  };
+};
+
+export const HIDE_FILTER_ASSIGNEE_SCROLLABLE_POPUP = "HIDE_FILTER_ASSIGNEE_SCROLLABLE_POPUP";
+export const hide_filter_assignee_scrollable_popup = () => {
+  return {
+    type: HIDE_FILTER_ASSIGNEE_SCROLLABLE_POPUP,
+  };
+};
 
 // calendar popup
 export const SHOW_CALENDAR_POPUP = "SHOW_CALENDAR_POPUP";

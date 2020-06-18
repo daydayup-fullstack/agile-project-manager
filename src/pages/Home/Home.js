@@ -10,7 +10,7 @@ const Home = ({ starredProjects, projects }) => {
   const favorites = projects.filter(
     (project) => starredProjects.indexOf(project.id) >= 0
   );
-
+ 
   return (
     <div className={"App-Home"}>
       {starredProjects && starredProjects.length > 0 && (

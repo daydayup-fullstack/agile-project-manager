@@ -10,10 +10,13 @@ import {
   logout_user,
   project_changed,
   remove_project_star,
+  show_column_popup,
+  
 } from "../../actions";
 import { db_workspaces } from "../../data/database";
 import { generateId } from "../../model/utility";
 import { Link, BrowserRouter as Router } from "react-router-dom";
+
 
 const ActionList = ({
   project,
@@ -34,6 +37,9 @@ const ActionList = ({
   handleLogin,
   logout_user,
   change_workspace,
+  showUser
+  
+  
 }) => {
   const expandableAction = React.useRef(null);
   const popupItself = React.useRef(null);
@@ -41,6 +47,8 @@ const ActionList = ({
   const [showNextLevel, setShowNextLevel] = React.useState(false);
   const [nextAnchor, setNextAnchor] = React.useState({ x: 0, y: 0 });
   const [parentAnchor, setParentAnchor] = React.useState({ x: 0, y: 0 });
+  const [show,setShow] =React.useState('Filter');
+ 
   function handleMouseOver(e) {
     setParentAnchor({
       x: e.target.offsetParent.offsetLeft,
@@ -99,6 +107,7 @@ const ActionList = ({
     }
 
     setNextAnchor(anchor);
+    // member_list();
   }, [header_project_icon_popup.shouldShow, parentAnchor]);
 
   const calcPosition = () => {
@@ -269,14 +278,16 @@ const ActionList = ({
     );
   };
 
+ 
+ 
   const FilterFilter = () => {
     return (
       <div className="FilterFilter">
         <div className={"FilterFilter__title"}>Quick filters</div>
         <ul>
-          <li>
+          <li >
             <span className="material-icons filter_person">person_outline</span>
-            <span className="filter_tick">
+            <span className="filter_tick" >
               <span>Just my tasks</span>
             </span>
           </li>
@@ -342,9 +353,9 @@ const ActionList = ({
       return <FilterTasks />;
     }
 
-    if (header_filter_popup.content === "FilterFilter") {
-      return <FilterFilter />;
-    }
+    // if (header_filter_popup.content === "FilterFilter") {
+    //   return <FilterByName show={show}/>;
+    // }
     if (header_filter_popup.content === "FilterSort") {
       return <FilterSort />;
     }
@@ -517,7 +528,9 @@ const ActionList = ({
 };
 
 const mapStateToProps = (state) => {
+  // console.log(state);
   return {
+    showUser:state.user,
     starredProjects: state.user.starredProjects,
     project: state.project,
     projectCard_popup: {
@@ -548,7 +561,9 @@ const mapStateToProps = (state) => {
     },
     currentWorkspace: state.workspace,
     workspaces: state.user.workspaces,
+    
   };
+  
 };
 
 export default connect(mapStateToProps, {
@@ -558,4 +573,8 @@ export default connect(mapStateToProps, {
   delete_project,
   change_workspace,
   logout_user,
+  // member_list
+  
 })(ActionList);
+
+

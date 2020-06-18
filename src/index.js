@@ -19,6 +19,7 @@ const reducers = combineReducers({
   app,
   allProjects,
   allMembers,
+  
 });
 const store = createStore(reducers, {}, composeWithDevTools(applyMiddleware(...middleware)));
 
