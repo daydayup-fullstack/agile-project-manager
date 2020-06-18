@@ -43,30 +43,7 @@ import {
   SHOW_CALENDAR_POPUP,
   HIDE_CALENDAR_POPUP,
   SET_TASK_DUE_DAY,
-<<<<<<< HEAD
-  MEMBER_LIST,
-  SET_FILTER_ASSIGNEE,
-  HIDE_FILTER_ASSIGNEE_SCROLLABLE_POPUP,
-  SHOW_FILTER_ASSIGNEE_SCROLLABLE_POPUP,
-||||||| merged common ancestors
   MEMBER_LIST
-||||||||| merged common ancestors
-=========
-  USER_LOGIN,
-  USER_LOGOUT,
-  INIT_USER_SUCCESS,
-  INIT_USER_FAILED,
-  INIT_USER_REQUESTED,
-  PROJECT_SELECTED_SUCCESS,
-  PROJECT_SELECTED_REQUESTED,
-  PROJECT_SELECTED_FAILED,
-  SHOW_CALENDAR_POPUP,
-  HIDE_CALENDAR_POPUP,
-  SET_TASK_DUE_DAY,
->>>>>>>>> Temporary merge branch 2
-=======
-  MEMBER_LIST
->>>>>>> 731ca609c6e12e9b11b9b50822e76aaff12297c5
 } from "../actions";
 
 // ============= APP reducers ==================
@@ -115,31 +92,12 @@ const initialAppState = {
   ui_isProjectLoading: false,
   ui_calendar_popup: {
     shouldShow: false,
-<<<<<<< HEAD
     anchor: { x: 0, y: 0, width: 0, height: 0 },
   },
-||||||| merged common ancestors
-    anchor: {x: 0, y: 0, width: 0, height: 0},
-  },
-  ui_assignee_scroll_popup: {
-    shouldShow: false,
-    anchor: { x: 0, y: 0, width: 0, height: 0 },
-  },
-  ui_isWorkspaceLoading: false,
-  ui_isProjectLoading: false,
-  ui_calendar_popup: {
-    shouldShow: false,
-    anchor: { x: 0, y: 0, width: 0, height: 0}
-  }
-=======
-    anchor: {x: 0, y: 0, width: 0, height: 0},
-  },
->>>>>>> 731ca609c6e12e9b11b9b50822e76aaff12297c5
 };
 
 export const app = (state = initialAppState, action) => {
   switch (action.type) {
-<<<<<<< HEAD
     case INIT_USER_REQUESTED: {
       return {
         ...state,
@@ -189,173 +147,6 @@ export const app = (state = initialAppState, action) => {
         ui_calendar_popup: {
           shouldShow: true,
           anchor: action.payload.anchor,
-||||||| merged common ancestors
-<<<<<<<<< Temporary merge branch 1
-    case INIT_USER_REQUESTED: {
-      return {
-        ...state,
-        ui_isWorkspaceLoading: true,
-      };
-    }
-
-    case INIT_USER_SUCCESS: {
-      return {
-        ...state,
-        ui_isWorkspaceLoading: false,
-      };
-    }
-
-    case INIT_USER_FAILED: {
-      return {
-        ...state,
-        ui_isWorkspaceLoading: false,
-      };
-    }
-
-    case PROJECT_SELECTED_REQUESTED: {
-      return {
-        ...state,
-        ui_isProjectLoading: true,
-      };
-    }
-
-    case PROJECT_SELECTED_SUCCESS: {
-      return {
-        ...state,
-        ui_isProjectLoading: false,
-      };
-    }
-
-    case PROJECT_SELECTED_FAILED: {
-      return {
-        ...state,
-        ui_isProjectLoading: false,
-      };
-    }
-
-    //========
-    case SHOW_CALENDAR_POPUP: {
-      return {
-        ...state,
-        ui_calendar_popup: {
-          shouldShow: true,
-          anchor: action.payload.anchor,
-          calendarId: action.payload.calendarId
-        }
-      }
-    }
-
-    case HIDE_CALENDAR_POPUP: {
-      return {
-        ...state,
-        ui_calendar_popup: {
-          shouldShow: false,
-        }
-      }
-    }
-    //========
-||||||||| merged common ancestors
-=========
-    case INIT_USER_REQUESTED: {
-      return {
-        ...state,
-        ui_isWorkspaceLoading: true,
-      };
-    }
-
-    case INIT_USER_SUCCESS: {
-      return {
-        ...state,
-        ui_isWorkspaceLoading: false,
-      };
-    }
-
-    case INIT_USER_FAILED: {
-      return {
-        ...state,
-        ui_isWorkspaceLoading: false,
-      };
-    }
-
-    case PROJECT_SELECTED_REQUESTED: {
-      return {
-        ...state,
-        ui_isProjectLoading: true,
-      };
-    }
-
-    case PROJECT_SELECTED_SUCCESS: {
-      return {
-        ...state,
-        ui_isProjectLoading: false,
-      };
-    }
-
-    case PROJECT_SELECTED_FAILED: {
-      return {
-        ...state,
-        ui_isProjectLoading: false,
-      };
-    }
-
-      //========
-    case SHOW_CALENDAR_POPUP: {
-      return {
-        ...state,
-        ui_calendar_popup: {
-          shouldShow: true,
-          anchor: action.payload.anchor,
-=======
-    case INIT_USER_REQUESTED: {
-      return {
-        ...state,
-        ui_isWorkspaceLoading: true,
-      };
-    }
-
-    case INIT_USER_SUCCESS: {
-      return {
-        ...state,
-        ui_isWorkspaceLoading: false,
-      };
-    }
-
-    case INIT_USER_FAILED: {
-      return {
-        ...state,
-        ui_isWorkspaceLoading: false,
-      };
-    }
-
-    case PROJECT_SELECTED_REQUESTED: {
-      return {
-        ...state,
-        ui_isProjectLoading: true,
-      };
-    }
-
-    case PROJECT_SELECTED_SUCCESS: {
-      return {
-        ...state,
-        ui_isProjectLoading: false,
-      };
-    }
-
-    case PROJECT_SELECTED_FAILED: {
-      return {
-        ...state,
-        ui_isProjectLoading: false,
-      };
-    }
-
-      //========
-    case SHOW_CALENDAR_POPUP: {
-      return {
-        ...state,
-        ui_calendar_popup: {
-          shouldShow: true,
-          anchor: action.payload.anchor,
->>>>>>> 731ca609c6e12e9b11b9b50822e76aaff12297c5
           calendarId: action.payload.calendarId,
         },
       };
@@ -369,14 +160,7 @@ export const app = (state = initialAppState, action) => {
         },
       };
     }
-<<<<<<< HEAD
     //========
-||||||| merged common ancestors
-      //========
->>>>>>>>> Temporary merge branch 2
-=======
-      //========
->>>>>>> 731ca609c6e12e9b11b9b50822e76aaff12297c5
     case SHOW_PROJECT_CARD_POPUP:
       return {
         ...state,
@@ -550,15 +334,15 @@ export const app = (state = initialAppState, action) => {
       };
     }
 
-<<<<<<< HEAD
     case SHOW_TASK_ASSIGNEE_SCROLLABLE_POPUP:
       return {
         ...state,
         ui_assignee_scroll_popup: {
           shouldShow: true,
           anchor: action.anchor,
-          assigneeId: action.assigneeId
-        }
+          assigneeId: action.assigneeId,
+          project:action.project
+        },
       };
 
     case HIDE_TASK_ASSIGNEE_SCROLLABLE_POPUP:
@@ -566,60 +350,9 @@ export const app = (state = initialAppState, action) => {
         ...state,
         ui_assignee_scroll_popup: {
           shouldShow: false,
-        }
-      }
-
-    case SHOW_FILTER_ASSIGNEE_SCROLLABLE_POPUP:
-||||||| merged common ancestors
-<<<<<<<<< Temporary merge branch 1
-    case SHOW_TASK_ASSIGNEE_SCROLLABLE_POPUP:
-      return {
-        ...state,
-        ui_assignee_scroll_popup: {
-          shouldShow: true,
-          anchor: action.anchor,
-          assigneeId: action.assigneeId
-        }
+        },
       };
 
-    case HIDE_TASK_ASSIGNEE_SCROLLABLE_POPUP:
-      return {
-        ...state,
-        ui_assignee_scroll_popup: {
-          shouldShow: false,
-        }
-      }
-
-    
-||||||||| merged common ancestors
-=========
-    case SHOW_TASK_ASSIGNEE_SCROLLABLE_POPUP:
-=======
-    case SHOW_TASK_ASSIGNEE_SCROLLABLE_POPUP:
->>>>>>> 731ca609c6e12e9b11b9b50822e76aaff12297c5
-      return {
-        ...state,
-        ui_assignee_scroll_popup: {
-          shouldShow: true,
-          anchor: action.anchor,
-          assigneeId: action.assigneeId
-        }
-      };
-
-    case HIDE_FILTER_ASSIGNEE_SCROLLABLE_POPUP:
-      return {
-        ...state,
-        ui_assignee_scroll_popup: {
-          shouldShow: false,
-        }
-      }
-
-<<<<<<< HEAD
-    
-||||||| merged common ancestors
->>>>>>>>> Temporary merge branch 2
-=======
->>>>>>> 731ca609c6e12e9b11b9b50822e76aaff12297c5
     default:
       return {
         ...state,
@@ -695,7 +428,6 @@ export const user = (state = initialUserState, action) => {
         ),
       };
     }
-    
 
     case WORKSPACE_CHANGED: {
       const index = state.workspaces.indexOf(action.workspaceId);
@@ -746,8 +478,6 @@ export const workspace = (state = initialWorkspace, action) => {
         ...db_workspaces[action.workspaceId],
       };
     }
-
-   
 
     default:
       return {
@@ -801,74 +531,6 @@ export const project = (state = initialProjectState, action) => {
       };
     }
 
-<<<<<<< HEAD
-    case SET_TASK_ASSIGNEE:
-      return {
-        ...state,
-        tasks: {
-          ...state.tasks,
-          [action.assigneeId]:{
-            ...state.tasks[action.assigneeId],
-            assignedUserId:action.user
-            
-          }
-        }
-      }
-//======NEED TO FIX========
-      case SET_FILTER_ASSIGNEE:
-        return {
-          ...state,
-          tasks: {
-            ...state.tasks,
-            [action.assigneeId]:{
-              ...state.tasks[action.assigneeId],
-              assignedUserId:action.user
-              
-          }
-        }
-      }
-    case SET_TASK_DUE_DAY:{
-      return {
-        ...state,
-        tasks: {
-          ...state.tasks,
-          [action.payload.calendarId]:{
-            ...state.tasks[action.payload.calendarId],
-            dueDate: action.payload.dueDate,
-          }
-        }
-      }
-    }
-
-||||||| merged common ancestors
-<<<<<<<<< Temporary merge branch 1
-    case SET_TASK_ASSIGNEE:
-      return {
-        ...state,
-        tasks: {
-          ...state.tasks,
-          [action.assigneeId]:{
-            ...state.tasks[action.assigneeId],
-            assignedUserId:action.user
-            
-          }
-        }
-      }
-    case SET_TASK_DUE_DAY:{
-      return {
-        ...state,
-        tasks: {
-          ...state.tasks,
-          [action.payload.calendarId]:{
-            ...state.tasks[action.payload.calendarId],
-            dueDate: action.payload.dueDate,
-          }
-        }
-      }
-    }
-
-||||||||| merged common ancestors
-=========
     case SET_TASK_ASSIGNEE:
       return {
         ...state,
@@ -893,33 +555,6 @@ export const project = (state = initialProjectState, action) => {
       };
     }
 
->>>>>>>>> Temporary merge branch 2
-=======
-    case SET_TASK_ASSIGNEE:
-      return {
-        ...state,
-        tasks: {
-          ...state.tasks,
-          [action.assigneeId]: {
-            ...state.tasks[action.assigneeId],
-            assignedUserId: action.user,
-          },
-        },
-      };
-    case SET_TASK_DUE_DAY: {
-      return {
-        ...state,
-        tasks: {
-          ...state.tasks,
-          [action.payload.calendarId]: {
-            ...state.tasks[action.payload.calendarId],
-            dueDate: action.payload.dueDate,
-          },
-        },
-      };
-    }
-
->>>>>>> 731ca609c6e12e9b11b9b50822e76aaff12297c5
     default:
       return {
         ...state,
@@ -1012,9 +647,7 @@ export const allProjects = (state = projectsInitial, action) => {
   }
 };
 
-//=======Get all members info==========
-
-
+//=====Get member list======
 export const allMembers = (state ={}, action) => {
   switch (action.type) {
     case MEMBER_LIST:{
@@ -1028,13 +661,3 @@ export const allMembers = (state ={}, action) => {
   }
 };
 
-//======Show member name in filterbar=======
-// export const showMyName= (state ='Filter', action) => {
-//     if(action.type===SHOW_MY_NAME) {
-    
-//       return 'Filter: Chuyue';
-//     }
-//     else{
-//       return state;
-//   }
-// };

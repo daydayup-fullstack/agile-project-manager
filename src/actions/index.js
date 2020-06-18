@@ -1,21 +1,5 @@
-<<<<<<< HEAD
 import backend from "../apis/backend";
 import { login } from "../model/utility";
-||||||| merged common ancestors
-<<<<<<<<< Temporary merge branch 1
-import backend from "../apis/backend";
-import { login } from "../model/utility";
-||||||||| merged common ancestors
-import { db_columns, db_tasks } from "../data/database";
-
-=========
-import backend from "../apis/backend";
-import {login} from "../model/utility";
->>>>>>>>> Temporary merge branch 2
-=======
-import backend from "../apis/backend";
-import {login} from "../model/utility";
->>>>>>> 731ca609c6e12e9b11b9b50822e76aaff12297c5
 // ============== User ========================
 //
 export const INIT_USER_REQUESTED = "INIT_USER";
@@ -48,15 +32,6 @@ export const init_user = (userId) => async (dispatch) => {
         dispatch(init_user_failed(e));
     }
 };
-
-//===== Get Members =======
-export const MEMBER_LIST = 'MEMBER_LIST';
-export const member_list=()=>async (dispatch)=>{
-    const response=await backend.get('/workspaces/eRVjCPQdalku7cGBNaBx/members');
-    console.log(response);
-    dispatch({type:MEMBER_LIST,payload:response.data});
-  
-}
 
 export const USER_LOGIN = "USER_LOGIN";
 export const login_user = ({ username, password }) => async (dispatch) => {
@@ -156,35 +131,7 @@ export const project_selected = (project) => async (dispatch) => {
     } catch (e) {
         dispatch(project_selected_failed(e));
     }
-<<<<<<< HEAD
 };
-
-
-
-||||||| merged common ancestors
->>>>>>>>> Temporary merge branch 2
-};
-
-export const PROJECT_SELECTED_FAILED = "PROJECT_SELECTED_FAILED";
-const project_selected_failed = (error) => {
-  return {
-    type: PROJECT_SELECTED_FAILED,
-    error: error,
-  };
-};
-
-export const project_selected = (project) => async (dispatch) => {
-  try {
-    dispatch(project_selected_requested());
-    const response = await backend.get(`/projects/${project.id}`);
-    dispatch(project_selected_success(project, response));
-  } catch (e) {
-    dispatch(project_selected_failed(e));
-  }
-};
-=======
-};
->>>>>>> 731ca609c6e12e9b11b9b50822e76aaff12297c5
 
 export const PROJECT_CHANGED = "PROJECT_CHANGED";
 export const project_changed = (project) => async (dispatch) => {
@@ -591,93 +538,12 @@ export const hide_calendar_popup = () => {
         type: HIDE_CALENDAR_POPUP,
     };
 };
-<<<<<<< HEAD
-
-//taskAssignee scrollable popup
-
-
-
 //endregion
 
-export const SET_FILTER_ASSIGNEE = "SET_FILTER_ASSIGNEE";
-export const set_filter_assignee = ({user, assigneeId}) => {
-  return {
-    type: SET_FILTER_ASSIGNEE,
-    user,
-    assigneeId,
-  };
-};
-
-export const SHOW_FILTER_ASSIGNEE_SCROLLABLE_POPUP = "SHOW_FILTER_ASSIGNEE_SCROLLABLE_POPUP";
-export const show_filter_assignee_scrollable_popup = ({ anchor,assigneeId }) => {
-  return {
-    type: SHOW_FILTER_ASSIGNEE_SCROLLABLE_POPUP,
-    anchor,
-    assigneeId,
-  };
-};
-
-export const HIDE_FILTER_ASSIGNEE_SCROLLABLE_POPUP = "HIDE_FILTER_ASSIGNEE_SCROLLABLE_POPUP";
-export const hide_filter_assignee_scrollable_popup = () => {
-  return {
-    type: HIDE_FILTER_ASSIGNEE_SCROLLABLE_POPUP,
-  };
-};
-
-export const MEMBER_LIST='MEMBER_LIST';
+export const MEMBER_LIST = "MEMBER_LIST";
 export const member_list=()=>async dispatch=>{
     const response=await backend.get('/workspaces/eRVjCPQdalku7cGBNaBx/members');
     // console.log(response);
 
     dispatch({type:MEMBER_LIST,payload:response.data});
 }
-||||||| merged common ancestors
-
-//taskAssignee scrollable popup
-export const SHOW_TASK_ASSIGNEE_SCROLLABLE_POPUP = "SHOW_TASK_ASSIGNEE_SCROLLABLE_POPUP";
-export const show_task_assignee_scrollable_popup = ({ anchor,assigneeId }) => {
-  return {
-    type: SHOW_TASK_ASSIGNEE_SCROLLABLE_POPUP,
-    anchor,
-    assigneeId,
-  };
-};
-export const HIDE_TASK_ASSIGNEE_SCROLLABLE_POPUP = "HIDE_TASK_ASSIGNEE_SCROLLABLE_POPUP";
-export const hide_task_assignee_scrollable_popup = () => {
-  return {
-    type: HIDE_TASK_ASSIGNEE_SCROLLABLE_POPUP,
-  };
-};
-
-export const SET_TASK_ASSIGNEE = "SET_TASK_ASSIGNEE";
-export const set_task_assignee = ({user, assigneeId}) => {
-  return {
-    type: SET_TASK_ASSIGNEE,
-    user,
-    assigneeId,
-  };
-};
-//endregion
-
-// calendar popup
-export const SHOW_CALENDAR_POPUP = "SHOW_CALENDAR_POPUP";
-export const show_calendar_popup = ({ anchor, calendarId }) => {
-  return {
-    type: SHOW_CALENDAR_POPUP,
-    payload: {
-      anchor,
-      calendarId
-    }
-  };
-};
-
-export const HIDE_CALENDAR_POPUP = "HIDE_CALENDAR_POPUP";
-export const hide_calendar_popup = () => {
-  return {
-    type: HIDE_CALENDAR_POPUP,
-  };
-};
-//endregion
-=======
-//endregion
->>>>>>> 731ca609c6e12e9b11b9b50822e76aaff12297c5

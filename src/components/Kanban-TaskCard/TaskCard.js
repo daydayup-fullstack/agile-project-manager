@@ -14,18 +14,11 @@ import Profile from "../Profile/Profile";
 import DateDisplay from "../DateDisplay/DateDisplay";
 import CompleteButton from "../CompleteButton/CompleteButton";
 import {handleUpload, useDropzone} from "../../hooks/customHooks";
-<<<<<<< HEAD
 import {
     updateColumnToServer,
     updateTaskImageCover,
     updateTaskToServer,
 } from "../../apis/api";
-||||||| merged common ancestors
-import {updateTaskToServer} from "../../apis/api";
->>>>>>>>> Temporary merge branch 2
-=======
-import {updateTaskToServer} from "../../apis/api";
->>>>>>> 731ca609c6e12e9b11b9b50822e76aaff12297c5
 
 const TaskCard = ({
                       task,
@@ -66,33 +59,9 @@ const TaskCard = ({
         };
 
         project_changed(updatedProject);
-<<<<<<< HEAD
         updateTaskImageCover(updatedTask);
-||||||| merged common ancestors
-        updateTaskToServer(updatedTask);
->>>>>>>>> Temporary merge branch 2
-=======
-        updateTaskToServer(updatedTask);
->>>>>>> 731ca609c6e12e9b11b9b50822e76aaff12297c5
     }
 
-<<<<<<< HEAD
-||||||| merged common ancestors
-<<<<<<<<< Temporary merge branch 1
-  function handleKeyDown(e) {
-    if (e.key === "Enter") {
-      setTitle(e.target.value);
-      e.target.blur();
-      updateProject(e);
-||||||||| merged common ancestors
-  function handleKeyDown(e) {
-    if (e.key === "Enter") {
-      updateProject(e);
-=========
-    //region - old
-=======
-    //region - old
->>>>>>> 731ca609c6e12e9b11b9b50822e76aaff12297c5
     React.useEffect(() => {
         if (shouldShow === false) {
             setShowContextMenu(shouldShow);
@@ -157,7 +126,6 @@ const TaskCard = ({
         setTitle(e.target.value);
         updateProject(e);
         setIsEditingTitle(false);
-<<<<<<< HEAD
 
         const newTask = {
             ...task,
@@ -170,117 +138,6 @@ const TaskCard = ({
 
         updateTaskToServer(newTask);
     }
-||||||| merged common ancestors
->>>>>>>>> Temporary merge branch 2
-    }
-<<<<<<<<< Temporary merge branch 1
-  }
-
-  function handleBlur(e) {
-    setTitle(e.target.value);
-    updateProject(e);
-    setIsEditingTitle(false);
-  }
-
-  const updateProject = (e) => {
-    if (e.target.value) {
-      // save it to project
-      const newTask = {
-        ...task,
-        name: e.target.value,
-        authorId: currentUser.id,
-        isCompleted: false,
-      };
-
-      const updatedProject = {
-        ...project,
-        tasks: {
-          ...project.tasks,
-          [task.id]: {
-            ...project.tasks[task.Id],
-            ...newTask,
-          },
-        },
-      };
-
-      project_changed(updatedProject);
-    } else {
-      //  empty value, remove the current task
-      // delete project.tasks[task.id];
-
-      if (!originalTitle) {
-        const updatedProject = {
-          ...project,
-          columns: {
-            ...project.columns,
-            [columnId]: {
-              ...project.columns[columnId],
-              taskIds: [
-                ...project.columns[columnId].taskIds.filter(
-                  (id) => id !== task.id
-                ),
-              ],
-            },
-          },
-          tasks: {
-            ...project.tasks,
-            [task.id]: undefined,
-          },
-        };
-
-        project_changed(updatedProject);
-      }
-||||||||| merged common ancestors
-  }
-
-  function handleBlur(e) {
-    updateProject(e);
-  }
-
-  const updateProject = (e) => {
-    if (e.target.value) {
-      // save it to project
-      const newTask = {
-        ...task,
-        name: e.target.value,
-      };
-
-      const updatedProject = {
-        ...project,
-        tasks: {
-          ...project.tasks,
-          [task.id]: newTask,
-        },
-      };
-
-      project_changed(updatedProject);
-    } else {
-      //  empty value, remove the current task
-
-      // delete project.tasks[task.id];
-
-      delete project.tasks[task.id];
-
-      const updatedProject = {
-        ...project,
-        columns: {
-          ...project.columns,
-          [columnId]: {
-            ...project.columns[columnId],
-            taskIds: [
-              ...project.columns[columnId].taskIds.filter(
-                (id) => id !== task.id
-              ),
-            ],
-          },
-        },
-      };
-
-      project_changed(updatedProject);
-=========
-=======
-    }
->>>>>>> 731ca609c6e12e9b11b9b50822e76aaff12297c5
 
     const updateProject = (e) => {
         if (e.target.value) {
