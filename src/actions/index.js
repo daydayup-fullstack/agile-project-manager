@@ -1,5 +1,5 @@
 import backend from "../apis/backend";
-import {login} from "../model/utility";
+import { login } from "../model/utility";
 // ============== User ========================
 //
 export const INIT_USER_REQUESTED = "INIT_USER";
@@ -34,10 +34,10 @@ export const init_user = (userId) => async (dispatch) => {
 };
 
 export const USER_LOGIN = "USER_LOGIN";
-export const login_user = ({username, password}) => async (dispatch) => {
+export const login_user = ({ username, password }) => async (dispatch) => {
     const result = await login(username, password);
 
-    let {userId} = JSON.parse(result);
+    let { userId } = JSON.parse(result);
 
     dispatch({
         type: USER_LOGIN,
@@ -137,7 +137,7 @@ export const PROJECT_CHANGED = "PROJECT_CHANGED";
 export const project_changed = (project) => async (dispatch) => {
     try {
         dispatch(project_changed_in_store(project));
-        const {name, colorIndex, iconIndex, columnOrder, activeUsers} = project;
+        const { name, colorIndex, iconIndex, columnOrder, activeUsers } = project;
 
         const response = await backend.put(`/projects/${project.id}`, {
             name,
@@ -179,12 +179,57 @@ export const project_changed_failed = (error) => {
 };
 
 export const PROJECT_ADDED = "PROJECT_ADDED";
-export const project_added = (project) => {
+export const project_added = (project) => async (dispatch) => {
+    try {
+        dispatch(project_added_in_store(project));
+        const { name, colorIndex, iconIndex, columnOrder, activeUsers } = project;
+
+        const response = await backend.post("/projects", {
+            name,
+            colorIndex,
+            iconIndex,
+            columnOrder,
+            activeUsers,
+        });
+
+        console.log(response);
+
+        dispatch(project_changed_success());
+    } catch (error) {
+        dispatch(project_changed_failed(error));
+    }
+};
+
+export const PROJECT_ADDED_SUCCESS = "PROJECT_ADDED_SUCCESS";
+export const project_added_success = () => {
     return {
-        type: PROJECT_ADDED,
-        payload: project,
+        type: PROJECT_ADDED_SUCCESS,
     };
 };
+
+export const project_added_in_store = (project) => {
+    return {
+        type: PROJECT_ADDED,
+        project,
+    };
+};
+
+export const PROJECT_ADDED_FAILED = "PROJECT_ADDED_FAILED";
+export const project_added_failed = (error) => {
+    // todo - should activate sync failed warning in ui
+    return {
+        type: PROJECT_ADDED_SUCCESS,
+        error,
+    };
+};
+
+// export const PROJECT_ADDED = "PROJECT_ADDED";
+// export const project_added = (project) => {
+//     return {
+//         type: PROJECT_ADDED,
+//         payload: project,
+//     };
+// };
 
 //-------new task display
 export const CHANGE_NEW_TASK_DISPLAY = "CHANGE_NEW_TASK_DISPLAY";
@@ -203,8 +248,42 @@ export const changeCalendarDisplay = (calendarDisplay) => {
     };
 };
 
+// export const PROJECT_DELETED = "PROJECT_DELETED";
+// export const delete_project = (project) => {
+//     return {
+//         type: PROJECT_DELETED,
+//         project,
+//     };
+// };
+
 export const PROJECT_DELETED = "PROJECT_DELETED";
-export const delete_project = (project) => {
+export const delete_project = (project) => async (dispatch) => {
+    try {
+        dispatch(project_delete_in_store(project));
+        const response = await backend.delete(`/projects/${project.id}`);
+        console.log(response);
+        dispatch(project_deleted_success());
+    } catch (error) {
+        dispatch(project_deleted_failed(error));
+    }
+};
+
+export const PROJECT_DELETED_SUCCESS = "PROJECT_DELETED_SUCCESS";
+export const project_deleted_success = () => {
+    return {
+        type: PROJECT_DELETED_SUCCESS,
+    };
+};
+
+export const PROJECT_DELETED_FAILED = "PROJECT_DELETED_FAILED";
+export const project_deleted_failed = (error) => {
+    return {
+        type: PROJECT_DELETED_FAILED,
+        error,
+    };
+};
+
+export const project_delete_in_store = (project) => {
     return {
         type: PROJECT_DELETED,
         project,
@@ -228,7 +307,7 @@ export const remove_project_star = (project) => {
 };
 
 export const SET_TASK_DUE_DAY = "SET_TASK_DUE_DAY";
-export const set_task_due_day = ({dueDate, calendarId}) => {
+export const set_task_due_day = ({ dueDate, calendarId }) => {
     return {
         type: SET_TASK_DUE_DAY,
         payload: {
@@ -242,7 +321,7 @@ export const set_task_due_day = ({dueDate, calendarId}) => {
 // ================ ui state ======================
 // region - ui state actions
 export const SHOW_PROJECT_CARD_POPUP = "SHOW_PROJECT_CARD_POPUP";
-export const show_projectCard_popup = ({anchor}) => {
+export const show_projectCard_popup = ({ anchor }) => {
     return {
         type: SHOW_PROJECT_CARD_POPUP,
         anchor,
@@ -295,7 +374,7 @@ export const close_app_drawer = () => {
 export const SHOW_HEADER_PROJECT_ICON_POPUP = "SHOW_HEADER_PROJECT_ICON_POPUP";
 
 // - header - project - icon
-export const show_header_projectIcon_popup = ({anchor}) => {
+export const show_header_projectIcon_popup = ({ anchor }) => {
     return {
         type: SHOW_HEADER_PROJECT_ICON_POPUP,
         anchor,
@@ -311,7 +390,7 @@ export const hide_header_projectIcon_popup = () => {
 
 //header - project - profile
 export const SHOW_HEADER_PROFILE_POPUP = "SHOW_HEADER_PROFILE_POPUP";
-export const show_header_profile_popup = ({anchor}) => {
+export const show_header_profile_popup = ({ anchor }) => {
     return {
         type: SHOW_HEADER_PROFILE_POPUP,
         anchor,
@@ -326,7 +405,7 @@ export const hide_header_profile_popup = () => {
 
 //header - project - information
 export const SHOW_HEADER_PROJECT_INFO_POPUP = "SHOW_HEADER_PROJECT_INFO_POPUP";
-export const show_header_projectInfo_popup = ({anchor}) => {
+export const show_header_projectInfo_popup = ({ anchor }) => {
     return {
         type: SHOW_HEADER_PROJECT_INFO_POPUP,
         anchor,
@@ -341,7 +420,7 @@ export const hide_header_projectInfo_popup = () => {
 
 //header - addButton
 export const SHOW_HEADER_ADD_BUTTON_POPUP = "SHOW_HEADER_ADD_BUTTON_POPUP";
-export const show_header_addButton_popup = ({anchor}) => {
+export const show_header_addButton_popup = ({ anchor }) => {
     return {
         type: SHOW_HEADER_ADD_BUTTON_POPUP,
         anchor,
@@ -356,7 +435,7 @@ export const hide_header_addButton_popup = () => {
 
 // filterbar - popup
 export const SHOW_HEADER_FILTER_POPUP = "SHOW_HEADER_FILTER_POPUP";
-export const show_header_filter_popup = ({anchor, content}) => {
+export const show_header_filter_popup = ({ anchor, content }) => {
     return {
         type: SHOW_HEADER_FILTER_POPUP,
         anchor,
@@ -375,11 +454,11 @@ export const hide_header_filter_popup = () => {
 export const SHOW_TASKCARD_CONTEXT_MENU_POPUP =
     "SHOW_TASKCARD_CONTEXT_MENU_POPUP";
 export const show_taskcard_context_menu = ({
-                                               anchor,
-                                               task,
-                                               columnId,
-                                               project,
-                                           }) => {
+    anchor,
+    task,
+    columnId,
+    project,
+}) => {
     return {
         type: SHOW_TASKCARD_CONTEXT_MENU_POPUP,
         anchor,
@@ -397,7 +476,7 @@ export const hide_taskcard_context_menu = () => {
 };
 
 export const SHOW_COLUMN_POPUP = "SHOW_COLUMN_POPUP";
-export const show_column_popup = ({anchor, column}) => {
+export const show_column_popup = ({ anchor, column }) => {
     return {
         type: SHOW_COLUMN_POPUP,
         anchor,
@@ -432,7 +511,7 @@ export const hide_task_assignee_scrollable_popup = () => {
 };
 
 export const SET_TASK_ASSIGNEE = "SET_TASK_ASSIGNEE";
-export const set_task_assignee = ({user, assigneeId}) => {
+export const set_task_assignee = ({ user, assigneeId }) => {
     return {
         type: SET_TASK_ASSIGNEE,
         user,
@@ -443,7 +522,7 @@ export const set_task_assignee = ({user, assigneeId}) => {
 
 // calendar popup
 export const SHOW_CALENDAR_POPUP = "SHOW_CALENDAR_POPUP";
-export const show_calendar_popup = ({anchor, calendarId}) => {
+export const show_calendar_popup = ({ anchor, calendarId }) => {
     return {
         type: SHOW_CALENDAR_POPUP,
         payload: {
