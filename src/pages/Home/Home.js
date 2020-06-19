@@ -25,13 +25,19 @@ const Home = ({starredProjects, projects}) => {
                 </Panel>
             )}
             <Panel panelName={"Recent Projects"}>
-                {projects.map((project) => (
-                    <ProjectCard
-                        project={project}
-                        starred={starredProjects.indexOf(project.id) >= 0}
-                        key={project.id}
-                    />
-                ))}
+                {projects.map((project) => {
+                    if (project) {
+                        return (
+                            <ProjectCard
+                                project={project}
+                                starred={project && starredProjects.indexOf(project.id) >= 0}
+                                key={project.id}
+                            />
+                        );
+                    } else {
+                        return null;
+                    }
+                })}
                 <Link to={"/create-project"}>
                     <AddProjectCard/>
                 </Link>

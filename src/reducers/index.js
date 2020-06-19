@@ -139,7 +139,6 @@ export const app = (state = initialAppState, action) => {
             };
         }
 
-
         case SHOW_CALENDAR_POPUP: {
             return {
                 ...state,
@@ -176,7 +175,6 @@ export const app = (state = initialAppState, action) => {
                 },
             };
 
-
         case HIDE_ADD_MEMBER_POPUP:
             return {
                 ...state,
@@ -191,7 +189,6 @@ export const app = (state = initialAppState, action) => {
                     ShowPopup: true,
                 },
             };
-
 
         case DRAWER_OPENED:
             return {
@@ -335,30 +332,30 @@ export const app = (state = initialAppState, action) => {
             };
         }
 
-    case SHOW_TASK_ASSIGNEE_SCROLLABLE_POPUP:
-      return {
-        ...state,
-        ui_assignee_scroll_popup: {
-          shouldShow: true,
-          anchor: action.anchor,
-          assigneeId: action.assigneeId,
-          project:action.project
-        },
-      };
+        case SHOW_TASK_ASSIGNEE_SCROLLABLE_POPUP:
+            return {
+                ...state,
+                ui_assignee_scroll_popup: {
+                    shouldShow: true,
+                    anchor: action.anchor,
+                    assigneeId: action.assigneeId,
+                    project: action.project,
+                },
+            };
 
-    case HIDE_TASK_ASSIGNEE_SCROLLABLE_POPUP:
-      return {
-        ...state,
-        ui_assignee_scroll_popup: {
-          shouldShow: false,
-        },
-      };
+        case HIDE_TASK_ASSIGNEE_SCROLLABLE_POPUP:
+            return {
+                ...state,
+                ui_assignee_scroll_popup: {
+                    shouldShow: false,
+                },
+            };
 
-    default:
-      return {
-        ...state,
-      };
-  }
+        default:
+            return {
+                ...state,
+            };
+    }
 };
 // ============= USER reducers ==================
 
@@ -480,6 +477,13 @@ export const workspace = (state = initialWorkspace, action) => {
             return {
                 ...state,
                 ...action.workspace,
+            };
+        }
+
+        case PROJECT_ADDED: {
+            return {
+                ...state,
+                projectsInOrder: [action.project.id, ...state.projectsInOrder],
             };
         }
 
@@ -634,7 +638,7 @@ export const allProjects = (state = projectsInitial, action) => {
         }
 
         case PROJECT_ADDED: {
-            return [...state, action.payload];
+            return [action.project, ...state];
         }
 
         case PROJECT_DELETED: {

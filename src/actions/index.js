@@ -170,19 +170,19 @@ export const PROJECT_ADDED = "PROJECT_ADDED";
 export const project_added = (project) => async (dispatch) => {
     try {
         dispatch(project_added_in_store(project));
-        const {name, colorIndex, iconIndex, columnOrder, activeUsers} = project;
-
-        const response = await backend.post("/projects", {
-            name,
-            colorIndex,
-            iconIndex,
-            columnOrder,
-            activeUsers,
-        });
-
-        console.log(response);
-
-        dispatch(project_changed_success());
+        // const {name, colorIndex, iconIndex, columnOrder, activeUsers} = project;
+        //
+        // const response = await backend.post("/projects", {
+        //     name,
+        //     colorIndex,
+        //     iconIndex,
+        //     columnOrder,
+        //     activeUsers,
+        // });
+        //
+        // console.log(response);
+        //
+        // dispatch(project_changed_success());
     } catch (error) {
         dispatch(project_changed_failed(error));
     }
