@@ -125,7 +125,7 @@ export const PROJECT_CHANGED = "PROJECT_CHANGED";
 export const project_changed = (project) => async (dispatch) => {
     try {
         dispatch(project_changed_in_store(project));
-        const { name, colorIndex, iconIndex, columnOrder, activeUsers } = project;
+        const {name, colorIndex, iconIndex, columnOrder, activeUsers} = project;
 
         const response = await backend.put(`/projects/${project.id}`, {
             name,
@@ -170,7 +170,7 @@ export const PROJECT_ADDED = "PROJECT_ADDED";
 export const project_added = (project) => async (dispatch) => {
     try {
         dispatch(project_added_in_store(project));
-        const { name, colorIndex, iconIndex, columnOrder, activeUsers } = project;
+        const {name, colorIndex, iconIndex, columnOrder, activeUsers} = project;
 
         const response = await backend.post("/projects", {
             name,
@@ -245,10 +245,14 @@ export const changeCalendarDisplay = (calendarDisplay) => {
 // };
 
 export const PROJECT_DELETED = "PROJECT_DELETED";
-export const delete_project = (project) => async (dispatch) => {
+export const delete_project = ({project, currentWorkspace}) => async (
+    dispatch
+) => {
     try {
+        const workspace = currentWorkspace;
         dispatch(project_delete_in_store(project));
-        const response = await backend.delete(`/projects/${project.id}`);
+
+        const response = await backend.delete(`/workspaces/${workspace.id}/projects/${project.id}`);
         console.log(response);
         dispatch(project_deleted_success());
     } catch (error) {
@@ -295,7 +299,7 @@ export const remove_project_star = (project) => {
 };
 
 export const SET_TASK_DUE_DAY = "SET_TASK_DUE_DAY";
-export const set_task_due_day = ({ dueDate, calendarId }) => {
+export const set_task_due_day = ({dueDate, calendarId}) => {
     return {
         type: SET_TASK_DUE_DAY,
         payload: {
@@ -309,7 +313,7 @@ export const set_task_due_day = ({ dueDate, calendarId }) => {
 // ================ ui state ======================
 // region - ui state actions
 export const SHOW_PROJECT_CARD_POPUP = "SHOW_PROJECT_CARD_POPUP";
-export const show_projectCard_popup = ({ anchor }) => {
+export const show_projectCard_popup = ({anchor}) => {
     return {
         type: SHOW_PROJECT_CARD_POPUP,
         anchor,
@@ -362,7 +366,7 @@ export const close_app_drawer = () => {
 export const SHOW_HEADER_PROJECT_ICON_POPUP = "SHOW_HEADER_PROJECT_ICON_POPUP";
 
 // - header - project - icon
-export const show_header_projectIcon_popup = ({ anchor }) => {
+export const show_header_projectIcon_popup = ({anchor}) => {
     return {
         type: SHOW_HEADER_PROJECT_ICON_POPUP,
         anchor,
@@ -378,7 +382,7 @@ export const hide_header_projectIcon_popup = () => {
 
 //header - project - profile
 export const SHOW_HEADER_PROFILE_POPUP = "SHOW_HEADER_PROFILE_POPUP";
-export const show_header_profile_popup = ({ anchor }) => {
+export const show_header_profile_popup = ({anchor}) => {
     return {
         type: SHOW_HEADER_PROFILE_POPUP,
         anchor,
@@ -393,7 +397,7 @@ export const hide_header_profile_popup = () => {
 
 //header - project - information
 export const SHOW_HEADER_PROJECT_INFO_POPUP = "SHOW_HEADER_PROJECT_INFO_POPUP";
-export const show_header_projectInfo_popup = ({ anchor }) => {
+export const show_header_projectInfo_popup = ({anchor}) => {
     return {
         type: SHOW_HEADER_PROJECT_INFO_POPUP,
         anchor,
@@ -408,7 +412,7 @@ export const hide_header_projectInfo_popup = () => {
 
 //header - addButton
 export const SHOW_HEADER_ADD_BUTTON_POPUP = "SHOW_HEADER_ADD_BUTTON_POPUP";
-export const show_header_addButton_popup = ({ anchor }) => {
+export const show_header_addButton_popup = ({anchor}) => {
     return {
         type: SHOW_HEADER_ADD_BUTTON_POPUP,
         anchor,
@@ -423,7 +427,7 @@ export const hide_header_addButton_popup = () => {
 
 // filterbar - popup
 export const SHOW_HEADER_FILTER_POPUP = "SHOW_HEADER_FILTER_POPUP";
-export const show_header_filter_popup = ({ anchor, content }) => {
+export const show_header_filter_popup = ({anchor, content}) => {
     return {
         type: SHOW_HEADER_FILTER_POPUP,
         anchor,
@@ -442,11 +446,11 @@ export const hide_header_filter_popup = () => {
 export const SHOW_TASKCARD_CONTEXT_MENU_POPUP =
     "SHOW_TASKCARD_CONTEXT_MENU_POPUP";
 export const show_taskcard_context_menu = ({
-    anchor,
-    task,
-    columnId,
-    project,
-}) => {
+                                               anchor,
+                                               task,
+                                               columnId,
+                                               project,
+                                           }) => {
     return {
         type: SHOW_TASKCARD_CONTEXT_MENU_POPUP,
         anchor,
@@ -464,7 +468,7 @@ export const hide_taskcard_context_menu = () => {
 };
 
 export const SHOW_COLUMN_POPUP = "SHOW_COLUMN_POPUP";
-export const show_column_popup = ({ anchor, column }) => {
+export const show_column_popup = ({anchor, column}) => {
     return {
         type: SHOW_COLUMN_POPUP,
         anchor,
@@ -482,7 +486,11 @@ export const hide_column_popup = () => {
 //taskAssignee scrollable popup
 export const SHOW_TASK_ASSIGNEE_SCROLLABLE_POPUP =
     "SHOW_TASK_ASSIGNEE_SCROLLABLE_POPUP";
-export const show_task_assignee_scrollable_popup = ({anchor, assigneeId,project}) => {
+export const show_task_assignee_scrollable_popup = ({
+                                                        anchor,
+                                                        assigneeId,
+                                                        project,
+                                                    }) => {
     return {
         type: SHOW_TASK_ASSIGNEE_SCROLLABLE_POPUP,
         anchor,
@@ -499,7 +507,7 @@ export const hide_task_assignee_scrollable_popup = () => {
 };
 
 export const SET_TASK_ASSIGNEE = "SET_TASK_ASSIGNEE";
-export const set_task_assignee = ({ user, assigneeId }) => {
+export const set_task_assignee = ({user, assigneeId}) => {
     return {
         type: SET_TASK_ASSIGNEE,
         user,
@@ -510,7 +518,7 @@ export const set_task_assignee = ({ user, assigneeId }) => {
 
 // calendar popup
 export const SHOW_CALENDAR_POPUP = "SHOW_CALENDAR_POPUP";
-export const show_calendar_popup = ({ anchor, calendarId }) => {
+export const show_calendar_popup = ({anchor, calendarId}) => {
     return {
         type: SHOW_CALENDAR_POPUP,
         payload: {

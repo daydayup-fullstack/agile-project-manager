@@ -145,7 +145,8 @@ const ActionList = ({
             let ahead = window.confirm("Are you sure about deleting this project?");
 
             if (ahead) {
-                delete_project(project);
+                console.log("should delete");
+                delete_project({project, currentWorkspace});
             }
         };
 
