@@ -65,23 +65,27 @@ export const Team = ({projects, workspace}) => {
             )}
 
             <ul className={`projectList`} style={{display: "block"}}>
-                {projectArray.map((project) => (
-                    <li key={project.id}>
-                        <NavLink
-                            exact
-                            activeClassName={"active"}
-                            to={`/projects/${project.id}`}
-                            style={{textDecoration: "none"}}
-                            className={"project"}
-                        >
-                            <div
-                                className={"project__color"}
-                                style={getProjectColor(project)}
-                            />
-                            <span className={"project__name"}>{project.name}</span>
-                        </NavLink>
-                    </li>
-                ))}
+                {projectArray.map((project) => {
+                    return (
+                        project && (
+                            <li key={project.id}>
+                                <NavLink
+                                    exact
+                                    activeClassName={"active"}
+                                    to={`/projects/${project.id}`}
+                                    style={{textDecoration: "none"}}
+                                    className={"project"}
+                                >
+                                    <div
+                                        className={"project__color"}
+                                        style={getProjectColor(project)}
+                                    />
+                                    <span className={"project__name"}>{project.name}</span>
+                                </NavLink>
+                            </li>
+                        )
+                    );
+                })}
             </ul>
         </>
     );

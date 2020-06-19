@@ -1,15 +1,21 @@
 import React from "react";
 import "./Project.css";
-import { useParams } from "react-router-dom";
+import {useParams} from "react-router-dom";
 import Kanban from "../../components/Kanban/Kanban";
-import { connect } from "react-redux";
-import { project_selected } from "../../actions";
+import {connect} from "react-redux";
+import {project_selected} from "../../actions";
 
-const Project = ({ allProjects, project_selected }) => {
-  const { id } = useParams();
+const Project = ({allProjects, project_selected}) => {
+  const {id} = useParams();
 
   React.useEffect(() => {
-    const project = allProjects.filter((p) => p.id === id);
+    const project = allProjects.filter((p) => {
+      if (p) {
+        return p.id === id;
+      } else {
+        return null;
+      }
+    });
 
     if (project && project.length > 0) {
       project_selected(project[0]);
@@ -21,9 +27,9 @@ const Project = ({ allProjects, project_selected }) => {
   }, [id]);
 
   return (
-    <div className={"App-Project"}>
-      <Kanban />
-    </div>
+      <div className={"App-Project"}>
+        <Kanban/>
+      </div>
   );
 };
 
@@ -33,4 +39,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { project_selected })(Project);
+export default connect(mapStateToProps, {project_selected})(Project);
