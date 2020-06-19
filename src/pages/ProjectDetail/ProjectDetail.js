@@ -12,7 +12,7 @@ class ProjectDetail extends Component {
     this.state = {
       projectName: "",
       defaultView: "list",
-      privacy: "private",
+      privacy: "personal",
       description: null,
     };
 
@@ -56,15 +56,22 @@ class ProjectDetail extends Component {
       iconIndex: Math.floor(Math.random() * 28),
       name: this.state.projectName,
     };
-    this.props.project_added(newProject);
+    const {user:{allWorkspaces}} = this.props
+    const workspaceArray = Object.values(allWorkspaces);
+    const privateWorkspace = workspaceArray.filter(workspace => workspace.type === 'personal')[0]
+    const publicWorkspace = workspaceArray.filter(workspace => workspace.type === 'team')[0]
+    const workspace = this.state.privacy==='team' ? publicWorkspace : privateWorkspace
+    if(this.state.privacy===this.props.workspace.type){
+      this.props.project_added(newProject);
+    }
+
     this.props.project_selected(newProject);
     this.props.history.push(`/projects/${newProject.id}`);
-    saveNewProjectToServer(newProject, this.props.workspace);
+    saveNewProjectToServer(newProject, workspace);
   }
 
   render() {
     const {projectName, description} = this.state;
-
     return (
         <section className="projectDetail">
           <div className="projectDetail__nav">
@@ -147,8 +154,8 @@ class ProjectDetail extends Component {
                 <input
                     type="radio"
                     name="privacy"
-                    value="public"
-                    checked={this.state.privacy === "public"}
+                    value="team"
+                    checked={this.state.privacy === "team"}
                     onChange={this.handleRadioChange}
                 />
                 <span className="material-icons icon">people_outline</span>
@@ -158,12 +165,12 @@ class ProjectDetail extends Component {
                 <input
                     type="radio"
                     name="privacy"
-                    value="private"
-                    checked={this.state.privacy === "private"}
+                    value="personal"
+                    checked={this.state.privacy === "personal"}
                     onChange={this.handleRadioChange}
                 />
                 <span className="material-icons icon">perm_identity</span>
-                <span>private</span>
+                <span>personal</span>
               </div>
             </div>
             <button
@@ -185,6 +192,7 @@ class ProjectDetail extends Component {
 const mapStateToProps = (state) => {
   return {
     workspace: state.workspace,
+    user:state.user,
   };
 };
 
