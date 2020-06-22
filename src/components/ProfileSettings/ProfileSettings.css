@@ -1,0 +1,98 @@
+.profileSettings {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 30;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(21, 27, 38, 0.8);
+}
+.profileSettings__content {
+  background: #fff;
+  padding: 1.2rem 1.5rem;
+  font-family: "Poppins", sans-serif;
+  border-radius: 0.25rem;
+  width: 40%;
+  z-index: 40;
+}
+.profileSettings__content header {
+  font-size: 1.1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.profileSettings__content header span:nth-of-type(2):hover {
+  cursor: pointer;
+}
+.profileSettings__content .your_photo {
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+.profileSettings__content .your_photo .profile {
+  transform: scale(2);
+  transform-origin: left;
+}
+.profileSettings__content .your_photo .cta {
+  margin-left: 2.5rem;
+  display: flex;
+  flex-direction: column;
+}
+.profileSettings__content .your_photo .cta .fileUpload {
+  display: none;
+}
+.profileSettings__content .your_photo .cta span:first-of-type {
+  color: #20aaea;
+  font-size: 0.8rem;
+}
+.profileSettings__content .your_photo .cta span:first-of-type:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.profileSettings__content .your_photo .cta span:nth-of-type(2) {
+  font-size: 0.72rem;
+  color: #6f7782;
+}
+.profileSettings__content .your_info {
+  margin-top: 1.5rem;
+}
+.profileSettings__content .your_info form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+.profileSettings__content .your_info form .field {
+  width: 48%;
+}
+.profileSettings__content .your_info form .field:first-of-type {
+  margin-right: 4%;
+}
+.profileSettings__content .your_info form .field label {
+  font-size: 0.72rem;
+  color: #6f7782;
+}
+.profileSettings__content .your_info form .field input {
+  display: block;
+  padding: 0.4rem 0.5rem;
+  border: 1px solid #9ca6af;
+  border-radius: 0.2rem;
+  width: 100%;
+}
+.profileSettings__content .your_info form .field input:focus {
+  outline: none;
+}
+.profileSettings__content .your_info form button {
+  background: #20aaea;
+  padding: 0.5rem 0.8rem;
+  border: none;
+  color: #fff;
+  border-radius: 0.25rem;
+  margin-top: 2rem;
+}
+.profileSettings__content .your_info form button:hover {
+  cursor: pointer;
+}
+
+/*# sourceMappingURL=ProfileSettings.css.map */

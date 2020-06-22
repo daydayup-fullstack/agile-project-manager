@@ -26,6 +26,7 @@ import AssigneeArrayContainer from "../AssigneeArray/AssigneeArrayContainer/Assi
 import PopupCircularButton from "../PopupCircularButton/PopupCircularButton";
 import CalendarPopup from "../CalendarPopup/CalendarPopup";
 import myFirebase from "../../Firebase/firebase";
+import ProfileSettings from "../ProfileSettings/ProfileSettings";
 
 const App = ({
                  projectCard_popup,
@@ -119,9 +120,7 @@ const App = ({
                     </PopupCircularButton>
                 )}
 
-                {shouldShowProfileSettings && (
-                    <div>my profile settings</div>
-                )}
+                {shouldShowProfileSettings && <ProfileSettings/>}
             </div>
 
             <Router>

@@ -81,7 +81,7 @@ const initialAppState = {
     ui_isWorkspaceLoading: true,
     ui_isProjectLoading: false,
     ui_profile_settings: {
-        shouldShow: false,
+        shouldShow: true,
     },
 };
 
