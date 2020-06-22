@@ -63,7 +63,7 @@
   font-family: "Poppins", sans-serif;
   margin-bottom: 2.5rem;
 }
-.LoginForm__content .loginWithGoogle {
+.LoginForm__content .loginAsAGuest {
   width: 60%;
   min-width: 18.75rem;
   padding: 0 1.5rem;
@@ -78,11 +78,15 @@
   background-color: #ffffff;
   color: #9ca6af;
 }
-.LoginForm__content .loginWithGoogle:hover {
+.LoginForm__content .loginAsAGuest:hover {
   cursor: pointer;
 }
-.LoginForm__content .loginWithGoogle:hover {
+.LoginForm__content .loginAsAGuest:hover {
   box-shadow: 0 11px 12px 0 rgba(36, 50, 66, 0.12);
+  color: #796eff;
+}
+.LoginForm__content .loginAsAGuest:focus {
+  outline: none;
 }
 .LoginForm__content .divider {
   color: #9ca6af;

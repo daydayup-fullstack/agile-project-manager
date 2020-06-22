@@ -88,7 +88,7 @@ $purple: #796eff;
       margin-bottom: 2.5rem;
     }
 
-    .loginWithGoogle {
+    .loginAsAGuest {
       width: 60%;
       min-width: 18.75rem;
       @include buttonStyle;
@@ -98,6 +98,11 @@ $purple: #796eff;
 
       &:hover {
         box-shadow: 0 11px 12px 0 rgba(36, 50, 66, 0.12);
+        color: $purple;
+      }
+
+      &:focus {
+        outline: none;
       }
     }
 

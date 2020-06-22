@@ -26,6 +26,10 @@ const LoginForm = ({login_user, isLoading, init_user_requested}) => {
         console.log("should dismiss");
     }
 
+    function loginAsAGuest(e) {
+        console.log("should login as a guest!");
+    }
+
     return (
         <div className={"LoginForm"}>
             <div
@@ -40,7 +44,7 @@ const LoginForm = ({login_user, isLoading, init_user_requested}) => {
                         {/*<span className={"material-icons"}>close</span>*/}
                     </button>
                     <header>Welcome to Agilo</header>
-                    <button className={"loginWithGoogle"}>Use Google Account</button>
+                    <button className={"loginAsAGuest"} onClick={(e) => loginAsAGuest(e)}>Login as a Guest</button>
 
                     <div className="divider">or</div>
 
@@ -71,10 +75,10 @@ const LoginForm = ({login_user, isLoading, init_user_requested}) => {
                     </form>
 
                     <footer className="LoginForm__extra">
-                        <div className={"forgotPassword"}>Forgot Password?</div>
-                        <div className={"dontHaveAccount"}>
-                            Don't have an account? <a href={"#signUp"}>Get Started</a>
-                        </div>
+                        {/*<div className={"forgotPassword"}>Forgot Password?</div>*/}
+                        {/*<div className={"dontHaveAccount"}>*/}
+                        {/*    Don't have an account? <a href={"#signUp"}>Get Started</a>*/}
+                        {/*</div>*/}
                     </footer>
                 </div>
             ) : (
