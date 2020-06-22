@@ -43,6 +43,7 @@ const App = ({
                  userId,
                  calender_popup,
                  init_user_failed,
+                 shouldShowProfileSettings,
              }) => {
     React.useEffect(() => {
         console.log("app starts");
@@ -116,6 +117,10 @@ const App = ({
                     <PopupCircularButton anchor={calender_popup.anchor}>
                         <CalendarPopup/>
                     </PopupCircularButton>
+                )}
+
+                {shouldShowProfileSettings && (
+                    <div>my profile settings</div>
                 )}
             </div>
 
@@ -202,6 +207,7 @@ const mapStateToProps = (state) => {
             shouldShow: state.app.ui_calendar_popup.shouldShow,
             anchor: state.app.ui_calendar_popup.anchor,
         },
+        shouldShowProfileSettings: state.app.ui_profile_settings.shouldShow,
     };
 };
 export default connect(mapStateToProps, {init_user, init_user_failed})(App);
