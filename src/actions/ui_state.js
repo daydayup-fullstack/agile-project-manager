@@ -1,5 +1,5 @@
 export const SHOW_PROJECT_CARD_POPUP = "SHOW_PROJECT_CARD_POPUP";
-export const show_projectCard_popup = ({ anchor }) => {
+export const show_projectCard_popup = ({anchor}) => {
     return {
         type: SHOW_PROJECT_CARD_POPUP,
         anchor,
@@ -52,7 +52,7 @@ export const close_app_drawer = () => {
 export const SHOW_HEADER_PROJECT_ICON_POPUP = "SHOW_HEADER_PROJECT_ICON_POPUP";
 
 // - header - project - icon
-export const show_header_projectIcon_popup = ({ anchor }) => {
+export const show_header_projectIcon_popup = ({anchor}) => {
     return {
         type: SHOW_HEADER_PROJECT_ICON_POPUP,
         anchor,
@@ -68,7 +68,7 @@ export const hide_header_projectIcon_popup = () => {
 
 //header - project - profile
 export const SHOW_HEADER_PROFILE_POPUP = "SHOW_HEADER_PROFILE_POPUP";
-export const show_header_profile_popup = ({ anchor }) => {
+export const show_header_profile_popup = ({anchor}) => {
     return {
         type: SHOW_HEADER_PROFILE_POPUP,
         anchor,
@@ -83,7 +83,7 @@ export const hide_header_profile_popup = () => {
 
 //header - project - information
 export const SHOW_HEADER_PROJECT_INFO_POPUP = "SHOW_HEADER_PROJECT_INFO_POPUP";
-export const show_header_projectInfo_popup = ({ anchor }) => {
+export const show_header_projectInfo_popup = ({anchor}) => {
     return {
         type: SHOW_HEADER_PROJECT_INFO_POPUP,
         anchor,
@@ -98,7 +98,7 @@ export const hide_header_projectInfo_popup = () => {
 
 //header - addButton
 export const SHOW_HEADER_ADD_BUTTON_POPUP = "SHOW_HEADER_ADD_BUTTON_POPUP";
-export const show_header_addButton_popup = ({ anchor }) => {
+export const show_header_addButton_popup = ({anchor}) => {
     return {
         type: SHOW_HEADER_ADD_BUTTON_POPUP,
         anchor,
@@ -113,7 +113,7 @@ export const hide_header_addButton_popup = () => {
 
 // filterbar - popup
 export const SHOW_HEADER_FILTER_POPUP = "SHOW_HEADER_FILTER_POPUP";
-export const show_header_filter_popup = ({ anchor, content }) => {
+export const show_header_filter_popup = ({anchor, content}) => {
     return {
         type: SHOW_HEADER_FILTER_POPUP,
         anchor,
@@ -132,11 +132,11 @@ export const hide_header_filter_popup = () => {
 export const SHOW_TASKCARD_CONTEXT_MENU_POPUP =
     "SHOW_TASKCARD_CONTEXT_MENU_POPUP";
 export const show_taskcard_context_menu = ({
-    anchor,
-    task,
-    columnId,
-    project,
-}) => {
+                                               anchor,
+                                               task,
+                                               columnId,
+                                               project,
+                                           }) => {
     return {
         type: SHOW_TASKCARD_CONTEXT_MENU_POPUP,
         anchor,
@@ -154,7 +154,7 @@ export const hide_taskcard_context_menu = () => {
 };
 
 export const SHOW_COLUMN_POPUP = "SHOW_COLUMN_POPUP";
-export const show_column_popup = ({ anchor, column }) => {
+export const show_column_popup = ({anchor, column}) => {
     return {
         type: SHOW_COLUMN_POPUP,
         anchor,
@@ -173,10 +173,10 @@ export const hide_column_popup = () => {
 export const SHOW_TASK_ASSIGNEE_SCROLLABLE_POPUP =
     "SHOW_TASK_ASSIGNEE_SCROLLABLE_POPUP";
 export const show_task_assignee_scrollable_popup = ({
-    anchor,
-    assigneeId,
-    project,
-}) => {
+                                                        anchor,
+                                                        assigneeId,
+                                                        project,
+                                                    }) => {
     return {
         type: SHOW_TASK_ASSIGNEE_SCROLLABLE_POPUP,
         anchor,
@@ -193,7 +193,7 @@ export const hide_task_assignee_scrollable_popup = () => {
 };
 
 export const SET_TASK_ASSIGNEE = "SET_TASK_ASSIGNEE";
-export const set_task_assignee = ({ user, assigneeId }) => {
+export const set_task_assignee = ({user, assigneeId}) => {
     return {
         type: SET_TASK_ASSIGNEE,
         user,
@@ -204,7 +204,7 @@ export const set_task_assignee = ({ user, assigneeId }) => {
 
 // calendar popup
 export const SHOW_CALENDAR_POPUP = "SHOW_CALENDAR_POPUP";
-export const show_calendar_popup = ({ anchor, calendarId }) => {
+export const show_calendar_popup = ({anchor, calendarId}) => {
     return {
         type: SHOW_CALENDAR_POPUP,
         payload: {
@@ -218,5 +218,19 @@ export const HIDE_CALENDAR_POPUP = "HIDE_CALENDAR_POPUP";
 export const hide_calendar_popup = () => {
     return {
         type: HIDE_CALENDAR_POPUP,
+    };
+};
+
+// my profile settings popup
+export const SHOW_PROFILE_SETTINGS = "SHOW_PROFILE_SETTINGS";
+export const HIDE_PROFILE_SETTINGS = "HIDE_PROFILE_SETTINGS";
+export const show_profile_settings = () => {
+    return {
+        type: SHOW_PROFILE_SETTINGS,
+    };
+};
+export const hide_profile_settings = () => {
+    return {
+        type: HIDE_PROFILE_SETTINGS,
     };
 };

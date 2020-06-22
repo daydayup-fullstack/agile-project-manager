@@ -26,6 +26,7 @@ import AssigneeArrayContainer from "../AssigneeArray/AssigneeArrayContainer/Assi
 import PopupCircularButton from "../PopupCircularButton/PopupCircularButton";
 import CalendarPopup from "../CalendarPopup/CalendarPopup";
 import myFirebase from "../../Firebase/firebase";
+import ProfileSettings from "../ProfileSettings/ProfileSettings";
 
 const App = ({
                  projectCard_popup,
@@ -43,10 +44,10 @@ const App = ({
                  userId,
                  calender_popup,
                  init_user_failed,
+                 shouldShowProfileSettings,
              }) => {
     React.useEffect(() => {
         console.log("app starts");
-
         myFirebase.auth.onAuthStateChanged((user) => {
             if (user) {
                 init_user(user.uid);
@@ -118,6 +119,8 @@ const App = ({
                         <CalendarPopup/>
                     </PopupCircularButton>
                 )}
+
+                {shouldShowProfileSettings && <ProfileSettings/>}
             </div>
 
             <Router>
@@ -203,6 +206,7 @@ const mapStateToProps = (state) => {
             shouldShow: state.app.ui_calendar_popup.shouldShow,
             anchor: state.app.ui_calendar_popup.anchor,
         },
+        shouldShowProfileSettings: state.app.ui_profile_settings.shouldShow,
     };
 };
 export default connect(mapStateToProps, {init_user, init_user_failed})(App);

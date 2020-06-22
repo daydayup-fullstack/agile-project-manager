@@ -29,55 +29,60 @@ import {
     HIDE_CALENDAR_POPUP,
     INIT_USER_SUCCESS,
     INIT_USER_FAILED,
+    SHOW_PROFILE_SETTINGS,
+    HIDE_PROFILE_SETTINGS,
 } from "../actions";
 
 const initialAppState = {
     ui_projectCard_popup: {
         shouldShow: false,
-        anchor: { x: 0, y: 0, width: 0, height: 0 },
+        anchor: {x: 0, y: 0, width: 0, height: 0},
     },
     ui_drawer: {
         shouldOpen: true,
     },
     ui_header_project_icon_popup: {
         shouldShow: false,
-        anchor: { x: 0, y: 0, width: 0, height: 0 },
+        anchor: {x: 0, y: 0, width: 0, height: 0},
     },
     ui_header_project_info_popup: {
         shouldShow: false,
-        anchor: { x: 0, y: 0, width: 0, height: 0 },
+        anchor: {x: 0, y: 0, width: 0, height: 0},
     },
     ui_header_profile_popup: {
         shouldShow: false,
-        anchor: { x: 0, y: 0, width: 0, height: 0 },
+        anchor: {x: 0, y: 0, width: 0, height: 0},
     },
     ui_header_addButton_popup: {
         shouldShow: false,
-        anchor: { x: 0, y: 0, width: 0, height: 0 },
+        anchor: {x: 0, y: 0, width: 0, height: 0},
     },
     ui_header_filter_popup: {
         shouldShow: false,
         content: null,
-        anchor: { x: 0, y: 0, width: 0, height: 0 },
+        anchor: {x: 0, y: 0, width: 0, height: 0},
     },
     ui_taskcard_context_menu: {
         shouldShow: false,
-        anchor: { x: 0, y: 0, width: 0, height: 0 },
+        anchor: {x: 0, y: 0, width: 0, height: 0},
     },
     ui_column_popup: {
         shouldShow: false,
-        anchor: { x: 0, y: 0, width: 0, height: 0 },
+        anchor: {x: 0, y: 0, width: 0, height: 0},
     },
     ui_assignee_scroll_popup: {
         shouldShow: false,
-        anchor: { x: 0, y: 0, width: 0, height: 0 },
+        anchor: {x: 0, y: 0, width: 0, height: 0},
     },
     ui_calendar_popup: {
         shouldShow: false,
-        anchor: { x: 0, y: 0, width: 0, height: 0 },
+        anchor: {x: 0, y: 0, width: 0, height: 0},
     },
     ui_isWorkspaceLoading: true,
     ui_isProjectLoading: false,
+    ui_profile_settings: {
+        shouldShow: false,
+    },
 };
 
 export const app = (state = initialAppState, action) => {
@@ -336,6 +341,20 @@ export const app = (state = initialAppState, action) => {
                 },
             };
 
+        case SHOW_PROFILE_SETTINGS:
+            return {
+                ...state,
+                ui_profile_settings: {
+                    shouldShow: true,
+                },
+            };
+        case HIDE_PROFILE_SETTINGS:
+            return {
+                ...state,
+                ui_profile_settings: {
+                    shouldShow: false,
+                },
+            };
         default:
             return {
                 ...state,

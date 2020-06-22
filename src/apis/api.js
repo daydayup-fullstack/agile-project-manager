@@ -115,6 +115,9 @@ export const updateUserToServer = async (user) => {
         const res = await backend.put(`/users/${user.id}`, {
             starredProjects: user.starredProjects,
             workspaces: user.workspaces,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            avatar: user.avatar,
         });
 
         console.log(res);

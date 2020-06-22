@@ -1,10 +1,15 @@
 import React from "react";
 import "./LoginForm.css";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
-import {init_user_requested, login_user} from "../../actions";
+import {init_user_requested, login_guest, login_user} from "../../actions";
 import {connect} from "react-redux";
 
-const LoginForm = ({login_user, isLoading, init_user_requested}) => {
+const LoginForm = ({
+                       login_user,
+                       isLoading,
+                       init_user_requested,
+                       login_guest,
+                   }) => {
     const [username, setUsername] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [error, setError] = React.useState("");
@@ -26,6 +31,15 @@ const LoginForm = ({login_user, isLoading, init_user_requested}) => {
         console.log("should dismiss");
     }
 
+    function loginAsAGuest(e) {
+        try {
+            init_user_requested();
+            login_guest();
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
     return (
         <div className={"LoginForm"}>
             <div
@@ -40,7 +54,9 @@ const LoginForm = ({login_user, isLoading, init_user_requested}) => {
                         {/*<span className={"material-icons"}>close</span>*/}
                     </button>
                     <header>Welcome to Agilo</header>
-                    <button className={"loginWithGoogle"}>Use Google Account</button>
+                    <button className={"loginAsAGuest"} onClick={(e) => loginAsAGuest(e)}>
+                        Login as a Guest
+                    </button>
 
                     <div className="divider">or</div>
 
@@ -71,10 +87,10 @@ const LoginForm = ({login_user, isLoading, init_user_requested}) => {
                     </form>
 
                     <footer className="LoginForm__extra">
-                        <div className={"forgotPassword"}>Forgot Password?</div>
-                        <div className={"dontHaveAccount"}>
-                            Don't have an account? <a href={"#signUp"}>Get Started</a>
-                        </div>
+                        {/*<div className={"forgotPassword"}>Forgot Password?</div>*/}
+                        {/*<div className={"dontHaveAccount"}>*/}
+                        {/*    Don't have an account? <a href={"#signUp"}>Get Started</a>*/}
+                        {/*</div>*/}
                     </footer>
                 </div>
             ) : (
@@ -91,6 +107,8 @@ const mapStateToProps = (state) => {
         isLoading: state.app.ui_isWorkspaceLoading,
     };
 };
-export default connect(mapStateToProps, {login_user, init_user_requested})(
-    LoginForm
-);
+export default connect(mapStateToProps, {
+    login_user,
+    init_user_requested,
+    login_guest,
+})(LoginForm);
