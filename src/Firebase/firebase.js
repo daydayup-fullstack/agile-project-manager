@@ -25,6 +25,10 @@ class Firebase {
         return this.auth.signInWithEmailAndPassword(email, password);
     };
 
+    doSignInAnonymously = () => {
+        return this.auth.signInAnonymously();
+    };
+
     doSignOut = () => {
         this.auth.signOut();
     };

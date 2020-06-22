@@ -6,9 +6,10 @@ import {
     INIT_USER_SUCCESS,
     INIT_USER_FAILED,
     PROJECT_DELETED,
-    WORKSPACE_CHANGED
+    WORKSPACE_CHANGED,
+    GUEST_LOGIN,
 } from "../actions";
-import { updateUserToServer } from "../apis/api";
+import {updateUserToServer} from "../apis/api";
 
 const initialUserState = {
     id: "",
@@ -26,6 +27,12 @@ const initialUserState = {
 export const user = (state = initialUserState, action) => {
     switch (action.type) {
         case USER_LOGIN: {
+            return {
+                ...state,
+                id: action.userId,
+            };
+        }
+        case GUEST_LOGIN: {
             return {
                 ...state,
                 id: action.userId,
@@ -86,7 +93,7 @@ export const user = (state = initialUserState, action) => {
             newWorkspaces.splice(0, 0, action.workspace.id);
 
             // todo - possible error handling here
-            updateUserToServer({ id: state.id, workspaces: newWorkspaces });
+            updateUserToServer({id: state.id, workspaces: newWorkspaces});
 
             return {
                 ...state,

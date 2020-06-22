@@ -46,7 +46,6 @@ const App = ({
              }) => {
     React.useEffect(() => {
         console.log("app starts");
-
         myFirebase.auth.onAuthStateChanged((user) => {
             if (user) {
                 init_user(user.uid);

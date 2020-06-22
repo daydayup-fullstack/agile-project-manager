@@ -33,7 +33,7 @@ export const init_user = (userId) => async (dispatch) => {
 };
 
 export const USER_LOGIN = "USER_LOGIN";
-export const login_user = ({ username, password }) => async (dispatch) => {
+export const login_user = ({username, password}) => async (dispatch) => {
     try {
         const res = await myFirebase.doSignInWithEmailAndPassword(
             username,
@@ -56,6 +56,34 @@ export const logout_user = () => async (dispatch) => {
             type: USER_LOGOUT,
         });
         await myFirebase.doSignOut();
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+export const GUEST_LOGIN = "GUEST_LOGIN";
+export const GUEST_LOGOUT = "GUEST_LOGOUT";
+export const login_guest = () => async (dispatch) => {
+    try {
+        const res = await myFirebase.doSignInAnonymously();
+        const userId = res.user.uid;
+
+        await backend.options(`/initUser/${userId}`);
+
+        dispatch({
+            type: GUEST_LOGIN,
+            userId: userId,
+        });
+    } catch (e) {
+        console.log(e);
+    }
+};
+
+export const logout_guest = () => async (dispatch) => {
+    try {
+        dispatch({
+            type: GUEST_LOGOUT,
+        });
     } catch (e) {
         console.log(e);
     }
