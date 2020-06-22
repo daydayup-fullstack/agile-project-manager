@@ -334,7 +334,6 @@ const TaskCard = ({
                     onContextMenu={(event) => handleRightClick(event)}
                     onMouseOver={(e) => handleMouseover(e)}
                     onMouseLeave={(e) => handleMouseleave(e)}
-                    // style={task.isCompleted ? { opacity: "0.5" } : {}}
                 >
                     <div className="taskCard--dropzone" ref={dropzoneRef}>
                         {task.name && task.name !== "" && (
