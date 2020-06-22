@@ -88,3 +88,11 @@ export const logout_guest = () => async (dispatch) => {
         console.log(e);
     }
 };
+
+export const UPDATE_USER = "UPDATE_USER";
+export const update_user = (user) => {
+    return {
+        type: UPDATE_USER,
+        user,
+    };
+};

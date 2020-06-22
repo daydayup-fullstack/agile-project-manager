@@ -7,7 +7,7 @@ import {
     INIT_USER_FAILED,
     PROJECT_DELETED,
     WORKSPACE_CHANGED,
-    GUEST_LOGIN,
+    GUEST_LOGIN, UPDATE_USER,
 } from "../actions";
 import {updateUserToServer} from "../apis/api";
 
@@ -99,6 +99,13 @@ export const user = (state = initialUserState, action) => {
                 ...state,
                 workspaces: [...newWorkspaces],
             };
+        }
+
+        case UPDATE_USER: {
+            return {
+                ...state,
+                ...action.user
+            }
         }
 
         default:
