@@ -8,7 +8,7 @@ JR Academy - 10th Full-stack Sydney Coding Bootcamp
 ![screenshot03](https://user-images.githubusercontent.com/1281209/85357178-51523600-b543-11ea-9e6d-cc0fc107f98b.png)
 
 
-###Things worth mentioning
+### Things worth mentioning
 - Component based UI, Built with React & Javascript
 - Most of RESTful apis are hosted on Firebase cloud functions writen with Typescript
 - Database functionality is implemented with Firebase firestore
