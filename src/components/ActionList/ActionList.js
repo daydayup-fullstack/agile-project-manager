@@ -20,6 +20,8 @@ import {
     updateColumnToServer,
     updateTaskToServer,
 } from "../../apis/api";
+import {ProjectCardPopup} from "../ActionList-ProjectCardPopup/ProjectCardPopup";
+import {ColumnPopup} from "../ActionList-ColumnPopup/ColumnPopup";
 
 const ActionList = ({
                         project,
@@ -48,13 +50,9 @@ const ActionList = ({
     const [nextAnchor, setNextAnchor] = React.useState({x: 0, y: 0});
     const [parentAnchor, setParentAnchor] = React.useState({x: 0, y: 0});
 
-    function handleMouseOver(e) {
-        setParentAnchor({
-            x: e.target.offsetParent.offsetLeft,
-            y: e.target.offsetParent.offsetTop,
-        });
-        setShowNextLevel(true);
-    }
+    const calcPosition = () => {
+        return {top: `${nextAnchor.y}px`, left: `${nextAnchor.x}px`};
+    };
 
     React.useEffect(() => {
         let x;
@@ -108,91 +106,9 @@ const ActionList = ({
         setNextAnchor(anchor);
     }, [header_project_icon_popup.shouldShow, parentAnchor]);
 
-    const calcPosition = () => {
-        return {top: `${nextAnchor.y}px`, left: `${nextAnchor.x}px`};
-    };
-
     function dismissNextLevel() {
         setShowNextLevel(false);
     }
-
-    const Arrow = () => (
-        <i className={"material-icons-outlined"}>keyboard_arrow_right</i>
-    );
-
-    // const taskCardPopup = () => {
-    //   return (
-    //     <ul>
-    //       <li onMouseOver={dismissNextLevel}>Mark Complete</li>
-    //
-    //       <li onMouseOver={handleMouseOver} ref={expandableAction}>
-    //         Choose cover image <Arrow />
-    //       </li>
-    //       <li onMouseOver={dismissNextLevel}>Copy task link</li>
-    //       <li onMouseOver={dismissNextLevel}>Duplicate Task...</li>
-    //       <li onMouseOver={dismissNextLevel}>Delete</li>
-    //       {showNextLevel && (
-    //         //missing ref
-    //         <li className={"nextLevel"} style={calcPosition()} ref={nextAction}>
-    //           next level
-    //         </li>
-    //       )}
-    //     </ul>
-    //   );
-    // };
-
-    const ProjectCardPopup = () => {
-        // const height = 343;
-
-        let deleteProject = () => {
-            let ahead = window.confirm("Are you sure about deleting this project?");
-
-            if (ahead) {
-                console.log("should delete");
-                delete_project({project, currentWorkspace});
-            }
-        };
-
-        return (
-            <ul>
-                <li onMouseOver={handleMouseOver} ref={expandableAction}>
-                    Set Color & Icon <Arrow/>
-                </li>
-                <li
-                    onMouseOver={dismissNextLevel}
-                    onClick={() => {
-                        if (starredProjects.indexOf(project.id) >= 0) {
-                            remove_project_star(project);
-                        } else {
-                            add_project_star(project);
-                        }
-                    }}
-                >
-                    {starredProjects.indexOf(project.id) < 0
-                        ? "Add to Favorites"
-                        : "Remove from Favorites"}
-                </li>
-                {/*<li onMouseOver={dismissNextLevel}>Edit Name & Description...</li>*/}
-                {/*<li onMouseOver={dismissNextLevel}>Copy Project Link</li>*/}
-                <li
-                    onMouseOver={dismissNextLevel}
-                    style={{color: "#E8384F"}}
-                    onClick={() => deleteProject()}
-                >
-                    Delete Project
-                </li>
-                {showNextLevel && (
-                    <li className={"nextLevel"} style={calcPosition()} ref={nextAction}>
-                        <ColorArray colorIndex={project.colorIndex}/>
-                        <IconArray
-                            iconIndex={project.iconIndex}
-                            colorIndex={project.colorIndex}
-                        />
-                    </li>
-                )}
-            </ul>
-        );
-    };
 
     const ProjectIconPopup = () => {
         return (
@@ -479,52 +395,32 @@ const ActionList = ({
         );
     };
 
-    const ColumnPopup = () => {
-        // todo - fix the dispositioning effect bug after horizontal scroll
-
-        const updateProject = (columnId) => {
-            const updatedProject = {
-                ...project,
-                columnOrder: project.columnOrder.filter((id) => id !== columnId),
-            };
-
-            delete updatedProject.columns[columnId];
-
-            column_popup.column.taskIds.map((taskId) => {
-                delete updatedProject.tasks[taskId];
-                return null;
-            });
-
-            project_changed(updatedProject);
-            deleteColumnFromServer(columnId);
-        };
-
-        function deleteColumn() {
-            const columnId = column_popup.column.id;
-
-            if (project.columns[columnId].taskIds.length > 0) {
-                const goAhead = window.confirm(
-                    "This column contains other tasks, Do you really want to delete it?"
-                );
-                if (goAhead) updateProject(columnId);
-                return;
-            }
-
-            updateProject(columnId);
-        }
-
-        return (
-            <ul className={"ColumnPopup"}>
-                <li onClick={deleteColumn}>Delete column</li>
-            </ul>
-        );
+    const projectCardPopupProps = {
+        nextAction,
+        showNextLevel,
+        setShowNextLevel,
+        setParentAnchor,
+        project,
+        calcPosition,
+        dismissNextLevel,
+        expandableAction,
+        currentWorkspace,
+        starredProjects,
+        remove_project_star,
+        add_project_star,
+        delete_project,
     };
+    const columnPopupProps = {project, project_changed, column_popup};
 
     return (
         <div className={"ActionList"} ref={popupItself}>
-            {column_popup.shouldShow && <ColumnPopup/>}
-            {projectCard_popup.shouldShow && <ProjectCardPopup/>}
-            {header_project_info_popup.shouldShow && <ProjectCardPopup/>}
+            {column_popup.shouldShow && <ColumnPopup {...columnPopupProps} />}
+            {projectCard_popup.shouldShow && (
+                <ProjectCardPopup {...projectCardPopupProps} />
+            )}
+            {header_project_info_popup.shouldShow && (
+                <ProjectCardPopup {...projectCardPopupProps} />
+            )}
             {header_profile_popup.shouldShow && <ProfilePopup/>}
             {header_project_icon_popup.shouldShow && <ProjectIconPopup/>}
             {header_filter_popup.shouldShow && determineContent()}
