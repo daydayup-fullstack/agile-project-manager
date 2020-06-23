@@ -18,6 +18,7 @@ import {
     deleteColumnFromServer,
     deleteTaskFromServer,
     updateColumnToServer,
+    updateTaskToServer,
 } from "../../apis/api";
 
 const ActionList = ({
@@ -368,21 +369,24 @@ const ActionList = ({
         const task = taskcard_context_menu.task;
         const columnId = taskcard_context_menu.columnId;
         const project = taskcard_context_menu.project;
-        //
-        //   function markComplete() {
-        //     const updatedProject = {
-        //       ...project,
-        //       tasks: {
-        //         ...project.tasks,
-        //         [task.id]: {
-        //           ...project.tasks[task.id],
-        //           isCompleted: !task.isCompleted,
-        //         },
-        //       },
-        //     };
-        //
-        //     project_changed(updatedProject);
-        //   }
+
+        function markComplete() {
+            const updatedTask = {
+                ...project.tasks[task.id],
+                isCompleted: !task.isCompleted,
+            };
+
+            const updatedProject = {
+                ...project,
+                tasks: {
+                    ...project.tasks,
+                    [task.id]: updatedTask,
+                },
+            };
+
+            project_changed(updatedProject);
+            updateTaskToServer(updatedTask);
+        }
 
         function duplicateTask() {
             const id = generateId();
@@ -409,10 +413,11 @@ const ActionList = ({
             };
 
             project_changed(updatedProject);
+            updateColumnToServer(newColumn);
         }
 
         function copyTaskName() {
-            return undefined;
+            document.execCommand("copy");
         }
 
         function deleteTask() {
@@ -439,32 +444,14 @@ const ActionList = ({
             deleteTaskFromServer(task);
         }
 
-        function renameTask(e) {
-        }
-
         return (
             <div className="TaskcardContextPopup">
                 <ul className={"TaskcardContextPopup__actions"}>
-                    {/*<li onClick={() => markComplete()}>*/}
-                    {/*  <span className={"material-icons-outlined icon"}>check_circle</span>*/}
-                    {/*  <span>Mark complete</span>*/}
-                    {/*</li>*/}
-                    <li onClick={(e) => renameTask(e)}>
-                        <span className={"material-icons-outlined icon"}>create</span>
-                        <span>Rename task</span>
+                    <li onClick={() => markComplete()}>
+                        <span className={"material-icons-outlined icon"}>check_circle</span>
+                        <span>Mark {!task.isCompleted ? "Completed" : "Incompleted"}</span>
                     </li>
-                    {/*<li>*/}
-                    {/*  <span className={"material-icons-outlined icon"}>fullscreen</span>*/}
-                    {/*  <span>Full screen</span>*/}
-                    {/*</li>*/}
-                    {/*<li>*/}
-                    {/*  <span className={"material-icons-outlined icon"}>tab</span>*/}
-                    {/*  <span>Open in new tab</span>*/}
-                    {/*</li>*/}
-                    {/*<li>*/}
-                    {/*  <span className={"material-icons-outlined icon"}>link</span>*/}
-                    {/*  <span>Copy task link</span>*/}
-                    {/*</li>*/}
+
                     <li onClick={() => duplicateTask()}>
                         <span className={"material-icons-outlined icon"}>file_copy</span>
                         <span>Duplicate task</span>

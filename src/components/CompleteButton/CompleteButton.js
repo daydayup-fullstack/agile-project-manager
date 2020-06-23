@@ -1,24 +1,21 @@
 import React from "react";
 import "./CompleteButton.css";
 
-const CompleteButton = ({ completed = false, onClick }) => {
-  const [shouldCompleted, setShouldCompleted] = React.useState(completed);
-
+const CompleteButton = ({completed, onClick}) => {
   function handleClick(e) {
-    setShouldCompleted(!shouldCompleted);
     onClick(e);
   }
 
   return (
-    <button
-      className={`complete-button ${shouldCompleted && "completed"}`}
-      onClick={(e) => handleClick(e)}
-    >
-      <div className="content">
-        <span className="material-icons">check</span>
-        {!shouldCompleted ? "mark completed" : "completed"}
-      </div>
-    </button>
+      <button
+          className={`complete-button ${completed && "completed"}`}
+          onClick={(e) => handleClick(e)}
+      >
+        <div className="content">
+          <span className="material-icons">check</span>
+          {!completed ? "mark completed" : "completed"}
+        </div>
+      </button>
   );
 };
 
