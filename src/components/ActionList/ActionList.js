@@ -22,6 +22,7 @@ import {
 } from "../../apis/api";
 import {ProjectCardPopup} from "../ActionList-ProjectCardPopup/ProjectCardPopup";
 import {ColumnPopup} from "../ActionList-ColumnPopup/ColumnPopup";
+import {ProfilePopup} from "../ActionList-ProfilePopup/ProfilePopup";
 
 const ActionList = ({
                         project,
@@ -121,63 +122,6 @@ const ActionList = ({
                     />
                 </li>
             </ul>
-        );
-    };
-
-    const ProfilePopup = () => {
-        function handleClick(selectedWorkspaceId) {
-            if (selectedWorkspaceId !== currentWorkspace) {
-                change_workspace(user.allWorkspaces[selectedWorkspaceId]);
-            }
-        }
-
-        return (
-            <Router>
-                <div className={"ProfilePopup"}>
-                    <ul>
-                        {user.workspaces.map((id) => {
-                            return (
-                                <li
-                                    onMouseOver={dismissNextLevel}
-                                    onClick={() => handleClick(id)}
-                                >
-                                    {id === currentWorkspace.id && (
-                                        <span className={"material-icons ProfilePopup__current"}>
-                      done
-                    </span>
-                                    )}
-                                    {user.allWorkspaces[id].type === "personal"
-                                        ? "Personal projects"
-                                        : user.allWorkspaces[id].name}
-                                </li>
-                            );
-                        })}
-                    </ul>
-
-                    <div className="divider"/>
-
-                    <ul>
-                        <li
-                            onMouseOver={dismissNextLevel}
-                            onClick={(event) => {
-                                show_profile_settings();
-                            }}
-                        >
-                            My Profile Settings
-                        </li>
-                        <li
-                            onMouseOver={dismissNextLevel}
-                            onClick={() => {
-                                logout_user();
-                            }}
-                        >
-                            <Link to="/" style={{textDecoration: "none", color: "black"}}>
-                                Logout
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
-            </Router>
         );
     };
 
@@ -411,6 +355,14 @@ const ActionList = ({
         delete_project,
     };
     const columnPopupProps = {project, project_changed, column_popup};
+    const profilePopupProps = {
+        currentWorkspace,
+        user,
+        change_workspace,
+        dismissNextLevel,
+        show_profile_settings,
+        logout_user,
+    };
 
     return (
         <div className={"ActionList"} ref={popupItself}>
@@ -421,7 +373,9 @@ const ActionList = ({
             {header_project_info_popup.shouldShow && (
                 <ProjectCardPopup {...projectCardPopupProps} />
             )}
-            {header_profile_popup.shouldShow && <ProfilePopup/>}
+            {header_profile_popup.shouldShow && (
+                <ProfilePopup {...profilePopupProps} />
+            )}
             {header_project_icon_popup.shouldShow && <ProjectIconPopup/>}
             {header_filter_popup.shouldShow && determineContent()}
             {taskcard_context_menu.shouldShow && <TaskcardContextPopup/>}
