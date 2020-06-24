@@ -26,8 +26,12 @@ const Project = ({allProjects, project_selected}) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
+  function handleScroll(event) {
+    console.log(event.currentTarget.scrollLeft)
+  }
+
   return (
-      <div className={"App-Project"}>
+      <div className={"App-Project"} onScroll={(event) => handleScroll(event)}>
         <Kanban/>
       </div>
   );
