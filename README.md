@@ -1,4 +1,5 @@
-## Agilo Board - Agile Project Management Web Application (Asana Clone)
+
+## Agilo Board - (Asana Clone) - Ongoing Project
 JR Academy - 10th Full-stack Sydney Coding Bootcamp 
 
 [live link here](https://agile-project-manager-tawny.vercel.app)

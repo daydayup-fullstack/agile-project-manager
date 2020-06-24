@@ -1,7 +1,6 @@
 import React from "react";
 import "./ActionList.css";
-import ColorArray from "../ColorArray/ColorArray";
-import IconArray from "../IconArray/IconArray";
+
 import {connect} from "react-redux";
 import {
     add_project_star,
@@ -12,13 +11,11 @@ import {
     remove_project_star,
     show_profile_settings,
 } from "../../actions";
-import {generateId} from "../../model/utility";
-import {Link, BrowserRouter as Router} from "react-router-dom";
-import {
-    deleteColumnFromServer,
-    deleteTaskFromServer,
-    updateColumnToServer,
-} from "../../apis/api";
+import ProjectCardPopup from "../ActionList-ProjectCardPopup/ProjectCardPopup";
+import ColumnPopup from "../ActionList-ColumnPopup/ColumnPopup";
+import ProfilePopup from "../ActionList-ProfilePopup/ProfilePopup";
+import ProjectIconPopup from "../ActionList-ProjectIconPopup/ProjectIconPopup";
+import TaskcardContextPopup from "../ActionList-TaskcardContextPopup/TaskcardContextPopup";
 
 const ActionList = ({
                         project,
@@ -47,13 +44,9 @@ const ActionList = ({
     const [nextAnchor, setNextAnchor] = React.useState({x: 0, y: 0});
     const [parentAnchor, setParentAnchor] = React.useState({x: 0, y: 0});
 
-    function handleMouseOver(e) {
-        setParentAnchor({
-            x: e.target.offsetParent.offsetLeft,
-            y: e.target.offsetParent.offsetTop,
-        });
-        setShowNextLevel(true);
-    }
+    const calcPosition = () => {
+        return {top: `${nextAnchor.y}px`, left: `${nextAnchor.x}px`};
+    };
 
     React.useEffect(() => {
         let x;
@@ -107,162 +100,9 @@ const ActionList = ({
         setNextAnchor(anchor);
     }, [header_project_icon_popup.shouldShow, parentAnchor]);
 
-    const calcPosition = () => {
-        return {top: `${nextAnchor.y}px`, left: `${nextAnchor.x}px`};
-    };
-
     function dismissNextLevel() {
         setShowNextLevel(false);
     }
-
-    const Arrow = () => (
-        <i className={"material-icons-outlined"}>keyboard_arrow_right</i>
-    );
-
-    // const taskCardPopup = () => {
-    //   return (
-    //     <ul>
-    //       <li onMouseOver={dismissNextLevel}>Mark Complete</li>
-    //
-    //       <li onMouseOver={handleMouseOver} ref={expandableAction}>
-    //         Choose cover image <Arrow />
-    //       </li>
-    //       <li onMouseOver={dismissNextLevel}>Copy task link</li>
-    //       <li onMouseOver={dismissNextLevel}>Duplicate Task...</li>
-    //       <li onMouseOver={dismissNextLevel}>Delete</li>
-    //       {showNextLevel && (
-    //         //missing ref
-    //         <li className={"nextLevel"} style={calcPosition()} ref={nextAction}>
-    //           next level
-    //         </li>
-    //       )}
-    //     </ul>
-    //   );
-    // };
-
-    const ProjectCardPopup = () => {
-        // const height = 343;
-
-        let deleteProject = () => {
-            let ahead = window.confirm("Are you sure about deleting this project?");
-
-            if (ahead) {
-                console.log("should delete");
-                delete_project({project, currentWorkspace});
-            }
-        };
-
-        return (
-            <ul>
-                <li onMouseOver={handleMouseOver} ref={expandableAction}>
-                    Set Color & Icon <Arrow/>
-                </li>
-                <li
-                    onMouseOver={dismissNextLevel}
-                    onClick={() => {
-                        if (starredProjects.indexOf(project.id) >= 0) {
-                            remove_project_star(project);
-                        } else {
-                            add_project_star(project);
-                        }
-                    }}
-                >
-                    {starredProjects.indexOf(project.id) < 0
-                        ? "Add to Favorites"
-                        : "Remove from Favorites"}
-                </li>
-                {/*<li onMouseOver={dismissNextLevel}>Edit Name & Description...</li>*/}
-                {/*<li onMouseOver={dismissNextLevel}>Copy Project Link</li>*/}
-                <li
-                    onMouseOver={dismissNextLevel}
-                    style={{color: "#E8384F"}}
-                    onClick={() => deleteProject()}
-                >
-                    Delete Project
-                </li>
-                {showNextLevel && (
-                    <li className={"nextLevel"} style={calcPosition()} ref={nextAction}>
-                        <ColorArray colorIndex={project.colorIndex}/>
-                        <IconArray
-                            iconIndex={project.iconIndex}
-                            colorIndex={project.colorIndex}
-                        />
-                    </li>
-                )}
-            </ul>
-        );
-    };
-
-    const ProjectIconPopup = () => {
-        return (
-            <ul className={"ProjectIconPopup"}>
-                <li className={"nextLevel"}>
-                    <ColorArray colorIndex={project.colorIndex}/>
-                    <IconArray
-                        iconIndex={project.iconIndex}
-                        colorIndex={project.colorIndex}
-                    />
-                </li>
-            </ul>
-        );
-    };
-
-    const ProfilePopup = () => {
-        function handleClick(selectedWorkspaceId) {
-            if (selectedWorkspaceId !== currentWorkspace) {
-                change_workspace(user.allWorkspaces[selectedWorkspaceId]);
-            }
-        }
-
-        return (
-            <Router>
-                <div className={"ProfilePopup"}>
-                    <ul>
-                        {user.workspaces.map((id) => {
-                            return (
-                                <li
-                                    onMouseOver={dismissNextLevel}
-                                    onClick={() => handleClick(id)}
-                                >
-                                    {id === currentWorkspace.id && (
-                                        <span className={"material-icons ProfilePopup__current"}>
-                      done
-                    </span>
-                                    )}
-                                    {user.allWorkspaces[id].type === "personal"
-                                        ? "Personal projects"
-                                        : user.allWorkspaces[id].name}
-                                </li>
-                            );
-                        })}
-                    </ul>
-
-                    <div className="divider"/>
-
-                    <ul>
-                        <li
-                            onMouseOver={dismissNextLevel}
-                            onClick={(event) => {
-                                show_profile_settings();
-                            }}
-                        >
-                            My Profile Settings
-                        </li>
-                        <li
-                            onMouseOver={dismissNextLevel}
-                            onClick={() => {
-                                logout_user();
-                            }}
-                        >
-                            <Link to="/" style={{textDecoration: "none", color: "black"}}>
-                                Logout
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
-            </Router>
-        );
-    };
 
     const FilterTasks = () => {
         return (
@@ -351,6 +191,7 @@ const ActionList = ({
         );
     };
 
+    //todo - refactor this after filter functionality implemented
     const determineContent = () => {
         if (header_filter_popup.content === "FilterTasks") {
             return <FilterTasks/>;
@@ -364,177 +205,52 @@ const ActionList = ({
         }
     };
 
-    const TaskcardContextPopup = () => {
-        const task = taskcard_context_menu.task;
-        const columnId = taskcard_context_menu.columnId;
-        const project = taskcard_context_menu.project;
-        //
-        //   function markComplete() {
-        //     const updatedProject = {
-        //       ...project,
-        //       tasks: {
-        //         ...project.tasks,
-        //         [task.id]: {
-        //           ...project.tasks[task.id],
-        //           isCompleted: !task.isCompleted,
-        //         },
-        //       },
-        //     };
-        //
-        //     project_changed(updatedProject);
-        //   }
-
-        function duplicateTask() {
-            const id = generateId();
-            const index = project.columns[columnId].taskIds.indexOf(task.id);
-            const newTask = {...task, id: id, createdOn: new Date().getTime()};
-            const newTaskIds = [...project.columns[columnId].taskIds];
-            newTaskIds.splice(index, 0, id);
-
-            const newColumn = {
-                ...project.columns[columnId],
-                taskIds: newTaskIds,
-            };
-
-            const updatedProject = {
-                ...project,
-                tasks: {
-                    ...project.tasks,
-                    [id]: newTask,
-                },
-                columns: {
-                    ...project.columns,
-                    [columnId]: newColumn,
-                },
-            };
-
-            project_changed(updatedProject);
-        }
-
-        function copyTaskName() {
-            return undefined;
-        }
-
-        function deleteTask() {
-            const taskIds = project.columns[columnId].taskIds;
-            const index = taskIds.indexOf(task.id);
-            const newTaskIds = [...taskIds];
-            newTaskIds.splice(index, 1);
-
-            const updatedColumn = {
-                ...project.columns[columnId],
-                taskIds: newTaskIds,
-            };
-
-            const updatedProject = {
-                ...project,
-                columns: {
-                    ...project.columns,
-                    [columnId]: updatedColumn,
-                },
-            };
-
-            project_changed(updatedProject);
-            updateColumnToServer(updatedColumn);
-            deleteTaskFromServer(task);
-        }
-
-        function renameTask(e) {
-        }
-
-        return (
-            <div className="TaskcardContextPopup">
-                <ul className={"TaskcardContextPopup__actions"}>
-                    {/*<li onClick={() => markComplete()}>*/}
-                    {/*  <span className={"material-icons-outlined icon"}>check_circle</span>*/}
-                    {/*  <span>Mark complete</span>*/}
-                    {/*</li>*/}
-                    <li onClick={(e) => renameTask(e)}>
-                        <span className={"material-icons-outlined icon"}>create</span>
-                        <span>Rename task</span>
-                    </li>
-                    {/*<li>*/}
-                    {/*  <span className={"material-icons-outlined icon"}>fullscreen</span>*/}
-                    {/*  <span>Full screen</span>*/}
-                    {/*</li>*/}
-                    {/*<li>*/}
-                    {/*  <span className={"material-icons-outlined icon"}>tab</span>*/}
-                    {/*  <span>Open in new tab</span>*/}
-                    {/*</li>*/}
-                    {/*<li>*/}
-                    {/*  <span className={"material-icons-outlined icon"}>link</span>*/}
-                    {/*  <span>Copy task link</span>*/}
-                    {/*</li>*/}
-                    <li onClick={() => duplicateTask()}>
-                        <span className={"material-icons-outlined icon"}>file_copy</span>
-                        <span>Duplicate task</span>
-                    </li>
-                </ul>
-                <ul>
-                    <li onClick={() => copyTaskName()}>
-                        <span>Copy task name</span>
-                    </li>
-                </ul>
-
-                <ul>
-                    <li onClick={() => deleteTask()}>
-                        <span>Delete task</span>
-                    </li>
-                </ul>
-            </div>
-        );
+    const projectCardPopupProps = {
+        nextAction,
+        showNextLevel,
+        setShowNextLevel,
+        setParentAnchor,
+        project,
+        calcPosition,
+        dismissNextLevel,
+        expandableAction,
+        currentWorkspace,
+        starredProjects,
+        remove_project_star,
+        add_project_star,
+        delete_project,
+    };
+    const columnPopupProps = {project, project_changed, column_popup};
+    const profilePopupProps = {
+        currentWorkspace,
+        user,
+        change_workspace,
+        dismissNextLevel,
+        show_profile_settings,
+        logout_user,
     };
 
-    const ColumnPopup = () => {
-        // todo - fix the dispositioning effect bug after horizontal scroll
-
-        const updateProject = (columnId) => {
-            const updatedProject = {
-                ...project,
-                columnOrder: project.columnOrder.filter((id) => id !== columnId),
-            };
-
-            delete updatedProject.columns[columnId];
-
-            column_popup.column.taskIds.map((taskId) => {
-                delete updatedProject.tasks[taskId];
-                return null;
-            });
-
-            project_changed(updatedProject);
-            deleteColumnFromServer(columnId);
-        };
-
-        function deleteColumn() {
-            const columnId = column_popup.column.id;
-
-            if (project.columns[columnId].taskIds.length > 0) {
-                const goAhead = window.confirm(
-                    "This column contains other tasks, Do you really want to delete it?"
-                );
-                if (goAhead) updateProject(columnId);
-                return;
-            }
-
-            updateProject(columnId);
-        }
-
-        return (
-            <ul className={"ColumnPopup"}>
-                <li onClick={deleteColumn}>Delete column</li>
-            </ul>
-        );
-    };
+    const taskcardContextPopupProps = {taskcard_context_menu, project_changed};
 
     return (
         <div className={"ActionList"} ref={popupItself}>
-            {column_popup.shouldShow && <ColumnPopup/>}
-            {projectCard_popup.shouldShow && <ProjectCardPopup/>}
-            {header_project_info_popup.shouldShow && <ProjectCardPopup/>}
-            {header_profile_popup.shouldShow && <ProfilePopup/>}
-            {header_project_icon_popup.shouldShow && <ProjectIconPopup/>}
+            {column_popup.shouldShow && <ColumnPopup {...columnPopupProps} />}
+            {projectCard_popup.shouldShow && (
+                <ProjectCardPopup {...projectCardPopupProps} />
+            )}
+            {header_project_info_popup.shouldShow && (
+                <ProjectCardPopup {...projectCardPopupProps} />
+            )}
+            {header_profile_popup.shouldShow && (
+                <ProfilePopup {...profilePopupProps} />
+            )}
+            {header_project_icon_popup.shouldShow && (
+                <ProjectIconPopup project={project}/>
+            )}
             {header_filter_popup.shouldShow && determineContent()}
-            {taskcard_context_menu.shouldShow && <TaskcardContextPopup/>}
+            {taskcard_context_menu.shouldShow && (
+                <TaskcardContextPopup {...taskcardContextPopupProps} />
+            )}
         </div>
     );
 };
