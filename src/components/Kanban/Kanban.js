@@ -116,6 +116,13 @@ const Kanban = ({project, project_changed, isProjectLoading}) => {
         }
     };
 
+    React.useEffect(() => {
+        const kanban = document.querySelector("#kanban");
+
+        console.log(kanban);
+
+    }, [])
+
     return (
         <DragDropContext onDragEnd={onDragEnd}>
             <Droppable
@@ -126,12 +133,13 @@ const Kanban = ({project, project_changed, isProjectLoading}) => {
                 {(provided) => (
                     <div
                         className={"kanban"}
+                        id={"kanban"}
                         {...provided.droppableProps}
                         ref={provided.innerRef}
                     >
                         {isProjectLoading ? <BoardPlaceholder/> : renderColumns()}
-                        {provided.placeholder}
                         {!isProjectLoading && <AddNewColumn/>}
+                        {provided.placeholder}
                     </div>
                 )}
             </Droppable>

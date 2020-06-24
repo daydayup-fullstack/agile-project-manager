@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import "./ProjectDetail.css";
 import {Link, withRouter} from "react-router-dom";
-import {project_added, project_added_in_store, project_selected} from "../../actions";
+import {project_added, project_selected} from "../../actions";
 import {connect} from "react-redux";
 import {generateId} from "../../model/utility";
 import {saveNewProjectToServer} from "../../apis/api";
@@ -188,6 +188,6 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps, { project_added, project_selected})(
+export default connect(mapStateToProps, {project_added, project_selected})(
     withRouter(ProjectDetail)
 );

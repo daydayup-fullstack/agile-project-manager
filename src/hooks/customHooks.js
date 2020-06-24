@@ -122,6 +122,8 @@ export const useDropzone = (ref, updateTaskUrl) => {
       element.removeEventListener("dragover", handleDragOver);
       element.removeEventListener("drop", handleDrop);
     };
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ref]);
 
   return [isFilesDragging];

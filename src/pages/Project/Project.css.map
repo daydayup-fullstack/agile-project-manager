@@ -1,10 +1,1 @@
-{
-    "version": 3,
-    "mappings": "AAGA,AAAA,YAAY,CAAC;EACX,gBAAgB,ECUP,OAAO;EDThB,OAAO,EAAE,aAAa;EACtB,UAAU,EAAE,MAAM;CACnB",
-    "sources": [
-        "Project.scss",
-        "../../style/_variables.scss"
-    ],
-    "names": [],
-    "file": "Project.css"
-}
+{"version":3,"sourceRoot":"","sources":["Project.scss","../../style/_variables.scss"],"names":[],"mappings":"AAGA;EACE,kBCUS;EDTT;EACA;EC4BA","file":"Project.css"}

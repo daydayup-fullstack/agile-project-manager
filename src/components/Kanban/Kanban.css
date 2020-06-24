@@ -1,7 +1,6 @@
 .kanban {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   width: 100vh;
 }
+
 /*# sourceMappingURL=Kanban.css.map */
