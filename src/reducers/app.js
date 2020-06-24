@@ -31,6 +31,7 @@ import {
     INIT_USER_FAILED,
     SHOW_PROFILE_SETTINGS,
     HIDE_PROFILE_SETTINGS,
+    SET_SCROLL_VALUE,
 } from "../actions";
 
 const initialAppState = {
@@ -83,6 +84,7 @@ const initialAppState = {
     ui_profile_settings: {
         shouldShow: false,
     },
+    ui_scroll_left: 0,
 };
 
 export const app = (state = initialAppState, action) => {
@@ -355,6 +357,13 @@ export const app = (state = initialAppState, action) => {
                     shouldShow: false,
                 },
             };
+        case SET_SCROLL_VALUE: {
+            return {
+                ...state,
+                ui_scroll_left: action.value,
+            };
+        }
+
         default:
             return {
                 ...state,

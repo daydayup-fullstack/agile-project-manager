@@ -234,3 +234,11 @@ export const hide_profile_settings = () => {
         type: HIDE_PROFILE_SETTINGS,
     };
 };
+
+export const SET_SCROLL_VALUE = "SET_SCROLL_VALUE";
+export const set_scroll_left = (value) => {
+    return {
+        type: SET_SCROLL_VALUE,
+        value
+    }
+}
