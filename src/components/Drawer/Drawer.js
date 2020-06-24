@@ -2,10 +2,9 @@ import React from "react";
 import "./Drawer.css";
 import {close_app_drawer} from "../../actions";
 import {connect} from "react-redux";
-import SideMenuSection, {
-    Favorites,
-    Team,
-} from "../SideMenuSection/SideMenuSection";
+import SideMenuSection from "../SideMenuSection/SideMenuSection";
+import Favorites from "../SideMenu-Favorites/Favorites";
+import Team from "../SideMenu-Team/Team";
 
 const Drawer = ({
                     nav,

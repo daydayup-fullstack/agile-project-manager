@@ -69,7 +69,7 @@
         color: $gray-200;
 
         &:hover {
-          background: $gray-400;
+          background: rgba($gray-400, 0.2);
           i {
             visibility: visible;
           }

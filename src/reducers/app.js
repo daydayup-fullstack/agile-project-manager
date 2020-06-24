@@ -32,6 +32,7 @@ import {
     SHOW_PROFILE_SETTINGS,
     HIDE_PROFILE_SETTINGS,
     SET_SCROLL_VALUE,
+    NAV_LINK_CLICKED,
 } from "../actions";
 
 const initialAppState = {
@@ -85,6 +86,10 @@ const initialAppState = {
         shouldShow: false,
     },
     ui_scroll_left: 0,
+    ui_navlink_selector: {
+        section: "",
+        index: -1,
+    },
 };
 
 export const app = (state = initialAppState, action) => {
@@ -361,6 +366,16 @@ export const app = (state = initialAppState, action) => {
             return {
                 ...state,
                 ui_scroll_left: action.value,
+            };
+        }
+
+        case NAV_LINK_CLICKED: {
+            return {
+                ...state,
+                ui_navlink_selector: {
+                    section: action.section,
+                    index: action.index,
+                },
             };
         }
 

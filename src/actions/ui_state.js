@@ -239,6 +239,15 @@ export const SET_SCROLL_VALUE = "SET_SCROLL_VALUE";
 export const set_scroll_left = (value) => {
     return {
         type: SET_SCROLL_VALUE,
-        value
-    }
-}
+        value,
+    };
+};
+
+export const NAV_LINK_CLICKED = "NAV_LINK_CLICKED";
+export const nav_link_clicked = ({section, index}) => {
+    return {
+        type: NAV_LINK_CLICKED,
+        section,
+        index,
+    };
+};

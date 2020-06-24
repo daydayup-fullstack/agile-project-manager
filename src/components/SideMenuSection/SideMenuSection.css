@@ -8,100 +8,73 @@
   overflow-x: hidden;
   max-width: 240px;
 }
-
 .SideMenuSection__content header {
   padding: 0.5rem 1.5rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   position: relative;
 }
-
 .SideMenuSection__content header:hover {
   cursor: pointer;
 }
-
 .SideMenuSection__content header span {
   position: absolute;
   right: 1.5rem;
-  -webkit-transform: scale(0.8);
-          transform: scale(0.8);
+  transform: scale(0.8);
 }
-
 .SideMenuSection__content .teamHeader:hover {
   background: rgba(111, 119, 130, 0.5);
 }
-
 .SideMenuSection__content .memberList {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   list-style: none;
   padding-left: 1.5rem;
   padding-top: 1rem;
 }
-
 .SideMenuSection__content .memberList .member {
   margin-right: 0.25rem;
 }
-
 .SideMenuSection__content .projectList {
   margin-top: 1rem;
   list-style: none;
   display: none;
 }
-
 .SideMenuSection__content .projectList .active {
   background-color: rgba(111, 119, 130, 0.5);
 }
-
 .SideMenuSection__content .projectList--open {
   display: block;
 }
-
 .SideMenuSection__content .projectList .project {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   padding: 0.3rem 0 0.3rem 1.5rem;
   position: relative;
   color: #e8ecee;
 }
-
 .SideMenuSection__content .projectList .project:hover {
-  background: #6f7782;
+  background: rgba(111, 119, 130, 0.2);
 }
-
 .SideMenuSection__content .projectList .project:hover i {
   visibility: visible;
 }
-
 .SideMenuSection__content .projectList .project__color {
   height: 0.5rem;
   width: 0.5rem;
   margin-right: 1rem;
   border-radius: 2px;
 }
-
 .SideMenuSection__content .projectList .project__name {
   font-size: 0.81rem;
 }
-
 .SideMenuSection__content .projectList .project i {
   position: absolute;
   right: 1.5rem;
-  -webkit-transform: scale(0.8);
-          transform: scale(0.8);
+  transform: scale(0.8);
   visibility: hidden;
 }
-
 .SideMenuSection__content .projectList .project i:hover {
   cursor: pointer;
 }
+
 /*# sourceMappingURL=SideMenuSection.css.map */
