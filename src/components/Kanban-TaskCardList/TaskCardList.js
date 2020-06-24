@@ -4,15 +4,16 @@ import "./TaskCardList.css";
 import TaskCard from "../Kanban-TaskCard/TaskCard";
 
 const TaskCardList = ({ tasks, columnId }) => {
+  const filterTasks = tasks.filter(task => task!==undefined)
   return (
     <Droppable droppableId={columnId} type={"task"}>
       {(provided) => (
         <div
-          className={`taskCardList ${tasks.length === 0 && "empty"}`}
+          className={`taskCardList ${filterTasks.length === 0 && "empty"}`}
           {...provided.droppableProps}
           ref={provided.innerRef}
         >
-          {tasks.map((task, index) => (
+          {filterTasks.map((task, index) => (
             <TaskCard
               task={task}
               index={index}

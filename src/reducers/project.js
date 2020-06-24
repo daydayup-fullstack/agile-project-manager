@@ -5,6 +5,10 @@ import {
     SET_TASK_DUE_DAY,
     PROJECT_CHANGED,
     WORKSPACE_CHANGED,
+    SHOW_COMPLETE_TASKS_SUCCEED,
+    SHOW_ALL_TASKS_SUCCEED,
+    SHOW_INCOMPLETE_TASKS_SUCCEED,
+    CHOOSE_ALLOWED_TASKS
 } from "../actions";
 
 const initialProjectState = {
@@ -18,6 +22,7 @@ const initialProjectState = {
     activeUsers: [],
     columns: {},
     tasks: {},
+    displayedTasks:'All Tasks'
 };
 
 export const project = (state = initialProjectState, action) => {
@@ -80,6 +85,43 @@ export const project = (state = initialProjectState, action) => {
             };
         }
 
+        case SHOW_COMPLETE_TASKS_SUCCEED:
+            const completedTasksArray = (Object.keys(action.tasks)).filter(taskId => { return action.tasks[taskId].isCompleted === true })
+            const completeTasks = Object.keys(action.tasks)
+                .filter(key => completedTasksArray.includes(key))
+                .reduce((obj, key) => {
+                    obj[key] = action.tasks[key];
+                    return obj;
+                }, {});
+            return {
+                ...state,
+                tasks: completeTasks
+            }
+
+        case SHOW_ALL_TASKS_SUCCEED:
+            return {
+                ...state,
+                tasks: action.tasks,
+            }
+
+        case SHOW_INCOMPLETE_TASKS_SUCCEED:
+            const incompletedTasksArray = (Object.keys(action.tasks)).filter(taskId => { return action.tasks[taskId].isCompleted === false })
+            const incompleteTasks = Object.keys(action.tasks)
+                .filter(key => incompletedTasksArray.includes(key))
+                .reduce((obj, key) => {
+                    obj[key] = action.tasks[key];
+                    return obj;
+                }, {});
+            return {
+                ...state,
+                tasks: incompleteTasks,
+            }
+
+        case CHOOSE_ALLOWED_TASKS:
+            return{
+                ...state,
+                displayedTasks:action.displayedTasks
+            }
         default:
             return {
                 ...state,

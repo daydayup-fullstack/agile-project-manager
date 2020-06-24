@@ -11,6 +11,10 @@ import {
     project_changed,
     remove_project_star,
     show_profile_settings,
+    show_complete_tasks,
+    show_all_tasks,
+    show_incomplete_tasks,
+    choose_allowed_tasks,
 } from "../../actions";
 import {generateId} from "../../model/utility";
 import {Link, BrowserRouter as Router} from "react-router-dom";
@@ -39,6 +43,10 @@ const ActionList = ({
                         logout_user,
                         change_workspace,
                         show_profile_settings,
+                        show_complete_tasks,
+                        show_all_tasks,
+                        show_incomplete_tasks,
+                        choose_allowed_tasks,
                     }) => {
     const expandableAction = React.useRef(null);
     const popupItself = React.useRef(null);
@@ -46,6 +54,11 @@ const ActionList = ({
     const [showNextLevel, setShowNextLevel] = React.useState(false);
     const [nextAnchor, setNextAnchor] = React.useState({x: 0, y: 0});
     const [parentAnchor, setParentAnchor] = React.useState({x: 0, y: 0});
+    const tasksDisplayed={
+        ALL_TASKS:'All Tasks',
+        INCOMPLETE_TASKS:'Incomplete Tasks',
+        COMPLETE_TASKS:'Complete Tasks'
+    }
 
     function handleMouseOver(e) {
         setParentAnchor({
@@ -268,16 +281,16 @@ const ActionList = ({
         return (
             <ul className={"FilterTasks"}>
                 <li>
-                    <span className="material-icons task_done">done</span>
+                    {/* <span className="material-icons task_done">done</span> */}
                     <span className="task_tick">
-            <span>Incomplete tasks</span>
+            <span onClick={()=>{return (show_incomplete_tasks(project), choose_allowed_tasks(tasksDisplayed.INCOMPLETE_TASKS))}}>Incomplete tasks</span>
           </span>
                 </li>
                 <li ref={expandableAction} className={"expandableItem"}>
-                    <span className="complete_task">Compelte tasks</span>
+                    <span className="complete_task" onClick={()=>{return (show_complete_tasks(project),choose_allowed_tasks(tasksDisplayed.COMPLETE_TASKS))}}>Complete tasks</span>
                 </li>
                 <li>
-                    <span className="complete_task">All tasks</span>
+                    <span className="complete_task" onClick={()=>{return (show_all_tasks(project), choose_allowed_tasks(tasksDisplayed.ALL_TASKS))}}>All tasks</span>
                 </li>
             </ul>
         );
@@ -582,4 +595,8 @@ export default connect(mapStateToProps, {
     change_workspace,
     logout_user,
     show_profile_settings,
+    show_complete_tasks,
+    show_all_tasks,
+    show_incomplete_tasks,
+    choose_allowed_tasks,
 })(ActionList);

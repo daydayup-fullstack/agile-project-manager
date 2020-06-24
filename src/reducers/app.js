@@ -31,6 +31,9 @@ import {
     INIT_USER_FAILED,
     SHOW_PROFILE_SETTINGS,
     HIDE_PROFILE_SETTINGS,
+    SHOW_COMPLETE_TASKS_REQUEST,
+    SHOW_COMPLETE_TASKS_SUCCEED,
+    SHOW_COMPLETE_TASKS_FAILED
 } from "../actions";
 
 const initialAppState = {
@@ -127,6 +130,12 @@ export const app = (state = initialAppState, action) => {
                 ...state,
                 ui_isProjectLoading: false,
             };
+        }
+
+        case SHOW_COMPLETE_TASKS_REQUEST:{
+            return{
+                ...state
+            }
         }
 
         case SHOW_CALENDAR_POPUP: {

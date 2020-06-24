@@ -180,3 +180,98 @@ export const remove_project_star = (project) => {
         project,
     };
 };
+
+export const SHOW_COMPLETE_TASKS_REQUEST = "SHOW_COMPLETE_TASKS_REQUEST";
+export const show_complete_tasks = (project) => async (dispatch) => {
+    try {
+        dispatch({
+            type: SHOW_COMPLETE_TASKS_REQUEST,
+        });
+        const response = await backend.get(`/projects/${project.id}`);
+        dispatch(show_complete_tasks_succeed(response));
+    } catch (e) {
+        dispatch(show_complete_tasks_failed(e));
+    }
+};
+
+export const SHOW_COMPLETE_TASKS_SUCCEED = "SHOW_COMPLETE_TASKS_SUCCEED";
+const show_complete_tasks_succeed= (response) => {
+    return {
+        type: SHOW_COMPLETE_TASKS_SUCCEED,
+        tasks:response.data.tasks,
+    };
+};
+
+export const SHOW_COMPLETE_TASKS_FAILED = "SHOW_COMPLETE_TASKS_FAILED";
+const show_complete_tasks_failed = (error) => {
+    return {
+        type: SHOW_COMPLETE_TASKS_FAILED,
+        error: error,
+    };
+};
+
+export const SHOW_ALL_TASKS_REQUEST = "SHOW_ALL_TASKS_REQUEST";
+export const show_all_tasks = (project) => async (dispatch) => {
+    try {
+        dispatch({
+            type: SHOW_ALL_TASKS_REQUEST,
+        });
+        const response = await backend.get(`/projects/${project.id}`);
+        dispatch(show_all_tasks_succeed(response));
+    } catch (e) {
+        dispatch(show_all_tasks_failed(e));
+    }
+};
+
+export const SHOW_ALL_TASKS_SUCCEED = "SHOW_ALL_TASKS_SUCCEED";
+const show_all_tasks_succeed= (response) => {
+    return {
+        type: SHOW_ALL_TASKS_SUCCEED,
+        tasks:response.data.tasks,
+    };
+};
+
+export const SHOW_ALL_TASKS_FAILED = "SHOW_ALL_TASKS_FAILED";
+const show_all_tasks_failed = (error) => {
+    return {
+        type: SHOW_ALL_TASKS_FAILED,
+        error: error,
+    };
+};
+
+export const SHOW_INCOMPLETE_TASKS_REQUEST = "SHOW_INCOMPLETE_TASKS_REQUEST";
+export const show_incomplete_tasks = (project) => async (dispatch) => {
+    try {
+        dispatch({
+            type: SHOW_INCOMPLETE_TASKS_REQUEST,
+        });
+        const response = await backend.get(`/projects/${project.id}`);
+        dispatch(show_incomplete_tasks_succeed(response));
+    } catch (e) {
+        dispatch(show_incomplete_tasks_failed(e));
+    }
+};
+
+export const SHOW_INCOMPLETE_TASKS_SUCCEED = "SHOW_INCOMPLETE_TASKS_SUCCEED";
+const show_incomplete_tasks_succeed= (response) => {
+    return {
+        type: SHOW_INCOMPLETE_TASKS_SUCCEED,
+        tasks:response.data.tasks,
+    };
+};
+
+export const SHOW_INCOMPLETE_TASKS_FAILED = "SHOW_INCOMPLETE_TASKS_FAILED";
+const show_incomplete_tasks_failed = (error) => {
+    return {
+        type: SHOW_INCOMPLETE_TASKS_FAILED,
+        error: error,
+    };
+};
+
+export const CHOOSE_ALLOWED_TASKS = " CHOOSE_ALLOWED_TASKS";
+export const choose_allowed_tasks = (displayedTasks) => {
+    return {
+        type: CHOOSE_ALLOWED_TASKS,
+        displayedTasks,
+    };
+};

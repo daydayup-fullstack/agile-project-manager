@@ -2,9 +2,11 @@ import React from "react";
 import "./Filterbar.css";
 
 import { connect } from "react-redux";
-import { show_header_filter_popup } from "../../actions";
+import { 
+  show_header_filter_popup,
+  } from "../../actions";
 
-const Filterbar = ({ show_header_filter_popup, project }) => {
+const Filterbar = ({ show_header_filter_popup, project, }) => {
   const getAnchor = (e) => {
     const anchor = {
       x: e.target.offsetLeft,
@@ -41,8 +43,7 @@ const Filterbar = ({ show_header_filter_popup, project }) => {
       <div className="Filterbar__description"/>
       <div className="Filterbar__controls">
         <button className="Filter_button first" onClick={filterByCompletion}>
-          <span className="material-icons task">check_circle_outline</span>All
-          Tasks
+          <span className="material-icons task">check_circle_outline</span>{project.displayedTasks}
         </button>
         <button className="Filter_button" onClick={filterByDeadline}>
           <span className="material-icons filter">filter_list</span>Filter
@@ -64,6 +65,8 @@ const mapStateToProps = (state) => {
     project: state.project,
   };
 };
-export default connect(mapStateToProps, { show_header_filter_popup })(
+export default connect(mapStateToProps, { 
+  show_header_filter_popup ,
+})(
   Filterbar
 );
