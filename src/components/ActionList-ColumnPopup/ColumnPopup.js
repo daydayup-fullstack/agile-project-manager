@@ -1,7 +1,7 @@
 import {deleteColumnFromServer} from "../../apis/api";
 import React from "react";
 
-export const ColumnPopup = ({project, project_changed, column_popup}) => {
+const ColumnPopup = ({project, project_changed, column_popup}) => {
     // todo - fix the dispositioning effect bug after horizontal scroll
 
     const updateProject = (columnId) => {
@@ -41,3 +41,4 @@ export const ColumnPopup = ({project, project_changed, column_popup}) => {
         </ul>
     );
 };
+export default ColumnPopup;

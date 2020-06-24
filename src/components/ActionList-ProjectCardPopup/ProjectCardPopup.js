@@ -6,21 +6,21 @@ const Arrow = () => (
     <i className={"material-icons-outlined"}>keyboard_arrow_right</i>
 );
 
-export const ProjectCardPopup = ({
-                                     nextAction,
-                                     showNextLevel,
-                                     setShowNextLevel,
-                                     setParentAnchor,
-                                     project,
-                                     calcPosition,
-                                     dismissNextLevel,
-                                     expandableAction,
-                                     currentWorkspace,
-                                     starredProjects,
-                                     remove_project_star,
-                                     add_project_star,
-                                     delete_project,
-                                 }) => {
+const ProjectCardPopup = ({
+                              nextAction,
+                              showNextLevel,
+                              setShowNextLevel,
+                              setParentAnchor,
+                              project,
+                              calcPosition,
+                              dismissNextLevel,
+                              expandableAction,
+                              currentWorkspace,
+                              starredProjects,
+                              remove_project_star,
+                              add_project_star,
+                              delete_project,
+                          }) => {
     // const height = 343;
 
     function handleMouseOver(e) {
@@ -79,3 +79,5 @@ export const ProjectCardPopup = ({
         </ul>
     );
 };
+
+export default ProjectCardPopup;

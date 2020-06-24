@@ -1,14 +1,14 @@
 import {BrowserRouter as Router, Link} from "react-router-dom";
 import React from "react";
 
-export const ProfilePopup = ({
-                                 currentWorkspace,
-                                 user,
-                                 change_workspace,
-                                 dismissNextLevel,
-                                 show_profile_settings,
-                                 logout_user,
-                             }) => {
+const ProfilePopup = ({
+                          currentWorkspace,
+                          user,
+                          change_workspace,
+                          dismissNextLevel,
+                          show_profile_settings,
+                          logout_user,
+                      }) => {
     function handleClick(selectedWorkspaceId) {
         if (selectedWorkspaceId !== currentWorkspace) {
             change_workspace(user.allWorkspaces[selectedWorkspaceId]);
@@ -64,3 +64,5 @@ export const ProfilePopup = ({
         </Router>
     );
 };
+
+export default ProfilePopup;

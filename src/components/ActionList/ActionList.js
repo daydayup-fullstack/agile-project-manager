@@ -1,7 +1,6 @@
 import React from "react";
 import "./ActionList.css";
-import ColorArray from "../ColorArray/ColorArray";
-import IconArray from "../IconArray/IconArray";
+
 import {connect} from "react-redux";
 import {
     add_project_star,
@@ -12,17 +11,11 @@ import {
     remove_project_star,
     show_profile_settings,
 } from "../../actions";
-import {generateId} from "../../model/utility";
-import {Link, BrowserRouter as Router} from "react-router-dom";
-import {
-    deleteColumnFromServer,
-    deleteTaskFromServer,
-    updateColumnToServer,
-    updateTaskToServer,
-} from "../../apis/api";
-import {ProjectCardPopup} from "../ActionList-ProjectCardPopup/ProjectCardPopup";
-import {ColumnPopup} from "../ActionList-ColumnPopup/ColumnPopup";
-import {ProfilePopup} from "../ActionList-ProfilePopup/ProfilePopup";
+import ProjectCardPopup from "../ActionList-ProjectCardPopup/ProjectCardPopup";
+import ColumnPopup from "../ActionList-ColumnPopup/ColumnPopup";
+import ProfilePopup from "../ActionList-ProfilePopup/ProfilePopup";
+import ProjectIconPopup from "../ActionList-ProjectIconPopup/ProjectIconPopup";
+import TaskcardContextPopup from "../ActionList-TaskcardContextPopup/TaskcardContextPopup";
 
 const ActionList = ({
                         project,
@@ -111,20 +104,6 @@ const ActionList = ({
         setShowNextLevel(false);
     }
 
-    const ProjectIconPopup = () => {
-        return (
-            <ul className={"ProjectIconPopup"}>
-                <li className={"nextLevel"}>
-                    <ColorArray colorIndex={project.colorIndex}/>
-                    <IconArray
-                        iconIndex={project.iconIndex}
-                        colorIndex={project.colorIndex}
-                    />
-                </li>
-            </ul>
-        );
-    };
-
     const FilterTasks = () => {
         return (
             <ul className={"FilterTasks"}>
@@ -212,6 +191,7 @@ const ActionList = ({
         );
     };
 
+    //todo - refactor this after filter functionality implemented
     const determineContent = () => {
         if (header_filter_popup.content === "FilterTasks") {
             return <FilterTasks/>;
@@ -223,120 +203,6 @@ const ActionList = ({
         if (header_filter_popup.content === "FilterSort") {
             return <FilterSort/>;
         }
-    };
-
-    const TaskcardContextPopup = () => {
-        const task = taskcard_context_menu.task;
-        const columnId = taskcard_context_menu.columnId;
-        const project = taskcard_context_menu.project;
-
-        function markComplete() {
-            const updatedTask = {
-                ...project.tasks[task.id],
-                isCompleted: !task.isCompleted,
-            };
-
-            const updatedProject = {
-                ...project,
-                tasks: {
-                    ...project.tasks,
-                    [task.id]: updatedTask,
-                },
-            };
-
-            project_changed(updatedProject);
-            updateTaskToServer(updatedTask);
-        }
-
-        function duplicateTask() {
-            const id = generateId();
-            const index = project.columns[columnId].taskIds.indexOf(task.id);
-            const newTask = {...task, id: id, createdOn: new Date().getTime()};
-            const newTaskIds = [...project.columns[columnId].taskIds];
-            newTaskIds.splice(index, 0, id);
-
-            const newColumn = {
-                ...project.columns[columnId],
-                taskIds: newTaskIds,
-            };
-
-            const updatedProject = {
-                ...project,
-                tasks: {
-                    ...project.tasks,
-                    [id]: newTask,
-                },
-                columns: {
-                    ...project.columns,
-                    [columnId]: newColumn,
-                },
-            };
-
-            project_changed(updatedProject);
-            updateColumnToServer(newColumn);
-        }
-
-        function copyTaskName() {
-            const el = document.createElement("textarea");
-            el.value = task.name;
-            el.setAttribute("readonly", "");
-            el.style = {position: "absolute", left: "-9999px"};
-            document.body.appendChild(el);
-            el.select();
-            document.execCommand("copy");
-            document.body.removeChild(el);
-        }
-
-        function deleteTask() {
-            const taskIds = project.columns[columnId].taskIds;
-            const index = taskIds.indexOf(task.id);
-            const newTaskIds = [...taskIds];
-            newTaskIds.splice(index, 1);
-
-            const updatedColumn = {
-                ...project.columns[columnId],
-                taskIds: newTaskIds,
-            };
-
-            const updatedProject = {
-                ...project,
-                columns: {
-                    ...project.columns,
-                    [columnId]: updatedColumn,
-                },
-            };
-
-            project_changed(updatedProject);
-            updateColumnToServer(updatedColumn);
-            deleteTaskFromServer(task);
-        }
-
-        return (
-            <div className="TaskcardContextPopup">
-                <ul className={"TaskcardContextPopup__actions"}>
-                    <li onClick={() => markComplete()}>
-                        <span className={"material-icons-outlined icon"}>check_circle</span>
-                        <span>Mark {!task.isCompleted ? "Completed" : "Incompleted"}</span>
-                    </li>
-
-                    <li onClick={() => duplicateTask()}>
-                        <span className={"material-icons-outlined icon"}>file_copy</span>
-                        <span>Duplicate task</span>
-                    </li>
-                </ul>
-                <ul>
-                    <li onClick={() => copyTaskName()}>
-                        <span>Copy task name</span>
-                    </li>
-                </ul>
-
-                <ul>
-                    <li onClick={() => deleteTask()}>
-                        <span>Delete task</span>
-                    </li>
-                </ul>
-            </div>
-        );
     };
 
     const projectCardPopupProps = {
@@ -364,6 +230,8 @@ const ActionList = ({
         logout_user,
     };
 
+    const taskcardContextPopupProps = {taskcard_context_menu, project_changed};
+
     return (
         <div className={"ActionList"} ref={popupItself}>
             {column_popup.shouldShow && <ColumnPopup {...columnPopupProps} />}
@@ -376,9 +244,13 @@ const ActionList = ({
             {header_profile_popup.shouldShow && (
                 <ProfilePopup {...profilePopupProps} />
             )}
-            {header_project_icon_popup.shouldShow && <ProjectIconPopup/>}
+            {header_project_icon_popup.shouldShow && (
+                <ProjectIconPopup project={project}/>
+            )}
             {header_filter_popup.shouldShow && determineContent()}
-            {taskcard_context_menu.shouldShow && <TaskcardContextPopup/>}
+            {taskcard_context_menu.shouldShow && (
+                <TaskcardContextPopup {...taskcardContextPopupProps} />
+            )}
         </div>
     );
 };
