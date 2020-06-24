@@ -1,7 +1,9 @@
 .App-Project {
   background-color: #f6f8f9;
   padding: 0.5rem 0.8rem;
+  width: 100%;
   overflow-y: hidden;
+  overflow-x: auto;
 }
 
 /*# sourceMappingURL=Project.css.map */

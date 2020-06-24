@@ -8,6 +8,7 @@ import {project_selected, set_scroll_left} from "../../actions";
 const Project = ({allProjects, project_selected, set_scroll_left}) => {
     const {id} = useParams();
     const scrollRef = React.useRef(null);
+    const [height, setHeight] = React.useState(0);
 
     React.useEffect(() => {
         const project = allProjects.filter((p) => {
@@ -22,16 +23,14 @@ const Project = ({allProjects, project_selected, set_scroll_left}) => {
             project_selected(project[0]);
         }
 
-        // todo - call action to load project details here
-
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id]);
 
     React.useEffect(() => {
+        // get latest scroll value
         const handleScroll = (e) => {
             set_scroll_left(e.target.scrollLeft);
         };
-
         const scrollable = scrollRef.current;
         scrollable.addEventListener("scroll", handleScroll);
 
@@ -41,8 +40,26 @@ const Project = ({allProjects, project_selected, set_scroll_left}) => {
         };
     }, [set_scroll_left]);
 
+    React.useEffect(() => {
+        // get latest suitable height
+        const calcHeight = () => {
+            const MENU_BAR_HEIGHT = 112;
+            setHeight(window.innerHeight - MENU_BAR_HEIGHT);
+        };
+        calcHeight();
+        window.addEventListener("resize", calcHeight);
+
+        return () => {
+            window.removeEventListener("resize", calcHeight);
+        };
+    }, []);
+
     return (
-        <div className={"App-Project"} ref={scrollRef}>
+        <div
+            className={"App-Project"}
+            ref={scrollRef}
+            style={{height: `${height}px`}}
+        >
             <Kanban/>
         </div>
     );
