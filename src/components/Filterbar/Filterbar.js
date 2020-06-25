@@ -2,7 +2,6 @@ import React from "react";
 import "./Filterbar.css";
 import {connect} from "react-redux";
 import {
-    FILTER,
     QUICK_FILTER,
     show_header_filter_popup,
     SORTER,

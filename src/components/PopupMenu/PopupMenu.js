@@ -46,7 +46,8 @@ const PopupMenu = ({
 
     React.useEffect(() => {
         if (anchor.x + popup.current.clientWidth - scrollLeft > window.innerWidth) {
-            const x = anchor.x + anchor.width - popup.current.clientWidth - scrollLeft;
+            const x =
+                anchor.x + anchor.width - popup.current.clientWidth - scrollLeft;
             const y = anchor.y;
             setOrigin({
                 x: x - OFFSET_X,
@@ -55,6 +56,8 @@ const PopupMenu = ({
         } else {
             setOrigin({x: anchor.x + OFFSET_X - scrollLeft, y: anchor.y});
         }
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [anchor.x, anchor.y, anchor.width]);
 
     const dismiss = () => {
