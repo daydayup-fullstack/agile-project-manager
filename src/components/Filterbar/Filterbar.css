@@ -11,7 +11,12 @@
   box-shadow: 0 1px 3px 0 rgba(21, 27, 38, 0.15);
   color: #6f7782;
 }
-.filterbar .active {
+.filterbar .activated {
+  color: rgba(32, 170, 234, 0.8);
+  background-color: rgba(32, 170, 234, 0.3);
+}
+.filterbar .activated:hover {
+  background-color: rgba(32, 170, 234, 0.3);
   color: #20aaea;
 }
 .filterbar__controls {
@@ -26,11 +31,13 @@
   background: none;
   color: #6f7782;
   margin-right: 0.5rem;
-  padding: 0.2rem 0.6rem 0.2rem 0.25rem;
+  padding: 0 0.6rem 0 0.25rem;
   border-radius: 0.25rem;
 }
 .filterbar__controls button:hover {
   background: #e8ecee;
+  cursor: pointer;
+  color: #151b26;
 }
 .filterbar__controls button:focus {
   outline: none;

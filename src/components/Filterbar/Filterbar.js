@@ -103,7 +103,7 @@ const Filterbar = ({
                         isPopupActive.shouldShow &&
                         isPopupActive.content === "FilterTasks" &&
                         "active"
-                    }`}
+                    } ${taskFilterType !== TASK_FILTER.all && "activated"}`}
                     onClick={filterByCompletion}
                 >
                     <span className={`material-icons task`}>check_circle_outline</span>
@@ -114,18 +114,20 @@ const Filterbar = ({
                         isPopupActive.shouldShow &&
                         isPopupActive.content === "FilterFilter" &&
                         "active"
-                    }`}
+                    } ${quickFilterType !== QUICK_FILTER.none && "activated"}`}
                     onClick={filterByDeadline}
                 >
                     <span className={`material-icons filter`}>filter_list</span>
                     {renderQuickFilterName()}
                 </button>
                 <button
-                    className={`filter_button ${
+                    className={`filter_button 
+                    ${
                         isPopupActive.shouldShow &&
                         isPopupActive.content === "FilterSort" &&
                         "active"
-                    }`}
+                    }
+                    ${sorterType !== SORTER.none && "activated"} `}
                     onClick={sortByCriteria}
                 >
                     <span className={`material-icons swap`}>swap_vert</span>
