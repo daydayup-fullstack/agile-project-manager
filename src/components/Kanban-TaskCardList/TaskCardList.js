@@ -51,13 +51,25 @@ const TaskCardList = ({
     function sorting(tasks) {
         switch (sorterType) {
             case SORTER.dueDate: {
-                //todo - sort by dueDate
-                return tasks;
+                return tasks.sort((task1, task2) => {
+                    const x = task1.dueDate;
+                    const y = task2.dueDate;
+
+                    if (x > y) return 1;
+                    if (x < y) return -1;
+                    return 0;
+                });
             }
 
             case SORTER.assignee: {
-                // todo - sort by assignees
-                return tasks;
+                return tasks.sort((task1, task2) => {
+                    const x = task1.assignedUserIds.length;
+                    const y = task2.assignedUserIds.length;
+
+                    if (x > y) return -1;
+                    if (x < y) return 1;
+                    return 0;
+                });
             }
 
             case SORTER.alphabetical: {
@@ -65,12 +77,8 @@ const TaskCardList = ({
                     const aChar = a.name.charAt(0).toUpperCase();
                     const bChar = b.name.charAt(0).toUpperCase();
 
-                    if (aChar > bChar) {
-                        return 1;
-                    }
-                    if (aChar < bChar) {
-                        return -1;
-                    }
+                    if (aChar > bChar) return 1;
+                    if (aChar < bChar) return -1;
                     return 0;
                 });
             }
