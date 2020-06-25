@@ -10,7 +10,6 @@ import {
 
 const Filterbar = ({
                        show_header_filter_popup,
-                       isPopupActive,
                        sorterType,
                        user,
                        quickFilterType,
@@ -99,22 +98,17 @@ const Filterbar = ({
             <div className="filterbar__description"/>
             <div className="filterbar__controls">
                 <button
-                    className={`filter_button first ${
-                        isPopupActive.shouldShow &&
-                        isPopupActive.content === "FilterTasks" &&
-                        "active"
-                    } ${taskFilterType !== TASK_FILTER.all && "activated"}`}
+                    className={`filter_button 
+                    ${taskFilterType !== TASK_FILTER.all && "activated"}`}
                     onClick={filterByCompletion}
                 >
                     <span className={`material-icons task`}>check_circle_outline</span>
                     {renderTaskFilterName()}
                 </button>
                 <button
-                    className={`filter_button ${
-                        isPopupActive.shouldShow &&
-                        isPopupActive.content === "FilterFilter" &&
-                        "active"
-                    } ${quickFilterType !== QUICK_FILTER.none && "activated"}`}
+                    className={`filter_button  ${
+                        quickFilterType !== QUICK_FILTER.none && "activated"
+                    }`}
                     onClick={filterByDeadline}
                 >
                     <span className={`material-icons filter`}>filter_list</span>
@@ -122,11 +116,7 @@ const Filterbar = ({
                 </button>
                 <button
                     className={`filter_button 
-                    ${
-                        isPopupActive.shouldShow &&
-                        isPopupActive.content === "FilterSort" &&
-                        "active"
-                    }
+                    
                     ${sorterType !== SORTER.none && "activated"} `}
                     onClick={sortByCriteria}
                 >
@@ -140,7 +130,6 @@ const Filterbar = ({
 
 const mapStateToProps = (state) => {
     return {
-        isPopupActive: state.app.ui_header_filter_popup,
         taskFilterType: state.app.ui_task_filter_type,
         quickFilterType: state.app.ui_quick_filter_type,
         sorterType: state.app.ui_sorter_type,
