@@ -24,22 +24,6 @@ const Navigation = ({nav_link_clicked}) => {
             </span>
                     </li>
                 </NavLink>
-                {/*<NavLink to={"/tasks"} activeClassName={"active"} style={style}>*/}
-                {/*  <li>*/}
-                {/*    <span className={"link"}>*/}
-                {/*      <i className={"material-icons-outlined icon"}>check_circle</i>My*/}
-                {/*      Tasks*/}
-                {/*    </span>*/}
-                {/*  </li>*/}
-                {/*</NavLink>*/}
-                {/*<NavLink to={"/team"} activeClassName={"active"} style={style}>*/}
-                {/*  <li>*/}
-                {/*    <span className="link">*/}
-                {/*      <i className={"material-icons-outlined icon"}>notifications</i>*/}
-                {/*      Team*/}
-                {/*    </span>*/}
-                {/*  </li>*/}
-                {/*</NavLink>*/}
             </ul>
         </div>
     );

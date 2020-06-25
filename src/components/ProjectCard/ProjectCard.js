@@ -96,32 +96,16 @@ const ProjectCard = ({
             more_horiz
           </span>
 
-            {/*<ul*/}
-            {/*  className={"profile-container"}*/}
-            {/*  // style={holdHover ? { opacity: 1 } : {}}*/}
-            {/*>*/}
-            {/*  <li>*/}
-            {/*    <Profile user={db_users["user-scott"]} />*/}
-            {/*  </li>*/}
-
-            {/*  <li>*/}
-            {/*    <Profile user={db_users["user-scott"]} />*/}
-            {/*  </li>*/}
-
-            {/*  <li>*/}
-            {/*    <Profile user={db_users["user-scott"]} />*/}
-            {/*  </li>*/}
-            {/*</ul>*/}
           </div>
           <span className={"title"}>{project.name}</span>
-          {currentUser.privateProjects &&
-          currentUser.privateProjects.length !== 0 &&
-          currentUser.privateProjects.indexOf(project.id) >= 0 && (
-              <div className={"private-project-indicator"}>
-                <span className={"material-icons"}>lock</span>
-                <span>Private</span>
-              </div>
-          )}
+          {/*{currentUser.privateProjects &&*/}
+          {/*currentUser.privateProjects.length !== 0 &&*/}
+          {/*currentUser.privateProjects.indexOf(project.id) >= 0 && (*/}
+          {/*    <div className={"private-project-indicator"}>*/}
+          {/*      <span className={"material-icons"}>lock</span>*/}
+          {/*      <span>Private</span>*/}
+          {/*    </div>*/}
+          {/*)}*/}
         </div>
       </Link>
   );
