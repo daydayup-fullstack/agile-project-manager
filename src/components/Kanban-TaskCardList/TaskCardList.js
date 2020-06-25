@@ -61,8 +61,18 @@ const TaskCardList = ({
             }
 
             case SORTER.alphabetical: {
-                // todo - sort by alphabetical
-                return tasks;
+                return tasks.sort((a, b) => {
+                    const aChar = a.name.charAt(0).toUpperCase();
+                    const bChar = b.name.charAt(0).toUpperCase();
+
+                    if (aChar > bChar) {
+                        return 1;
+                    }
+                    if (aChar < bChar) {
+                        return -1;
+                    }
+                    return 0;
+                });
             }
             default: {
                 return tasks;
