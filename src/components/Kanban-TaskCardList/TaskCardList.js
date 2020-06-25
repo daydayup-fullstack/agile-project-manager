@@ -61,26 +61,26 @@ const TaskCardList = ({
             1000
         );
 
-        console.log(`DueDate: ${date}`);
-        console.log(`Today: ${today}`);
-        console.log(`First day next week: ${firstDay}`);
-        console.log(`Last day next week: ${lastDay}`);
+        // console.log(`DueDate: ${date}`);
+        // console.log(`Today: ${today}`);
+        // console.log(`First day next week: ${firstDay}`);
+        // console.log(`Last day next week: ${lastDay}`);
         return date >= firstDay && date <= lastDay;
     };
 
     function quickFiltering(tasks) {
         switch (quickFilterType) {
             case QUICK_FILTER.myTasks: {
-                return tasks.filter(
-                    (task) => task.assignedUserIds.indexOf(user.id) >= 0
-                );
+                return tasks.filter((task) => {
+                    if (task.assignedUserIds.length > 0) {
+                        return task.assignedUserIds[0].id === user.id;
+                    }
+                });
             }
             case QUICK_FILTER.thisWeek: {
-                //todo - this week
                 return tasks.filter((task) => isWithInThisWeek(task.dueDate));
             }
             case QUICK_FILTER.nextWeek: {
-                //todo - next week
                 return tasks.filter((task) => isWithInNextWeek(task.dueDate));
             }
             default: {
