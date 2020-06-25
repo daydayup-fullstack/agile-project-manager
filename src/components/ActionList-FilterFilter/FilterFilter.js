@@ -7,7 +7,7 @@ const FilterFilter = ({filterType, set_quick_filter}) => {
         <div className="FilterFilter">
             <div className={"FilterFilter__title"}>Quick filters</div>
             <ul>
-                <li onClick={() => set_quick_filter("")}>
+                <li onClick={() => set_quick_filter(QUICK_FILTER.none)}>
                     {filterType === QUICK_FILTER.none && (
                         <span className="material-icons">done</span>
                     )}

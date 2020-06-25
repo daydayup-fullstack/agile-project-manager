@@ -255,6 +255,7 @@ export const nav_link_clicked = ({section, index}) => {
 export const TASK_FILTER = {
     incomplete: "incomplete",
     completed: "completed",
+    all: "all",
 };
 
 export const SET_TASK_FILTER = "SET_TASK_FILTER";

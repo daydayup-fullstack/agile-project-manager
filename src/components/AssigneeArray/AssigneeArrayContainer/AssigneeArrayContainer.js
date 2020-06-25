@@ -33,8 +33,6 @@ export const AssigneeArrayContainer = ({
         x = popupItself.current.offsetLeft;
         y = popupItself.current.offsetTop;
 
-        //todo - problem is here
-
         let childWidth;
         let childHeight;
         // if (header_project_icon_popup.shouldShow) {

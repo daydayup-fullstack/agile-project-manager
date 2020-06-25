@@ -2,7 +2,6 @@ import React from "react";
 import "./Filterbar.css";
 import {connect} from "react-redux";
 import {
-    FILTER,
     QUICK_FILTER,
     show_header_filter_popup,
     SORTER,
@@ -11,7 +10,6 @@ import {
 
 const Filterbar = ({
                        show_header_filter_popup,
-                       isPopupActive,
                        sorterType,
                        user,
                        quickFilterType,
@@ -100,21 +98,16 @@ const Filterbar = ({
             <div className="filterbar__description"/>
             <div className="filterbar__controls">
                 <button
-                    className={`filter_button first ${
-                        isPopupActive.shouldShow &&
-                        isPopupActive.content === "FilterTasks" &&
-                        "active"
-                    }`}
+                    className={`filter_button 
+                    ${taskFilterType !== TASK_FILTER.all && "activated"}`}
                     onClick={filterByCompletion}
                 >
                     <span className={`material-icons task`}>check_circle_outline</span>
                     {renderTaskFilterName()}
                 </button>
                 <button
-                    className={`filter_button ${
-                        isPopupActive.shouldShow &&
-                        isPopupActive.content === "FilterFilter" &&
-                        "active"
+                    className={`filter_button  ${
+                        quickFilterType !== QUICK_FILTER.none && "activated"
                     }`}
                     onClick={filterByDeadline}
                 >
@@ -122,11 +115,9 @@ const Filterbar = ({
                     {renderQuickFilterName()}
                 </button>
                 <button
-                    className={`filter_button ${
-                        isPopupActive.shouldShow &&
-                        isPopupActive.content === "FilterSort" &&
-                        "active"
-                    }`}
+                    className={`filter_button 
+                    
+                    ${sorterType !== SORTER.none && "activated"} `}
                     onClick={sortByCriteria}
                 >
                     <span className={`material-icons swap`}>swap_vert</span>
@@ -139,7 +130,6 @@ const Filterbar = ({
 
 const mapStateToProps = (state) => {
     return {
-        isPopupActive: state.app.ui_header_filter_popup,
         taskFilterType: state.app.ui_task_filter_type,
         quickFilterType: state.app.ui_quick_filter_type,
         sorterType: state.app.ui_sorter_type,
