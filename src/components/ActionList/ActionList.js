@@ -16,6 +16,9 @@ import ColumnPopup from "../ActionList-ColumnPopup/ColumnPopup";
 import ProfilePopup from "../ActionList-ProfilePopup/ProfilePopup";
 import ProjectIconPopup from "../ActionList-ProjectIconPopup/ProjectIconPopup";
 import TaskcardContextPopup from "../ActionList-TaskcardContextPopup/TaskcardContextPopup";
+import FilterSort from "../ActionList-FilterSort/FilterSort";
+import FilterTasks from "../ActionList-FilterTasks/FilterTasks";
+import FilterFilter from "../ActionList-FilterFilter/FilterFilter";
 
 const ActionList = ({
                         project,
@@ -54,8 +57,6 @@ const ActionList = ({
 
         x = popupItself.current.offsetLeft;
         y = popupItself.current.offsetTop;
-
-        //todo - problem is here
 
         let childWidth;
         let childHeight;
@@ -103,93 +104,6 @@ const ActionList = ({
     function dismissNextLevel() {
         setShowNextLevel(false);
     }
-
-    const FilterTasks = () => {
-        return (
-            <ul className={"FilterTasks"}>
-                <li>
-                    <span className="material-icons task_done">done</span>
-                    <span className="task_tick">
-            <span>Incomplete tasks</span>
-          </span>
-                </li>
-                <li ref={expandableAction} className={"expandableItem"}>
-                    <span className="complete_task">Compelte tasks</span>
-                </li>
-                <li>
-                    <span className="complete_task">All tasks</span>
-                </li>
-            </ul>
-        );
-    };
-
-    const FilterFilter = () => {
-        return (
-            <div className="FilterFilter">
-                <div className={"FilterFilter__title"}>Quick filters</div>
-                <ul>
-                    <li>
-                        <span className="material-icons filter_person">person_outline</span>
-                        <span className="filter_tick">
-              <span>Just my tasks</span>
-            </span>
-                    </li>
-                    <li>
-                        <span className="material-icons filter_today">calendar_today</span>
-                        <span className="filter_tickweek">
-              <span>Due this week</span>
-            </span>
-                    </li>
-                    <li className="filter_edge">
-                        <span className="material-icons filter_next">redo</span>
-                        <span className="filter_ticknext">
-              <span>Due next week</span>
-            </span>
-                    </li>
-
-                    <li className="filter_margin">
-                        <span className={"material-icons filter_add"}>add</span>
-                        <span className="filter_end">
-              <span>Custom filter</span>
-            </span>
-                    </li>
-                </ul>
-            </div>
-        );
-    };
-
-    const FilterSort = () => {
-        return (
-            <ul className="FilterSort">
-                <li>
-                    <span className="material-icons sort_done">done</span>
-                    <span className="sort_tick">
-            <span>None</span>
-          </span>
-                </li>
-                <li>
-          <span>
-            <span className="Sort_list">Due Date</span>
-          </span>
-                </li>
-                <li>
-          <span>
-            <span className="Sort_list">Assignee</span>
-          </span>
-                </li>
-                <li>
-          <span>
-            <span className="Sort_list">Likes</span>
-          </span>
-                </li>
-                <li>
-          <span>
-            <span className="Sort_list">Alphabetical</span>
-          </span>
-                </li>
-            </ul>
-        );
-    };
 
     //todo - refactor this after filter functionality implemented
     const determineContent = () => {
