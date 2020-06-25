@@ -1,104 +1,72 @@
 .Drawer {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  flex-direction: row;
 }
-
 .Drawer .SideMenu {
   width: 240px;
   min-width: 240px;
   background-color: #151b26;
   height: 100vh;
 }
-
 .Drawer .SideMenu--close {
   margin-left: -240px;
-  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
-
 .Drawer .SideMenu--open {
   margin-left: 0;
-  -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
-
 .Drawer .SideMenu--header {
   color: white;
   height: 4.5rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  align-items: center;
+  justify-content: space-between;
   padding: 20px;
   font-size: 1.5rem;
   max-width: 240px;
-  -ms-flex-negative: 1;
-      flex-shrink: 1;
+  flex-shrink: 1;
 }
-
 .Drawer .SideMenu--header h1 {
-  font-family: 'Abril Fatface', cursive;
+  font-family: "Abril Fatface", cursive;
   font-size: 1.5rem;
   color: #fff;
+  user-select: none;
 }
-
 .Drawer .SideMenu--header span {
   cursor: pointer;
 }
-
 .Drawer .SideMenu--content .below {
   overflow: auto;
   width: 100%;
   font-size: 0.9rem;
 }
-
 .Drawer .SideMenu--content .below::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
-
 .Drawer .SideMenu--content .below::-webkit-scrollbar-thumb {
   border-radius: 8px;
   background-color: rgba(144, 146, 152, 0.3);
-  -webkit-transition: background-color 0.3s;
   transition: background-color 0.3s;
 }
-
 .Drawer .SideMenu--content .below::-webkit-scrollbar-thumb:hover {
   background: #bbb;
 }
-
 .Drawer .SideMenu--content .below::-webkit-scrollbar-track {
   background: #ededed;
 }
-
 .Drawer .main {
   background-color: #ffffff;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   z-index: 10;
   width: 100%;
 }
-
 .Drawer .main--content {
-  -ms-flex-negative: 1;
-      flex-shrink: 1;
+  flex-shrink: 1;
   height: 100vh;
   overflow-y: hidden;
 }
+
 /*# sourceMappingURL=Drawer.css.map */

@@ -32,9 +32,10 @@
       flex-shrink: 1;
 
       h1 {
-        font-family: 'Abril Fatface', cursive;
+        font-family: "Abril Fatface", cursive;
         font-size: $h1-size;
         color: #fff;
+        user-select: none;
       }
 
       span {
@@ -46,7 +47,7 @@
       .below {
         overflow: auto;
         width: 100%;
-        font-size: $text-size*0.9;
+        font-size: $text-size * 0.9;
         //max-height: 430px;
 
         &::-webkit-scrollbar {

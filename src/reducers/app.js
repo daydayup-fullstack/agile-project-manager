@@ -33,6 +33,14 @@ import {
     HIDE_PROFILE_SETTINGS,
     SET_SCROLL_VALUE,
     NAV_LINK_CLICKED,
+    SET_FILTER,
+    SET_SORTER,
+    FILTER,
+    SORTER,
+    TASK_FILTER,
+    QUICK_FILTER,
+    SET_TASK_FILTER,
+    SET_QUICK_FILTER,
 } from "../actions";
 
 const initialAppState = {
@@ -90,6 +98,10 @@ const initialAppState = {
         section: "",
         index: -1,
     },
+
+    ui_task_filter_type: TASK_FILTER.all,
+    ui_quick_filter_type: QUICK_FILTER.none,
+    ui_sorter_type: SORTER.none,
 };
 
 export const app = (state = initialAppState, action) => {
@@ -376,6 +388,27 @@ export const app = (state = initialAppState, action) => {
                     section: action.section,
                     index: action.index,
                 },
+            };
+        }
+
+        case SET_TASK_FILTER: {
+            return {
+                ...state,
+                ui_task_filter_type: action.filterType,
+            };
+        }
+
+        case SET_QUICK_FILTER: {
+            return {
+                ...state,
+                ui_quick_filter_type: action.filterType,
+            };
+        }
+
+        case SET_SORTER: {
+            return {
+                ...state,
+                ui_sorter_type: action.sorterType,
             };
         }
 

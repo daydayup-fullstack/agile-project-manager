@@ -251,3 +251,46 @@ export const nav_link_clicked = ({section, index}) => {
         index,
     };
 };
+
+export const TASK_FILTER = {
+    incomplete: "incomplete",
+    completed: "completed",
+};
+
+export const SET_TASK_FILTER = "SET_TASK_FILTER";
+export const set_task_filter = (filterType) => {
+    return {
+        type: SET_TASK_FILTER,
+        filterType,
+    };
+};
+
+export const QUICK_FILTER = {
+    myTasks: "myTasks",
+    thisWeek: "thisWeek",
+    nextWeek: "nextWeek",
+    none: "none",
+};
+
+export const SET_QUICK_FILTER = "SET_QUICK_FILTER";
+export const set_quick_filter = (filterType) => {
+    return {
+        type: SET_QUICK_FILTER,
+        filterType,
+    };
+};
+
+export const SORTER = {
+    dueDate: "dueDate",
+    assignee: "assignee",
+    alphabetical: "alphabetical",
+    none: "none",
+};
+
+export const SET_SORTER = "SET_SORTER";
+export const set_sorter = (sorterType) => {
+    return {
+        type: SET_SORTER,
+        sorterType,
+    };
+};
