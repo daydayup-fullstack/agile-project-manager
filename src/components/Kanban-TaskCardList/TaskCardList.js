@@ -27,6 +27,47 @@ const TaskCardList = ({
         }
     }
 
+    // out data's date is not millisecond but in seconds, hence the 1000
+    const isWithInThisWeek = (date) => {
+        if (!date) return false;
+
+        const today = new Date();
+        const firstDay = Math.floor(
+            new Date(today.setDate(today.getDate() - today.getDay())).getTime() / 1000
+        );
+        const lastDay = Math.floor(
+            new Date(today.setDate(today.getDate() - today.getDay() + 6)).getTime() /
+            1000
+        );
+
+        // console.log(`DueDate: ${date}`);
+        // console.log(`Today: ${today}`);
+        // console.log(`First day next week: ${firstDay}`);
+        // console.log(`Last day next week: ${lastDay}`);
+
+        return date >= firstDay && date <= lastDay;
+    };
+
+    const isWithInNextWeek = (date) => {
+        if (!date) return false;
+
+        const today = new Date();
+        const firstDay = Math.floor(
+            new Date(today.setDate(today.getDate() - today.getDay() + 6)).getTime() /
+            1000
+        );
+        const lastDay = Math.floor(
+            new Date(today.setDate(today.getDate() - today.getDay() + 13)).getTime() /
+            1000
+        );
+
+        console.log(`DueDate: ${date}`);
+        console.log(`Today: ${today}`);
+        console.log(`First day next week: ${firstDay}`);
+        console.log(`Last day next week: ${lastDay}`);
+        return date >= firstDay && date <= lastDay;
+    };
+
     function quickFiltering(tasks) {
         switch (quickFilterType) {
             case QUICK_FILTER.myTasks: {
@@ -36,11 +77,11 @@ const TaskCardList = ({
             }
             case QUICK_FILTER.thisWeek: {
                 //todo - this week
-                return tasks;
+                return tasks.filter((task) => isWithInThisWeek(task.dueDate));
             }
             case QUICK_FILTER.nextWeek: {
                 //todo - next week
-                return tasks;
+                return tasks.filter((task) => isWithInNextWeek(task.dueDate));
             }
             default: {
                 return tasks;
