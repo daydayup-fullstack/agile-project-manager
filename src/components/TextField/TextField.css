@@ -1,27 +1,19 @@
-.TextField {
-  display: -webkit-box;
-  display: -ms-flexbox;
+.textField {
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   font-family: "Poppins", sans-serif;
   margin-bottom: 1rem;
 }
-
-.TextField label {
+.textField label {
   color: #151b26;
   padding: 0.5rem 0;
   font-size: 1.1rem;
 }
-
-.TextField__content {
+.textField__content {
   position: relative;
   width: 20rem;
 }
-
-.TextField__content__input {
+.textField__content__input {
   padding: 0.5rem 0.25rem;
   border: none;
   border-bottom: 1px solid #6f7782;
@@ -29,41 +21,33 @@
   font-weight: 400;
   width: 100%;
 }
-
-.TextField__content__input:focus {
+.textField__content__input:focus {
   background-color: #f6f8f9;
   caret-color: #6f7782;
 }
-
-.TextField__content__input--error {
+.textField__content__input--error {
   border-color: rgba(232, 56, 79, 0.8);
 }
-
-.TextField__content__input--name {
+.textField__content__input--name {
   text-transform: capitalize;
 }
-
-.TextField .visibility-toggle {
+.textField .visibility-toggle {
   position: absolute;
   padding: 0.2rem 0.5rem;
   font-size: 1.3rem;
   right: 0;
   top: 0.4rem;
   color: #9ca6af;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  user-select: none;
 }
-
-.TextField .visibility-toggle:hover {
+.textField .visibility-toggle:hover {
   cursor: pointer;
 }
-
-.TextField__error {
+.textField__error {
   color: rgba(232, 56, 79, 0.8);
   margin-top: 0.5rem;
   font-size: 0.81rem;
   font-weight: 400;
 }
+
 /*# sourceMappingURL=TextField.css.map */

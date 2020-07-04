@@ -70,12 +70,12 @@ const TextField = ({which = "name"}) => {
   }
 
   return (
-      <div className={"TextField"}>
+      <div className={"textField"}>
         <label>{title}</label>
-        <div className="TextField__content">
+        <div className="textField__content">
           <input
-              className={`TextField__content__input ${
-                  error && "TextField__content__input--error"
+              className={`textField__content__input ${
+                  error && "textField__content__input--error"
               } ${extraStyles()}`}
               type={showPassword ? "text" : type}
               placeholder={placeholder}
@@ -97,7 +97,7 @@ const TextField = ({which = "name"}) => {
               </>
           )}
         </div>
-        {error && <span className={"TextField__error"}>{error}</span>}
+        {error && <span className={"textField__error"}>{error}</span>}
       </div>
   );
 };

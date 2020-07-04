@@ -8,8 +8,8 @@ import { changeNewTaskDisplay } from "../../actions/index";
 const Tooltip = ({ changeNewTaskDisplay }) => {
 
   return (
-    <div className={"Tooltip"}>
-      <div className="Tooltip__content">
+    <div className={"tooltip"}>
+      <div className="tooltip__content">
         <ul>
           <li onClick={()=>{changeNewTaskDisplay(true)}}>
             <span className={"material-icons"}>check_circle_outline</span>

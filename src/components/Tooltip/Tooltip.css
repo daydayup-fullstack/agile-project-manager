@@ -1,18 +1,13 @@
-.Tooltip {
+.tooltip {
   width: 9.375rem;
   border-radius: 0.25rem;
-  -webkit-box-shadow: 0 0 0 1px rgba(111, 119, 130, 0.15), 0 5px 20px 0 rgba(21, 27, 38, 0.08);
-          box-shadow: 0 0 0 1px rgba(111, 119, 130, 0.15), 0 5px 20px 0 rgba(21, 27, 38, 0.08);
+  box-shadow: 0 0 0 1px rgba(111, 119, 130, 0.15), 0 5px 20px 0 rgba(21, 27, 38, 0.08);
   padding: 0.25rem 0;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   z-index: 20;
   background-color: #ffffff;
 }
-
-.Tooltip::before {
+.tooltip::before {
   content: "";
   position: absolute;
   border-style: solid;
@@ -24,8 +19,7 @@
   left: 64px;
   top: -10px;
 }
-
-.Tooltip::after {
+.tooltip::after {
   content: "";
   position: absolute;
   border-style: solid;
@@ -37,38 +31,30 @@
   left: 65px;
   top: -9px;
 }
-
-.Tooltip__content ul {
+.tooltip__content ul {
   width: 9.375rem;
 }
-
-.Tooltip__content ul li {
+.tooltip__content ul li {
   cursor: pointer;
   padding: 0.5rem 1rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   font-family: "Poppins", sans-serif;
   font-size: 0.72rem;
   font-weight: 400;
   color: #151b26;
 }
-
-.Tooltip__content ul li .material-icons {
+.tooltip__content ul li .material-icons {
   color: #9ca6af;
   font-size: 1.2rem;
   position: relative;
   margin-right: 0.5rem;
 }
-
-.Tooltip__content ul li:hover {
+.tooltip__content ul li:hover {
   background: linear-gradient(45deg, #ff5263 0%, #ff7381 60%, #fcbd01 115%);
 }
-
-.Tooltip__content ul li:hover span {
+.tooltip__content ul li:hover span {
   color: white;
 }
+
 /*# sourceMappingURL=Tooltip.css.map */
