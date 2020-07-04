@@ -4,7 +4,8 @@ import {Link, withRouter} from "react-router-dom";
 import {project_added, project_selected} from "../../actions";
 import {connect} from "react-redux";
 import {generateId} from "../../model/utility";
-import {saveNewProjectToServer} from "../../apis/api";
+import {saveNewProjectToServer,updateUserToServer} from "../../apis/api";
+import { user } from "../../reducers";
 
 class ProjectDetail extends Component {
   constructor() {
@@ -60,6 +61,13 @@ class ProjectDetail extends Component {
     this.props.project_selected(newProject);
     this.props.history.push(`/projects/${newProject.id}`);
     saveNewProjectToServer(newProject, this.props.workspace);
+    if(this.state.privacy==='private'){
+      const newUser={
+        ...this.props.user,
+        privateProjects:[...this.props.user.privateProjects, newProject],
+      }
+      updateUserToServer(newUser)
+    }
   }
 
   render() {
@@ -185,6 +193,7 @@ class ProjectDetail extends Component {
 const mapStateToProps = (state) => {
   return {
     workspace: state.workspace,
+    user:state.user
   };
 };
 
