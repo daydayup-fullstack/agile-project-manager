@@ -68,7 +68,7 @@ export const login_guest = () => async (dispatch) => {
         const res = await myFirebase.doSignInAnonymously();
         const userId = res.user.uid;
 
-        await backend.options(`/initUser/${userId}`);
+        await backend.post(`/initUser/${userId}`);
 
         dispatch({
             type: GUEST_LOGIN,
