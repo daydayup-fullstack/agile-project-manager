@@ -48,7 +48,7 @@ const Team = ({
                         project && (
                             <li key={project.id}>
                                 <Link
-                                    exact
+                                    // exact
                                     to={`/projects/${project.id}`}
                                     style={{textDecoration: "none"}}
                                     className={`project ${

@@ -1,23 +1,23 @@
-import React from 'react'
-import './AssigneeArrayContainer.css'
-import { connect } from "react-redux"
+import React from "react";
+import "./AssigneeArrayContainer.css";
+import {connect} from "react-redux";
 import {
     show_task_assignee_scrollable_popup,
-    hide_task_assignee_scrollable_popup
-} from "../../../actions"
-import AssigneeArray from "../AssigneeArray"
+    hide_task_assignee_scrollable_popup,
+} from "../../../actions";
+import AssigneeArray from "../AssigneeArray";
 
-
-
-export const AssigneeArrayContainer = ({
-    assigneeScrollable,
-}) => {
+export const AssigneeArrayContainer = ({assigneeScrollable}) => {
     const expandableAction = React.useRef(null);
     const popupItself = React.useRef(null);
+    // eslint-disable-next-line no-unused-vars
     const nextAction = React.useRef(null);
+    // eslint-disable-next-line no-unused-vars
     const [showNextLevel, setShowNextLevel] = React.useState(false);
-    const [nextAnchor, setNextAnchor] = React.useState({ x: 0, y: 0 });
-    const [parentAnchor, setParentAnchor] = React.useState({ x: 0, y: 0 });
+    const [nextAnchor, setNextAnchor] = React.useState({x: 0, y: 0});
+    const [parentAnchor, setParentAnchor] = React.useState({x: 0, y: 0});
+
+    // eslint-disable-next-line no-unused-vars
     function handleMouseOver(e) {
         setParentAnchor({
             x: e.target.offsetParent.offsetLeft,
@@ -46,7 +46,7 @@ export const AssigneeArrayContainer = ({
         const parentWidth = popupItself.current.clientWidth;
         const parentHeight = popupItself.current.clientHeight;
 
-        let anchor = { x: 0, y: 0 };
+        let anchor = {x: 0, y: 0};
 
         const visualGap_x = 100;
         const visualGap_y = 200;
@@ -76,27 +76,32 @@ export const AssigneeArrayContainer = ({
         setNextAnchor(anchor);
     }, [assigneeScrollable.shouldShow, parentAnchor]);
 
+    // eslint-disable-next-line no-unused-vars
     const calcPosition = () => {
-        return { top: `${nextAnchor.y}px`, left: `${nextAnchor.x}px` };
+        return {top: `${nextAnchor.y}px`, left: `${nextAnchor.x}px`};
     };
+
+    // eslint-disable-next-line no-unused-vars
     function dismissNextLevel() {
         setShowNextLevel(false);
     }
 
     return (
         <div className={"assigneeArrayContainer"} ref={popupItself}>
-            {assigneeScrollable.shouldShow && <AssigneeArray workSpace="eRVjCPQdalku7cGBNaBx" />}
+            {assigneeScrollable.shouldShow && (
+                <AssigneeArray workSpace="eRVjCPQdalku7cGBNaBx"/>
+            )}
         </div>
-    )
-}
+    );
+};
 
 const mapStateToProps = (state) => {
     return {
-        assigneeScrollable: state.app.ui_assignee_scroll_popup
+        assigneeScrollable: state.app.ui_assignee_scroll_popup,
     };
 };
 
 export default connect(mapStateToProps, {
     hide_task_assignee_scrollable_popup,
-    show_task_assignee_scrollable_popup
+    show_task_assignee_scrollable_popup,
 })(AssigneeArrayContainer);

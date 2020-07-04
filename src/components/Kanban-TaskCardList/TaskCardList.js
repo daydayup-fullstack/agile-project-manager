@@ -71,10 +71,12 @@ const TaskCardList = ({
     function quickFiltering(tasks) {
         switch (quickFilterType) {
             case QUICK_FILTER.myTasks: {
+                // eslint-disable-next-line array-callback-return
                 return tasks.filter((task) => {
-                    if (task.assignedUserIds.length > 0) {
+                    if (task.assignedUserIds && task.assignedUserIds.length > 0) {
                         return task.assignedUserIds[0].id === user.id;
                     }
+                    return task;
                 });
             }
             case QUICK_FILTER.thisWeek: {

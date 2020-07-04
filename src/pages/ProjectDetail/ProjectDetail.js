@@ -5,7 +5,6 @@ import {project_added, project_selected} from "../../actions";
 import {connect} from "react-redux";
 import {generateId} from "../../model/utility";
 import {saveNewProjectToServer,updateUserToServer} from "../../apis/api";
-import { user } from "../../reducers";
 
 class ProjectDetail extends Component {
   constructor() {
