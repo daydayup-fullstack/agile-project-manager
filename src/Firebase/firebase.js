@@ -1,5 +1,5 @@
 import app from "firebase/app";
-import "firebase/auth";
+import * as firebase from "firebase";
 
 const firebaseConfig = {
     apiKey: "AIzaSyA6YK822CXwK7BJLafu7CRP4K2diAZhmik",
@@ -32,6 +32,14 @@ class Firebase {
     doSignOut = () => {
         this.auth.signOut();
     };
+
+    doCreatePermanentAccountFromAnonymous(email, password) {
+        const credential = firebase.auth.EmailAuthProvider.credential(
+            email,
+            password
+        );
+        return this.auth.currentUser.linkWithCredential(credential);
+    }
 
     doPasswordReset = (email) => {
         this.auth.sendPasswordResetEmail(email);

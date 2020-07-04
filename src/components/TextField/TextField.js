@@ -22,8 +22,8 @@ const InputType = {
   },
 };
 
-const TextField = ({ which = "name" }) => {
-  const { type, title, placeholder, errorMessage } = InputType[which];
+const TextField = ({which = "name"}) => {
+  const {type, title, placeholder, errorMessage} = InputType[which];
   const [state, setState] = React.useState("");
   const [error, setError] = React.useState("");
   const [isDirty, setIsDirty] = React.useState(false);
@@ -70,34 +70,35 @@ const TextField = ({ which = "name" }) => {
   }
 
   return (
-    <div className={"TextField"}>
-      <label>{title}</label>
-      <div className="TextField__content">
-        <input
-          className={`TextField__content__input ${
-            error && "TextField__content__input--error"
-          } ${extraStyles()}`}
-          type={showPassword ? "text" : type}
-          placeholder={placeholder}
-          value={state}
-          onFocus={() => setIsDirty(true)}
-          onBlur={handleBlur}
-          onChange={handleChange}
-        />
+      <div className={"TextField"}>
+        <label>{title}</label>
+        <div className="TextField__content">
+          <input
+              className={`TextField__content__input ${
+                  error && "TextField__content__input--error"
+              } ${extraStyles()}`}
+              type={showPassword ? "text" : type}
+              placeholder={placeholder}
+              value={state}
+              onFocus={() => setIsDirty(true)}
+              onBlur={handleBlur}
+              onChange={handleChange}
+              id={which === "email" ? "signup-email" : "signup-password"}
+          />
 
-        {which === "password" && (
-          <>
+          {which === "password" && (
+              <>
             <span
-              className="material-icons-outlined visibility-toggle"
-              onClick={toggleVisibility}
+                className="material-icons-outlined visibility-toggle"
+                onClick={toggleVisibility}
             >
               {showPassword ? `visibility_off` : `visibility`}
             </span>
-          </>
-        )}
+              </>
+          )}
+        </div>
+        {error && <span className={"TextField__error"}>{error}</span>}
       </div>
-      {error && <span className={"TextField__error"}>{error}</span>}
-    </div>
   );
 };
 

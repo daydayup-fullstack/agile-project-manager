@@ -40,8 +40,22 @@ $left-gap: 8%;
       padding-left: $left-gap;
       margin-top: 2rem;
 
-      .Button {
-        margin-top: 1rem;
+      button {
+        font-family: "Poppins", sans-serif;
+        font-size: 0.9rem;
+        font-weight: 300;
+        border: none;
+        padding: 0.5rem 1.25rem;
+        border-radius: 0.25rem;
+        color: white;
+        background-color: #7a6ff0;
+        -webkit-transition: background-color 0.25s ease;
+        transition: background-color 0.25s ease;
+      }
+
+      button:hover {
+        cursor: pointer;
+        background-color: #635ac7;
       }
     }
   }

@@ -2,9 +2,13 @@ import React from "react";
 import "./Button.css";
 
 const Button = ({ text = "Button" }) => {
-  return (
+    function handleClick(e) {
+        return undefined;
+    }
+
+    return (
     <>
-      <button className={"Button"}>{text}</button>
+      <button className={"Button"} onClick={(e) => handleClick(e)}>{text}</button>
     </>
   );
 };
