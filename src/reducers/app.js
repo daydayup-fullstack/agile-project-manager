@@ -39,6 +39,7 @@ import {
     QUICK_FILTER,
     SET_TASK_FILTER,
     SET_QUICK_FILTER,
+    SHOULD_SHOW_REGISTER,
 } from "../actions";
 
 const initialAppState = {
@@ -100,6 +101,7 @@ const initialAppState = {
     ui_task_filter_type: TASK_FILTER.all,
     ui_quick_filter_type: QUICK_FILTER.none,
     ui_sorter_type: SORTER.none,
+    ui_show_register_account: false,
 };
 
 export const app = (state = initialAppState, action) => {
@@ -407,6 +409,13 @@ export const app = (state = initialAppState, action) => {
             return {
                 ...state,
                 ui_sorter_type: action.sorterType,
+            };
+        }
+
+        case SHOULD_SHOW_REGISTER: {
+            return {
+                ...state,
+                ui_show_register_account: action.shouldShow,
             };
         }
 
