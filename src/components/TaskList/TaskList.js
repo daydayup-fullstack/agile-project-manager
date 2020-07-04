@@ -3,7 +3,7 @@ import "./TaskList.css";
 
 const TaskList = ({ children }) => {
   return (
-    <div className={"TaskList"}>
+    <div className={"taskList"}>
       <ul>{children}</ul>
     </div>
   );

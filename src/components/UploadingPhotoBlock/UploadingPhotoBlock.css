@@ -1,4 +1,4 @@
-.UploadingPhotoBlock {
+.uploadingPhotoBlock {
   height: 4rem;
   width: 280px;
   border-radius: 0.5rem;
@@ -6,12 +6,12 @@
   display: flex;
   align-items: center;
 }
-.UploadingPhotoBlock__icon {
+.uploadingPhotoBlock__icon {
   color: #9ca6af;
   font-size: 3rem;
   margin-left: 0.25rem;
 }
-.UploadingPhotoBlock__info {
+.uploadingPhotoBlock__info {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -22,23 +22,23 @@
   color: #151b26;
   margin-left: 0.25rem;
 }
-.UploadingPhotoBlock__info .title {
+.uploadingPhotoBlock__info .title {
   margin-bottom: 0.3rem;
 }
-.UploadingPhotoBlock__info .ProgressBar {
+.uploadingPhotoBlock__info .progressBar {
   height: 0.5rem;
   background-color: crimson;
   border-radius: 0.2rem;
 }
 
-.MoreActions {
+.moreActions {
   font-family: "Poppins", sans-serif;
   font-size: 0.72rem;
   font-weight: 400;
   padding: 0.1rem 0;
   color: #9ca6af;
 }
-.MoreActions__download:hover {
+.moreActions__download:hover {
   color: #20AAEA;
   cursor: pointer;
 }

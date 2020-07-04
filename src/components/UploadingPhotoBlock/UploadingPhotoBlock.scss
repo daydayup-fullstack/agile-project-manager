@@ -1,6 +1,6 @@
 @import "../../style/variables";
 
-.UploadingPhotoBlock {
+.uploadingPhotoBlock {
   height: 4rem;
   width: 280px;
   border-radius: 0.5rem;
@@ -31,7 +31,7 @@
     }
 
 
-    .ProgressBar {
+    .progressBar {
       height: 0.5rem;
       background-color: crimson;
       border-radius: 0.2rem;
@@ -40,7 +40,7 @@
 }
 
 
-.MoreActions {
+.moreActions {
   font-family: $font-family;
   font-size: $desc-size * 0.8;
   font-weight: $desc-weight;

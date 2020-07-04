@@ -20,7 +20,6 @@ import PopupMenu from "../PopupMenu/PopupMenu";
 import ActionList from "../ActionList/ActionList";
 import Tooltip from "../Tooltip/Tooltip";
 import AddTaskPopup from "../AddTaskPopup/AddTaskPopup";
-import {db_users} from "../../data/database";
 import {init_user, init_user_failed} from "../../actions";
 import AssigneeArrayContainer from "../AssigneeArray/AssigneeArrayContainer/AssigneeArrayContainer";
 import PopupCircularButton from "../PopupCircularButton/PopupCircularButton";
@@ -47,6 +46,7 @@ const App = ({
                  init_user_failed,
                  shouldShowProfileSettings,
                  shouldShowRegisterPage,
+                 currentUser,
              }) => {
     React.useEffect(() => {
         console.log("app starts");
@@ -62,7 +62,7 @@ const App = ({
 
     return (
         <div className="App">
-            {newTaskDisplay ? <AddTaskPopup user={db_users["user-scott"]}/> : <></>}
+            {newTaskDisplay ? <AddTaskPopup user={currentUser}/> : <></>}
             <div className="App-Popup">
                 {projectCard_popup.shouldShow && (
                     <PopupMenu anchor={projectCard_popup.anchor}>
@@ -213,6 +213,7 @@ const mapStateToProps = (state) => {
         },
         shouldShowProfileSettings: state.app.ui_profile_settings.shouldShow,
         shouldShowRegisterPage: state.app.ui_show_register_account,
+        currentUser: state.user,
     };
 };
 export default connect(mapStateToProps, {init_user, init_user_failed})(App);
