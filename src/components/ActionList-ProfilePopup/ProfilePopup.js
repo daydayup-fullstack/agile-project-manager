@@ -52,7 +52,10 @@ const ProfilePopup = ({
                     <li
                         onMouseOver={dismissNextLevel}
                         onClick={() => {
-                            logout_user();
+                            const goAhead = window.confirm(
+                                "Are you sure about logging out? \n (You may not be able to access this account if you haven't registered)"
+                            );
+                            if (goAhead) logout_user();
                         }}
                     >
                         <Link to="/" style={{textDecoration: "none", color: "black"}}>
