@@ -5,6 +5,11 @@ $left-gap: 8%;
 .App-SignUp {
   display: flex;
   justify-content: flex-start;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: 100;
+  background: #fff;
 
   .content {
     width: 100%;
@@ -16,6 +21,12 @@ $left-gap: 8%;
       padding-left: $left-gap;
       display: flex;
       align-items: center;
+
+      span {
+        &:hover {
+          cursor: pointer;
+        }
+      }
     }
 
     h1 {

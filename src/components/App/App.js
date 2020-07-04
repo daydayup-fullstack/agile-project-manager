@@ -27,6 +27,7 @@ import PopupCircularButton from "../PopupCircularButton/PopupCircularButton";
 import CalendarPopup from "../CalendarPopup/CalendarPopup";
 import myFirebase from "../../Firebase/firebase";
 import ProfileSettings from "../ProfileSettings/ProfileSettings";
+import SignUp from "../../pages/SignUp/Signup";
 
 const App = ({
                  projectCard_popup,
@@ -45,6 +46,7 @@ const App = ({
                  calender_popup,
                  init_user_failed,
                  shouldShowProfileSettings,
+                 shouldShowRegisterPage,
              }) => {
     React.useEffect(() => {
         console.log("app starts");
@@ -123,6 +125,8 @@ const App = ({
 
                 {shouldShowProfileSettings && <ProfileSettings/>}
             </div>
+
+            {shouldShowRegisterPage && <SignUp/>}
 
             <Router>
                 {isLoggedIn ? (
@@ -208,6 +212,7 @@ const mapStateToProps = (state) => {
             anchor: state.app.ui_calendar_popup.anchor,
         },
         shouldShowProfileSettings: state.app.ui_profile_settings.shouldShow,
+        shouldShowRegisterPage: state.app.ui_show_register_account,
     };
 };
 export default connect(mapStateToProps, {init_user, init_user_failed})(App);

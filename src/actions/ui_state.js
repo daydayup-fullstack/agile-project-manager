@@ -295,3 +295,11 @@ export const set_sorter = (sorterType) => {
         sorterType,
     };
 };
+
+export const SHOULD_SHOW_REGISTER = "SHOULD_SHOW_REGISTER";
+export const should_show_register = (shouldShow) => {
+    return {
+        type: SHOULD_SHOW_REGISTER,
+        shouldShow,
+    };
+};

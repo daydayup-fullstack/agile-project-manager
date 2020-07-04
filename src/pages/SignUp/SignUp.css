@@ -1,49 +1,44 @@
 .App-SignUp {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+  justify-content: flex-start;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: 100;
+  background: #fff;
 }
-
 .App-SignUp .content {
   width: 100%;
   font-family: "Poppins", sans-serif;
 }
-
 .App-SignUp .content header {
   height: 80px;
   width: 100%;
   padding-left: 8%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
-
+.App-SignUp .content header span:hover {
+  cursor: pointer;
+}
 .App-SignUp .content h1 {
   margin-top: 3rem;
   margin-left: 8%;
   font-size: 1.5rem;
   font-weight: 500;
 }
-
 .App-SignUp .content form {
   padding-left: 8%;
   margin-top: 2rem;
 }
-
 .App-SignUp .content form .Button {
   margin-top: 1rem;
 }
-
 .App-SignUp .color {
   background: linear-gradient(45deg, #ff5263 0%, #ff7381 60%, #fcbd01 115%);
   width: 20%;
   max-width: 220px;
   height: 100vh;
 }
+
 /*# sourceMappingURL=SignUp.css.map */
