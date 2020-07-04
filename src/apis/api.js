@@ -118,6 +118,7 @@ export const updateUserToServer = async (user) => {
             firstName: user.firstName,
             lastName: user.lastName,
             avatar: user.avatar,
+            privateProjects:user.privateProjects
         });
 
         console.log(res);
