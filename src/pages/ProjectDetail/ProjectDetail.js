@@ -59,7 +59,7 @@ class ProjectDetail extends Component {
     };
     this.props.project_added(newProject);
     this.props.project_selected(newProject);
-    this.props.history.push(`/projects/${newProject.id}`);
+    this.props.history.push(`/home`);
     saveNewProjectToServer(newProject, this.props.workspace);
     if(this.state.privacy==='private'){
       const newUser={
