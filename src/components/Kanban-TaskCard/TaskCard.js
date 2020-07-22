@@ -7,6 +7,7 @@ import {
     show_taskcard_context_menu,
     show_calendar_popup,
     show_task_assignee_scrollable_popup,
+    onTaskClick,
 } from "../../actions";
 import CoverPhotoBlock from "../CoverPhotoBlock/CoverPhotoBlock";
 import CircularButton from "../CircularButton/CircularButton";
@@ -15,6 +16,7 @@ import DateDisplay from "../DateDisplay/DateDisplay";
 import CompleteButton from "../CompleteButton/CompleteButton";
 import {handleUpload, useDropzone} from "../../hooks/customHooks";
 import {updateTaskImageCover, updateTaskToServer} from "../../apis/api";
+import { Link } from 'react-router-dom'
 
 const TaskCard = ({
                       task,
@@ -29,6 +31,8 @@ const TaskCard = ({
                       show_calendar_popup,
                       calendarShouldShow,
                       calendarId,
+                      onTaskClick,
+                      selectedTaskId,
                   }) => {
     const [showContextMenu, setShowContextMenu] = React.useState(false);
     const [showExtra, setShowExtra] = React.useState(false);
@@ -327,13 +331,14 @@ const TaskCard = ({
         <Draggable draggableId={task.id} type={"task"} index={index}>
             {(provided) => (
                 <div
-                    className={`taskCard ${showContextMenu && "taskCard--highlighted"}`}
+                    className={`taskCard ${showContextMenu && "taskCard--highlighted"}` }
                     {...provided.draggableProps}
                     {...provided.dragHandleProps}
                     ref={provided.innerRef}
                     onContextMenu={(event) => handleRightClick(event)}
                     onMouseOver={(e) => handleMouseover(e)}
                     onMouseLeave={(e) => handleMouseleave(e)}
+                    onClick={() => onTaskClick(task)}
                 >
                     <div className="taskCard--dropzone" ref={dropzoneRef}>
                         {task.name && task.name !== "" && (
@@ -373,6 +378,11 @@ const TaskCard = ({
                                             >
                         edit
                       </span>
+                      <Link to={`/projects/${project.id}/${selectedTaskId}`}>
+                        <span className="material-icons" >
+                            live_tv
+                        </span>
+                      </Link>
                                         </>
                                     )}
 
@@ -476,6 +486,7 @@ const mapStateToProps = (state) => {
         currentUser: state.user,
         calendarShouldShow: state.app.ui_calendar_popup.shouldShow,
         calendarId: state.app.ui_calendar_popup.calendarId,
+        selectedTaskId: state.clickedTask.id
     };
 };
 
@@ -484,4 +495,5 @@ export default connect(mapStateToProps, {
     show_taskcard_context_menu,
     show_task_assignee_scrollable_popup,
     show_calendar_popup,
+    onTaskClick
 })(TaskCard);

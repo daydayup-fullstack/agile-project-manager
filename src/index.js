@@ -13,6 +13,7 @@ import {
     taskDisplay,
     app,
     allProjects,
+    clickedTask
 } from "./reducers";
 
 import thunk from "redux-thunk";
@@ -25,6 +26,7 @@ const reducers = combineReducers({
     taskDisplay,
     app,
     allProjects,
+    clickedTask
 });
 const store = createStore(
     reducers,
