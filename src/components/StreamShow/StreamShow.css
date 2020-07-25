@@ -1,0 +1,159 @@
+.StreamShow {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.StreamShow h2 {
+  margin: .2rem 0;
+  -webkit-animation-name: moveToRight;
+          animation-name: moveToRight;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  text-align: center;
+  font-size: 1.2rem;
+}
+
+.StreamShow h2:nth-last-of-type(1) {
+  -webkit-animation-name: moveToLeft;
+          animation-name: moveToLeft;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  display: inline-block;
+  -ms-flex-preferred-size: 78%;
+      flex-basis: 78%;
+}
+
+.StreamShow video {
+  height: 55vh;
+  -webkit-animation-name: moveToAbove;
+          animation-name: moveToAbove;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-delay: 0.75s;
+          animation-delay: 0.75s;
+  -webkit-animation-fill-mode: backwards;
+          animation-fill-mode: backwards;
+}
+
+.StreamShow span {
+  -webkit-transition: all .3s;
+  transition: all .3s;
+  cursor: pointer;
+  -webkit-animation-name: moveToAbove;
+          animation-name: moveToAbove;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
+  -webkit-animation-delay: 0.75s;
+          animation-delay: 0.75s;
+  -webkit-animation-fill-mode: backwards;
+          animation-fill-mode: backwards;
+  font-size: 1.5rem;
+}
+
+.StreamShow span:hover {
+  -webkit-transform: scale(1.3);
+          transform: scale(1.3);
+}
+
+@-webkit-keyframes moveToRight {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(-2rem);
+            transform: translateX(-2rem);
+  }
+  80% {
+    -webkit-transform: translateX(0.5rem);
+            transform: translateX(0.5rem);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes moveToRight {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(-2rem);
+            transform: translateX(-2rem);
+  }
+  80% {
+    -webkit-transform: translateX(0.5rem);
+            transform: translateX(0.5rem);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes moveToLeft {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(2rem);
+            transform: translateX(2rem);
+  }
+  80% {
+    -webkit-transform: translateX(-0.5rem);
+            transform: translateX(-0.5rem);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes moveToLeft {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateX(2rem);
+            transform: translateX(2rem);
+  }
+  80% {
+    -webkit-transform: translateX(-0.5rem);
+            transform: translateX(-0.5rem);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes moveToAbove {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-2rem);
+            transform: translateY(-2rem);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+
+@keyframes moveToAbove {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-2rem);
+            transform: translateY(-2rem);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+/*# sourceMappingURL=StreamShow.css.map */
