@@ -25,3 +25,11 @@ export const set_task_due_day = ({ dueDate, calendarId }) => {
         },
     };
 };
+
+export const ON_TASK_CLICK = "ON_TASK_CLICK";
+export const onTaskClick = ( task ) => {
+    return {
+        type: ON_TASK_CLICK,
+        payload: task
+    };
+};

@@ -180,3 +180,13 @@ export const remove_project_star = (project) => {
         project,
     };
 };
+
+export const FETCH_PROJECT = "FETCH_PROJECT"
+export const fetchProject = (id) => async dispatch =>{
+    const response = await backend.get(`/projects/${id}`);
+    console.log("response", response)
+    dispatch({
+        type: FETCH_PROJECT,
+        payload:response.data,
+    })
+}

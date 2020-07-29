@@ -1,0 +1,88 @@
+.StreamShow {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    h2 {
+        margin: .2rem 0;
+        animation-name: moveToRight;
+        animation-duration: 1s;
+        flex-basis: 100%;
+        text-align: center;
+        font-size: 1.2rem;
+    }
+
+    h2:nth-last-of-type(1) {
+        animation-name: moveToLeft;
+        animation-duration: 1s;
+        display: inline-block;
+        flex-basis: 78%;
+    }
+
+    video {
+        height: 55vh;
+        animation-name: moveToAbove;
+        animation-duration: 0.5s;
+        animation-delay: 0.75s;
+        animation-fill-mode: backwards;
+    }
+
+    span {
+        transition: all .3s;
+        cursor: pointer;
+        animation-name: moveToAbove;
+        animation-duration: 0.5s;
+        animation-delay: 0.75s;
+        animation-fill-mode: backwards;
+        font-size: 1.5rem;
+    }
+
+    span:hover {
+        transform: scale(1.3);
+    }
+
+}
+
+@keyframes moveToRight {
+    0% {
+        opacity: 0;
+        transform: translateX(-2rem);
+    }
+
+    80% {
+        transform: translateX(.5rem);
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes moveToLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(2rem);
+    }
+
+    80% {
+        transform: translateX(-.5rem);
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes moveToAbove {
+    0% {
+        opacity: 0;
+        transform: translateY(-2rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -27,6 +27,8 @@ import CalendarPopup from "../CalendarPopup/CalendarPopup";
 import myFirebase from "../../Firebase/firebase";
 import ProfileSettings from "../ProfileSettings/ProfileSettings";
 import SignUp from "../../pages/SignUp/Signup";
+import StreamShow from '../StreamShow/StreamShow'
+import history from '../../reducers/history'
 
 const App = ({
                  projectCard_popup,
@@ -128,7 +130,7 @@ const App = ({
 
             {shouldShowRegisterPage && <SignUp/>}
 
-            <Router>
+            <Router history={history}>
                 {isLoggedIn ? (
                     <Switch>
                         <Drawer nav={<Navigation/>}>
@@ -136,23 +138,27 @@ const App = ({
                                 <Redirect to={"/home"}/>
                             </Route>
 
-                            <Route path={"/home"}>
+                            <Route path='/projects/:projectId/:taskId' exact component={MenuBar} />
+                            <Route path='/projects/:projectId/:taskId' exact component={StreamShow}/>
+
+                            <Route exact path={"/home"}>
                                 <ContentHeader title={"Home"}/>
                                 <Home/>
                             </Route>
 
-                            <Route path={"/projects/:id"}>
+                            <Route exact path={"/projects/:id"}>
                                 <MenuBar/>
                                 <Project/>
                             </Route>
 
-                            <Route path={"/create-project"}>
+                            <Route exact path={"/create-project"}>
                                 <ProjectDetail/>
                             </Route>
-                            <Route path={"/team"}>
+                            <Route exact path={"/team"}>
                                 <ContentHeader title={"Team"}/>
                                 <Team/>
                             </Route>
+
                         </Drawer>
                     </Switch>
                 ) : (

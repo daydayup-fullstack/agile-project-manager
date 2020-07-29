@@ -1,0 +1,150 @@
+.Modal {
+    background-color: rgba($color: black, $alpha: .8);
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    animation-name: fadeIn;
+    animation-duration: .5s;
+
+    &__text {
+        animation-name: moveToRight;
+        animation-duration: 1.5s;
+
+        &--mark {
+            display: inline-block;
+            background-color: transparent;
+            color: inherit;
+            background-image: linear-gradient(90deg, #00d2ff 0%, #3a47d5 100%);
+            background-repeat: no-repeat;
+            background-size: 0% 38%;
+            background-position: 0 100%;
+            animation: 2s highlight ease-in-out forwards;
+        }
+    }
+
+    &__container {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        color: white;
+        line-height: 3rem;
+        font-size: 2rem;
+
+    }
+
+    .btn {
+        text-transform: uppercase;
+        padding: .75rem 2rem;
+        text-decoration: none;
+        display: inline-block;
+        border-radius: 10rem;
+        transition: all 0.2s;
+        position: relative;
+        font-size: 1.2rem;
+        margin-top: 1rem;
+        cursor: pointer;
+        outline: none;
+        animation-name: moveToAbove;
+        animation-duration: 0.5s;
+        animation-delay: 1s;
+        animation-fill-mode: backwards;
+        border: none;
+    }
+
+    .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+    }
+
+    .btn:active {
+        transform: translateY(-1px);
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+    }
+
+    .btn::after {
+        content: "";
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius: 10rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transition: all 0.4s;
+    }
+
+    .btn:hover::after {
+        transform: scaleX(1.4) scaleY(2);
+        opacity: 0;
+    }
+
+    .btn--animated {
+        animation-name: moveInBottom;
+        animation-duration: 0.5s;
+        animation-delay: 0.75s;
+        animation-fill-mode: backwards;
+    }
+
+    .btn--white {
+        background-color: #fff;
+        color: #777;
+    }
+
+    .btn--white::after {
+        background-color: #fff;
+    }
+}
+
+
+@keyframes fadeIn {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes moveToRight {
+    0% {
+        opacity: 0;
+        transform: translateX(-5rem);
+    }
+
+    80% {
+        transform: translateX(.5rem);
+    }
+
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes moveToAbove {
+    0% {
+        opacity: 0;
+        transform: translateY(-2rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes highlight {
+    to {
+        background-size: 100% 38%;
+    }
+}

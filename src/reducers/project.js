@@ -5,6 +5,7 @@ import {
     SET_TASK_DUE_DAY,
     PROJECT_CHANGED,
     WORKSPACE_CHANGED,
+    FETCH_PROJECT,
 } from "../actions";
 
 const initialProjectState = {
@@ -79,6 +80,12 @@ export const project = (state = initialProjectState, action) => {
                 },
             };
         }
+
+        case FETCH_PROJECT:
+            return {
+                ...state,
+                ...action.payload
+            }
 
         default:
             return {
