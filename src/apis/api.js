@@ -113,12 +113,13 @@ export const deleteTaskFromServer = async (task) => {
 export const updateUserToServer = async (user) => {
     try {
         const res = await backend.put(`/users/${user.id}`, {
+            email: user.email,
             starredProjects: user.starredProjects,
             workspaces: user.workspaces,
             firstName: user.firstName,
             lastName: user.lastName,
             avatar: user.avatar,
-            privateProjects:user.privateProjects
+            privateProjects: user.privateProjects
         });
 
         console.log(res);
