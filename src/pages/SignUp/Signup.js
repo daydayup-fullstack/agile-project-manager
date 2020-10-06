@@ -23,8 +23,7 @@ const SignUp = ({should_show_register, currentUser}) => {
                 console.log("Anonymous account successfully upgraded, ", user);
 
                 // update user's email
-                const result = await updateUserToServer({...currentUser, email: email});
-                console.log(result.data.message);
+                await updateUserToServer({...currentUser, email: email});
 
                 should_show_register(false);
             })
