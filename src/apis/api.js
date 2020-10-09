@@ -1,4 +1,18 @@
 import backend from "./backend";
+import {workspace} from "../reducers";
+
+export const createNewSharedWorkspace = async (userId, {workspaceName, emails}) => {
+    try {
+        const response = await backend.post(`/users/${userId}/workspaces`, {
+            name: workspaceName,
+            emails
+        })
+
+        console.log(response);
+    } catch (e) {
+        console.log(e);
+    }
+}
 
 export const saveColumnToServer = async (column, project) => {
     try {

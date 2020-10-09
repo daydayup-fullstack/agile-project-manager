@@ -2,8 +2,9 @@ import React from "react";
 import "./CreateYourWorkspace.css";
 import {connect} from "react-redux";
 import {hide_create_workspace_popup} from "../../actions";
+import {createNewSharedWorkspace} from "../../apis/api";
 
-const CreateYourWorkspace = ({hide_create_workspace_popup}) => {
+const CreateYourWorkspace = ({currentUser, hide_create_workspace_popup}) => {
     const [name, setName] = React.useState("");
     const [email, setEmail] = React.useState("");
     const [tokens, setTokens] = React.useState([]);
@@ -18,6 +19,9 @@ const CreateYourWorkspace = ({hide_create_workspace_popup}) => {
         if (!shouldDisable) {
             const result = {workspaceName: name, emails: [...tokens]};
             console.log(result);
+            createNewSharedWorkspace(currentUser.id, result);
+
+
             reset();
         }
     }
@@ -147,7 +151,9 @@ const CreateYourWorkspace = ({hide_create_workspace_popup}) => {
 }
 
 const mapStateToProps = (state) => {
-    return {}
+    return {
+        currentUser: state.user
+    }
 }
 
 
