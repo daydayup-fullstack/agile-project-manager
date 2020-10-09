@@ -1,10 +1,1 @@
-{
-    "version": 3,
-    "mappings": "AAEA,AACE,WADS,CACT,EAAE,CAAC;EACD,UAAU,EAAE,IAAI;EAChB,OAAO,EAAE,IAAI;CAkBd;;AArBH,AAKI,WALO,CACT,EAAE,CAIA,EAAE,CAAC;EACD,OAAO,EAAE,IAAI;EACb,WAAW,EAAE,MAAM;EACnB,cAAc,EAAE,SAAS;EACzB,WAAW,ECVH,SAAS,EAAE,UAAU;EDW7B,SAAS,ECNH,MAAM;EDOZ,WAAW,ECFH,GAAG;EDGX,KAAK,ECEA,OAAO;EDDZ,OAAO,EAAE,SAAS;CAOnB;;AApBL,AAeM,WAfK,CACT,EAAE,CAIA,EAAE,CAUA,CAAC,CAAC;EACA,MAAM,EAAE,QAAQ;EAChB,QAAQ,EAAE,QAAQ;EAClB,GAAG,EAAE,IAAI;CACV",
-    "sources": [
-        "Breadcrumb.scss",
-        "../../style/_variables.scss"
-    ],
-    "names": [],
-    "file": "Breadcrumb.css"
-}
+{"version":3,"sourceRoot":"","sources":["Breadcrumb.scss","../../style/_variables.scss"],"names":[],"mappings":"AAGE;EACE;EACA;;AAEA;EACE;EACA;EACA;EACA,aCVQ;EDWR,WCNM;EDON,aCFQ;EDGR,OCEK;EDDL;;AAEA;EACE;EACA;EACA","file":"Breadcrumb.css"}

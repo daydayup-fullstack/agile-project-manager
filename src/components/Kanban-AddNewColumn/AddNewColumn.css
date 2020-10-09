@@ -3,25 +3,15 @@
   width: 19rem;
   min-height: 200px;
   padding: 1rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
   cursor: pointer;
 }
-
 .addNewColumn .header {
   margin: 0.1rem 0;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  user-select: none;
   max-height: 45px;
 }
-
 .addNewColumn .header h2 {
   font-family: "Poppins", sans-serif;
   font-size: 1.1rem;
@@ -29,7 +19,6 @@
   color: #9ca6af;
   margin-top: 0.5rem;
 }
-
 .addNewColumn .header h2 span {
   color: #9ca6af;
   font-size: 1rem;
@@ -38,16 +27,13 @@
   position: relative;
   top: 0.1rem;
 }
-
 .addNewColumn .header h2:hover {
   color: #20aaea;
   cursor: pointer;
 }
-
 .addNewColumn .header h2:hover span {
   color: #20aaea;
 }
-
 .addNewColumn .header input {
   font-family: "Poppins", sans-serif;
   font-size: 1rem;
@@ -57,24 +43,21 @@
   outline: none;
   border-radius: 0.25rem;
 }
-
 .addNewColumn .header input:focus {
   outline: none;
   border: 1px solid #9ca6af;
 }
-
 .addNewColumn .list {
   width: 17.5rem;
   margin: 0.5rem 0;
   min-height: 80vh;
-  background: -webkit-gradient(linear, left top, left bottom, from(white), to(#f6f8f9));
   background: linear-gradient(white, #f6f8f9);
   border-radius: 0.25rem;
   margin-top: 2.65rem;
   visibility: hidden;
 }
-
 .addNewColumn .list--show {
   visibility: visible;
 }
+
 /*# sourceMappingURL=AddNewColumn.css.map */

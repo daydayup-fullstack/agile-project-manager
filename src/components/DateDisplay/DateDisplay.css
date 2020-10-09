@@ -1,12 +1,11 @@
 .DateDisplay .isClose {
   color: #62d26f;
 }
-
 .DateDisplay .isLate {
   color: #e8384f;
 }
-
 .DateDisplay span {
   font-size: 0.72rem;
 }
+
 /*# sourceMappingURL=DateDisplay.css.map */

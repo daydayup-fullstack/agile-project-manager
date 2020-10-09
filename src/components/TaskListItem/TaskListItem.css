@@ -1,94 +1,62 @@
 .TaskListItem {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  user-select: none;
   width: inherit;
   font-family: "Poppins", sans-serif;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  justify-content: space-between;
   display: flex;
   min-width: 30rem;
   padding: 0.25rem 0.5rem;
   color: #151b26;
 }
-
 .TaskListItem:hover {
   cursor: pointer;
   background-color: #e8ecee;
 }
-
 .TaskListItem:hover .TaskListItem__info .handle {
   visibility: visible;
 }
-
 .TaskListItem:hover .arrow, .TaskListItem:hover .dueDateAndPerson {
   visibility: visible;
 }
-
 .TaskListItem__info {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
-
 .TaskListItem__info .doneIcon {
   margin-right: 0.5rem;
-  -webkit-transition: color 0.25s ease;
   transition: color 0.25s ease;
   color: #9ca6af;
-  -webkit-transform: scale(0.9);
-          transform: scale(0.9);
+  transform: scale(0.9);
 }
-
 .TaskListItem__info .doneIcon:hover {
   color: #00e8bd;
 }
-
 .TaskListItem__info .handle {
   margin-right: 0.5rem;
   visibility: hidden;
-  cursor: -webkit-grab;
   cursor: grab;
   color: #9ca6af;
 }
-
 .TaskListItem__info .name {
   font-size: 0.81rem;
   font-weight: 400;
   position: relative;
 }
-
 .TaskListItem__actions {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
 }
-
 .TaskListItem__actions .circularButton:first-of-type {
   margin-right: 0.5rem;
 }
-
 .TaskListItem__actions .dueDateAndPerson {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-transform: scale(0.7);
-          transform: scale(0.7);
+  transform: scale(0.7);
   visibility: hidden;
 }
-
 .TaskListItem__actions .arrow {
   color: #9ca6af;
   visibility: hidden;
 }
+
 /*# sourceMappingURL=TaskListItem.css.map */

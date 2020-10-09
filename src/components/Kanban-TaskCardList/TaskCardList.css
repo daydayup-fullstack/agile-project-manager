@@ -7,7 +7,7 @@
 }
 
 .empty {
-  background: -webkit-gradient(linear, left top, left bottom, from(white), to(#f6f8f9));
   background: linear-gradient(white, #f6f8f9);
 }
+
 /*# sourceMappingURL=TaskCardList.css.map */

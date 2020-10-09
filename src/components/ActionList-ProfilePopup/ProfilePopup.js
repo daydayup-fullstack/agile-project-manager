@@ -2,7 +2,7 @@ import {BrowserRouter as Router, Link} from "react-router-dom";
 import React from "react";
 import myFirebase from "../../Firebase/firebase";
 import {connect} from "react-redux";
-import {should_show_register} from "../../actions";
+import {should_show_register, show_create_workspace_popup,} from "../../actions";
 
 const ProfilePopup = ({
                           currentWorkspace,
@@ -11,7 +11,8 @@ const ProfilePopup = ({
                           dismissNextLevel,
                           show_profile_settings,
                           logout_user,
-                          should_show_register
+                          should_show_register,
+                          show_create_workspace_popup
                       }) => {
     function handleClick(selectedWorkspaceId) {
         if (selectedWorkspaceId !== currentWorkspace) {
@@ -54,7 +55,8 @@ const ProfilePopup = ({
                     >
                         My Profile Settings
                     </li>
-                    {myFirebase.auth.currentUser.isAnonymous && (
+
+                    {myFirebase.auth.currentUser.isAnonymous ? (
                         <li
                             onClick={() => {
                                 should_show_register(true);
@@ -62,7 +64,14 @@ const ProfilePopup = ({
                         >
                             Create account
                         </li>
+                    ) : (
+                        <li onClick={() => {
+                            show_create_workspace_popup();
+                        }}>
+                            Create Shared Workspace
+                        </li>
                     )}
+
                     <li
                         onMouseOver={dismissNextLevel}
                         onClick={() => {
@@ -82,4 +91,4 @@ const ProfilePopup = ({
     );
 };
 
-export default connect(null, {should_show_register})(ProfilePopup);
+export default connect(null, {should_show_register, show_create_workspace_popup})(ProfilePopup);

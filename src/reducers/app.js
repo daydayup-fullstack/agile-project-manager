@@ -40,6 +40,8 @@ import {
     SET_TASK_FILTER,
     SET_QUICK_FILTER,
     SHOULD_SHOW_REGISTER,
+    SHOW_CREATE_WORKSPACE_POPUP,
+    HIDE_CREATE_WORKSPACE_POPUP,
 } from "../actions";
 
 const initialAppState = {
@@ -92,6 +94,10 @@ const initialAppState = {
     ui_profile_settings: {
         shouldShow: false,
     },
+    ui_create_your_workspace: {
+        shouldShow: false
+    },
+
     ui_scroll_left: 0,
     ui_navlink_selector: {
         section: "",
@@ -374,6 +380,24 @@ export const app = (state = initialAppState, action) => {
                     shouldShow: false,
                 },
             };
+
+
+        case SHOW_CREATE_WORKSPACE_POPUP:
+            return {
+                ...state,
+                ui_create_your_workspace: {
+                    shouldShow: true,
+                }
+            }
+
+        case HIDE_CREATE_WORKSPACE_POPUP:
+            return {
+                ...state,
+                ui_create_your_workspace: {
+                    shouldShow: false
+                }
+            }
+
         case SET_SCROLL_VALUE: {
             return {
                 ...state,

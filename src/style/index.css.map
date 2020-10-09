@@ -1,10 +1,1 @@
-{
-    "version": 3,
-    "mappings": "AAEA,AAAA,CAAC,CAAC;EACA,OAAO,EAAE,CAAC;EACV,MAAM,EAAE,CAAC;EACT,UAAU,EAAE,UAAU;CAyBvB;;AA5BD,AAKE,CALD,AAKE,mBAAmB,CAAC;EACnB,KAAK,EAAE,GAAG;EACV,MAAM,EAAE,GAAG;CACZ;;AARH,AAUE,CAVD,AAUE,yBAAyB,CAAC;EACzB,aAAa,EAAE,GAAG;EAClB,gBAAgB,EAAE,wBAAuB;EACzC,UAAU,EAAE,qBAAqB;CAClC;;AAdH,AAgBE,CAhBD,AAgBE,yBAAyB,AAAA,MAAM,CAAC;EAC/B,UAAU,EAAE,IAAI;CACjB;;AAlBH,AAoBE,CApBD,AAoBE,yBAAyB,CAAC;EACzB,UAAU,EAAE,OAAO;CACpB;;AAtBH,AAwBE,CAxBD,CAwBC,CAAC,CAAC;EACA,eAAe,EAAE,IAAI;EACrB,KAAK,ECVE,OAAO;CDWf",
-    "sources": [
-        "index.scss",
-        "_variables.scss"
-    ],
-    "names": [],
-    "file": "index.css"
-}
+{"version":3,"sourceRoot":"","sources":["index.scss","_variables.scss"],"names":[],"mappings":"AAEA;EACE;EACA;EACA;;AAEA;EACE;EACA;;AAGF;EACE;EACA;EACA;;AAGF;EACE;;AAGF;EACE;;AAGF;EACE;EACA,OCVO","file":"index.css"}

@@ -1,15 +1,12 @@
 .CoverPhotoBlock {
   width: 250px;
 }
-
 .CoverPhotoBlock img {
   height: 100%;
   width: 100%;
   pointer-events: none;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  user-select: none;
   border-radius: 0.25rem;
 }
+
 /*# sourceMappingURL=CoverPhotoBlock.css.map */

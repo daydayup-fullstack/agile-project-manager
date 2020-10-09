@@ -2,23 +2,14 @@
   height: 90vh;
   overflow-y: scroll;
   margin-bottom: 4rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  align-items: center;
   width: 100%;
   margin-top: 0;
 }
 
 .panels {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   width: 900px;
 }
@@ -28,16 +19,13 @@
 }
 
 .projects {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   /* flex-direction: column; */
 }
 
 .project_list {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   width: 500px;
 }
+
 /*# sourceMappingURL=team.css.map */

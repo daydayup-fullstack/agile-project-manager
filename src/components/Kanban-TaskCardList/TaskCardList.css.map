@@ -1,10 +1,1 @@
-{
-    "version": 3,
-    "mappings": "AAEA,AAAA,aAAa,CAAC;EACZ,KAAK,EAAE,OAAO;EACd,aAAa,EAAE,OAAO;EACtB,MAAM,EAAE,IAAI;EACZ,UAAU,EAAE,IAAI;EAChB,UAAU,EAAE,MAAM;CACnB;;AAED,AAAA,MAAM,CAAC;EACL,UAAU,EAAE,+BAAkD;CAC/D",
-    "sources": [
-        "TaskCardList.scss",
-        "../../style/_variables.scss"
-    ],
-    "names": [],
-    "file": "TaskCardList.css"
-}
+{"version":3,"sourceRoot":"","sources":["TaskCardList.scss"],"names":[],"mappings":"AAEA;EACE;EACA;EACA;EACA;EACA;;;AAGF;EACE","file":"TaskCardList.css"}

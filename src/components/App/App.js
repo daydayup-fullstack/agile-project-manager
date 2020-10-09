@@ -27,6 +27,7 @@ import CalendarPopup from "../CalendarPopup/CalendarPopup";
 import myFirebase from "../../Firebase/firebase";
 import ProfileSettings from "../ProfileSettings/ProfileSettings";
 import SignUp from "../../pages/SignUp/Signup";
+import CreateYourWorkspace from "../CreateYourWorkspace/CreateYourWorkspace";
 
 const App = ({
                  projectCard_popup,
@@ -47,6 +48,7 @@ const App = ({
                  shouldShowProfileSettings,
                  shouldShowRegisterPage,
                  currentUser,
+                 createYourWorkspace
              }) => {
     React.useEffect(() => {
         console.log("app starts");
@@ -62,8 +64,14 @@ const App = ({
 
     return (
         <div className="App">
+
             {newTaskDisplay ? <AddTaskPopup user={currentUser}/> : <></>}
             <div className="App-Popup">
+
+                {createYourWorkspace.shouldShow && (
+                    <CreateYourWorkspace/>
+                )}
+
                 {projectCard_popup.shouldShow && (
                     <PopupMenu anchor={projectCard_popup.anchor}>
                         <ActionList/>
@@ -214,6 +222,9 @@ const mapStateToProps = (state) => {
         shouldShowProfileSettings: state.app.ui_profile_settings.shouldShow,
         shouldShowRegisterPage: state.app.ui_show_register_account,
         currentUser: state.user,
+        createYourWorkspace: {
+            shouldShow: state.app.ui_create_your_workspace.shouldShow
+        }
     };
 };
 export default connect(mapStateToProps, {init_user, init_user_failed})(App);

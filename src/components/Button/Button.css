@@ -7,12 +7,11 @@
   border-radius: 0.25rem;
   color: white;
   background-color: #7A6FF0;
-  -webkit-transition: background-color 0.25s ease;
   transition: background-color 0.25s ease;
 }
-
 .Button:hover {
   cursor: pointer;
   background-color: #635ac7;
 }
+
 /*# sourceMappingURL=Button.css.map */

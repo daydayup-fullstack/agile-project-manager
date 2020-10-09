@@ -12,6 +12,21 @@ export const hide_projectCard_popup = () => {
         type: HIDE_PROJECT_CARD_POPUP,
     };
 };
+
+export const HIDE_CREATE_WORKSPACE_POPUP = "HIDE_CREATE_WORKSPACE_POPUP"
+export const hide_create_workspace_popup = () => {
+    return {
+        type: HIDE_CREATE_WORKSPACE_POPUP
+    }
+}
+
+export const SHOW_CREATE_WORKSPACE_POPUP = "SHOW_CREATE_WORKSPACE_POPUP";
+export const show_create_workspace_popup = () => {
+    return {
+        type: SHOW_CREATE_WORKSPACE_POPUP,
+    }
+}
+
 //=======
 export const SHOW_ADD_MEMBER_POPUP = "SHOW_ADD_MEMBER_POPUP";
 export const show_addmember_popup = () => {
@@ -303,3 +318,4 @@ export const should_show_register = (shouldShow) => {
         shouldShow,
     };
 };
+

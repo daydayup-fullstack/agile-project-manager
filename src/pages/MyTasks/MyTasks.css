@@ -1,77 +1,46 @@
 .App-MyTasks {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
   background: #f6f8f9;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-direction: column;
+  flex-wrap: wrap;
   margin: 0 auto;
   width: 90%;
   min-width: 50rem;
-  -webkit-box-shadow: 0 1px 3px 0 rgba(21, 27, 38, 0.15);
-          box-shadow: 0 1px 3px 0 rgba(21, 27, 38, 0.15);
+  box-shadow: 0 1px 3px 0 rgba(21, 27, 38, 0.15);
 }
-
 .App-MyTasks__header {
   padding: 1rem;
 }
-
 .App-MyTasks__content {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   background: #ffffff;
   height: 100vh;
   border: 1px solid #e8ecee;
   width: 100%;
 }
-
 .App-MyTasks__content__gutter {
   width: 1.5rem;
   background: #f6f8f9;
   border-right: 1px solid #e8ecee;
 }
-
 .App-MyTasks__content__gutter ul {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
   list-style: none;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  justify-content: space-evenly;
 }
-
 .App-MyTasks__content__gutter ul li {
   font-family: "Poppins", sans-serif;
   font-size: 0.72rem;
   font-weight: 400;
   color: #9ca6af;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   height: 42px;
 }
+
 /*# sourceMappingURL=MyTasks.css.map */
