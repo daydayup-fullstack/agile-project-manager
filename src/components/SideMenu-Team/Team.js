@@ -3,14 +3,14 @@ import {Link} from "react-router-dom";
 import Profile from "../Profile/Profile";
 import React from "react";
 import {connect} from "react-redux";
-import {nav_link_clicked} from "../../actions";
+import {nav_link_clicked, show_invite_members_popup} from "../../actions";
 
 const Team = ({
                   projects,
                   workspace,
                   section,
                   indexSelected,
-                  nav_link_clicked,
+                  nav_link_clicked, show_invite_members_popup
               }) => {
     const projectArray = Object.values(projects);
     const getProjectColor = (project) => ({
@@ -25,7 +25,8 @@ const Team = ({
     }
 
     const addNewMembers = e => {
-        console.log("add new members");
+        console.log("should show invite more members page");
+        show_invite_members_popup();
     };
 
     return (
@@ -34,7 +35,7 @@ const Team = ({
                 <>
                     <div style={{textDecoration: "none", color: "#fff"}}>
                         <header className={"teamHeader"}>{workspace.name}
-                                <span className="material-icons" onClick={(e) => addNewMembers(e)}>add</span>
+                            <span className="material-icons" onClick={(e) => addNewMembers(e)}>add</span>
                         </header>
                     </div>
 
@@ -83,4 +84,4 @@ const mapStateToProps = (state) => {
     };
 };
 
-export default connect(mapStateToProps, {nav_link_clicked})(Team);
+export default connect(mapStateToProps, {nav_link_clicked, show_invite_members_popup})(Team);

@@ -28,6 +28,7 @@ import myFirebase from "../../Firebase/firebase";
 import ProfileSettings from "../ProfileSettings/ProfileSettings";
 import SignUp from "../../pages/SignUp/Signup";
 import CreateYourWorkspace from "../CreateYourWorkspace/CreateYourWorkspace";
+import InviteMoreMembers from "../InviteMoreMembers/InviteMoreMembers";
 
 const App = ({
                  projectCard_popup,
@@ -48,7 +49,8 @@ const App = ({
                  shouldShowProfileSettings,
                  shouldShowRegisterPage,
                  currentUser,
-                 createYourWorkspace
+                 createYourWorkspace,
+                 inviteMoreMembers
              }) => {
     React.useEffect(() => {
         console.log("app starts");
@@ -67,6 +69,10 @@ const App = ({
 
             {newTaskDisplay ? <AddTaskPopup user={currentUser}/> : <></>}
             <div className="App-Popup">
+
+                {inviteMoreMembers.shouldShow && (
+                    <InviteMoreMembers/>
+                )}
 
                 {createYourWorkspace.shouldShow && (
                     <CreateYourWorkspace/>
@@ -224,7 +230,11 @@ const mapStateToProps = (state) => {
         currentUser: state.user,
         createYourWorkspace: {
             shouldShow: state.app.ui_create_your_workspace.shouldShow
+        },
+        inviteMoreMembers: {
+            shouldShow: state.app.ui_invite_more_members.shouldShow
         }
+
     };
 };
 export default connect(mapStateToProps, {init_user, init_user_failed})(App);

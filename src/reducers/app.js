@@ -41,7 +41,7 @@ import {
     SET_QUICK_FILTER,
     SHOULD_SHOW_REGISTER,
     SHOW_CREATE_WORKSPACE_POPUP,
-    HIDE_CREATE_WORKSPACE_POPUP,
+    HIDE_CREATE_WORKSPACE_POPUP, SHOW_INVITE_MEMBERS_POPUP, HIDE_INVITE_MEMBERS_POPUP,
 } from "../actions";
 
 const initialAppState = {
@@ -95,6 +95,10 @@ const initialAppState = {
         shouldShow: false,
     },
     ui_create_your_workspace: {
+        shouldShow: false
+    },
+
+    ui_invite_more_members: {
         shouldShow: false
     },
 
@@ -394,6 +398,23 @@ export const app = (state = initialAppState, action) => {
             return {
                 ...state,
                 ui_create_your_workspace: {
+                    shouldShow: false
+                }
+            }
+
+
+        case SHOW_INVITE_MEMBERS_POPUP:
+            return {
+                ...state,
+                ui_invite_more_members: {
+                    shouldShow: true
+                }
+            }
+
+        case HIDE_INVITE_MEMBERS_POPUP:
+            return {
+                ...state,
+                ui_invite_more_members: {
                     shouldShow: false
                 }
             }

@@ -14,6 +14,20 @@ export const createNewSharedWorkspace = async (userId, {workspaceName, emails}) 
     }
 }
 
+export const addingMembersToSharedWorkspace = async ({workspaceId, emails}) => {
+    try {
+        const response = await backend.put(`/workspaces/${workspaceId}/members`, {
+            workspaceId,
+            emails
+        });
+
+        console.log(response);
+
+    } catch (e) {
+        console.log(e);
+    }
+}
+
 export const saveColumnToServer = async (column, project) => {
     try {
         const response = await backend.post(`/columns`, {

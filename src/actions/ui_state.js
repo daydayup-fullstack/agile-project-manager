@@ -27,6 +27,20 @@ export const show_create_workspace_popup = () => {
     }
 }
 
+export const HIDE_INVITE_MEMBERS_POPUP = "HIDE_INVITE_MEMBERS_POPUP"
+export const hide_invite_members_popup = () => {
+    return {
+        type: HIDE_INVITE_MEMBERS_POPUP
+    }
+}
+
+export const SHOW_INVITE_MEMBERS_POPUP = "SHOW_INVITE_MEMBERS_POPUP";
+export const show_invite_members_popup = () => {
+    return {
+        type: SHOW_INVITE_MEMBERS_POPUP
+    }
+}
+
 //=======
 export const SHOW_ADD_MEMBER_POPUP = "SHOW_ADD_MEMBER_POPUP";
 export const show_addmember_popup = () => {

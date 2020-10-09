@@ -1,0 +1,180 @@
+.createYourWorkspace__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 30;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(21, 27, 38, 0.8);
+}
+.createYourWorkspace__container .createYourWorkspace {
+  width: 40%;
+  z-index: 40;
+  background: #ffffff;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  flex-direction: column;
+  border-radius: 0.3rem;
+  min-width: 560px;
+  padding: 2rem;
+}
+.createYourWorkspace__container .createYourWorkspace header {
+  font-size: 1.5rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.createYourWorkspace__container .createYourWorkspace header .close {
+  color: #6f7782;
+}
+.createYourWorkspace__container .createYourWorkspace header .close:hover {
+  cursor: pointer;
+  color: #151b26;
+}
+.createYourWorkspace__container .createYourWorkspace__content form {
+  margin: 1rem 0;
+}
+.createYourWorkspace__container .createYourWorkspace__content__workspace-name {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+.createYourWorkspace__container .createYourWorkspace__content__workspace-name label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #6f7782;
+  margin-bottom: 0.25rem;
+  padding-top: 0.5rem;
+}
+.createYourWorkspace__container .createYourWorkspace__content__workspace-name input {
+  border-radius: 0.25rem;
+  width: 100%;
+  border: 1px solid #9ca6af;
+  padding: 0.75rem 0.5rem;
+  flex-grow: 1;
+  max-width: 25rem;
+}
+.createYourWorkspace__container .createYourWorkspace__content__members {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.createYourWorkspace__container .createYourWorkspace__content__members label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #6f7782;
+  padding-top: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+.createYourWorkspace__container .createYourWorkspace__content__members .members-field {
+  border: 1px solid #9ca6af;
+  border-radius: 0.25rem;
+  flex-grow: 1;
+  min-height: 5rem;
+  padding: 0.5rem 0.25rem;
+  max-width: 25rem;
+  display: flex;
+  text-align: center;
+  position: relative;
+}
+.createYourWorkspace__container .createYourWorkspace__content__members .members-field:hover {
+  cursor: text;
+}
+.createYourWorkspace__container .createYourWorkspace__content__members .members-field--error {
+  border-color: #ed4758;
+}
+.createYourWorkspace__container .createYourWorkspace__content__members .members-field .warning {
+  position: absolute;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: #ed4758;
+  bottom: -1.5rem;
+}
+.createYourWorkspace__container .createYourWorkspace__content__members .members-field .token {
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem 0 0.75rem;
+  border-radius: 1rem;
+  height: 1.5rem;
+  margin-right: 0.25rem;
+  background: #e8ecee;
+}
+.createYourWorkspace__container .createYourWorkspace__content__members .members-field .token:hover {
+  cursor: pointer;
+}
+.createYourWorkspace__container .createYourWorkspace__content__members .members-field .token span {
+  font-size: 0.9rem;
+  color: #151b26;
+}
+.createYourWorkspace__container .createYourWorkspace__content__members .members-field .token span:first-of-type {
+  font-family: "Poppins", sans-serif;
+  margin-right: 0.25rem;
+}
+.createYourWorkspace__container .createYourWorkspace__content__members .members-field .token .material-icons {
+  border-radius: 0.5rem;
+}
+.createYourWorkspace__container .createYourWorkspace__content__members .members-field .token .material-icons:hover {
+  background: #151b26;
+  color: white;
+  transition: all 0.3s ease;
+}
+.createYourWorkspace__container .createYourWorkspace__content__members .members-field .token--selected {
+  background: #32c1ff;
+}
+.createYourWorkspace__container .createYourWorkspace__content__members .members-field .token--selected span {
+  color: white;
+}
+.createYourWorkspace__container .createYourWorkspace__content__members .members-field .token--selected .material-icons:hover {
+  background: #e8ecee;
+}
+.createYourWorkspace__container .createYourWorkspace__content__members .members-field .token--invalid {
+  background: transparent;
+  border: 1px solid #ed4758;
+}
+.createYourWorkspace__container .createYourWorkspace__content__members .members-field .token--invalid span {
+  color: #ed4758;
+}
+.createYourWorkspace__container .createYourWorkspace__content__members .members-field .token--invalid .material-icons:hover {
+  background: #ed4758;
+}
+.createYourWorkspace__container .createYourWorkspace__content__members .members-field .token--invalid--selected {
+  color: white;
+  background: #ed4758;
+}
+.createYourWorkspace__container .createYourWorkspace__content__members .members-field .token--invalid--selected span {
+  color: white;
+}
+.createYourWorkspace__container .createYourWorkspace__content__members .members-field .token--invalid--selected .material-icons:hover {
+  background: #e8ecee;
+}
+.createYourWorkspace__container .createYourWorkspace__content__members .members-field .create-token {
+  border: none;
+  background: transparent;
+  height: 1.5rem;
+  padding: 0.5rem 0;
+  margin-left: 0.25rem;
+  outline: none;
+}
+.createYourWorkspace__container .createYourWorkspace__content__buttonRow {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2.5rem;
+}
+.createYourWorkspace__container .createYourWorkspace__content__buttonRow .Button {
+  background: #1296d8;
+  font-size: 0.9rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.25rem;
+  color: white;
+}
+.createYourWorkspace__container .createYourWorkspace__content__buttonRow .Button--disabled {
+  background: #e8ecee;
+}
+
+/*# sourceMappingURL=InviteMoreMembers.css.map */
