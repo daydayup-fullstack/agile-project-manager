@@ -1,10 +1,12 @@
 import React from "react";
 import "./InviteMoreMembers.css";
 import {connect} from "react-redux";
-import {hide_invite_members_popup} from "../../actions";
-import {addingMembersToSharedWorkspace} from "../../apis/api";
+import {
+    adding_members_to_workspace,
+    hide_invite_members_popup,
+} from "../../actions";
 
-const InviteMoreMembers = ({currentUser, workspace, hide_invite_members_popup}) => {
+const InviteMoreMembers = ({currentUser, workspace, hide_invite_members_popup, adding_members_to_workspace}) => {
     const [email, setEmail] = React.useState("");
     const [tokens, setTokens] = React.useState([]);
 
@@ -13,13 +15,12 @@ const InviteMoreMembers = ({currentUser, workspace, hide_invite_members_popup}) 
 
     const tokenInput = React.useRef(null);
 
+
     function handleSubmit() {
         if (!shouldDisable) {
             const result = {workspaceId: workspace.id, emails: [...tokens]};
-            console.log(result);
 
-            // new api calls
-            addingMembersToSharedWorkspace(result);
+            adding_members_to_workspace(result);
 
             reset();
             hide_invite_members_popup();
@@ -147,4 +148,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, {hide_invite_members_popup})(InviteMoreMembers);
+export default connect(mapStateToProps, {hide_invite_members_popup, adding_members_to_workspace})(InviteMoreMembers);

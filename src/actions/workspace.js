@@ -20,3 +20,29 @@ export const change_workspace = (workspace) => async (dispatch) => {
         });
     }
 };
+
+
+export const ADDING_MEMBERS = "ADDING_MEMBERS";
+export const ADDING_MEMBERS_FAILED = "ADDING_MEMBERS_FAILED";
+
+export const adding_members_to_workspace = ({workspaceId, emails}) => async (dispatch) => {
+    try {
+        const res = await backend.put(`/workspaces/${workspaceId}/members`, {
+            workspaceId,
+            emails
+        });
+
+        console.log(res.data.allMembers);
+
+        dispatch({
+            type: ADDING_MEMBERS,
+            allMembers: res.data.allMembers
+        })
+
+    } catch (e) {
+        dispatch({
+            type: ADDING_MEMBERS_FAILED,
+            error: e
+        })
+    }
+}
