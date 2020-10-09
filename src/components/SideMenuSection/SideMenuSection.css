@@ -22,6 +22,11 @@
   right: 1.5rem;
   transform: scale(0.8);
 }
+.SideMenuSection__content .teamHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .SideMenuSection__content .teamHeader:hover {
   background: rgba(111, 119, 130, 0.5);
 }

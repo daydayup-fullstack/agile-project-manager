@@ -20,9 +20,8 @@ const CreateYourWorkspace = ({currentUser, hide_create_workspace_popup}) => {
             const result = {workspaceName: name, emails: [...tokens]};
             console.log(result);
             createNewSharedWorkspace(currentUser.id, result);
-
-
             reset();
+            hide_create_workspace_popup();
         }
     }
 

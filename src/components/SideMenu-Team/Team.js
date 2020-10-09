@@ -24,13 +24,19 @@ const Team = ({
         });
     }
 
+    const addNewMembers = e => {
+        console.log("add new members");
+    };
+
     return (
         <>
             {workspace.type === "team" && (
                 <>
-                    <Link to={"/team"} style={{textDecoration: "none", color: "#fff"}}>
-                        <header className={"teamHeader"}>{workspace.name}</header>
-                    </Link>
+                    <div style={{textDecoration: "none", color: "#fff"}}>
+                        <header className={"teamHeader"}>{workspace.name}
+                                <span className="material-icons" onClick={(e) => addNewMembers(e)}>add</span>
+                        </header>
+                    </div>
 
                     <ul className={"memberList"}>
                         {workspace.allMembers.map((user) => (

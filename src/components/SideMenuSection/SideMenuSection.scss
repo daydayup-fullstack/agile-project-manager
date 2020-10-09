@@ -29,6 +29,9 @@
     }
 
     .teamHeader {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       &:hover {
         background: rgba($gray-400, 0.5);
       }
@@ -51,8 +54,6 @@
       display: none;
 
 
-
-
       .active {
         background-color: rgba($gray-400, 0.5);
       }
@@ -70,10 +71,12 @@
 
         &:hover {
           background: rgba($gray-400, 0.2);
+
           i {
             visibility: visible;
           }
         }
+
         &__color {
           height: 0.5rem;
           width: 0.5rem;
