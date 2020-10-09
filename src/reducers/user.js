@@ -7,7 +7,7 @@ import {
     INIT_USER_FAILED,
     PROJECT_DELETED,
     WORKSPACE_CHANGED,
-    GUEST_LOGIN, UPDATE_USER,
+    GUEST_LOGIN, UPDATE_USER, CREATE_NEW_SHARED_WORKSPACE,
 } from "../actions";
 import {updateUserToServer} from "../apis/api";
 
@@ -22,6 +22,7 @@ const initialUserState = {
     starredProjects: [],
     workspaces: [],
     isLoggedIn: false,
+    allWorkspaces: {}
 };
 
 export const user = (state = initialUserState, action) => {
@@ -105,6 +106,14 @@ export const user = (state = initialUserState, action) => {
             return {
                 ...state,
                 ...action.user
+            }
+        }
+
+        case CREATE_NEW_SHARED_WORKSPACE: {
+            return {
+                ...state,
+                workspaces: [...action.workspaces],
+                allWorkspaces: {...action.allWorkspaces}
             }
         }
 

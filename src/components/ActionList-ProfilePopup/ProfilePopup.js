@@ -5,18 +5,19 @@ import {connect} from "react-redux";
 import {should_show_register, show_create_workspace_popup,} from "../../actions";
 
 const ProfilePopup = ({
-                          currentWorkspace,
-                          user,
                           change_workspace,
                           dismissNextLevel,
                           show_profile_settings,
                           logout_user,
                           should_show_register,
-                          show_create_workspace_popup
+                          show_create_workspace_popup,
+                          currentWorkspace,
+                          workspaces,
+                          allWorkspaces,
                       }) => {
     function handleClick(selectedWorkspaceId) {
         if (selectedWorkspaceId !== currentWorkspace) {
-            change_workspace(user.allWorkspaces[selectedWorkspaceId]);
+            change_workspace(allWorkspaces[selectedWorkspaceId]);
         }
     }
 
@@ -24,21 +25,21 @@ const ProfilePopup = ({
         <Router>
             <div className={"ProfilePopup"}>
                 <ul>
-                    {user.workspaces.map((id, index) => {
+                    {workspaces.map((item, index) => {
                         return (
                             <li
                                 onMouseOver={dismissNextLevel}
-                                onClick={() => handleClick(id)}
+                                onClick={() => handleClick(item)}
                                 key={index}
                             >
-                                {id === currentWorkspace.id && (
+                                {item === currentWorkspace.id && (
                                     <span className={"material-icons ProfilePopup__current"}>
                     done
                   </span>
                                 )}
-                                {user.allWorkspaces[id].type === "personal"
+                                {allWorkspaces[item].type === "personal"
                                     ? "Personal projects"
-                                    : user.allWorkspaces[id].name}
+                                    : allWorkspaces[item].name}
                             </li>
                         );
                     })}
@@ -91,4 +92,19 @@ const ProfilePopup = ({
     );
 };
 
-export default connect(null, {should_show_register, show_create_workspace_popup})(ProfilePopup);
+const mapStateToProps = (state) => {
+    console.log(state.workspace);
+    console.log(state.user.workspaces);
+    console.log(state.user.allWorkspaces);
+    return {
+        currentWorkspace: state.workspace,
+        workspaces: state.user.workspaces,
+        allWorkspaces: state.user.allWorkspaces
+    }
+
+}
+
+export default connect(mapStateToProps, {
+    should_show_register,
+    show_create_workspace_popup,
+})(ProfilePopup);

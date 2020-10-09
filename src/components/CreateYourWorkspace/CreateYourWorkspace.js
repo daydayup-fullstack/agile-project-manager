@@ -1,10 +1,9 @@
 import React from "react";
 import "./CreateYourWorkspace.css";
 import {connect} from "react-redux";
-import {hide_create_workspace_popup} from "../../actions";
-import {createNewSharedWorkspace} from "../../apis/api";
+import {create_new_shared_workspace, hide_create_workspace_popup} from "../../actions";
 
-const CreateYourWorkspace = ({currentUser, hide_create_workspace_popup}) => {
+const CreateYourWorkspace = ({currentUser, hide_create_workspace_popup, create_new_shared_workspace}) => {
     const [name, setName] = React.useState("");
     const [email, setEmail] = React.useState("");
     const [tokens, setTokens] = React.useState([]);
@@ -18,8 +17,7 @@ const CreateYourWorkspace = ({currentUser, hide_create_workspace_popup}) => {
     function handleSubmit() {
         if (!shouldDisable) {
             const result = {workspaceName: name, emails: [...tokens]};
-            console.log(result);
-            createNewSharedWorkspace(currentUser.id, result);
+            create_new_shared_workspace(currentUser.id, result);
             reset();
             hide_create_workspace_popup();
         }
@@ -156,4 +154,7 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, {hide_create_workspace_popup})(CreateYourWorkspace);
+export default connect(mapStateToProps, {
+    hide_create_workspace_popup,
+    create_new_shared_workspace
+})(CreateYourWorkspace);

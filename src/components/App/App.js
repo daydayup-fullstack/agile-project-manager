@@ -20,7 +20,7 @@ import PopupMenu from "../PopupMenu/PopupMenu";
 import ActionList from "../ActionList/ActionList";
 import Tooltip from "../Tooltip/Tooltip";
 import AddTaskPopup from "../AddTaskPopup/AddTaskPopup";
-import {init_user, init_user_failed} from "../../actions";
+import {init_user, init_user_failed, list_user_workspaces} from "../../actions";
 import AssigneeArrayContainer from "../AssigneeArray/AssigneeArrayContainer/AssigneeArrayContainer";
 import PopupCircularButton from "../PopupCircularButton/PopupCircularButton";
 import CalendarPopup from "../CalendarPopup/CalendarPopup";
@@ -50,7 +50,7 @@ const App = ({
                  shouldShowRegisterPage,
                  currentUser,
                  createYourWorkspace,
-                 inviteMoreMembers
+                 inviteMoreMembers,
              }) => {
     React.useEffect(() => {
         console.log("app starts");
@@ -181,7 +181,6 @@ const App = ({
     );
 };
 const mapStateToProps = (state) => {
-    // console.log(state);
     return {
         projectCard_popup: {
             shouldShow: state.app.ui_projectCard_popup.shouldShow,

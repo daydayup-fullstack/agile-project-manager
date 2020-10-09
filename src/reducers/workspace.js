@@ -6,6 +6,7 @@ import {
 } from "../actions"
 
 const initialWorkspace = {
+    id: "",
     type: "",
     projectsInOrder: [],
     members: [],
